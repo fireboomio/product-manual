@@ -1,0 +1,25 @@
+# ✍ 应用场景TODO
+
+## 移动应用API构建
+
+<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption></figcaption></figure>
+
+
+
+## 中后台应用构建
+
+此外，用户可以将飞布与前端低代码平台结合，实现复杂业务逻辑。为了解决中后台开发的需求，飞布生态集成了一套中后台管理界面，并与飞布实现了深度打通，基于此可以快速完成中后台应用，能够覆盖前端低代码无法实现的用例！
+
+<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
+
+## 多数据源聚合BFF
+
+
+
+
+
+## 实时应用构建
+
+
+
+##

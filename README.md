@@ -10,6 +10,8 @@ description: 飞布的介绍
 
 前后端开发者都能使用飞布构建生产级WEB API。
 
+<figure><img src=".gitbook/assets/image (8).png" alt=""><figcaption><p>飞布API构建页面</p></figcaption></figure>
+
 如果你是后端，厌倦了做CRUD BOY的日子，希望快速成长并接受更有意义的挑战，使用飞布后，你将摆脱重复、低效的开发现状，有时间专注于更有价值的业务逻辑，实现人生更大的梦想。
 
 如果你是前端，受够了找后端修改一个字段时的来回拉扯，使用飞布后，只需30分钟学习，你就能开发出比新手后端还要稳健的API接口，直接变全栈。
@@ -18,23 +20,23 @@ description: 飞布的介绍
 
 尽管飞布具有低代码开发平台的所有优势，如可视化、低成本、高效率、稳定性等，但飞布与市面上的低代码平台完全不同。
 
+<figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption><p>低代码开发优势</p></figcaption></figure>
+
 > 自从前后端分离架构盛行以来，WEB应用分为前端和后端。WEB应用中，前端指的是：看得见的**页面**；后端指的是：给看得见的页面**提供数据**的，与**服务器**打交道的部分。
 >
 > 前端主要工作内容是，用CSS和H5复现UI稿，然后用js调用API获取数据，并绑定到页面上。后端的主要工作内容是，用后端开发语言处理数据构建API，并通过各种优化机制，如加缓存、负载均衡等保证服务稳定运行。此外，前后端分离以来，前后端需要进行接口联调，而该过程大量存在扯皮行为，前后端关系的破裂均由此产生。
 
 目前国内市场上所有低代码平台均从前端切入，通过可视化拖拽构建应用，主要解决前端页面复现和数据绑定的问题，如基于国外开源项目appsmith的国产化低代码产品（卡拉云、码匠等）。尽管这些工具提供了简单的数据处理机制，如连接数据源写SQL等，但该方式不够灵活，遇到稍微复杂的逻辑就无法处理，只适用于中后台系统的开发，例如创建文章后发送一封邮件、从数据库查询设备列表时同时获取设备在线状态等很常见的用例。此外，这些工具无法实现APP或小程序等移动端产品的开发。我更倾向于称这些低代码平台为“<mark style="color:orange;">**前端低代码**</mark>”。
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption><p>appsmith 预览</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (9) (1).png" alt=""><figcaption><p>appsmith 预览</p></figcaption></figure>
 
 ## 飞布是什么？
 
 相对于“前端低代码”，飞布是“<mark style="color:orange;">**后端低代码**</mark>”。它从后端切入，专注于API开发，用界面封装了API开发的复杂性，通过配置和勾选即可生成生产级REST API，支持多种数据源，具备“PRO CODE”能力，且编程语言无关。
 
-它本质上是中国版Hasura，但做了本土化改造，尽管引擎底层基于graphql，但考虑到graphql的国内普及率较低，对外只暴露REST API，而不是graphql端点。
+飞布本质上是中国版Hasura，但做了本土化改造，尽管引擎底层基于graphql，但考虑到graphql的国内普及率较低，对外只暴露REST API，而不是graphql端点。
 
-
-
-<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>架构图</p></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2).png" alt=""><figcaption><p>飞布架构图</p></figcaption></figure>
 
 飞布以 API 为中心，将所有数据抽象为 API，包括 REST API，GraphQL API ，数据库甚至消息队列等，通过 GraphQL 协议把他们聚合在一起，形成具有数据全集的“超图”。
 
@@ -54,4 +56,4 @@ description: 飞布的介绍
 
 ## 总结
 
-飞布“简单但不简单”。在上层足够简单，可视化界面封装了grapqhl细节，集成了数据库设计功能，用户无需刻意学习，即可上手开发；在底层不简单，飞布引擎增加了缓存机制、解决了N+1查询问题、创新性地支持服务端推送和跨数据源关联查询等功能；此外，飞布又足够灵活，其钩子机制支持自定义逻辑，能够适配“前端低代码”无法适配的场景。
+飞布“<mark style="color:orange;">简单但不简单</mark>”。在上层足够简单，可视化界面封装了grapqhl细节，集成了数据库设计功能，用户无需刻意学习，即可上手开发；在底层不简单，飞布引擎增加了缓存机制、解决了N+1查询问题、创新性地支持服务端推送和跨数据源关联查询等功能；此外，飞布又足够灵活，其钩子机制支持自定义逻辑，能够适配“前端低代码”无法适配的场景。
