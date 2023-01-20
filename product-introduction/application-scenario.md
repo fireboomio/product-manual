@@ -10,7 +10,7 @@ description: 作为一款API开发平台，飞布的主要应用场景有哪些�
 
 飞布擅长API构建，尤其擅长聚合不同库表或三方API的数据在一个请求中，能够节省网络请求的成本，提高应用性能。而大部分移动或WEB应用程序都是从数据库查询数据，这是飞布的强项。此外，飞布也能满足常见更新操作API的构建需求。最后，飞布还提供了灵活的扩展机制，开发者通过编写自定义代码，能够实现任意复杂度的WEB应用接口。
 
-<figure><img src=".gitbook/assets/image (15).png" alt=""><figcaption><p>小程序项目示例</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (15).png" alt=""><figcaption><p>小程序项目示例</p></figcaption></figure>
 
 ## 实时协作应用
 
@@ -51,7 +51,7 @@ description: 作为一款API开发平台，飞布的主要应用场景有哪些�
 
 飞布能够与前端低代码平台结合，实现复杂业务逻辑。为了解决中后台开发的需求，飞布生态集成了一套中后台管理界面，并与飞布深度打通。基于此，快速完成中后台应用，覆盖前端低代码无法实现的用例！
 
-<figure><img src=".gitbook/assets/image (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
 
 
 

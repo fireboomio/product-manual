@@ -6,7 +6,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 本文主要阐述飞布的核心优势有哪些，产品的能力如何。
 
-<figure><img src=".gitbook/assets/image (17).png" alt=""><figcaption><p>飞布同时满足易用性和开放性</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption><p>飞布同时满足易用性和开放性</p></figcaption></figure>
 
 ## 相对于传统开发
 
@@ -24,7 +24,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 为了实现和传统开发一样的“PRO CODE”能力，飞布实现了基于HTTP协议的钩子机制，开发者可以用任意喜欢的后端编程语言，如Java、Golang、PHP、Node.js等，扩展API，实现自定义业务逻辑。目前飞布已经官方支持了Node.js SDK，Golang SDK正在开发中。
 
-<figure><img src=".gitbook/assets/image (1).png" alt=""><figcaption><p>飞布在线IDE</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>飞布在线IDE</p></figcaption></figure>
 
 ### 飞布提升了前后端协作效率
 
@@ -32,7 +32,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 依赖于graphql强大的类型系统，飞布可实时将API生成swagger文档和各客户端语言的SDK，如ts、flutter等。后端无需写文档，更不用手工维持一致性；前端直接调用对应SDK，并根据语法提醒，对接接口。一旦接口变更，SDK也实时更新，对于强类型语言的SDK，语法报错将帮助前端开发者定位到变更处。
 
-<figure><img src=".gitbook/assets/image (9).png" alt=""><figcaption><p>API文档和SDK</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>API文档和SDK</p></figcaption></figure>
 
 ### 飞布更能响应需求变更
 
@@ -40,7 +40,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 依赖于graphql的内省特性，飞布可自动内省数据库表结构，检测并提醒哪些API非法。开发者根据界面提醒，稍微删减字段，就可实现功能变更。
 
-<figure><img src=".gitbook/assets/image (6).png" alt=""><figcaption><p>非法API检测</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>非法API检测</p></figcaption></figure>
 
 ### 飞布开发体验更好
 
@@ -48,7 +48,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 飞布还内置了webcontainer，nodejs开发者，无需在本机安装node环境，即可进行钩子开发。
 
-<figure><img src=".gitbook/assets/image (14).png" alt=""><figcaption><p>飞布核心功能</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (14).png" alt=""><figcaption><p>飞布核心功能</p></figcaption></figure>
 
 ## 相对于前端低代码
 
@@ -64,7 +64,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 飞布本身属于“后端低代码”，但国内并无类似产品。目前国外类似产品也较少，其中hasura为佼佼者。
 
-<figure><img src=".gitbook/assets/image (18).png" alt=""><figcaption><p>飞布VS hasura</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>飞布VS hasura</p></figcaption></figure>
 
 ### 飞布更适用于本土开发者
 
@@ -78,11 +78,11 @@ Hasura基于数据表实现权限体系，能够实现API控制和数据控制�
 
 Hasura采用了直接暴露graphql端点的方式对外提供服务，开发者必须在客户端编写operation，出于安全的目的该方式无法利用graphql的指令系统。而飞布将graphql作为中间层，开发者编写的operation放在了服务端，无需担心安全，可利用graphql的指令系统，实现任意功能的逻辑。例如：参数校验指令`jsonSchema`、当前时间注入指令`injectCurrentDateTime`、响应转换指令`transform`等。&#x20;
 
-<figure><img src=".gitbook/assets/image (11).png" alt=""><figcaption><p>指令枚举</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption><p>指令枚举</p></figcaption></figure>
 
 ### 飞布支持内省REST API
 
 Hasura支持REST API，但使用体验很差，用户必须手工编写graphql类型定义和operation函数签名。飞布不仅支持自动内省数据库和graphql API，还基于OAS规范，自动内省REST API，提升了接入REST API的效率，降低了学习成本。
 
-<figure><img src=".gitbook/assets/image.png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
 
