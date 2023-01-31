@@ -2,7 +2,9 @@
 
 本文主要介绍从初识飞布到快速了解飞布功能从而搭建第一个应用并有效访问的完整流程。
 
-## 在线体验
+## 环境准备
+
+### 在线体验
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fireboomio/fb-init-simple)
 
@@ -10,19 +12,20 @@
 
 注意：启动成功后，在 gitpod 底部切换到`PORTS`面板，选择 `9123` 端口打开即可
 
-## 本地安装
+### 本地安装
 
 ```bash
 curl -fsSL https://www.fireboom.io/install.sh|bash -s fireboom-example-project
+```
 
+```bash
 wget -qO- https://www.fireboom.io/install.sh|bash -s fireboom-example-project
 ```
 
-### 运行
+### 运行飞布
 
 ```shell
-./fireboom.sh
-# or run "./fireboom.sh init" to re-init
+./fireboom dev
 ```
 
 启动成功日志：
@@ -35,45 +38,23 @@ wget -qO- https://www.fireboom.io/install.sh|bash -s fireboom-example-project
 
 [http://localhost:9123](http://localhost:9123)
 
-### 调试钩子
+## 快速使用
 
-1. 前往配置修改钩子的启动模式为默认不启动（TODO:待实现该配置）
-2. 打开./wundergraph/package.json 文件
-3. 鼠标悬浮在 scripts.hook 上，点击`调试脚本`
-4. 前往 wundergraph/.wundergraph/generated/bundle/server.js 中打断点
-
-### 更新
-
-```shell
-# 同时更新命令行和前端资源
-./fireboom.sh update
-```
-
-```shell
-# 仅更新前端资源
-./fireboom.sh updatefront
-```
-
-### 展示版本
-
-```shell
-./fireboom.sh version
-```
-
-### 快速使用
-
-#### 1. 设置数据源
+### 1. 设置数据源
 
 * 数据源
   * GraphQL: https://countries.trevorblades.com
 
 ![添加数据源](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/01-datasource.png)
 
-#### 2. 新建 API
+### 2. 新建 API
 
-![新建API](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_create.png) API 名称：GetCountry
+&#x20;
 
-```
+<figure><img src="https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api_create.png" alt=""><figcaption><p>API新建</p></figcaption></figure>
+
+{% code title="API 名称：GetCountry" %}
+```graphql
 query MyQuery($code: ID!) {
   country: countries_country(code: $code) {
     capital
@@ -87,11 +68,17 @@ query MyQuery($code: ID!) {
   }
 }
 ```
+{% endcode %}
 
-#### 3. 扩展 API
+### 3. 扩展 API
 
-![编写API钩子](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_hooks.png) mutatingPostResolve.ts
+&#x20;
 
+<figure><img src="https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api_hooks.png" alt=""><figcaption><p>钩子编写</p></figcaption></figure>
+
+
+
+{% code title="mutatingPostResolve.ts" %}
 ```typescript
 import type { Context } from "@wundergraph/sdk";
 import type { User } from "generated/wundergraph.server";
@@ -115,7 +102,7 @@ export default async function mutatingPostResolve(
 
   //触发一个post请求，给企业机器人发送一个消息
   var res = await axios.post(
-    "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=69aa957f-7c05-49b3-9e9d-8859a53ea692",
+    "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=[YOUR KEY]",
     {
       msgtype: "markdown",
       markdown: {
@@ -131,16 +118,17 @@ export default async function mutatingPostResolve(
   return response;
 }
 ```
+{% endcode %}
 
-#### 4. 身份验证（待完善提供前端示例）
+### 4. 身份验证（待完善提供前端示例）
 
 ![开启身份验证](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_auth.png)
 
-#### 5. 角色鉴权（待完善提供前端示例）
+### 5. 角色鉴权（待完善提供前端示例）
 
 ![开启角色鉴权](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_rbac.png)
 
-#### 6.实时 API
+### 6.实时 API
 
 ![实时API](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_live.png)
 
@@ -171,7 +159,27 @@ subscription MySubscription {
 # }
 ```
 
-#### 7.其他特性
+### 7.其他特性
 
 ![API其他特性](https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api\_feature.png)
+
+## 下一步
+
+### 学习教程
+
+要完整体验fireboom，请查看我们的30分钟[fireboom基础教程](https://www.bilibili.com/video/BV1w24y1U7fx/)。
+
+### 数据库操作
+
+数据库建模：学习如何使用飞布建模数据库，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-schema/data-model)
+
+数据CRUD：了解数据库表结构和graphql的映射关系，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-client/crud) ，待补充教程。
+
+### 业务逻辑
+
+实现自定义业务逻辑有几种不同的选项，具体取决于你的用例。
+
+* API钩子：在请求API的生命周期中，插入代码，以更改或扩展API行为，例如用户新建文章后，通过后置钩子发送邮件通知管理员审核
+* API数据源：除数据库外，飞布支持集成REST API和GraphQL API，开发者可以自行用喜欢的方式实现自定义逻辑的API，但无需考虑权限问题。飞布此时变身API网关，作为BFF层对外提供接口。
+* 自定义数据源：飞布还内置了自定义数据源，开发者可以直接编写脚本扩展逻辑。它本质上也是一个GraphQL API。
 
