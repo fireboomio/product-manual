@@ -1,5 +1,7 @@
 # 快速上手
 
+
+
 本文主要介绍从初识飞布到快速了解飞布功能从而搭建第一个应用并有效访问的完整流程。
 
 ## 环境准备
@@ -20,6 +22,11 @@ curl -fsSL https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 
 ```bash
 wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
+```
+
+```bash
+# 升级飞布命令行
+./run.sh update
 ```
 
 ### 运行飞布
