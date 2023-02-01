@@ -93,7 +93,6 @@ export default async function mutatingPostResolve(
   input: InjectedGetCountryInput,
   response: GetCountryResponse
 ): Promise<GetCountryResponse> {
-  // TODO: 在此处添加代码
   var country = response.data?.country;
   if (country) {
     country.phone = "fireboom/test"; //这里可以修改返回值
