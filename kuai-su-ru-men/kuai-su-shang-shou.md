@@ -15,11 +15,11 @@
 ### 本地安装
 
 ```bash
-curl -fsSL https://www.fireboom.io/install.sh|bash -s fireboom-example-project
+curl -fsSL https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ```
 
 ```bash
-wget -qO- https://www.fireboom.io/install.sh|bash -s fireboom-example-project
+wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ```
 
 ### 运行飞布
