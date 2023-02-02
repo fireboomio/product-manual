@@ -16,6 +16,8 @@
 
 ### 本地安装
 
+#### 脚本安装
+
 ```bash
 curl -fsSL https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ```
@@ -23,6 +25,21 @@ curl -fsSL https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ```bash
 wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ```
+
+#### 下载安装
+
+1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
+
+<img src="../.gitbook/assets/image.png" alt="" data-size="original">
+
+2，初始化项目
+
+```
+# 前往fireboom所在文件夹，执行下述命令
+./fireboom init projectName
+```
+
+#### &#x20;升级飞布
 
 ```bash
 # 升级飞布命令行
@@ -32,6 +49,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 ### 运行飞布
 
 ```shell
+# 开发环境
 ./fireboom dev
 ```
 

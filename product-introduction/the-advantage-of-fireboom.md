@@ -84,5 +84,5 @@ Hasura采用了直接暴露graphql端点的方式对外提供服务，开发者�
 
 Hasura支持REST API，但使用体验很差，用户必须手工编写graphql类型定义和operation函数签名。飞布不仅支持自动内省数据库和graphql API，还基于OAS规范，自动内省REST API，提升了接入REST API的效率，降低了学习成本。
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
 
