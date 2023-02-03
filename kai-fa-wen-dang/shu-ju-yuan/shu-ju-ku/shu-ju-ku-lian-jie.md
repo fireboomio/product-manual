@@ -10,9 +10,11 @@
 
 例如：新建数据源->MySQL，填写数据库配置信息->测试连接，连接成功后，选择保存，该MySQL数据源即新建完成，并保存到了数据库列表中。
 
-数据库配置信息有两种方式：
+数据库配置信息有两种方式，一种是连接URL，另一种是连接参数。
 
 ### 连接URL
+
+该方式比较通用，所有数据库类型都支持该方式。
 
 #### MySQL
 
@@ -64,62 +66,52 @@ mongodb://USERNAME:PASSWORD@HOST/DATABASE
 
 高级设置就是解决该问题的机制。飞布允许您扩展GraphQL Schema并用自定义类型替换特定的JSON字段。通过这种方式，你可以利用GraphQL的类型系统，同时能够将数据作为JSON对象存储在数据库中。
 
+接下来让我们用具体示例说明下：
 
-
+{% code title="增加自定义类型前的OPERATION" %}
 ```graphql
 mutation (
-  $email: String! @fromClaim(name: EMAIL)
-  $name: String! @fromClaim(name: NAME)
   $message: String!
-  $payload: JSON! # 这是一个JSON变量
-) @rbac(requireMatchAll: [user]) {
+  $payload: JSON! # 这是JSON字段
+)  {
   createOnemessages: db_createOnemessages(
     data: {
       message: $message
       payload: $payload
-      users: {
-        connectOrCreate: {
-          create: { name: $name, email: $email }
-          where: { email: $email }
-        }
-      }
     }
   ) {
     id
     message
-    payload
+    payload # 这里是JSON字段，是标量类型，客户端需要知道如何去解析它
   }
 }
 ```
+{% endcode %}
 
+该操作声明了创建消息的接口。$message是字符串类型。$payload是JSON类型，没有方法可以校验入参。
 
+现在我们用高级设置功能扩展GraphQL Schema。
 
-```
-{
-  findManymessages: db_findManymessages(take: 20, orderBy: [{ id: desc }]) {
-    id
-    message
-    payload
-    users {
-      id
-      name
-    }
-  }
-}
-```
-
-
+首先，在自定义类型中，填写如下GraphQL Schema。&#x20;
 
 ```graphql
- type MessagePayload {
-            extra: String!
-        }
-        input MessagePayloadInput {
-            extra: String!
-        }
+# 响应类型结构体
+type MessagePayload {
+    extra: String!
+}
+# 入参类型结构体
+input MessagePayloadInput {
+    extra: String!
+}
 ```
 
+它将为"GraphQL Schema"增加两个结构体，`type`开头为响应类型结构体，`input`开头为入参类型结构体。
 
+接下来，定义想要替换的JSON字段。
+
+在字段类型映射中，选择表`messages`，字段`payload`，响应类型`MessagePayload`，输入类型`MessagePayloadInput`。
+
+系统底层构建如下结构体：
 
 ```json
 [
@@ -132,59 +124,40 @@ mutation (
   ]
 ```
 
+<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>数据库高级设置</p></figcaption></figure>
+
+最终，我们定义了输入字段替换和响应字段替换的类型。
 
 
 
+现在，我们可以构建如下OPERATION，解决上述问题。
 
-```
+* payload入参：替换成了db\_MessagePayloadInput对象，基于该对象可以实现入参校验
+* payload响应：替换成了db\_MessagePayload对象，可以“炸开”该对象，选择所需字段
+
+{% code title="增加自定义类型后的OPERATION" %}
+```graphql
 mutation (
-  $email: String! @fromClaim(name: EMAIL)
-  $name: String! @fromClaim(name: NAME)
   $message: String!
-  $payload: db_MessagePayloadInput!
-) @rbac(requireMatchAll: [user]) {
+  $payload: db_MessagePayloadInput! # 这里的JSON变成了对象
+)  {
   createOnemessages: db_createOnemessages(
     data: {
       message: $message
       payload: $payload
-      users: {
-        connectOrCreate: {
-          create: { name: $name, email: $email }
-          where: { email: $email }
-        }
-      }
     }
   ) {
     id
     message
-    payload {
+    payload { # 可以看到这里可以"炸开"了
       extra
     }
   }
 }
 ```
+{% endcode %}
 
 
-
-```
-{
-  findManymessages: db_findManymessages(take: 20, orderBy: [{ id: desc }]) {
-    id
-    message
-    payload {
-      extra
-    }
-    users {
-      id
-      name
-    }
-  }
-}
-```
-
-
-
-在数据库详情页，点击右上角“高级设置”，可
 
 
 

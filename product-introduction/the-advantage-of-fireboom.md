@@ -24,7 +24,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 为了实现和传统开发一样的“PRO CODE”能力，飞布实现了基于HTTP协议的钩子机制，开发者可以用任意喜欢的后端编程语言，如Java、Golang、PHP、Node.js等，扩展API，实现自定义业务逻辑。目前飞布已经官方支持了Node.js SDK，Golang SDK正在开发中。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>飞布在线IDE</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (3).png" alt=""><figcaption><p>飞布在线IDE</p></figcaption></figure>
 
 ### 飞布提升了前后端协作效率
 
@@ -84,5 +84,5 @@ Hasura采用了直接暴露graphql端点的方式对外提供服务，开发者�
 
 Hasura支持REST API，但使用体验很差，用户必须手工编写graphql类型定义和operation函数签名。飞布不仅支持自动内省数据库和graphql API，还基于OAS规范，自动内省REST API，提升了接入REST API的效率，降低了学习成本。
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>REST API配置</p></figcaption></figure>
 
