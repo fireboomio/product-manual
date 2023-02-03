@@ -1,8 +1,6 @@
 # 快速上手
 
-
-
-本文主要介绍从初识飞布到快速了解飞布功能从而搭建第一个应用并有效访问的完整流程。
+本文主要介绍从初识飞布到快速了解飞布功能从而搭建第一个API并有效访问的完整流程。
 
 ## 环境准备
 
@@ -31,6 +29,11 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
 
 <img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
+
+* MAC：
+* ARM64：适用MAC ARM64架构
+* Linux：
+* Windows：
 
 2，初始化项目
 

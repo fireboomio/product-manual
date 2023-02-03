@@ -9,7 +9,7 @@
   * [数据安全](product-introduction/data-security.md)
   * [产品案例](product-introduction/product-case.md)
 * [快速入门](kuai-su-ru-men/README.md)
-  * [初始飞布](kuai-su-ru-men/chu-shi-fei-bu.md)
+  * [初识飞布](kuai-su-ru-men/chu-shi-fei-bu.md)
   * [快速上手](kuai-su-ru-men/kuai-su-shang-shou.md)
   * [词汇概览](kuai-su-ru-men/ci-hui-gai-lan.md)
 

@@ -1,7 +1,3 @@
----
-description: 待完善
----
-
 # 数据建模
 
 数据建模用来进行数据库设计，具有完备的数据表设计能力，类似[Navicat](https://navicat.com.cn/products#navicat)数据库开发工具。它本质上是对Prisma Schema的可视化封装。
@@ -43,7 +39,7 @@ description: 待完善
 
 源码视图展示prisma schema源文件，同时支持语法提醒和高亮展示，你可以用它实现任意形式的数据建模。
 
-<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption><p>源码视图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (3).png" alt=""><figcaption><p>源码视图</p></figcaption></figure>
 
 
 

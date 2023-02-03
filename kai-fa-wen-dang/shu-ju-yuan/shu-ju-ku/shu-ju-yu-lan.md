@@ -2,6 +2,10 @@
 
 数据预览用来查看和编辑数据库中的数据，是功能强大且易用的数据库管理工具，类似[Prisma Studio](https://www.prisma.io/studio)的可视化编辑器。无论你是数据库管理员、开发人员还是初学者， 它都提供您需要的一切，包括CURD、跨表浏览、过滤、分页等，以有效地处理数据。
 
+{% hint style="info" %}
+安全起见，该功能仅在开发模式可用
+{% endhint %}
+
 ## 数据模型
 
 下述为本文档对应数据模型的Prisma schema，了解更多请前往[prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema)学习。
@@ -28,7 +32,7 @@ model user {
 
 ## 控制台打开
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>数据预览</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (2).png" alt=""><figcaption><p>数据预览</p></figcaption></figure>
 
 1，切换到“数据建模”页签
 
