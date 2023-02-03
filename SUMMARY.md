@@ -1,6 +1,7 @@
 # Table of contents
 
-* [产品简介](README.md)
+* [序言](README.md)
+* [产品简介](<README (1).md>)
   * [什么是飞布？](product-introduction/what-is-fireboom.md)
   * [飞布的价值](product-introduction/the-value-of-fireboom.md)
   * [飞布的优势](product-introduction/the-advantage-of-fireboom.md)
@@ -17,8 +18,8 @@
 * [数据源](kai-fa-wen-dang/shu-ju-yuan/README.md)
   * [数据库](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/README.md)
     * [数据库连接](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie.md)
-    * [数据建模](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)
     * [数据预览](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-yu-lan.md)
+    * [数据建模](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)
   * [三方API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/README.md)
     * [REST API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/rest-api.md)
     * [GraphQL API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/graphql-api.md)

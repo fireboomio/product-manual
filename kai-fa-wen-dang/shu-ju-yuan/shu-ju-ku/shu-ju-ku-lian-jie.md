@@ -10,10 +10,12 @@
 
 例如：新建数据源->MySQL，填写数据库配置信息->测试连接，连接成功后，选择保存，该MySQL数据源即新建完成，并保存到了数据库列表中。
 
+![连接数据库](https://www.fireboom.io/images/gif/01-02%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.gif)
+
 数据库配置信息有两种方式，一种是连接URL，另一种是连接参数。
 
-### 连接URL
-
+{% tabs %}
+{% tab title="连接URL" %}
 该方式比较通用，所有数据库类型都支持该方式。
 
 #### MySQL
@@ -45,9 +47,9 @@ file:./dev.db
 ```
 mongodb://USERNAME:PASSWORD@HOST/DATABASE
 ```
+{% endtab %}
 
-### 连接参数
-
+{% tab title="连接参数" %}
 | 名称   | 占位符        | 描述                         |
 | ---- | ---------- | -------------------------- |
 | 主机   | `HOST`     | 数据服务的IP地址或域名，例如`localhost` |
@@ -57,8 +59,14 @@ mongodb://USERNAME:PASSWORD@HOST/DATABASE
 | 数据库名 | `DATABASE` | 你想使用的数据库名称，例如 `mydb`       |
 
 
+{% endtab %}
+{% endtabs %}
 
-### 高级设置
+
+
+> 你可以使用环境变量或字面量连接数据库。为了安全起见，推荐使用环境变量连接。在连接URL或用户名+密码字段前选择“环境变量”，即可使用环境变量连接数据库。
+
+## 高级设置
 
 在数据库中存储JSON列是很常见的用例。如果你使用数据库，例如PostgreSQL，你可以使用 `json` 或`jsonb` 类型存储JSON列。在GraphQL schema中，该列将被表示为`JSON` 标量类型。在内部，把值存储到数据库之前，飞布将json值编码为字符串，并在从数据库读取时解码它。这样，`JSON`标量类型非常容易使用。
 
@@ -88,7 +96,7 @@ mutation (
 ```
 {% endcode %}
 
-该操作声明了创建消息的接口。$message是字符串类型。$payload是JSON类型，没有方法可以校验入参。
+该操作声明了创建消息的接口。`$message`是字符串类型。`$payload`是JSON类型，没有方法可以校验入参。
 
 现在我们用高级设置功能扩展GraphQL Schema。
 
@@ -124,7 +132,7 @@ input MessagePayloadInput {
   ]
 ```
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>数据库高级设置</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption><p>数据库高级设置</p></figcaption></figure>
 
 最终，我们定义了输入字段替换和响应字段替换的类型。
 

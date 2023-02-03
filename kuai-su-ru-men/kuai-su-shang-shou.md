@@ -30,7 +30,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 
 1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
 
-<img src="../.gitbook/assets/image (1).png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
 
 2，初始化项目
 

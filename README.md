@@ -1,14 +1,18 @@
-# 产品简介
+---
+description: 文档正持续完善
+---
 
-[what-is-fireboom.md](product-introduction/what-is-fireboom.md "mention")
+# 序言
 
-[the-value-of-fireboom.md](product-introduction/the-value-of-fireboom.md "mention")
+欢迎阅读 飞布 的技术产品文档。本文档旨在为您提供对我们产品背后技术及其功能的全面了解。我们的目标是为您提供充分利用 飞布 的所有功能和特性所需的知识。
 
-[the-advantage-of-fireboom.md](product-introduction/the-advantage-of-fireboom.md "mention")
+无论您是开发人员还是技术团队管理人员，本文档都将为您提供所需的信息，以有效地使用和集成飞布到您的工作流程中。文档涵盖了产品的所有方面，从其架构和设计，到其功能和特性，再到如何自定义和与其他系统集成。
 
-[application-scenario.md](product-introduction/application-scenario.md "mention")
+我们相信本文档中包含的信息将对您的飞布之旅极为宝贵。如果您有任何问题或疑虑，请随时与我们的支持团队联系。
 
-[data-security.md](product-introduction/data-security.md "mention")
+![](.gitbook/assets/image.png)
 
-[product-case.md](product-introduction/product-case.md "mention")
+谢谢您选择飞布。我们很高兴成为您的技术之旅的一部分。
+
+最诚挚的问候，飞布团队。
 
