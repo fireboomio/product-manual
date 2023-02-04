@@ -50,7 +50,7 @@ model user {
 
 对于有关联关系的表，关联字段不可直接输入，需要从关联数据表中选择。
 
-<figure><img src="../../../.gitbook/assets/image (22).png" alt=""><figcaption><p>新建记录</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (22) (1).png" alt=""><figcaption><p>新建记录</p></figcaption></figure>
 
 ### 编辑记录
 

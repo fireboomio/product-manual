@@ -6,9 +6,11 @@ description: 飞布的介绍
 
 ## 飞布概述
 
-飞布是“**开发体验优先**”的可视化API开发平台（IDE），传统模式下2天才能完成的接口，用飞布2分钟就能完成。
+飞布是“**开发体验优先**”的可视化API开发平台（IDE），传统模式下2天才能完成的接口，用飞布2分钟就能完成。前后端开发者都能使用飞布构建生产级WEB API。
 
-前后端开发者都能使用飞布构建生产级WEB API。
+飞布定位是：外包企业的秘密武器，程序员的开发利器（前端变全栈、后端不搬砖）！
+
+飞布愿景是：极致开发体验，“飞速布署”应用。
 
 <figure><img src="../.gitbook/assets/image (8) (2).png" alt=""><figcaption><p>飞布API构建页面</p></figcaption></figure>
 
@@ -34,25 +36,21 @@ description: 飞布的介绍
 
 相对于“前端低代码”，飞布是“<mark style="color:orange;">**后端低代码**</mark>”。它从后端切入，专注于API开发，用界面封装了API开发的复杂性，通过配置和勾选即可生成生产级REST API，支持多种数据源，具备“PRO CODE”能力，且编程语言无关。
 
-飞布本质上是中国版Hasura，但做了本土化改造，尽管引擎底层基于graphql，但考虑到graphql的国内普及率较低，对外只暴露REST API，而不是graphql端点。
-
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>飞布架构图</p></figcaption></figure>
-
-飞布以 API 为中心，将所有数据抽象为 API，包括 REST API，GraphQL API ，数据库甚至消息队列等，通过 GraphQL 协议把他们聚合在一起，形成具有数据全集的“超图”。
+飞布本质上是中国版Hasura，但做了本土化改造。尽管飞布引擎底层基于GraphQL，但考虑到GraphQL的国内普及率较低，对外只暴露REST API，而不是GraphQL端点。
 
 飞布用可视化界面封装了GraphQL细节，允许开发者通过勾选从“超图”中构建子集 Operation（查询、变更和订阅） 作为函数签名，并将其编译为 REST-API。这即充分利用了GraphQL按需取用、类型系统的优势，又免除了它无法复用HTTP基础设施以及不安全的弊端。
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>数据流转图</p></figcaption></figure>
+了解更多，前往查看飞布[gong-zuo-yuan-li.md](../kuai-su-ru-men/gong-zuo-yuan-li.md "mention")
 
-飞布还充分利用了GraphQL的指令系统，通过指令注解实现了API权限和数据权限的控制，入参校验，以及跨数据源关联！但用户无需刻意学习，因为飞布提供了友好的交互，封装了这些技术细节。
+<figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption><p>飞布核心模块概览</p></figcaption></figure>
 
-飞布提供了开箱即用的API缓存、实时推送和实时查询功能。通过服务端轮询，可以实现任意数据源的实时查询！
+飞布的核心功能如下：
 
-此外，飞布基于 HTTP 协议+[WebAssembly](https://developer.mozilla.org/zh-CN/docs/WebAssembly)技术实现了 HOOKS 机制，方便开发者采用任何喜欢的语言实现自定义逻辑。同时，飞布内置了WebContainer，TypeScript开发者无需准备任何环境，即可进行nodejs钩子的开发。
-
-飞布集成了众多行业规范，包括OIDC、S3存储、RBAC等！用户无需额外学习即可接入，快速完成业务需求。
-
-最后，飞布还基于prisma设计了数据建模功能，实现开发流程的闭环。用户无需切换工具，即可完成数据建模和数据预览，且能跨数据库类型迁移表结构。
+* 数据管理：简化版[Navicat](https://navicat.com.cn/products#navicat)，主要包含数据库建模和数据预览功能
+* API 构建：可视化构建API，包含API授权、实时API、跨源关联、数据缓存、N+1查询等高阶能力
+* SDK生成：根据API实时生成客户端SDK，当前已支持REACT SDK，计划支持VUE SDK和Flutter SDK
+* 文件存储：集成[S3规范](https://www.zhihu.com/question/343713732/answer/809092629)，实现文件管理，后续将支持钩子进行文件上传的后置处理
+* ...
 
 ## 总结
 

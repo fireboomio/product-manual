@@ -8,13 +8,15 @@ description: 飞布中涉及的名词，持续更新
 
 GraphQL是一种用于API的查询语言和运行时。它允许客户端指定所需的数据，而不是服务器决定要返回的数据。这样，客户端可以有效地请求所需的数据，减少了浪费和冗余。GraphQL由Facebook开发，并于2015年开源。它目前是一种流行的API技术，被许多公司和开发人员所使用。它跟 SQL 的关系是共用 QL 后缀，就好像「汉语」和「英语」共用后缀一样，但他们本质上是不同的语言。
 
+学习GraphQL：[GraphQL速学（译）](https://blog.biglion.top/2019/12/08/GraphQL%E9%80%9F%E5%AD%A6/)
+
 ### 数据源
 
 数据的来源，指的是数据存储的地方。开发人员可以使用数据源中的数据创建应用程序，并向用户提供有关信息。数据源可以是本地或远程的，并且可以是静态或动态的。飞布中的数据源包含：数据库、REST API、GraphQL API。其中数据库包含：![](http://localhost:9123/assets/PostgreSQL.2a7e38b3.svg)PostgreSQL、![](http://localhost:9123/assets/MySQL.1461110d.svg)MySQL、![](http://localhost:9123/assets/MongoDB.491466e8.svg)MongoDB、![](http://localhost:9123/assets/SQLite.48a4dbe0.svg)Sqlite、![](http://localhost:9123/assets/CockroachDB.2c178614.svg)CockroachDB、![](http://localhost:9123/assets/SQLServer.bda97784.svg)SQL Server、![](http://localhost:9123/assets/Planetscale.7a27b09b.svg)Plantscale、![](http://localhost:9123/assets/MariaDB.6fe1963e.svg)MariaDB。
 
 ### 超图
 
-本质上是由所有数据源内省出的GraphQL  schema组成的超级GraphQL  schema。目的是，用GraphQL协议统一不同类型数据源，便于实现跨源查询。
+本质上是由所有数据源内省出的GraphQL  schema组成的超级GraphQL  schema。目的是，用GraphQL协议统一不同类型数据源，便于实现跨源编排和查询。
 
 ### OIDC
 

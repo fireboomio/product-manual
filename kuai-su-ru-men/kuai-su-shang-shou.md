@@ -8,20 +8,22 @@
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fireboomio/fb-init-simple)
 
-[gitpod 介绍](https://juejin.cn/post/6844903773878386701)
+> [gitpod 介绍](https://juejin.cn/post/6844903773878386701)：Gitpod是一个在线IDE，可以从任何GitHub页面启动。在几秒钟之内，Gitpod就可以为您提供一个完整的开发环境，包括一个VS Code驱动的IDE和一个可以由项目定制化配置的云Linux容器。
 
-注意：启动成功后，在 gitpod 底部切换到`PORTS`面板，选择 `9123` 端口打开即可
+{% hint style="info" %}
+启动成功后，在 gitpod 底部切换到`PORTS`面板，选择 `9123` 端口打开即可
+{% endhint %}
 
 ### 本地安装
 
 #### 脚本安装
 
 ```bash
-curl -fsSL https://www.fireboom.io/install.sh | bash -s fireboom-example-project
+curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name
 ```
 
 ```bash
-wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
+wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 ```
 
 #### 下载安装
@@ -44,7 +46,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 {% tabs %}
 {% tab title="linux/mac" %}
 ```bash
-# 前往fireboom所在文件夹，执行下述命令
+# 前往fireboom二进制文件所在文件夹，执行下述命令
 ./fireboom init projectName
 ```
 {% endtab %}

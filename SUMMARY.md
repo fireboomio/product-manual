@@ -12,6 +12,7 @@
   * [初识飞布](kuai-su-ru-men/chu-shi-fei-bu.md)
   * [快速上手](kuai-su-ru-men/kuai-su-shang-shou.md)
   * [词汇概览](kuai-su-ru-men/ci-hui-gai-lan.md)
+  * [工作原理](kuai-su-ru-men/gong-zuo-yuan-li.md)
 
 ## 开发文档
 
