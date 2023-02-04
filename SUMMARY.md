@@ -44,6 +44,7 @@
 ***
 
 * [部署运维](bu-shu-yun-wei/README.md)
+  * [手动部署](bu-shu-yun-wei/shou-dong-bu-shu.md)
   * [CI/CI部署](bu-shu-yun-wei/cici-bu-shu.md)
   * [飞布云](bu-shu-yun-wei/fei-bu-yun.md)
   * [最佳实践](bu-shu-yun-wei/zui-jia-shi-jian.md)
