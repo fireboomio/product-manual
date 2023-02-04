@@ -17,6 +17,7 @@ description: 飞布产品矩阵路线图
 * [x] 数据源：mysql、rest api、graphql api
 * [ ] 数据源：pgsql、sqlite
 * [ ] 数据源：grpc
+* [ ] 数据源：消息队列
 * [ ] 钩子SDK：golang sdk支持
 * [x] 客户端SDK：React SDK、miniapp sdk
 * [ ] 客户端SDK：VUE sdk

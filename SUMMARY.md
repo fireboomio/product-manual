@@ -24,6 +24,7 @@
     * [REST API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/rest-api.md)
     * [GraphQL API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/graphql-api.md)
     * [自定义API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/zi-ding-yi-api.md)
+  * [消息队列](kai-fa-wen-dang/shu-ju-yuan/xiao-xi-dui-lie.md)
 * [API构建](kai-fa-wen-dang/api-gou-jian/README.md)
   * [查询](kai-fa-wen-dang/api-gou-jian/cha-xun.md)
   * [变更](kai-fa-wen-dang/api-gou-jian/bian-geng.md)
@@ -45,7 +46,7 @@
 
 * [部署运维](bu-shu-yun-wei/README.md)
   * [手动部署](bu-shu-yun-wei/shou-dong-bu-shu.md)
-  * [CI/CI部署](bu-shu-yun-wei/cici-bu-shu.md)
+  * [流水线部署](bu-shu-yun-wei/liu-shui-xian-bu-shu.md)
   * [飞布云](bu-shu-yun-wei/fei-bu-yun.md)
   * [最佳实践](bu-shu-yun-wei/zui-jia-shi-jian.md)
 * [实战案例](zui-jia-shi-jian/README.md)

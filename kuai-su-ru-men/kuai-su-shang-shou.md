@@ -30,17 +30,29 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s fireboom-example-project
 
 <img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
 
-* MAC：
-* ARM64：适用MAC ARM64架构
+* MAC：intel芯片
+* ARM64：适用MAC ARM64架构，M1芯片
 * Linux：
 * Windows：
 
+{% hint style="info" %}
+飞布采用golang语言编写，上述版本基于golang的跨平台编译构建。如果你的操作系统不在上述列表，请[联系我们](https://github.com/fireboomio/product-manual/discussions)兼容。
+{% endhint %}
+
 2，初始化项目
 
-```
+{% tabs %}
+{% tab title="linux/mac" %}
+```bash
 # 前往fireboom所在文件夹，执行下述命令
 ./fireboom init projectName
 ```
+{% endtab %}
+
+{% tab title="windows" %}
+
+{% endtab %}
+{% endtabs %}
 
 #### &#x20;升级飞布
 
