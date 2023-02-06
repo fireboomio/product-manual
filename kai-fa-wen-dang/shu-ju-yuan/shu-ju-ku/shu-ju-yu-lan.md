@@ -66,7 +66,7 @@ model user {
 
 点击右上角”高级筛选“下拉框，新增筛选条件，第一列选择对应表的字段，第二列选择匹配条件，第三列输入匹配值。
 
-<figure><img src="../../../.gitbook/assets/image (4).png" alt=""><figcaption><p>高级筛选</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (2).png" alt=""><figcaption><p>高级筛选</p></figcaption></figure>
 
 匹配条件含义：
 

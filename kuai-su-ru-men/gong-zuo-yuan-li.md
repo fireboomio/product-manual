@@ -1,7 +1,3 @@
----
-description: 待完善
----
-
 # 工作原理
 
 本文主要介绍飞布的底层工作原理，帮你建立关于飞布底层工作机制的宏观印象。
@@ -30,6 +26,8 @@ OPERATION：GraphQL有三种类型的operation，分别为query（查询）, mut
 
 飞布采用了一种新的实现形式：**服务端OPERATION**。相比于hasura对外暴露GraphQL API，然后让前端开发者编写OPERATION调用GraphQL端点的方式。飞布在生产环境下**不**对外暴露GraphQL API，而是让后端开发者在服务端编写OPERATION。然后，飞布引擎将OPERATION编译为 REST-API，暴露给前端开发者。该方式，不仅能避免客户端OPERATION的所有缺陷，而且能充分发挥GraphQL的优势。
 
+此外，飞布不仅支持查询和变更，还支持将GraphQL Subscription转换为**实时消息**。
+
 首先，前端开发者无需感知GraphQL的存在，因此<mark style="color:orange;">无需任何学习成本</mark>。
 
 其次，飞布对外暴露REST API，可以<mark style="color:orange;">复用HTTP基础设施</mark>，如CDN等。
@@ -56,6 +54,7 @@ Directives 可视为GraphQL 的一种语法蜜糖(sugar syntax)，通常用于�
 
 控制接口只能被拥有特定权限的用户访问，是WEBAPI开发过程中，最基本的需求。业内最通用接口权限控制方式是：RBAC模型。飞布通过自定义GraphQL指令：`@rbac`，实现了API接口的RBAC控制。
 
+{% code overflow="wrap" %}
 ```graphql
 query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色用户才能访问 {
   data: todo_findFirsttodo(where: {user_id: {equals: $uid}}) {
@@ -65,11 +64,17 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
   }
 }
 ```
+{% endcode %}
+
+<mark style="color:red;">当用户登录后</mark>，系统会主动调用授权钩子`mutatingPostAuthentication`，钩子入参中包含`use`r对象，开发者可自行编写业务代码，根据`user_id`或邮箱从对应用户角色数据源中获取当前用户角色，赋值给`user`对象。随后，登录用户调用接口时，系统判断当前用户拥有的角色是否匹配当前接口，匹配则放行，否则返回401未授权错误。
+
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>RBAC指令原理</p></figcaption></figure>
 
 ### API数据权限
 
-限制接口只能被当前登录用户访问，且只能获取当前用户所拥有的数据行或字段，也是WEBAPI开发的常见需求。飞布通过自定义GraphQL指令：`@fromClaim`，实现了API数据权限控制。
+限制接口只能被登录用户访问，且只能获取当前用户所拥有的数据行或字段，也是WEBAPI开发的常见需求。飞布通过自定义GraphQL指令：`@fromClaim`，结合OIDC协议，实现了API数据权限控制。
 
+{% code overflow="wrap" %}
 ```graphql
 query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户的ID) {
   data: todo_findFirsttodo(where: {user_id: {equals: $uid}}) {
@@ -79,6 +84,11 @@ query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户�
   }
 }
 ```
+{% endcode %}
+
+当访问用`@fromClaim`指令修饰的接口时，引擎从当前登录用户会话的Claims中获取用户的基本信息，例如邮箱、UID等，并注入到OPERATION的入参中，保证本次请求只能获取或操作登录用户拥有的数据，从而实现数据权限控制。
+
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
 
 ### API入参校验
 
@@ -93,6 +103,8 @@ query GetOnetodo($uid: Int! @jsonSchema(pattern: "^ [0-9]*$")# 正则表达式�
   }
 }
 ```
+
+入参校验指令支持正则表达式，可实现常用的入参合法性校验。
 
 ### API参数注入
 
@@ -126,62 +138,76 @@ query GettodoList {
 }
 ```
 
+```json
+# 转换前返回结果
+{
+    "total":{
+        "_count":{
+            "id":10
+        }
+    }
+}
+# 转换后返回结果
+{
+    "total":10
+}
+```
+
+本质上是提取json结构的某个嵌套字段，然后赋值给上级字段。
+
 ### 跨数据源关联
 
+某些场景下，WEBAPI需要组合多个数据源的数据。利用GraphQL的组装特性，可以很方便实现多数据源的查询和变更操作，但无法实现多数据源间的流程控制，例如先从数据库获取设备列表，然后通过物联网API获取设备在线是否在线，组装后发送至客户端。
 
-
-
+<figure><img src="../.gitbook/assets/swimlanes-49acee9f02f404aa08706c8410fde6a2.png" alt=""><figcaption><p>同步调用时序图</p></figcaption></figure>
 
 ## OPERATION配置
 
-
+除了指令，飞布还支持OPERATION配置，通过配置实现更多复杂业务。
 
 ### 数据缓存
 
-
+飞布底层基于golang语言实现，实现了内存级别的数据缓存功能。你只需在API详情的设置中开启该功能即可使用。
 
 ### N+1查询
 
-### 服务端推送
+飞布基于Tank机制，解决了N+1查询问题，无需任何配置即可使用该能力。
 
+### 服务端轮询
 
+很多场景下，客户端需要实时更新数据。当前，主流方式是客户端轮询，即客户端每隔几秒请求一次接口，获取数据。当客户端数量较多时，会给服务端造成较大并发压力。飞布采用了一种新的机制：服务端轮询。它能以较小的代价，解决客户端轮询造成的资源消耗问题，实现数据的**准实时**更新。
 
+<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>服务端轮询时序图</p></figcaption></figure>
 
+服务端轮询把轮询逻辑从客户端移动到服务端，由服务端定时请求数据，并比对前后两次数据是否一致，若数据变化，则推送数据到客户端。同时，只有当客户端订阅准实时事件时，服务端才会定时轮询数据，保证系统性能。
+
+任意OPERATION查询，经过简单配置，均可具备准实时推送能力。
 
 ## 钩子机制扩展逻辑
 
+上述章节，我们基于GraphQL，用声明式架构解决了CURD接口生成的问题。但仍有部分接口，无法通过声明实现。因此，我们还要实现某种机制，支持自定义逻辑。
 
+飞布提供了各种类型的钩子，包括API请求生命周期的钩子、授权生命周期的钩子、文件上传声明周期的钩子，用以解决上述问题。
 
+飞布服务与钩子服务相互独立，服务间通过HTTP协议通讯，可分别部署。钩子服务本质上是一个实现了飞布钩子规范的WEB服务。因此，可以用任意后端开发语言实现钩子，真正做到多语言兼容。
 
+不仅，飞布可以调用钩子，钩子也可以调用飞布。此时，飞布相对于钩子是一个数据代理服务，同时飞布的所有OPERATION都可以供钩子使用。在另一个角度上，钩子也可以认为是serverless架构。
 
+<figure><img src="../.gitbook/assets/yuque_diagram.png" alt=""><figcaption><p>飞布钩子机制</p></figcaption></figure>
 
+## 总结
 
-## 身份验证
+飞布以 API 为中心，将所有数据抽象为 API，包括 REST API，GraphQL API ，数据库甚至消息队列等，通过 GraphQL 协议把他们聚合在一起，形成具有数据全集的“超图”。
 
-
-
-
-
-##
-
-
-
-飞布还充分利用了GraphQL的指令系统，通过指令注解实现了API权限和数据权限的控制，入参校验，以及跨数据源关联！
-
-
-
-与GraphQL的指令系统结合，能够极大扩展API的能力，
-
-
-
-
+飞布用可视化界面封装了GraphQL细节，允许开发者通过勾选从“超图”中构建子集 Operation（查询、变更和订阅） 作为函数签名，并将其编译为 REST-API。这即充分利用了GraphQL按需取用、类型系统的优势，又免除了它无法复用HTTP基础设施以及不安全的弊端。
 
 飞布还充分利用了GraphQL的指令系统，通过指令注解实现了API权限和数据权限的控制，入参校验，以及跨数据源关联！但用户无需刻意学习，因为飞布提供了友好的交互，封装了这些技术细节。
 
 飞布提供了开箱即用的API缓存、实时推送和实时查询功能。通过服务端轮询，可以实现任意数据源的实时查询！
 
-此外，飞布基于 HTTP 协议+[WebAssembly](https://developer.mozilla.org/zh-CN/docs/WebAssembly)技术实现了 HOOKS 机制，方便开发者采用任何喜欢的语言实现自定义逻辑。同时，飞布内置了WebContainer，TypeScript开发者无需准备任何环境，即可进行nodejs钩子的开发。
+最后，飞布基于 HTTP 协议实现了 HOOKS 机制，方便开发者采用任何喜欢的语言实现自定义逻辑。
 
-飞布集成了众多行业规范，包括OIDC、S3存储、RBAC等！用户无需额外学习即可接入，快速完成业务需求。
+##
 
-最后，飞布还基于prisma设计了数据建模功能，实现开发流程的闭环。用户无需切换工具，即可完成数据建模和数据预览，且能跨数据库类型迁移表结构。
+
+

@@ -40,6 +40,16 @@ description: 飞布的介绍
 
 飞布用可视化界面封装了GraphQL细节，允许开发者通过勾选从“超图”中构建子集 Operation（查询、变更和订阅） 作为函数签名，并将其编译为 REST-API。这即充分利用了GraphQL按需取用、类型系统的优势，又免除了它无法复用HTTP基础设施以及不安全的弊端。
 
+飞布还充分利用了GraphQL的指令系统，通过指令注解实现了API权限和数据权限的控制，入参校验，以及跨数据源关联！但用户无需刻意学习，因为飞布提供了友好的交互，封装了这些技术细节。
+
+飞布提供了开箱即用的API缓存、实时推送和实时查询功能。通过服务端轮询，可以实现任意数据源的实时查询！
+
+此外，飞布基于 HTTP 协议实现了 HOOKS 机制，方便开发者采用任何喜欢的语言实现自定义逻辑。同时，飞布内置了WebContainer，TypeScript开发者无需准备任何环境，即可进行nodejs钩子的开发。
+
+飞布集成了众多行业规范，包括OIDC、S3存储、RBAC等！用户无需额外学习即可接入，快速完成业务需求。
+
+最后，飞布还基于prisma设计了数据建模功能，实现开发流程的闭环。用户无需切换工具，即可完成数据建模和数据预览，且能跨数据库类型迁移表结构。
+
 了解更多，前往查看飞布[gong-zuo-yuan-li.md](../kuai-su-ru-men/gong-zuo-yuan-li.md "mention")
 
 <figure><img src="../.gitbook/assets/image (22).png" alt=""><figcaption><p>飞布核心模块概览</p></figcaption></figure>
