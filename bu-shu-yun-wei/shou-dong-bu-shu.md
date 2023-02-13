@@ -33,14 +33,51 @@ description: 本章介绍如何将开发完成后项目部署到生产服务器
     # 更多pm2使用方法请参考 https://pm2.keymetrics.io/docs/usage/quick-start/
     ```
     {% endcode %}
-4.  进入项目跟目录，启动`Fireboom` \
+4.  进入项目根目录，启动`Fireboom` \
 
 
     {% code title="start-fireboom.sh" overflow="wrap" lineNumbers="true" %}
     ```bash
     ‌./fireboom start
-    # 该命令会挂起命令行，可以使用 nohup 启动
-    nohup ./fireboom start &
-    # 后续添加system脚本 coming soon...
+
     ```
     {% endcode %}
+
+    该方式将挂起命令行，可以使用`systemctl` 方式启动。在`/usr/lib/systemd/system/` 目录中新建`fb.service` ，内容如下\
+
+
+    {% code title="fb.service" %}
+    ```sh
+    ‌[Unit]
+    Description=Fireboom server
+    After=syslog.target network.target
+
+    [Service]
+    Type=simple
+    # 根据实际路径来修改
+    WorkingDirectory=/path/to/fb/server
+    # 根据实际路径来修改
+    ExecStart=/path/to/fb/server/fireboom start
+    Restart=on-failure
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+    {% endcode %}
+
+    然后执行 \
+
+
+    {% code title="fb.sh" overflow="wrap" lineNumbers="true" %}
+    ```sh
+    # 重新加载
+    systemctl daemon-reload
+    # 开机自启
+    systemctl enable fb
+    # 启动
+    systemctl start fb
+    # 查看日志
+    systemctl status fb
+    ```
+    {% endcode %}
+
