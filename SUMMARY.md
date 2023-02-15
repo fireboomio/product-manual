@@ -16,6 +16,7 @@
 
 ## 开发文档
 
+* [界面概览](kai-fa-wen-dang/jie-mian-gai-lan.md)
 * [数据源](kai-fa-wen-dang/shu-ju-yuan/README.md)
   * [数据库](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/README.md)
     * [数据库连接](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie.md)
@@ -27,8 +28,8 @@
     * [自定义API](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/zi-ding-yi-api.md)
   * [消息队列](kai-fa-wen-dang/shu-ju-yuan/xiao-xi-dui-lie.md)
 * [API构建](kai-fa-wen-dang/api-gou-jian/README.md)
-  * [查询](kai-fa-wen-dang/api-gou-jian/cha-xun.md)
-  * [变更](kai-fa-wen-dang/api-gou-jian/bian-geng.md)
+  * [API规范](kai-fa-wen-dang/api-gou-jian/api-gui-fan.md)
+  * [可视化开发](kai-fa-wen-dang/api-gou-jian/ke-shi-hua-kai-fa.md)
   * [订阅](kai-fa-wen-dang/api-gou-jian/ding-yue.md)
   * [跨源关联](kai-fa-wen-dang/api-gou-jian/kua-yuan-guan-lian.md)
   * [实时查询](kai-fa-wen-dang/api-gou-jian/shi-shi-cha-xun.md)

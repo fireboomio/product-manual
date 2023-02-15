@@ -8,8 +8,6 @@ description: 绝大多数应用都离不开数据库，本章将介绍如何使�
 
 飞布使用Prisma连接到数据库，如SQLite, MySQL, PostgreSQL, SQL Server或MongoDB。飞布底层封装了[prisma引擎](https://www.prisma.io/)，利用prisma的内省能力，将数据库中的表结构内省成GraphQL Schema，并利用prisma的查询能力解析GraphQL Opeartion读取/更新数据库数据。此外，飞布还利用prisma的迁移能力，实现了数据建模功能。
 
-![多数据源支持](https://www.fireboom.io/images/gif/01-01%E5%A4%9A%E6%95%B0%E6%8D%AE%E6%BA%90%E6%94%AF%E6%8C%81.gif)
-
 ## 支持数据库
 
 理论上飞布支持prisma兼容的所有数据库，所支持的数据源的完整列表可以在[这里](https://www.prisma.io/docs/concepts/database-connectors/mysql)查看，当前正在按照优先级持续兼容中。
