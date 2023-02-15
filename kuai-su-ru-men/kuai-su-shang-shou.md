@@ -60,7 +60,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 
 ```bash
 # 升级飞布命令行
-./run.sh update
+curl -fsSL https://www.fireboom.io/update.sh | bash
 ```
 
 ### 运行飞布
