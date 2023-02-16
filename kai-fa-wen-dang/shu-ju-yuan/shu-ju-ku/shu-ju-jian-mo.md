@@ -10,7 +10,7 @@
 
 2，选择数据源，例如`todo`数据库
 
-3，点击“![](<../../../.gitbook/assets/image (2) (2).png>)”切换到数据建模功能页
+3，点击“![](<../../../.gitbook/assets/image (2) (2) (1).png>)”切换到数据建模功能页
 
 ## 模型设计
 
@@ -40,10 +40,4 @@
 源码视图展示prisma schema源文件，同时支持语法提醒和高亮展示，你可以用它实现任意形式的数据建模。
 
 <figure><img src="../../../.gitbook/assets/image (8) (3).png" alt=""><figcaption><p>源码视图</p></figcaption></figure>
-
-
-
-
-
-
 

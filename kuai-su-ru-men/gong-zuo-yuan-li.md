@@ -74,6 +74,30 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption><p>RBAC指令原理</p></figcaption></figure>
 
+底层定义如下：
+
+```graphql
+directive @rbac(
+  
+  """the user must match all roles"""
+  requireMatchAll: [WG_ROLE]
+  
+  """the user must match at least one of the roles"""
+  requireMatchAny: [WG_ROLE]
+  
+  """the user must not match all of the roles"""
+  denyMatchAll: [WG_ROLE]
+  
+  """the user must not match any of the roles"""
+  denyMatchAny: [WG_ROLE]
+) on QUERY | MUTATION | SUBSCRIPTION
+
+enum WG_ROLE {
+  admin
+  user
+}
+```
+
 ### API数据权限
 
 限制接口只能被登录用户访问，且只能获取当前用户所拥有的数据行或字段，也是WEBAPI开发的常见需求。飞布通过自定义GraphQL指令：`@fromClaim`，结合OIDC协议，实现了API数据权限控制。
@@ -92,7 +116,23 @@ query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户�
 
 当访问用`@fromClaim`指令修饰的接口时，引擎从当前登录用户会话的Claims中获取用户的基本信息，例如邮箱、UID等，并注入到OPERATION的入参中，保证本次请求只能获取或操作登录用户拥有的数据，从而实现数据权限控制。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (5).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
+
+底层定义如下：
+
+```graphql
+directive @fromClaim(name: Claim) on VARIABLE_DEFINITION
+
+enum Claim {
+  USERID
+  EMAIL
+  EMAIL_VERIFIED
+  NAME
+  NICKNAME
+  LOCATION
+  PROVIDER
+}
+```
 
 ### API入参校验
 
@@ -110,6 +150,150 @@ query GetOnetodo($uid: Int! @jsonSchema(pattern: "^ [0-9]*$")# 正则表达式�
 
 入参校验指令支持正则表达式，可实现常用的入参合法性校验。
 
+底层定义如下：
+
+```graphql
+directive @jsonSchema(
+  
+  """
+  The value of both of these keywords MUST be a string.
+  
+  Both of these keywords can be used to decorate a user interface with
+  information about the data produced by this user interface.  A title
+  will preferably be short, whereas a description will provide
+  explanation about the purpose of the instance described by this
+  schema.
+  """
+  title: String
+  
+  """
+  The value of both of these keywords MUST be a string.
+  
+  Both of these keywords can be used to decorate a user interface with
+  information about the data produced by this user interface.  A title
+  will preferably be short, whereas a description will provide
+  explanation about the purpose of the instance described by this
+  schema.
+  """
+  description: String
+  
+  """
+  The value of "multipleOf" MUST be a number, strictly greater than 0.
+  
+  A numeric instance is valid only if division by this keyword's value
+  results in an integer.
+  """
+  multipleOf: Int
+  
+  """
+  The value of "maximum" MUST be a number, representing an inclusive
+  upper limit for a numeric instance.
+  
+  If the instance is a number, then this keyword validates only if the
+  instance is less than or exactly equal to "maximum".
+  """
+  maximum: Int
+  
+  """
+  The value of "exclusiveMaximum" MUST be number, representing an
+  exclusive upper limit for a numeric instance.
+  
+  If the instance is a number, then the instance is valid only if it
+  has a value strictly less than (not equal to) "exclusiveMaximum".
+  """
+  exclusiveMaximum: Int
+  
+  """
+  The value of "minimum" MUST be a number, representing an inclusive
+  lower limit for a numeric instance.
+  
+  If the instance is a number, then this keyword validates only if the
+  instance is greater than or exactly equal to "minimum".
+  """
+  minimum: Int
+  
+  """
+  The value of "exclusiveMinimum" MUST be number, representing an
+  exclusive lower limit for a numeric instance.
+  
+  If the instance is a number, then the instance is valid only if it
+  has a value strictly greater than (not equal to) "exclusiveMinimum".
+  """
+  exclusiveMinimum: Int
+  
+  """
+  The value of this keyword MUST be a non-negative integer.
+  
+  A string instance is valid against this keyword if its length is less
+  than, or equal to, the value of this keyword.
+  
+  The length of a string instance is defined as the number of its
+  characters as defined by RFC 7159 [RFC7159].
+  """
+  maxLength: Int
+  
+  """
+  The value of this keyword MUST be a non-negative integer.
+  
+  A string instance is valid against this keyword if its length is
+  greater than, or equal to, the value of this keyword.
+  
+  The length of a string instance is defined as the number of its
+  characters as defined by RFC 7159 [RFC7159].
+  
+  Omitting this keyword has the same behavior as a value of 0.
+  """
+  minLength: Int
+  
+  """
+  The value of this keyword MUST be a string.  This string SHOULD be a
+  valid regular expression, according to the ECMA 262 regular
+  expression dialect.
+  
+  A string instance is considered valid if the regular expression
+  matches the instance successfully.  Recall: regular expressions are
+  not implicitly anchored.
+  """
+  pattern: String
+  
+  """
+  The value of this keyword MUST be a non-negative integer.
+  
+  An array instance is valid against "maxItems" if its size is less
+  than, or equal to, the value of this keyword.
+  """
+  maxItems: Int
+  
+  """
+  The value of this keyword MUST be a non-negative integer.
+  
+  An array instance is valid against "minItems" if its size is greater
+  than, or equal to, the value of this keyword.
+  
+  Omitting this keyword has the same behavior as a value of 0.
+  """
+  minItems: Int
+  
+  """
+  The value of this keyword MUST be a boolean.
+  
+  If this keyword has boolean value false, the instance validates
+  successfully.  If it has boolean value true, the instance validates
+  successfully if all of its elements are unique.
+  
+  Omitting this keyword has the same behavior as a value of false.
+  """
+  uniqueItems: Boolean
+  commonPattern: COMMON_REGEX_PATTERN
+) on VARIABLE_DEFINITION
+
+enum COMMON_REGEX_PATTERN {
+  EMAIL
+  DOMAIN
+}
+
+```
+
 ### API参数注入
 
 很多场景下，接口的入参需要由服务端动态设置特定参数。飞布内置了如下指令，分别适用不同场景的需求。
@@ -126,6 +310,72 @@ query GetOnetodo($uid: Int! @injectGeneratedUUID # 生成UUID) {
     user_id
   }
 }
+```
+
+底层定义如下：
+
+```graphql
+# @injectCurrentDateTime的定义
+directive @injectCurrentDateTime(
+  format: WunderGraphDateTimeFormat = ISO8601
+  
+  """customFormat must conform to the Golang specification for specifying a date time format"""
+  customFormat: String
+) on VARIABLE_DEFINITION
+
+enum WunderGraphDateTimeFormat {
+  
+  """2006-01-02T15:04:05-0700"""
+  ISO8601
+  
+  """Mon Jan _2 15:04:05 2006"""
+  ANSIC
+  
+  """Mon Jan _2 15:04:05 MST 2006"""
+  UnixDate
+  
+  """Mon Jan 02 15:04:05 -0700 2006"""
+  RubyDate
+  
+  """02 Jan 06 15:04 MST"""
+  RFC822
+  
+  """02 Jan 06 15:04 -0700"""
+  RFC822Z
+  
+  """Monday, 02-Jan-06 15:04:05 MST"""
+  RFC850
+  
+  """Mon, 02 Jan 2006 15:04:05 MST"""
+  RFC1123
+  
+  """Mon, 02 Jan 2006 15:04:05 -0700"""
+  RFC1123Z
+  
+  """2006-01-02T15:04:05Z07:00"""
+  RFC3339
+  
+  """2006-01-02T15:04:05.999999999Z07:00"""
+  RFC3339Nano
+  
+  """3:04PM"""
+  Kitchen
+  
+  """Jan _2 15:04:05"""
+  Stamp
+  
+  """Jan _2 15:04:05.000"""
+  StampMilli
+  
+  """Jan _2 15:04:05.000000"""
+  StampMicro
+  
+  """Jan _2 15:04:05.000000000"""
+  StampNano
+}
+
+# @injectEnvironmentVariable的 定义
+directive @injectEnvironmentVariable(name: String!) on VARIABLE_DEFINITION
 ```
 
 ### API响应转换
@@ -159,6 +409,15 @@ query GettodoList {
 
 本质上是提取json结构的某个嵌套字段，然后赋值给上级字段。
 
+底层定义如下：
+
+```graphql
+directive @transform(
+  get: String
+) on FIELD
+
+```
+
 ### 跨数据源关联
 
 某些场景下，WEBAPI需要组合多个数据源的数据。利用GraphQL的组装特性，可以很方便实现多数据源的查询和变更操作，但无法实现多数据源间的流程控制，例如先从数据库获取设备列表，然后通过物联网API获取设备在线是否在线，组装后发送至客户端。
@@ -181,7 +440,7 @@ query GettodoList {
 
 很多场景下，客户端需要实时更新数据。当前，主流方式是客户端轮询，即客户端每隔几秒请求一次接口，获取数据。当客户端数量较多时，会给服务端造成较大并发压力。飞布采用了一种新的机制：服务端轮询。它能以较小的代价，解决客户端轮询造成的资源消耗问题，实现数据的**准实时**更新。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption><p>服务端轮询时序图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (2).png" alt=""><figcaption><p>服务端轮询时序图</p></figcaption></figure>
 
 服务端轮询把轮询逻辑从客户端移动到服务端，由服务端定时请求数据，并比对前后两次数据是否一致，若数据变化，则推送数据到客户端。同时，只有当客户端订阅准实时事件时，服务端才会定时轮询数据，保证系统性能。
 
