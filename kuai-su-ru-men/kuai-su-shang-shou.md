@@ -30,7 +30,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 
 1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
 
-<img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (1) (1) (2).png" alt="" data-size="original">
 
 * MAC：intel芯片
 * ARM64：适用MAC ARM64架构，M1芯片
@@ -50,13 +50,9 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 ./fireboom init projectName
 ```
 {% endtab %}
-
-{% tab title="windows" %}
-
-{% endtab %}
 {% endtabs %}
 
-#### &#x20;升级飞布
+#### 升级飞布
 
 ```bash
 # 升级飞布命令行
@@ -91,8 +87,6 @@ curl -fsSL https://www.fireboom.io/update.sh | bash
 
 ### 2. 新建 API
 
-&#x20;
-
 <figure><img src="https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api_create.png" alt=""><figcaption><p>API新建</p></figcaption></figure>
 
 {% code title="API 名称：GetCountry" %}
@@ -114,11 +108,7 @@ query MyQuery($code: ID!) {
 
 ### 3. 扩展 API
 
-&#x20;
-
 <figure><img src="https://fireboom.oss-cn-hangzhou.aliyuncs.com/img/02-api_hooks.png" alt=""><figcaption><p>钩子编写</p></figcaption></figure>
-
-
 
 {% code title="mutatingPostResolve.ts" %}
 ```typescript
@@ -223,4 +213,3 @@ subscription MySubscription {
 * API钩子：在请求API的生命周期中，插入代码，以更改或扩展API行为，例如用户新建文章后，通过后置钩子发送邮件通知管理员审核
 * API数据源：除数据库外，飞布支持集成REST API和GraphQL API，开发者可以自行用喜欢的方式实现自定义逻辑的API，但无需考虑权限问题。飞布此时变身API网关，作为BFF层对外提供接口。
 * 自定义数据源：飞布还内置了自定义数据源，开发者可以直接编写脚本扩展逻辑。它本质上也是一个GraphQL API。
-

@@ -1,6 +1,7 @@
 # Table of contents
 
 * [序言](README.md)
+* [更新日志](geng-xin-ri-zhi.md)
 * [产品简介](<README (1).md>)
   * [什么是飞布？](product-introduction/what-is-fireboom.md)
   * [飞布的价值](product-introduction/the-value-of-fireboom.md)
@@ -29,7 +30,7 @@
   * [消息队列](kai-fa-wen-dang/shu-ju-yuan/xiao-xi-dui-lie.md)
 * [API构建](kai-fa-wen-dang/api-gou-jian/README.md)
   * [API规范](kai-fa-wen-dang/api-gou-jian/api-gui-fan.md)
-  * [新建API](kai-fa-wen-dang/api-gou-jian/xin-jian-api.md)
+  * [新建API](kai-fa-wen-dang/api-gou-jian/ke-shi-hua-kai-fa.md)
   * [批量新建](kai-fa-wen-dang/api-gou-jian/ding-yue.md)
   * [跨源关联](kai-fa-wen-dang/api-gou-jian/kua-yuan-guan-lian.md)
 * [验证和授权](kai-fa-wen-dang/yan-zheng-he-shou-quan/README.md)
