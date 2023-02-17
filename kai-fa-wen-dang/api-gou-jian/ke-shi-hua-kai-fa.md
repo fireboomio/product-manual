@@ -63,7 +63,7 @@ GraphQL编辑器主要用来查看、修改以及测试OPERATION，具体功能�
 
 设置OPERATION为内部方法，设置后不对外暴露，仅能用于钩子调用，详情见钩子
 
-![](<../../.gitbook/assets/image (1).png>)
+![](<../../.gitbook/assets/image (2).png>)
 
 ### 入参指令
 
@@ -151,7 +151,7 @@ GraphQL编辑器主要用来查看、修改以及测试OPERATION，具体功能�
 
 * 内部OPERATION：不对外暴露，仅供钩子调用
 
-![](<../../.gitbook/assets/image (1).png>)
+![](<../../.gitbook/assets/image (2).png>)
 
 ## 设置面板
 

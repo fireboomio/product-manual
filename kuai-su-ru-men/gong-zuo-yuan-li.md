@@ -116,7 +116,7 @@ query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户�
 
 当访问用`@fromClaim`指令修饰的接口时，引擎从当前登录用户会话的Claims中获取用户的基本信息，例如邮箱、UID等，并注入到OPERATION的入参中，保证本次请求只能获取或操作登录用户拥有的数据，从而实现数据权限控制。
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
 
 底层定义如下：
 
@@ -440,7 +440,7 @@ directive @transform(
 
 很多场景下，客户端需要实时更新数据。当前，主流方式是客户端轮询，即客户端每隔几秒请求一次接口，获取数据。当客户端数量较多时，会给服务端造成较大并发压力。飞布采用了一种新的机制：服务端轮询。它能以较小的代价，解决客户端轮询造成的资源消耗问题，实现数据的**准实时**更新。
 
-<figure><img src="../.gitbook/assets/image (2) (3).png" alt=""><figcaption><p>服务端轮询时序图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>服务端轮询时序图</p></figcaption></figure>
 
 服务端轮询把轮询逻辑从客户端移动到服务端，由服务端定时请求数据，并比对前后两次数据是否一致，若数据变化，则推送数据到客户端。同时，只有当客户端订阅准实时事件时，服务端才会定时轮询数据，保证系统性能。
 

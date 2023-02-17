@@ -30,7 +30,7 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 
 1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
 
-<img src="../.gitbook/assets/image (1) (1) (2).png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
 
 * MAC：intel芯片
 * ARM64：适用MAC ARM64架构，M1芯片
