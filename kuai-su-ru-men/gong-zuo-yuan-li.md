@@ -78,16 +78,12 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
 
 ```graphql
 directive @rbac(
-  
   """the user must match all roles"""
   requireMatchAll: [WG_ROLE]
-  
   """the user must match at least one of the roles"""
   requireMatchAny: [WG_ROLE]
-  
   """the user must not match all of the roles"""
   denyMatchAll: [WG_ROLE]
-  
   """the user must not match any of the roles"""
   denyMatchAny: [WG_ROLE]
 ) on QUERY | MUTATION | SUBSCRIPTION
