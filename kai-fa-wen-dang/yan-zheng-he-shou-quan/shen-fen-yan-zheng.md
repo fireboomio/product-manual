@@ -4,11 +4,7 @@
 
 ## 支持OIDC Provider
 
-飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：
-
-<mark style="color:red;">补充内容</mark>
-
-
+飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：Auth0、Authing、KeyCLOAK、OpenID、Okta、GitHub、Google。
 
 接下来，我们学习下如何配置。
 
@@ -36,13 +32,19 @@
    2. 数据权限：用@fromClaim修饰入参，限制API的数据权限
 2. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页，选择当前API
 3. 输入参数，测试接口，你会发现，接口返回401（这是因为你没登录）
-4. 在预览页顶部，选择OIDC供应商，并点击可以前往登录，登录后可查看用户信息
+4. 在预览页顶部，选择OIDC供应商，点击前往登录，登录后可查看用户信息
 5. 重复步骤3，可以看到接口执行成功，有三种情形
    1. 登录访问：未限制数据权限，正常执行，唯一区别是需要用户登录才能执行
    2. 查询请求：限制数据权限，只返回当前用户拥有的数据
    3. 变更请求：限制数据权限，插入数据时绑定当前用户的标识，如UID或EMAIL等
 
-## [工作原理](https://old-docs.authing.cn/authentication/oidc/oidc-authorization.html#%E4%BD%BF%E7%94%A8%E9%9A%90%E5%BC%8F%E6%A8%A1%E5%BC%8F%EF%BC%88implicit-flow%EF%BC%89)
+## 工作原理
+
+### 专业术语
+
+1. `EU（End-User）`：终端用户
+2. `RP（Relying-Party）`：服务器后端，这里指飞布服务器后端
+3. `OP（OIDC Provider）`： 提供身份验证的服务器，例如Authing 服务器
 
 ### 授权码模式
 
@@ -55,7 +57,7 @@
 ```
 <Issuer>/auth
  ?response_type=code
- # 飞布后端服务器身份标识，对应App ID
+ # RP身份标识，对应App ID
  &client_id=29352915982374239857  
  # 授权服务器接收请求后返回给浏览器的跳转访问地址，对应 设置->安全->重定向URL
  &redirect_uri=https%3A%2F%2Fexample-client.com%2Fcallback  
@@ -66,7 +68,6 @@
 {% hint style="info" %}
 ```
 Issuer：OP服务的连接，例如：https://<应用域名>.authing.cn/oidc/
-OP：OPENID PROVIDER，OIDC概念，提供身份验证的服务器
 ```
 {% endhint %}
 
@@ -94,9 +95,9 @@ https://example-client.com/redirect
 # POST <token_endpoint> // 
 {
     code:"g0ZGZmNjVmOWIjNTk2NTk4ZTYyZGI3" # 授权码
-    client_id: "29352915982374239857", # 飞布后端服务器身份标识，对应App ID
-    client_secret: "xxxx", # 飞布后端服务密钥，对应App Secret。
-    grant_type: "authorization_code",# 指定飞布后端服务正在使用的授权流程。
+    client_id: "29352915982374239857", # RP身份标识，对应App ID
+    client_secret: "xxxx", # RP密钥，对应App Secret。
+    grant_type: "authorization_code",# 指定RP正在使用的授权流程。
     # 与请求authorization code时使用的redirect_uri相同。
     redirect_uri:"https%3A%2F%2Fexample-client.com%2Fcallback ",
 }
@@ -108,7 +109,7 @@ https://example-client.com/redirect
 
 #### 5.签发访问令牌
 
-服务器将会验证第4步中的请求参数，当验证通过后（校验`authorization code`是否过期，`client id`和`client secret`是否匹配等），服务器将向飞布**后端服务器**返回`access token`。
+OP将会验证第4步中的请求参数，当验证通过后（校验`authorization code`是否过期，`client id`和`client secret`是否匹配等），OP将向`RP`返回`access token`。
 
 ```json
 {
@@ -122,8 +123,6 @@ https://example-client.com/redirect
 }
 ```
 
-至此，授权流程全部结束。直到`access token` 过期或失效之前，飞布**后端服务器**可以通过资源服务器API访问用户的帐户，并具备`scope`中给定的操作权限。
-
 ### 隐式模式
 
 > OIDC 隐式模式不会返回授权码 code，而是直接将 `access_token` 和 `id_token` 通过 **URL hash** 发送到**回调地址前端**，**后端无法获取**到这里返回的值，因为 URL hash 不会被直接发送到后端。该模式常结合移动应用或 Web App 使用。
@@ -133,7 +132,7 @@ https://example-client.com/redirect
 发起隐式模式的授权登录**需要拼接一个 URL**，并让终端用户在浏览器中访问，**不能直接输入**认证地址域名。具体参数如下：
 
 <pre><code>&#x3C;authorization_endpoint>
-# 飞布后端服务器身份标识，对应App ID
+# RP身份标识，对应App ID
 <strong>?client_id=0oabv6kx4qq6h1U5l0h7
 </strong>&#x26;response_type=token # 为token 或 id_token
 # 回调链接，用户在 OP 认证成功后，OP 会将 id_token、access_token 以 URL hash 的形式发送到这个地址。
@@ -173,7 +172,7 @@ http://localhost:8080/
 
 #### 4.传递给应用程序的访问令牌
 
-浏览器向飞布**后端服务器**发送`access token`。飞布**后端服务器**采用两种方式校验令牌：
+浏览器向RP发送`access token`。RP采用两种方式校验令牌：
 
 * 公钥签名校验：优先使用使用**公钥**验证签名。公钥地址（jwks\_uri）一般为： `<Issuer>/.well-known/jwks.json` 。
 * **在线接口校验：**若公钥验签失败，则调用供应商的<mark style="color:red;">token验证接口</mark>进行在线验证。userinfo\_endpoint?
@@ -187,11 +186,9 @@ http://localhost:8080/
 4. 生成 JWK：[https://mkjwk.org (opens new window)](https://mkjwk.org/)；
 {% endhint %}
 
-至此，授权流程全部结束。直到`access token` 过期或失效之前，飞布**后端服务器**可以通过资源服务器API访问用户的帐户，并具备`scope`中给定的操作权限。
-
 ### 获取用户信息 <a href="#06-shi-yong-accesstoken-huan-qu-yong-hu-xin-xi" id="06-shi-yong-accesstoken-huan-qu-yong-hu-xin-xi"></a>
 
-**飞布后端服务器**使用 access\_token 换取用户信息。如果发起授权登录时的 scope 参数不同，这里的返回信息也会不同，返回信息中的字段取决于 scope 参数。字段符合 [OIDC 规范 (opens new window)](https://openid.net/specs/openid-connect-core-1\_0.html#AuthorizationExamples)，用户信息字段与 scope 对应关系请参考 [scope 参数对应的用户信息](https://old-docs.authing.cn/authentication/oidc/oidc-params.html#scope-%E5%8F%82%E6%95%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF)。
+直到`access token` 过期或失效之前，`RP`使用access\_token，通过OP的`userinfo_endpoint` API换取用户信息。如果发起授权登录时的 scope 参数不同，这里的返回信息也会不同，返回信息中的字段取决于 scope 参数。字段符合 [OIDC 规范 (opens new window)](https://openid.net/specs/openid-connect-core-1\_0.html#AuthorizationExamples)，用户信息字段与 scope 对应关系请参考 [scope 参数对应的用户信息](https://old-docs.authing.cn/authentication/oidc/oidc-params.html#scope-%E5%8F%82%E6%95%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF)。
 
 具体请求如下：
 

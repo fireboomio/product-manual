@@ -37,11 +37,13 @@
   * [身份验证](kai-fa-wen-dang/yan-zheng-he-shou-quan/shen-fen-yan-zheng.md)
   * [授权与访问控制](kai-fa-wen-dang/yan-zheng-he-shou-quan/shou-quan-yu-fang-wen-kong-zhi.md)
 * [钩子机制](kai-fa-wen-dang/gou-zi-ji-zhi/README.md)
-  * [全局钩子](kai-fa-wen-dang/gou-zi-ji-zhi/quan-ju-gou-zi.md)
-  * [局部钩子](kai-fa-wen-dang/gou-zi-ji-zhi/ju-bu-gou-zi.md)
-  * [鉴权钩子](kai-fa-wen-dang/gou-zi-ji-zhi/jian-quan-gou-zi.md)
+  * [钩子协议](kai-fa-wen-dang/gou-zi-ji-zhi/gou-zi-xie-yi.md)
+  * [OPERATION钩子](kai-fa-wen-dang/gou-zi-ji-zhi/quan-ju-gou-zi.md)
+  * [登录钩子](kai-fa-wen-dang/gou-zi-ji-zhi/jian-quan-gou-zi.md)
+  * [文件钩子](kai-fa-wen-dang/gou-zi-ji-zhi/ju-bu-gou-zi.md)
 * [文件存储](kai-fa-wen-dang/wen-jian-cun-chu.md)
-* [SDK生成](kai-fa-wen-dang/sdk-sheng-cheng.md)
+* [SDK生成](kai-fa-wen-dang/sdk-sheng-cheng/README.md)
+  * [模板生成协议](kai-fa-wen-dang/sdk-sheng-cheng/mo-ban-sheng-cheng-xie-yi.md)
 
 ***
 
