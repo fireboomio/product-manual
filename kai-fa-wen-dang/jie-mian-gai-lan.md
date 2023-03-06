@@ -4,9 +4,7 @@
 
 ## 核心界面
 
-<mark style="color:red;">主框架炸开图-待优化</mark>
-
-<mark style="color:red;">https://firebull.yuque.com/g/wy45yc/ig9g6n/fta109/collaborator/join?token=sImjHMMRxU3A8X3y# 《飞布使用教程画板》</mark>
+<figure><img src="../.gitbook/assets/png.png" alt=""><figcaption><p>主框架炸开图</p></figcaption></figure>
 
 
 

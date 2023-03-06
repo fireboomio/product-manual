@@ -43,6 +43,7 @@
 * [文件存储](kai-fa-wen-dang/wen-jian-cun-chu.md)
 * [SDK生成](kai-fa-wen-dang/sdk-sheng-cheng/README.md)
   * [模板规范](kai-fa-wen-dang/sdk-sheng-cheng/mo-ban-gui-fan.md)
+* [开放API](kai-fa-wen-dang/kai-fang-api.md)
 
 ***
 
