@@ -1,6 +1,6 @@
 # 身份验证
 
-飞布支持OIDC进行身份验证，实现了OIDC中定义的两种授权流程：授权码模式（Authorization Code）和隐式模式（Implicit）。
+飞布支持OIDC进行身份验证，实现了OIDC中定义的两种授权流程：基于cookie登录-授权码模式（Authorization Code）和基于Token登录-隐式模式（Implicit）。
 
 ## 支持OIDC Provider
 
@@ -46,7 +46,7 @@
 2. `RP（Relying-Party）`：服务器后端，这里指飞布服务器后端
 3. `OP（OIDC Provider）`： 提供身份验证的服务器，例如Authing 服务器
 
-### 授权码模式
+### 基于cookie登录-授权码模式
 
 > 授权码模式是 OIDC 授权登录中最常用的模式，OP 服务器返回一个授权码 code 给开发者后端服务器，在后端完成 code 换取 access\_token，再用 access\_token 换取用户信息的操作，从而实现用户的身份认证。
 
@@ -123,7 +123,7 @@ OP将会验证第4步中的请求参数，当验证通过后（校验`authorizat
 }
 ```
 
-### 隐式模式
+### 基于Token登录-隐式模式
 
 > OIDC 隐式模式不会返回授权码 code，而是直接将 `access_token` 和 `id_token` 通过 **URL hash** 发送到**回调地址前端**，**后端无法获取**到这里返回的值，因为 URL hash 不会被直接发送到后端。该模式常结合移动应用或 Web App 使用。
 
@@ -227,8 +227,6 @@ userinfo_endpoint一般从服务发现地址中获取，常见格式：<Issuer>/
 {% hint style="info" %}
 OIDC规范中不包含角色的描述，因此返回值不涉及`roles`字段
 {% endhint %}
-
-##
 
 
 
