@@ -26,31 +26,11 @@ curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name
 wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 ```
 
-#### 下载安装
-
-1，前往[官网](https://www.fireboom.io/)根据操作系统下载对应版本的二进制命令。
-
-<img src="../.gitbook/assets/image (1) (1).png" alt="" data-size="original">
-
-* MAC：intel芯片
-* ARM64：适用MAC ARM64架构，M1芯片
-* Linux：
-* Windows：
-
 {% hint style="info" %}
 飞布采用golang语言编写，上述版本基于golang的跨平台编译构建。如果你的操作系统不在上述列表，请[联系我们](https://github.com/fireboomio/product-manual/discussions)兼容。
 {% endhint %}
 
-2，初始化项目
 
-{% tabs %}
-{% tab title="linux/mac" %}
-```bash
-# 前往fireboom二进制文件所在文件夹，执行下述命令
-./fireboom init projectName
-```
-{% endtab %}
-{% endtabs %}
 
 #### 升级飞布
 
