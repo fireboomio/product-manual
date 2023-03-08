@@ -11,22 +11,21 @@
 3. 切换到“身份鉴权”TAB，在auth目录下选择`mutatingPostAuthentication`文件
 4. 编写钩子脚本或选择预制脚本，这里设置所有用户拥有`user`权限，启动钩子，详情前往钩子章节
 
-```typescript
-import { AuthenticationHookRequest, AuthenticationResponse } from 'fireboom-wundersdk/server'
-import type { User,Role } from "generated/fireboom.server"
-export default async function mutatingPostAuthentication(hook: AuthenticationHookRequest) : Promise<AuthenticationResponse<User>>{
-	let roles=getRolesByUid(hook.user.userId)
-	return {
+<pre class="language-typescript"><code class="lang-typescript"><strong>import { AuthenticationHookRequest, AuthenticationResponse } from 'fireboom-wundersdk/server'
+</strong>import type { User,Role } from "generated/claims"
+export default async function mutatingPostAuthentication(hook: AuthenticationHookRequest) : Promise&#x3C;AuthenticationResponse&#x3C;User>>{
+ let roles=getRolesByUid(hook.user.userId!)
+ return {
           user: {...hook.user,roles},
           status: 'ok',
         }
 }
 function getRolesByUid( uid:string ) :Role[]{
-	//TODO：根据用户uid获取用户角色
+ //TODO：根据用户uid获取用户角色
 
-	return ["user"]
+ return ["user"]
 }
-```
+</code></pre>
 
 ### API设置
 
