@@ -2,5 +2,6 @@
 description: 使用飞布开发微信小程序
 ---
 
-# 小程序实战
+# AI魔法师实战
 
+todo@erguo

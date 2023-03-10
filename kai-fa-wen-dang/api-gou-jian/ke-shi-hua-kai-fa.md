@@ -2,6 +2,8 @@
 
 了解飞布的API规范后，接下来我们学习下如何新建一条API。
 
+<mark style="color:orange;">todo@anson 插图</mark>
+
 ## 操作步骤
 
 {% embed url="https://www.bilibili.com/video/BV1MG4y1j7rf/" %}
@@ -24,6 +26,8 @@
 
 该面板是超图Schema的可视化展示，主要包含如下功能：
 
+<mark style="color:orange;">todo@anson 视频</mark>
+
 * 搜索：下拉选择命名空间，或输入函数名搜索所需方法
 * 筛选：支持查询QUERY、变更MUTATION、订阅SUBSCRIPTION的筛选
 * 勾选：展开对应方法，选择所需字段，并设置过滤条件
@@ -33,7 +37,7 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](kua-yuan-guan-lian.md)”
+\_join字段的用法比较特殊，详情见下文“[跨源关联](broken-reference)”
 {% endhint %}
 
 ## 编辑器GraphQL

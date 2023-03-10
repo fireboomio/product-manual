@@ -6,6 +6,8 @@
 
 如果你希望实现一个自己的 hook  SDK，需要遵从如下协议。
 
+<mark style="color:red;">TODO@ERGOUTOU</mark>
+
 ## OPERATION钩子
 
 为扩展OPERATION的能力而设计的钩子，主要用于定制请求OPERATION API的行为。
@@ -72,7 +74,7 @@ OIDC流程用户登录成功后，执行该钩子。与上述钩子的区别是�
 
 
 
-## 内部钩子
+## 钩子内API调用
 
 
 

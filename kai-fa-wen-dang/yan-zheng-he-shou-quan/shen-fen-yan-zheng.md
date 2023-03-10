@@ -228,21 +228,21 @@ userinfo_endpoint一般从服务发现地址中获取，常见格式：<Issuer>/
 OIDC规范中不包含角色的描述，因此返回值不涉及`roles`字段
 {% endhint %}
 
-
-
-todo
-
 ## 客户端如何使用？
 
 ### 基于COOKIE登录
 
-
-
-
+todo@ergoutou
 
 ### 基于TOKEN登录
 
+todo@ergoutou
 
+
+
+
+
+todo@ergoutou用户同步
 
 
 

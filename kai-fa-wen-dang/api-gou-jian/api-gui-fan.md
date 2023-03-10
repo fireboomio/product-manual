@@ -2,6 +2,8 @@
 
 飞布API由GraphQL OPERATION编译而成，不同OPERATION会生成不同类型的API。接下来，我们具体介绍OPERATION的编译规范。
 
+todo@anson 更新目录
+
 ## OPERATION类型
 
 ### URL 结构
@@ -171,3 +173,5 @@ POST https://<hostname>/s3/<storageID>/upload
 ```
 
 响应包含一个带有字段`fileKeys`的json对象，该对象是上传文件生成的id列表。
+
+[wen-jian-cun-chu.md](../wen-jian-cun-chu.md "mention")

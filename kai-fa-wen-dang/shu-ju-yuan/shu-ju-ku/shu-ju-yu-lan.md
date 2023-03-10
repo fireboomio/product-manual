@@ -2,23 +2,19 @@
 
 数据预览用来查看和编辑数据库中的数据，是功能强大且易用的数据库管理工具，类似[Prisma Studio](https://www.prisma.io/studio)的可视化编辑器。无论你是数据库管理员、开发人员还是初学者， 它都提供您需要的一切，包括CURD、跨表浏览、过滤、分页等，以有效地处理数据。
 
-{% hint style="info" %}
-安全起见，该功能仅在开发模式可用
-{% endhint %}
-
 ## 数据模型
 
 下述为本文档对应数据模型的Prisma schema，了解更多请前往[prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema)学习。
 
 ```
 model todo {
-  id           Int       @id @unique @default(autoincrement())
+  id           Int       @id @default(autoincrement())
   title        String    @db.VarChar(255)
   is_completed Boolean
   is_public    Boolean
   created_at   DateTime? @default(now())
-  user_id      Int # 外键
-  user         user      @relation(fields: [user_id], references: [id]) # 关联字段
+  user_id      Int // 外键
+  user         user      @relation(fields: [user_id], references: [id]) // 关联字段
 
   @@index([user_id], map: "todo_user_id_fkey")
 }

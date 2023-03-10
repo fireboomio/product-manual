@@ -14,7 +14,7 @@ description: 绝大多数应用都离不开数据库，本章将介绍如何使�
 
 * [x] [MySQL](https://www.prisma.io/docs/concepts/database-connectors/mysql)
 * [x] [SQLite](https://www.prisma.io/docs/concepts/database-connectors/sqlite)
-* [ ] [PostgreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
+* [x] [PostgreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
 * [ ] [MongoDB](https://www.prisma.io/docs/concepts/database-connectors/mongodb)
 * [ ] [SQL Server](https://www.prisma.io/docs/concepts/database-connectors/sql-server)
 * [ ] [CockroachDB](https://www.prisma.io/docs/concepts/database-connectors/cockroachdb)

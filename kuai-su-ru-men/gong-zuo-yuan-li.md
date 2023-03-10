@@ -14,7 +14,7 @@
 
 所以，飞布选择GraphQL作为声明式语言，用来替代数据库的SQL语法。此外，GraphQL还能表达REST API的OAS规范。因此，选择GraphQL作为声明式语言，可以统一数据库和REST API，当然也能统一本身就是GraphQL的GraphQL API。
 
-为了简化操作，飞布支持自动内省数据库、REST API以及GraphQL API，获得对应数据源的GraphQL Schema，我们称之为“子图”。
+为了简化操作，飞布支持自动内省数据库、REST API、GraphQL API以及NodeJS自定义数据源，获得对应数据源的GraphQL Schema，我们称之为“子图”。
 
 总的来说，飞布以 API 为中心，将所有数据抽象为 API，包括 REST API，GraphQL API ，数据库甚至消息队列等，通过 GraphQL 协议把他们聚合在一起，形成具有数据全集的“超图”。
 

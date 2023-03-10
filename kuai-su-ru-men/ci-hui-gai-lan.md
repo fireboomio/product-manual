@@ -18,6 +18,14 @@ GraphQL是一种用于API的查询语言和运行时。它允许客户端指定�
 
 本质上是由所有数据源内省出的GraphQL  schema组成的超级GraphQL  schema。目的是，用GraphQL协议统一不同类型数据源，便于实现跨源编排和查询。
 
+### Operation
+
+todo
+
+### Prisma
+
+todo
+
 ### OIDC
 
 [OpenID Connect](https://www.cnblogs.com/linianhui/p/openid-connect-core.html) (OIDC) 是一种用于身份验证和授权的开放式协议。它建立在OAuth 2.0基础上，并为第三方应用程序提供了一种方便的方法来验证用户身份并获取用户信息，例如名称、邮件地址等。OIDC还支持单点登录（SSO），以便用户只需在一个地方登录，就可以访问多个应用程序。
@@ -34,7 +42,9 @@ GraphQL是一种用于API的查询语言和运行时。它允许客户端指定�
 
 在编程中，钩子（hooks）是一种机制，允许您在程序执行特定操作时插入代码，以更改或扩展程序的行为。钩子通常用于在不修改程序源代码的情况下对程序进行自定义，或对程序进行调试或监控。
 
+### 跨源关联
 
+todo
 
 
 

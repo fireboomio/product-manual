@@ -66,6 +66,12 @@ mongodb://USERNAME:PASSWORD@HOST/DATABASE
 你可以使用环境变量或字面量连接数据库。为了安全起见，推荐使用环境变量连接。在连接URL或用户名+密码字段前选择“环境变量”，即可使用环境变量连接数据库。
 {% endhint %}
 
+{% hint style="info" %}
+SSH隧道模式
+
+Fireboom暂时不支持直接配置SSH Tunnel连接，你可以通过执行ssh脚本将远程的数据库端口映射到本地，然后连接本地映射后的端口即可。这里有个示例 ssh -L 3306:localhost:3306 database-machine.org 然后Fireboom中使用localhost:3306进行连接即可
+{% endhint %}
+
 ## 高级设置
 
 在数据库中存储JSON列是很常见的用例。如果你使用数据库，例如PostgreSQL，你可以使用 `json` 或`jsonb` 类型存储JSON列。在GraphQL schema中，该列将被表示为`JSON` 标量类型。在内部，把值存储到数据库之前，飞布将json值编码为字符串，并在从数据库读取时解码它。这样，`JSON`标量类型非常容易使用。

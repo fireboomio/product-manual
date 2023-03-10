@@ -2,6 +2,8 @@
 
 数据建模用来进行数据库设计，具有完备的数据表设计能力，类似[Navicat](https://navicat.com.cn/products#navicat)数据库开发工具。它本质上是对Prisma Schema的可视化封装。
 
+你也可以使用Navicat等数据库管理工具进行表结构设计。
+
 ## 控制台打开
 
 <figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption><p>数据建模</p></figcaption></figure>
@@ -27,7 +29,7 @@
 5. 点击顶部的“@”，为表增加属性，前往[参考](https://www.prisma.io/docs/concepts/components/prisma-schema/data-model#defining-attributes)
 6. 点击顶部的“迁移”按钮，保存修改
 
-> 迁移本质上调用了 prisma db pull 命令，该方式不可用于<mark style="color:orange;">生产环境</mark>，详情查看[prisma文档](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)。
+> 迁移本质上调用了 prisma db push 命令，该方式不可用于<mark style="color:orange;">生产环境</mark>，详情查看[prisma文档](https://www.prisma.io/docs/concepts/components/prisma-migrate/db-push)。
 >
 > <img src="https://website-v9.vercel.app/illustrations/home-page/hasslefree-migrations.svg" alt="" data-size="original">
 
@@ -41,3 +43,6 @@
 
 <figure><img src="../../../.gitbook/assets/image (8) (3).png" alt=""><figcaption><p>源码视图</p></figcaption></figure>
 
+### ER图
+
+todo

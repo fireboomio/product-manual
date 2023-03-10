@@ -4,6 +4,8 @@
 
 开发钩子的过程和开发web 服务是一样的，你都需要准备开发环境。若您本地没有NODE环境，可以使用飞布内置的webcontainer在线调试钩子。
 
+node环境安装教程：[https://www.runoob.com/nodejs/nodejs-install-setup.html](https://www.runoob.com/nodejs/nodejs-install-setup.html)
+
 ## 快速操作
 
 ### 钩子编写

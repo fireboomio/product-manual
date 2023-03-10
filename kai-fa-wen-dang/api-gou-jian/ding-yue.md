@@ -2,6 +2,8 @@
 
 除了逐条新建API，飞布还提供了批量新建功能，用于快速构建针对数据库的增删改查。
 
+{% embed url="https://www.bilibili.com/video/BV1CN411c7sm/?spm_id_from=333.337.search-card.all.click" %}
+
 ## 快速操作
 
 1. 点击“批量新建”，打开批量新建页（CRUD生成器）

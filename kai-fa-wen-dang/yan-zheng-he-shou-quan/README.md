@@ -4,6 +4,8 @@
 
 本章将介绍，如何使用飞布实现身份验证和身份授权。
 
+{% embed url="https://www.bilibili.com/video/BV1UL411C73g/?spm_id_from=333.337.search-card.all.click" %}
+
 [shen-fen-yan-zheng.md](shen-fen-yan-zheng.md "mention")
 
 [shou-quan-yu-fang-wen-kong-zhi.md](shou-quan-yu-fang-wen-kong-zhi.md "mention")
