@@ -18,6 +18,10 @@
 
 #### 脚本安装
 
+{% hint style="info" %}
+如果你使用的是Windows系统，建议使用 Git bash 执行脚本，或者在`MSYS2`等环境下执行脚本，不支持在`CMD`或者`PowerShell`终端中执行
+{% endhint %}
+
 ```bash
 curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name
 ```
