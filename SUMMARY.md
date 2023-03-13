@@ -55,6 +55,7 @@
   * [流水线部署](bu-shu-yun-wei/liu-shui-xian-bu-shu.md)
   * [飞布云](bu-shu-yun-wei/fei-bu-yun.md)
 * [环境准备](huan-jing-zhun-bei.md)
+* [故障排查](gu-zhang-pai-cha.md)
 * [实战案例](zui-jia-shi-jian/README.md)
   * [AI魔法师实战](zui-jia-shi-jian/xiao-cheng-xu-shi-zhan.md)
   * [管理后台-refine](zui-jia-shi-jian/guan-li-hou-tai-refine.md)
