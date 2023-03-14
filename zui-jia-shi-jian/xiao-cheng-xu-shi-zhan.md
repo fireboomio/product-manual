@@ -4,6 +4,15 @@ description: 使用飞布开发微信小程序
 
 # AI魔法师实战
 
+### 视频课程
+
+{% embed url="https://www.bilibili.com/video/BV1fb411f7G7" %}
+
+### 体验码
+
+![](../assets/AIGC-qrcode.jpeg)
+
+
 ### 1. 项目需求 <a href="#hslit" id="hslit"></a>
 
 [https://lanhuapp.com/link/#/invite?sid=lX0tcrqd](https://lanhuapp.com/link/#/invite?sid=lX0tcrqd)

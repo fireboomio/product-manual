@@ -2,7 +2,7 @@
 
 除了逐条新建API，飞布还提供了批量新建功能，用于快速构建针对数据库的增删改查。
 
-{% embed url="https://www.bilibili.com/video/BV1CN411c7sm/?spm_id_from=333.337.search-card.all.click" %}
+{% embed url="https://www.bilibili.com/video/BV1CN411c7sm" %}
 
 ## 快速操作
 
