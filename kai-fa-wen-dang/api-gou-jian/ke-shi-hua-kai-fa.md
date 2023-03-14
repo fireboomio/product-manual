@@ -2,9 +2,7 @@
 
 了解飞布的API规范后，接下来我们学习下如何新建一条API。
 
-<mark style="color:orange;">todo@anson 插图</mark>
-
-## 操作步骤
+## 视频课程
 
 {% embed url="https://www.bilibili.com/video/BV1MG4y1j7rf/" %}
 
