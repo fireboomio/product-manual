@@ -6,8 +6,6 @@ description: 使用飞布开发微信小程序
 
 ### 1. 项目需求 <a href="#hslit" id="hslit"></a>
 
-[**https://share.lanhuapp.com/#/invite?sid=lXKFUBEa**](https://share.lanhuapp.com/#/invite?sid=lXKFUBEa)
-
 [https://lanhuapp.com/link/#/invite?sid=lX0tcrqd](https://lanhuapp.com/link/#/invite?sid=lX0tcrqd)
 
 ### 2. 项目初始化 <a href="#pddqo" id="pddqo"></a>
@@ -31,7 +29,7 @@ curl -fsSL https://www.fireboom.io/install.sh | bash -s server
 或者使用已经整理好的代码
 
 ```bash
-git clone -b miniapp git@codeup.aliyun.com:619f00a99cbfc1b4f0467458/case/ai-art.git miniapp
+git clone -b miniapp https://github.com/fireboomio/case-ai-art.git miniapp
 cd miniapp
 ```
 
@@ -1087,29 +1085,4 @@ query QueryStatistic {
 
 ### 5. 上线部署 <a href="#nrlpb" id="nrlpb"></a>
 
-#### 5.1 服务器环境准备 <a href="#mye8j" id="mye8j"></a>
-
-* 钩子服务 node
-* 项目推送
-
-```bash
-rsync -avr  --exclude 'node_modules' --exclude 'fireboom' ./* fb-demo:/app/fb-art
-```
-
-rds `mysql://fb:Ex5faesh!@rm-bp1he25898l8luov57o.mysql.rds.aliyuncs.com/fb_test98`
-
-本地 `mysql://root:fb-art@localhost:3306/art`
-
-#### 5.2 Fireboom 生产环境启动 <a href="#mjhnb" id="mjhnb"></a>
-
-```bash
-cd server/custom-ts
-pm2 start npm -- start
-cd ../
-./fireboom dev
-# 修改系统设置，然后关闭服务
-./fireboom build
-./fireboom start
-```
-
-访问 [http://139.9.175.133:9123](http://139.9.175.133:9123)
+[参考手动部署](../bu-shu-yun-wei/shou-dong-bu-shu.md)
