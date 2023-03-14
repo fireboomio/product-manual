@@ -16,7 +16,7 @@
   * 上线：未上线API用灰色表示表示
   * 非法：“非法”标识当前API的OPERATION有异常，无法正常使用
 * 全局设置：应用于所有API的全局设置，主要包含授权配置、缓存配置、实时配置
-* 批量新建：进入批量新建页，前往查看&#x20;
+* 批量新建：进入批量新建页，前往查看
 * 端点测试：进入GraphQL测试页
 * 批量操作：按住shift键多选API，右击可进行批量操作，包括上下线、删除等
 
@@ -24,7 +24,9 @@
 
 该面板是超图Schema的可视化展示，主要包含如下功能：
 
-<mark style="color:orange;">todo@anson 视频</mark>
+{% embed url="https://www.bilibili.com/video/BV1fx4y1N7wJ/" %}
+05功能介绍-如何使用飞布超图面板构建API?
+{% endembed %}
 
 * 搜索：下拉选择命名空间，或输入函数名搜索所需方法
 * 筛选：支持查询QUERY、变更MUTATION、订阅SUBSCRIPTION的筛选
@@ -35,7 +37,7 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](broken-reference)”
+\_join字段的用法比较特殊，详情见下文“[跨源关联](broken-reference/)”
 {% endhint %}
 
 ## 编辑器GraphQL
@@ -87,7 +89,7 @@ GraphQL编辑器主要用来查看、修改以及测试OPERATION，具体功能�
 
 #### fromClaim
 
-注入参数，服务端注入登录用户的Claim字段，保证接口的数据权限，具体包含USERID、EMAIL、EMAIL\_VERIFIED、NAME、  NICKNAME、  LOCATION、  PROVIDER字段。
+注入参数，服务端注入登录用户的Claim字段，保证接口的数据权限，具体包含USERID、EMAIL、EMAIL\_VERIFIED、NAME、 NICKNAME、 LOCATION、 PROVIDER字段。
 
 ```
 # 示例

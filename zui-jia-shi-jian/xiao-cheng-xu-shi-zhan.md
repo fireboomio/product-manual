@@ -7,8 +7,8 @@ description: 使用飞布开发微信小程序
 ### 视频课程
 
 {% embed url="https://www.bilibili.com/video/BV1Wg4y147KK/" %}
-
-{% embed url="https://www.bilibili.com/video/BV1fb411f7G7" %}
+02实战课程-AI绘画小程序\[AI魔法师]-上
+{% endembed %}
 
 ### 体验码
 
