@@ -12,6 +12,9 @@ description: 使用飞布开发微信小程序
 
 ![](../assets/AIGC-qrcode.jpeg)
 
+{% embed url="https://www.bilibili.com/video/BV1fb411f7G7/" %}
+
+仓库地址：[https://github.com/fireboomio/case-ai-art](https://github.com/fireboomio/case-ai-art)
 
 ### 1. 项目需求 <a href="#hslit" id="hslit"></a>
 

@@ -37,19 +37,19 @@ node -v
 
 参考官方文档[https://min.io/download](https://min.io/download)完成安装，打开控制台页面，点击`Access Keys`，点击`Create access key`，创建一条新的认证配置信息，复制并粘贴到 Fireboom 中。&#x20;
 
-<figure><img src="assets/minio-create.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/minio-create.jpg" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="assets/minio-key.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/minio-key.jpg" alt=""><figcaption></figcaption></figure>
 
 服务地址一般为 `http://[minio-server].ip:9000` 区域在 minio 控制台，点击`Settings`，在默认`Region`面板右侧的`Server location`中填写并复制到 Fireboom中&#x20;
 
 &#x20;
 
-<figure><img src="assets/minio-region.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/minio-region.png" alt=""><figcaption></figcaption></figure>
 
 桶名称在 minio 控制台， 点击`Buckets`，点击`Create bucket`，根据提示完成创建&#x20;
 
-<figure><img src="assets/minio-bucket.jpg" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/minio-bucket.jpg" alt=""><figcaption></figcaption></figure>
 
 ## 身份认证 OIDC
 

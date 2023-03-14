@@ -6,7 +6,7 @@
 
 默认填充的是示例代码，并没有进行保存，你可以在此修改代码后点击保存，或者点击`选择模板`按钮，选择一个模板插入并保存。
 
-![自定义数据源面板](../../../assets/custom-ds-editor.png)
+![自定义数据源面板](../../../.gitbook/assets/custom-ds-editor.png)
 
 下面是我们 [AI魔法精灵案例](../../../zui-jia-shi-jian/xiao-cheng-xu-shi-zhan.md) 中的一段自定义数据源代码
 

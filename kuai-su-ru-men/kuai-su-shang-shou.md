@@ -4,6 +4,8 @@
 
 ## 环境准备
 
+{% embed url="https://www.bilibili.com/video/BV1mo4y1B78g" %}
+
 ### 在线体验
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fireboomio/fb-init-simple)
@@ -33,8 +35,6 @@ wget -qO- https://www.fireboom.io/install.sh | bash -s project-name
 {% hint style="info" %}
 飞布采用golang语言编写，上述版本基于golang的跨平台编译构建。如果你的操作系统不在上述列表，请[联系我们](https://github.com/fireboomio/product-manual/discussions)兼容。
 {% endhint %}
-
-
 
 #### 升级飞布
 
