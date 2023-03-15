@@ -1,4 +1,4 @@
-# REST API
+# REST 数据源
 
 REST是构建API最常用的风格。REST API无处不在。您自己的应用程序很可能依赖它。
 
@@ -26,7 +26,7 @@ REST是构建API最常用的风格。REST API无处不在。您自己的应用�
 
 上图也是一个如何配置静态头文件的例子。
 
-![](<../../../.gitbook/assets/image (5).png>)
+![](<../../../.gitbook/assets/image (5) (2).png>)
 
 * 值：字面量
 * 环境变量：读取环境变量

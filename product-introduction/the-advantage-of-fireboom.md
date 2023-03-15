@@ -40,7 +40,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 依赖于graphql的内省特性，飞布可自动内省数据库表结构，检测并提醒哪些API非法。开发者根据界面提醒，稍微删减字段，就可实现功能变更。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>非法API检测</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (2).png" alt=""><figcaption><p>非法API检测</p></figcaption></figure>
 
 ### 飞布开发体验更好
 
@@ -64,7 +64,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 飞布本身属于“后端低代码”，但国内并无类似产品。目前国外类似产品也较少，其中hasura为佼佼者。
 
-<figure><img src="../.gitbook/assets/image (18).png" alt=""><figcaption><p>飞布VS hasura</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (18) (1).png" alt=""><figcaption><p>飞布VS hasura</p></figcaption></figure>
 
 ### 飞布更适用于本土开发者
 
@@ -78,7 +78,7 @@ Hasura基于数据表实现权限体系，能够实现API控制和数据控制�
 
 Hasura采用了直接暴露graphql端点的方式对外提供服务，开发者必须在客户端编写operation，出于安全的目的该方式无法利用graphql的指令系统。而飞布将graphql作为中间层，开发者编写的operation放在了服务端，无需担心安全，可利用graphql的指令系统，实现任意功能的逻辑。例如：参数校验指令`jsonSchema`、当前时间注入指令`injectCurrentDateTime`、响应转换指令`transform`等。&#x20;
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption><p>指令枚举</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (2).png" alt=""><figcaption><p>指令枚举</p></figcaption></figure>
 
 ### 飞布支持内省REST API
 

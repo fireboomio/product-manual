@@ -30,7 +30,7 @@ description: 飞布相对个人开发者和技术团队的价值
 
 在需求确定的情况下，软件开发流程主要有四个环节，原型、UI设计、开发、验收。其中开发环节占用了总时长的80%左右。而飞布开发相对于传统开发能提效10倍，整体提效72%。
 
-<figure><img src="../.gitbook/assets/image (1) (2) (1).png" alt=""><figcaption><p>飞布相对传统开发提效10x</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (2) (1) (1).png" alt=""><figcaption><p>飞布相对传统开发提效10x</p></figcaption></figure>
 
 ### 应用开发成本节省60%
 

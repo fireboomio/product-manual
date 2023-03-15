@@ -22,7 +22,7 @@ description: 飞布的介绍
 
 尽管飞布具有低代码开发平台的所有优势，如可视化、低成本、高效率、稳定性等，但飞布与市面上的低代码平台完全不同。
 
-<figure><img src="../.gitbook/assets/image (19).png" alt=""><figcaption><p>低代码开发优势</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (19) (1).png" alt=""><figcaption><p>低代码开发优势</p></figcaption></figure>
 
 > 自从前后端分离架构盛行以来，WEB应用分为前端和后端。WEB应用中，前端指的是：看得见的**页面**；后端指的是：给看得见的页面**提供数据**的，与**服务器**打交道的部分。
 >

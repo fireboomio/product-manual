@@ -28,7 +28,7 @@ model user {
 
 ## 控制台打开
 
-<figure><img src="../../../.gitbook/assets/image (1) (2).png" alt=""><figcaption><p>数据预览</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (2) (1).png" alt=""><figcaption><p>数据预览</p></figcaption></figure>
 
 1，切换到“数据建模”页签
 

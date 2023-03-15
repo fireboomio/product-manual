@@ -6,7 +6,7 @@
 
 ## 控制台打开
 
-<figure><img src="../../../.gitbook/assets/image (20).png" alt=""><figcaption><p>数据建模</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (20) (1).png" alt=""><figcaption><p>数据建模</p></figcaption></figure>
 
 1，切换到“数据建模”页签
 
@@ -16,7 +16,7 @@
 
 ## 模型设计
 
-数据建模支持两种模式：普通视图和源码视图，分别适用于新手开发者和熟悉Prisma的开发者。点击右上角的图标![](<../../../.gitbook/assets/image (13).png>)和![](<../../../.gitbook/assets/image (21).png>)，可切换两种视图。
+数据建模支持两种模式：普通视图和源码视图，分别适用于新手开发者和熟悉Prisma的开发者。点击右上角的图标![](<../../../.gitbook/assets/image (13) (3).png>)和![](<../../../.gitbook/assets/image (21).png>)，可切换两种视图。
 
 ### 普通视图
 
@@ -44,10 +44,12 @@
 <figure><img src="../../../.gitbook/assets/image (8) (3).png" alt=""><figcaption><p>源码视图</p></figcaption></figure>
 
 ### ER图
+
 #### 一对一的关系
+
 一对一（1-1）关系是指最多一个记录可以在关系的两边连接。在下面的示例中，User和Profile：
 
-```text
+```
 model User {
   id      Int      @id @default(autoincrement())
   profile Profile?
@@ -59,12 +61,14 @@ model Profile {
   userId Int  @unique // relation scalar field (used in the `@relation` attribute above)
 }
 ```
+
 在飞布中可以得到对应的ER图，如下：
 
 <figure><img src="../../../.gitbook/assets/er-one-to-one.png" alt=""><figcaption><p>一对一的关系图</p></figcaption></figure>
+
 在关系型数据库中可以定义多个字段的一对一关联：
 
-```text
+```
 model User {
   firstName String
   lastName  String
@@ -82,14 +86,16 @@ userLastName  String // relation scalar field (used in the `@relation` attribute
 @@unique([userFirstName, userLastName])
 }
 ```
+
 在飞布中可以得到对应的ER图，如下：
 
 <figure><img src="../../../.gitbook/assets/er-one-to-one-multi-field.png" alt=""><figcaption><p>多字段一对一的关系图</p></figcaption></figure>
 
 #### 一对多的关系
+
 一对多（1-n）关系是指关系一侧的一个记录可以连接到另一侧的零或多个记录的关系。在以下示例中，User和Post模型之间有一个一对一的关系：
 
-```text
+```
 model User {
   id    Int    @id @default(autoincrement())
   posts Post[]
@@ -101,12 +107,14 @@ model Post {
   authorId Int
 }
 ```
+
 在飞布中可以得到对应的ER图，如下：
 
 <figure><img src="../../../.gitbook/assets/er-one-to-many.png" alt=""><figcaption><p>一对多的关系图</p></figcaption></figure>
+
 在关系型数据库中可以定义多个字段的一对多关联：
 
-```text
+```
 model User {
   firstName String
   lastName  String
@@ -122,18 +130,21 @@ model Post {
   authorLastName  String // relation scalar field (used in the `@relation` attribute above)
 }
 ```
+
 在飞布中可以得到对应的ER图，如下：
 
 <figure><img src="../../../.gitbook/assets/er-one-to-many-multi-field.png" alt=""><figcaption><p>多字段一对多的关系图</p></figcaption></figure>
 
 #### 多对多的关系
-多对多关系定义了三种模型： 
+
+多对多关系定义了三种模型：
+
 1. 两个具有多对多关系的模型，如Category和Post
 2. 一个表示关系表的模型，例如基础数据库中的 CategoriesOnPosts（有时也称为JOIN、链接或数据透视表）
 
 在本例中，表示关系表的模型定义了描述Post/Category关系的其他字段-谁分配了类别（assignedBy），以及何时分配了类别（assignedAt）：
 
-```text
+```
 model Post {
   id         Int                 @id @default(autoincrement())
   title      String
@@ -157,6 +168,7 @@ model CategoriesOnPosts {
   @@id([postId, categoryId])
 }
 ```
+
 在飞布中可以得到对应的ER图，如下：
 
 <figure><img src="../../../.gitbook/assets/er-many-to-many.png" alt=""><figcaption><p>多对多的关系图</p></figcaption></figure>
