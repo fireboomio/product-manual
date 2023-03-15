@@ -48,7 +48,7 @@
   * [自定义模板](kai-fa-wen-dang/sdk-sheng-cheng/zi-ding-yi-mo-ban.md)
   * [微信小程序SDK](kai-fa-wen-dang/sdk-sheng-cheng/wei-xin-xiao-cheng-xu-sdk.md)
   * [React SDK](kai-fa-wen-dang/sdk-sheng-cheng/react-sdk.md)
-* [开放API](kai-fa-wen-dang/kai-fang-api.md)
+* [开放API（开发中）](kai-fa-wen-dang/kai-fang-api.md)
 
 ***
 
