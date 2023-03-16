@@ -31,6 +31,7 @@ model Pet {
 ```
 
 2. 在 Fireboom 控制台点击批量新建，勾选所有接口，生成多个接口，然后多选生成的 API，右键，点击“上线”完成批量上线。
+
 ![](../assets/refine-batch-create.png)
 
 3. 按照 [Refine 官方快速开始](https://refine.dev/docs/getting-started/quickstart/)文档初始化一个 Refine 项目。

@@ -38,6 +38,7 @@
 * [验证和授权](kai-fa-wen-dang/yan-zheng-he-shou-quan/README.md)
   * [身份验证](kai-fa-wen-dang/yan-zheng-he-shou-quan/shen-fen-yan-zheng.md)
   * [授权与访问控制](kai-fa-wen-dang/yan-zheng-he-shou-quan/shou-quan-yu-fang-wen-kong-zhi.md)
+* [接口安全](/security/README.md)
 * [API钩子](kai-fa-wen-dang/gou-zi-ji-zhi/README.md)
   * [钩子规范](kai-fa-wen-dang/gou-zi-ji-zhi/gou-zi-gui-fan.md)
   * [Node钩子](kai-fa-wen-dang/gou-zi-ji-zhi/node-gou-zi.md)
