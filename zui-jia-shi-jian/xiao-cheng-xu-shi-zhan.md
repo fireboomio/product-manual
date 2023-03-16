@@ -711,7 +711,7 @@ query GetMyDrafts($userId: String! @fromClaim(name: USERID), $creationId: Int! @
     orderBy: {createdAt: desc}
     skip: $skip
     take: $take
-    where: {AppUser: {is: {id: {equals: $userId}}}}
+    where: {AppUser: {is: {id: {equals: $userId}}}, ArtWork: {some: {isDraft: {equals: true}}}}
   ) {
     id @export(as: "creationId")
     count: _count {
@@ -730,7 +730,7 @@ query GetMyDrafts($userId: String! @fromClaim(name: USERID), $creationId: Int! @
 草稿集
 
 ```graphql
-query GetMyDraftItems($draftId: Int!, $userId: String! @fromClaim(name: USERID)) {
+query GetDraftItems($draftId: Int!, $userId: String! @fromClaim(name: USERID)) {
   data: art_findManyArtWork(
     where: {creationId: {equals: $draftId}, isDraft: {equals: true}, Creation: {is: {authorId: {equals: $userId}}}}
   ) {
