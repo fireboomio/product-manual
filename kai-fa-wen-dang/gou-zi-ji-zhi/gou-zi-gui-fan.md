@@ -19,6 +19,10 @@
 11. 应该提供中间件服务来为请求注入包含`user log internalClient`的上下文（后面统称 ctx），同时钩子/组合式 Operation 在执行的函数里都应该能获取到同样的上下文，[参考](#nodejs-上下文参考)
 12. 生产环境（根据环境变量）优雅关闭
 
+## API 和钩子执行流程图
+
+![](../../assets/hook-flow.png)
+
 ## OPERATION 钩子
 
 为扩展 Operation 的能力而设计的钩子，主要用于定制请求 Operation API 的行为。
