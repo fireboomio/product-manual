@@ -4,6 +4,10 @@
 
 你也可以使用Navicat等数据库管理工具进行表结构设计。
 
+{% embed url="https://www.bilibili.com/video/BV1TM411s7aF" %}
+01功能介绍 如何用飞布设计数据库？
+{% endembed %}
+
 ## 控制台打开
 
 <figure><img src="../../../.gitbook/assets/image (20) (1).png" alt=""><figcaption><p>数据建模</p></figcaption></figure>

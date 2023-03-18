@@ -1,3 +1,7 @@
+---
+description: 二锅头
+---
+
 # 组合式API
 
 Fireboom 的核心概念之一是"Operation"。 Operation 可以是持久化的 GraphQL Operation，也可以是 TypeScript Operation， 它们都具有三种形式：Query,Mutation和Subscription. 此外，还有使用服务器端轮询的LiveQuery Operation。
@@ -28,6 +32,7 @@ export default createOperation.query({
 ```
 
 上面的示例合成的API请求为 `http://localhost:9991/operations/users/get`，method 为 get，请求参数为`id`，返回值结构为
+
 ```json
 {
   "data": {

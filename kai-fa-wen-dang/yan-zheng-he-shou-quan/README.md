@@ -5,6 +5,8 @@
 本章将介绍，如何使用飞布实现身份验证和身份授权。
 
 {% embed url="https://www.bilibili.com/video/BV1UL411C73g" %}
+03功能介绍 如何用飞布实现API授权和访问控制？
+{% endembed %}
 
 [shen-fen-yan-zheng.md](shen-fen-yan-zheng.md "mention")
 

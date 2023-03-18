@@ -5,6 +5,8 @@
 ## 视频课程
 
 {% embed url="https://www.bilibili.com/video/BV1MG4y1j7rf/" %}
+\[飞布入门课程] 01-API创建
+{% endembed %}
 
 ## API管理面板
 
@@ -75,7 +77,7 @@ GraphQL编辑器主要用来查看、修改以及测试OPERATION，具体功能�
 
 ### 入参指令
 
-快速添加所有入参修饰符，主要包含两类：修饰参数和注入参数，后者由服务端注入，不允许客户端修改，详情见下文。
+入参指令指的是修饰OPERATION参数的GraphQL指令。它主要包含两类：修饰参数和注入参数，后者由服务端注入，不允许客户端修改，详情见下文。
 
 #### jsonSchema
 
@@ -88,6 +90,8 @@ GraphQL编辑器主要用来查看、修改以及测试OPERATION，具体功能�
 * 数组校验：针对数组，校验数组的尺寸`minItems`和`maxItems`
 
 #### fromClaim
+
+入参指令的另一用途是注入参数，由服务端注入参数，不允许客户端修改，以保证数据安全。其中fromClaim能实现数据权限控制，保证用户只能访问自己拥有的数据。
 
 注入参数，服务端注入登录用户的Claim字段，保证接口的数据权限，具体包含USERID、EMAIL、EMAIL\_VERIFIED、NAME、 NICKNAME、 LOCATION、 PROVIDER字段。
 

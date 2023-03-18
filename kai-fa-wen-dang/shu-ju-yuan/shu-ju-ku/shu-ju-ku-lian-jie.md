@@ -10,6 +10,10 @@
 
 例如：新建数据源->选择MySQL，填写数据库配置信息->测试连接，连接成功后，选择保存，该MySQL数据源即新建完成，并保存到了数据库列表中。
 
+{% embed url="https://www.bilibili.com/video/BV1fL411C72D/" %}
+04功能介绍 飞布如何新建数据源？
+{% endembed %}
+
 ![连接数据库](https://www.fireboom.io/images/gif/01-02%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93.gif)
 
 数据库配置信息有两种方式，一种是连接URL，另一种是连接参数。
