@@ -2,6 +2,10 @@
 
 飞布基于RBAC规范，结合GraphQL的注解能力，实现了API的的授权与访问控制。
 
+{% embed url="https://www.bilibili.com/video/BV1UL411C73g" %}
+03功能介绍 如何用飞布实现API授权和访问控制？
+{% endembed %}
+
 ## 快速操作
 
 ### 基本设置
