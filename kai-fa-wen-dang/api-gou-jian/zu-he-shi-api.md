@@ -8,7 +8,20 @@ Fireboom 的核心概念之一是"Operation"。 Operation 可以是持久化的 
 
 编写 TypeScript 操作非常简单，因为我们正在使用 TypeScript 作为钩子服务语言。与此相反，配置 GraphQL 操作有点冗长，因为 GraphQL 不提供泛型，而且难以在多个操作间复用。
 
-出于这个原因，我们使用 Typescript 来组合所有的 Operation，同时提供更丰富的自定义能力，后面简称 ts-operation。要使用 ts-operation，你需要在`custom-ts`目录新建`operations`目录，然后在该目录下新建 ts 文件，最终的API路径会根据`operations`目录下的子路径进行合成。
+出于这个原因，我们使用 Typescript 来组合所有的 Operation，同时提供更丰富的自定义能力，后面简称 ts-operation。
+
+## 快速上手
+
+要使用 ts-operation，具体步骤如下：
+
+1. 你需要在`custom-ts`目录新建`operations`目录。
+2. 然后在该目录下新建 ts 文件，ts文件的具体编写方式见下文。
+3. 编写完毕后，执行`npm run build-operations`命令生成配置。
+4. 最后启动钩子服务即可！
+
+## ts构建方式
+
+### 查询请求
 
 例如想要一个 `/operations/users/get`路由，那么应该建立`custom-ts/operations/users/get.ts`文件。然后在该文件中编辑
 
@@ -44,6 +57,8 @@ export default createOperation.query({
 }
 ```
 
+### 服务端轮询
+
 如果需要支持服务端轮询，只需要将代码稍作修改
 
 ```diff
@@ -69,6 +84,8 @@ export default createOperation.query({
 })
 ```
 
+### 变更请求
+
 如果希望创建 mutation 的请求，只需要将`createOperation.query`改为`createOperation.mutation`，下面是一个示例
 
 ```ts
@@ -90,6 +107,8 @@ export default createOperation.mutation({
 	}
 })
 ```
+
+### &#x20;订阅请求
 
 你也可以使用 ts-operation 创建 subscription 类型的 operation，下面是一个示例
 
@@ -124,6 +143,8 @@ export default createOperation.subscription({
 	}
 })
 ```
+
+### 内部调用
 
 在 ts-operation 中你不仅可以从零开发业务，也可以直接使用`internalClient`直接调用已经创建的 Operation，下面是一个示例
 

@@ -426,7 +426,7 @@ directive @transform(
 * 赋值：将上游数据源的返回字段复制给声明的变量；
 * 使用：将声明的变量传递给下游数据源的入参；
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
 跨源关联本质上是一种流程编排，将通常情况下并行的请求，改造成串行。
 

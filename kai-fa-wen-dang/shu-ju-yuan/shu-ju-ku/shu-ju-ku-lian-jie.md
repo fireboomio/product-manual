@@ -142,7 +142,7 @@ input MessagePayloadInput {
   ]
 ```
 
-<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption><p>数据库高级设置</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (2).png" alt=""><figcaption><p>数据库高级设置</p></figcaption></figure>
 
 最终，我们定义了输入字段替换和响应字段替换的类型。
 
