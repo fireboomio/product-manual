@@ -46,8 +46,4 @@ REST是构建API最常用的风格。REST API无处不在。您自己的应用�
 
 第一个参数是要添加的头的名称。第二个参数是要从客户端请求中获取值的头的名称。使用此配置，我们将发送带有客户端请求的Authorization头的值的报头X-Authorization。
 
-{% hint style="info" %}
-动态头待确认。
-{% endhint %}
-
 \
