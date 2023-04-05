@@ -112,7 +112,7 @@ query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户�
 
 当访问用`@fromClaim`指令修饰的接口时，引擎从当前登录用户会话的Claims中获取用户的基本信息，例如邮箱、UID等，并注入到OPERATION的入参中，保证本次请求只能获取或操作登录用户拥有的数据，从而实现数据权限控制。
 
-<figure><img src="../.gitbook/assets/image (1) (2).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (2) (2).png" alt=""><figcaption><p>OIDC指令原理</p></figcaption></figure>
 
 底层定义如下：
 

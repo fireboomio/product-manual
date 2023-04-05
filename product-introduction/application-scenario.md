@@ -53,6 +53,3 @@ description: 作为一款API开发平台，飞布的主要应用场景有哪些�
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
 
-
-
-##

@@ -35,4 +35,4 @@
 
 通过 @export 和 \_join 可以进行跨数据源的关联查询
 
-<figure><img src="../../assets/chang-jian-yong-li/operation-export.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/operation-export.gif" alt=""><figcaption></figcaption></figure>

@@ -24,7 +24,11 @@ GraphQL有三种类型的operation，分别为query（查询）, mutation（变�
 
 ### Prisma
 
-todo
+Prisma ORM是一个基于TypeScript的数据库ORM，可以与任何数据库一起使用，并提供强大的查询API和数据建模。它可以帮助开发人员轻松地编写类型安全的数据库查询，并提供类似GraphQL的查询语言Prisma Client来处理常见的CRUD操作。Prisma ORM支持多个数据库系统（包括PostgreSQL，MySQL和MongoDB），可以轻松扩展和定制。
+
+{% hint style="info" %}
+飞布主要用到[Prisma Engine](https://github.com/prisma/prisma-engines)的能力，而没有直接使用其[TypeScript](https://github.com/prisma/prisma)相关的库。
+{% endhint %}
 
 ### OIDC
 
