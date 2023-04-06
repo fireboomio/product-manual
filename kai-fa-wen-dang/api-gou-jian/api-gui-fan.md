@@ -148,7 +148,7 @@ GET https://<hostname>/auth/cookie/user
 Authorization: Bearer <token>
 ```
 
-Bearer Token需要从身份提供者处获得，该过程飞布无法控制。
+Bearer Token需要从身份提供者处获得，该过程飞布无法控制。详情可参考：[身份验证](../yan-zheng-he-shou-quan/shen-fen-yan-zheng.md#ji-yu-token-deng-lu)
 
 ## CSRF保护
 

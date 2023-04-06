@@ -83,7 +83,13 @@ http://localhost:9991/api/main/auth/cookie/authorize/<mark style="color:purple;"
 
 ### 基于TOKEN登录
 
-参考[Authing的SDK](https://docs.authing.cn/v2/reference/sdk-for-node/authentication/AuthenticationClient.html#%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E7%99%BB%E5%BD%95)。
+客户端需要向请求中添加以下请求头：
+
+```
+Authorization: Bearer <token>
+```
+
+如何获取TOKEN，可参考[Authing的SDK](https://docs.authing.cn/v2/reference/sdk-for-node/authentication/AuthenticationClient.html#%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E7%99%BB%E5%BD%95)。
 
 ## 工作原理
 
