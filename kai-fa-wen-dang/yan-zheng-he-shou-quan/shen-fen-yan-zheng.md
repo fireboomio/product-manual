@@ -4,26 +4,58 @@
 
 ## 支持OIDC Provider
 
-飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：Auth0、Authing、KeyCLOAK、OpenID、Okta、GitHub、Google。
+飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：
 
-接下来，我们学习下如何配置。
+* IDaaS服务商auth0、authing等
+* 开源OIDC服务：okta、casdoor等。
+
+接下来，我们学习下如何配置，我们以AUTHING为例。
 
 ## 快速操作
 
 ### 基本设置
 
 1. 在身份验证面板中点击“+”，进入OIDC新建页
-2. 前往各OIDC Provider的文档页，查看如何获取参数
-3. 输入供应商名称及其他参数
-   1. 输入Issuer后，自动生成服务发现地址，并从中获取jwksURL和用户端点
-   2. 若JwksURL无法访问,可将JWKS设置为JSON模式，然后输入JSON字符串
-4. 根据需求确定开启授权码模式或隐式模式，保存即可。
-   1. 授权码模式：必须要填写App Secret
-   2. 隐式模式：不需要App Secret
-5. 进入详情页，点击右上角“测试”按钮，登录后将能查看到当前用户信息
-6. 若启用授权码模式，则需要前往"设置->安全"，设置 "重定向URL"，系统提供了两个默认值
-   1. 用户详情页：localhost:9123/#/workbench/userInfo
-   2. API预览页：localhost:9123/#/workbench/rapi/loginBack
+2. 首先，输入供应商名称，自动生成 “登录回调 URL”。
+3. 然后，前往AUTHING应用配置页，获取APP ID 、App Secret和Issuer ，分别填入身份验证器表单。
+4. 随后，输入APP ID。
+5. 接着，输入Issuer。输入后，系统自动生成服务发现地址，并从中获取jwksURL和用户端点
+6. 当开发WEB应用时，开启基于cookie的模式，同时填入App Secret。
+7. 当开发移动应用时，开启基于Token的模式。
+
+若JwksURL无法访问，可将JWKS切换到JSON模式，然后输入JSON字符串。
+
+```json
+{
+    "kty": "RSA",
+    "e": "AQAB",
+    "n": "1GBBv-QOtbNIvgJZqvW2nvIrNx6-YNKJAD3L3WspAcx1y-RYctI2RBb4k4GN0du8AH2UUf8wBywONHplYAw1djkWAztHgj4cc_WxqKvD1t5bNNjRW7I5EPA9ZEkFblIAxZVwhOPK5H8KLgiVaD7y9fPEks6sVhu2VUQKC0Qr85-0WJVzmXP3QH_1yLn1qRpkJtjCW1I4DPsB0TrQC6WBMy99Io8zECraueLrJFApuRx1H_MwgDwnt4VlYuaoqU17TyBUQWO077mUB-FFI-s0jALuPAUuNWHFFogTq2cbydaSfPcWQPjylYcLcIt-bBBdedLqsTk_0nTXPqREMFwexw",
+    "alg": "RS256",
+    "use": "sig",
+    "kid": "AUQR2TFiVexgvm0j0PrbZ3ofEz9R2eG7qvEJP9Ua2f0"
+}
+```
+
+8. 最后，保存表单，完成配置。
+
+值得注意的是，基于Cookie的登录，需要OIDC供应商（OIDC Provider）和飞布服务器后端（Relying-Party）同时配置回调地址。
+
+首先是，复制 登录回调 URL， 前往AUTHING设置“登录回调 URL”，多个URL可用"英文逗号"分开。
+
+接着，点击“配置登录回调”按钮，前往"设置->安全"，设置 "重定向URL"。
+
+系统提供了两个默认值：
+
+* localhost:9123/#/workbench/userInfo：用户详情页回调URL，用于测试OIDC
+* localhost:9123/#/workbench/rapi/loginBack：API预览页回调URL，用于测试需要授权的API接口。
+
+后续，可根据集成的前端项目，添加对应URL。
+
+回到详情页，点击右上角“测试”按钮。跳转至authing提供的登录页，登录后，可查看当前用户信息。
+
+{% hint style="info" %}
+值得注意的是，只有开启“基于Cookie”模式后，才能直接测试。
+{% endhint %}
 
 ### API设置
 
@@ -37,6 +69,21 @@
    1. 登录访问：未限制数据权限，正常执行，唯一区别是需要用户登录才能执行
    2. 查询请求：限制数据权限，只返回当前用户拥有的数据
    3. 变更请求：限制数据权限，插入数据时绑定当前用户的标识，如UID或EMAIL等
+
+## 客户端如何使用
+
+### 基于COOKIE登录
+
+构建如下URL，在网页上点击跳转即可。
+
+http://localhost:9991/api/main/auth/cookie/authorize/<mark style="color:purple;">\[供应商ID]</mark>?redirect\_uri=<mark style="color:purple;">\[当前页URL]</mark>
+
+* 供应商ID：对应OIDC表单中的供应商ID
+* 当前页URL：对应"设置->安全"中的"重定向URL"
+
+### 基于TOKEN登录
+
+参考[Authing的SDK](https://docs.authing.cn/v2/reference/sdk-for-node/authentication/AuthenticationClient.html#%E4%BD%BF%E7%94%A8%E7%94%A8%E6%88%B7%E5%90%8D%E7%99%BB%E5%BD%95)。
 
 ## 工作原理
 
@@ -227,26 +274,3 @@ userinfo_endpoint一般从服务发现地址中获取，常见格式：<Issuer>/
 {% hint style="info" %}
 OIDC规范中不包含角色的描述，因此返回值不涉及`roles`字段
 {% endhint %}
-
-## 客户端如何使用？
-
-### 基于COOKIE登录
-
-todo@ergoutou
-
-### 基于TOKEN登录
-
-todo@ergoutou
-
-
-
-
-
-todo@ergoutou用户同步
-
-
-
-
-
-
-
