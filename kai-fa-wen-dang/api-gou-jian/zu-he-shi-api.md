@@ -186,3 +186,7 @@ export default createOperation.query({
 	}
 })
 ```
+
+### 内部访问（开发中）
+
+如果你希望添加的 ts-operation 不可对外访问，仅作为内部接口使用，那么只需要在接口目录的最外层加一个 `internal` 即可，例如上面的`custom-ts/operations/users/get.ts`路径改为`custom-ts/operations/internal/users/get.ts`，就会变成仅内部可访问的接口。
