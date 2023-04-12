@@ -20,10 +20,6 @@
 
 ### 基本配置
 
-{% embed url="https://www.bilibili.com/video/BV1hk4y1Y7jM/?spm_id_from=333.999.0.0" %}
-16功能介绍-飞布如何实现文件上传？
-{% endembed %}
-
 1. 在文件存储面板中点击“+”，进入S3新建页
 2. 前往各S3 Provider的文档页，查看如何获取参数
 3. 输入供应商名称及其他参数
@@ -31,14 +27,6 @@
 5. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页
 6. 在预览页顶部，选择OIDC供应商，点击前往登录，登录后可查看用户信息
 7. 在FileUpload中选择当前上传路由，选择文件，并上传
-
-### 文件管理
-
-1. 点击文件存储列表的选项，进入文件管理页
-2. 选择文件列表的文件，可对查看详情，或删除文件
-3. 点击顶部的“上传”按钮，可上传文件
-4. 也可点击顶部“文件夹”按钮，新建文件夹
-5. 在顶部的搜索框，可搜索文件或文件夹
 
 ### 高级配置
 
@@ -55,6 +43,14 @@
      3. 优化数据检索：元数据可以帮助加速数据的检索，例如在存储大量视频文件时，可以将元数据设置为视频的格式、码率、分辨率等信息，以便客户端快速定位和获取所需的视频文件。
 3. 前置钩子：将在上传到OSS之前运行，允许执行任何必需的验证以及定义存储文件的路径。
 4. 后置钩子：在上传完成或失败后运行，用来进行后置处理
+
+### 文件管理
+
+1. 点击文件存储列表的选项，进入文件管理页
+2. 选择文件列表的文件，可对查看详情，或删除文件
+3. 点击顶部的“上传”按钮，可上传文件
+4. 也可点击顶部“文件夹”按钮，新建文件夹
+5. 在顶部的搜索框，可搜索文件或文件夹
 
 ## 工作原理
 

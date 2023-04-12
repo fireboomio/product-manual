@@ -49,7 +49,7 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](broken-reference)”
+\_join字段的用法比较特殊，详情见下文“[跨源关联](kua-yuan-guan-lian.md)”
 {% endhint %}
 
 ## 编辑器GraphQL
@@ -74,13 +74,13 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 **字段指令：**作用于GraphQL 字段，包括@transform。
 
-详情见 [API指令](broken-reference)。
+详情见 [API指令](api-zhi-ling.md)。
 
 ## 概览面板
 
 概览面板以可视化的形式展示当前 OPERATION 的运行机制，主要包括：HTTP流程图、内部调用流程图、订阅流程图。
 
-详情见，[API运行机制](broken-reference)。
+详情见，[API运行机制](api-yun-hang-ji-zhi.md)。
 
 ## 设置面板
 

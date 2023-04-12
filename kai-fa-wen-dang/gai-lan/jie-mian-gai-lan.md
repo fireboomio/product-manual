@@ -1,19 +1,17 @@
-# 界面概览
+# 控制台
 
 为了提供极致开发体验，飞布提供了友好的交互界面。本文重点介绍飞布的功能界面。
 
 ## 核心界面
 
-<figure><img src="../.gitbook/assets/png.png" alt=""><figcaption><p>主框架炸开图</p></figcaption></figure>
-
-
+<figure><img src="../../.gitbook/assets/png.png" alt=""><figcaption><p>主框架炸开图</p></figcaption></figure>
 
 上图是飞布的核心界面。它主要包含如下功能区：
 
 * 菜单栏：包含各种菜单和选项，以帮助您进行各种操作。
 * 功能面板：
-  * API设计：API设计相关的功能，包括[API管理](api-gou-jian/)、数据源、身份验证和文件存储
-  * 数据建模：数据库相关操作，简化版Navicat，包含[数据预览](shu-ju-yuan/shu-ju-ku/shu-ju-yu-lan.md)和[数据建模](shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)功能
+  * API设计：API设计相关的功能，包括[API管理](../api-gou-jian/)、数据源、身份验证和文件存储
+  * 数据建模：数据库相关操作，简化版Navicat，包含[数据预览](../shu-ju-yuan/shu-ju-ku/shu-ju-yu-lan.md)和[数据建模](../shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)功能
 * 主功能区：根据功能面板的具体功能，展示对应的操作界面。
 * 日志面板：
   * 日志：展示编译后的所有日志，帮助定位问题

@@ -8,7 +8,7 @@ REST是构建API最常用的风格。REST API无处不在。您自己的应用�
 
 **新建数据源** -> **REST API**，设置参数，如名称、OAS文件和rest端点。一般OAS文件中共包含rest端点信息，系统自动解析OAS并填写rest端点默认值。
 
-<figure><img src="../../../.gitbook/assets/image (8) (4).png" alt=""><figcaption><p>REST数据源</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8).png" alt=""><figcaption><p>REST数据源</p></figcaption></figure>
 
 > OAS（全称OpenAPI Specification），旧称Swagger Specification，是一个开放式、跨语言、跨平台的API描述语言，用于定义RESTful API的接口，包括请求、响应、模型、错误代码等内容。它提供了一种标准化的方法来描述API，可以使API设计和实现更加明确和一致，提高API的可读性和可维护性。
 

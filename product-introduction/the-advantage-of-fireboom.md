@@ -32,7 +32,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 依赖于graphql强大的类型系统，飞布可实时将API生成swagger文档和各客户端语言的SDK，如ts、flutter等。后端无需写文档，更不用手工维持一致性；前端直接调用对应SDK，并根据语法提醒，对接接口。一旦接口变更，SDK也实时更新，对于强类型语言的SDK，语法报错将帮助前端开发者定位到变更处。
 
-<figure><img src="../.gitbook/assets/image (9) (2).png" alt=""><figcaption><p>API文档和SDK</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>API文档和SDK</p></figcaption></figure>
 
 ### 飞布更能响应需求变更
 

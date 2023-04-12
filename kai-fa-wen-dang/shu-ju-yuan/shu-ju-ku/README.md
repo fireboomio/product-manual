@@ -68,7 +68,7 @@ Prisma内省引擎是一个二进制命令行，用于内省数据库，获得�
 
 对应`prisma db pull`命令。
 
-<figure><img src="../../../.gitbook/assets/image (9).png" alt=""><figcaption><p>内省引擎Ts调用原理图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>内省引擎Ts调用原理图</p></figcaption></figure>
 
 了解更多，前往 [Prisma 文档](https://www.prisma.io/docs/concepts/components/introspection) 查看。
 

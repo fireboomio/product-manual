@@ -54,8 +54,10 @@
 回到详情页，点击右上角“测试”按钮。跳转至authing提供的登录页，登录后，可查看当前用户信息。
 
 {% hint style="info" %}
-值得注意的是，只有开启“基于Cookie”模式后，才能直接测试。
+只有开启“基于Cookie”模式后，才能直接测试。
 {% endhint %}
+
+出于安全考虑，在回调至OIDC供应商URL时，系统会自动跳转到HTTPS链接。若想关闭该功能，可关闭 “强制 HTTPS 跳转”。
 
 ### API设置
 
@@ -76,7 +78,7 @@
 
 构建如下URL，在网页上点击跳转即可。
 
-http://localhost:9991/api/main/auth/cookie/authorize/<mark style="color:purple;">\[供应商ID]</mark>?redirect\_uri=<mark style="color:purple;">\[当前页URL]</mark>
+http://localhost:9991/api/main/auth/cookie/authorize/<mark style="color:purple;"><供应商ID></mark>?redirect\_uri=<mark style="color:purple;"><当前页URL></mark>
 
 * 供应商ID：对应OIDC表单中的供应商ID
 * 当前页URL：对应"设置->安全"中的"重定向URL"

@@ -2,8 +2,6 @@
 
 飞布API由GraphQL OPERATION编译而成，不同OPERATION会生成不同类型的API。接下来，我们具体介绍OPERATION的编译规范。
 
-todo@anson 更新目录
-
 ## OPERATION类型
 
 ### URL 结构
@@ -11,13 +9,13 @@ todo@anson 更新目录
 URL结构如下：
 
 ```
-https://<hostname>/operations/<operation>
+https://<hostname>/operations/<path>/<operation>
 ```
 
-假定你的域名是\`example.com\`，对于 getUser OPERATION，它的URL为：
+假定你的域名是\`example.com\`，对于OPERATION： Todo/GetManyTodo ，它的URL为：
 
 ```
-https://example.com/operations/getUser
+https://example.com/operations/Todo/GetManyTodo
 ```
 
 ### 状态码
@@ -35,13 +33,13 @@ https://example.com/operations/getUser
 在URL查询字符串中：
 
 ```
-GET https://<hostname>/operations/<operationName>?name=Jannik
+GET https://<hostname>/operations/<path>/<operationName>?name=Jannik
 ```
 
 将参数用URL编码为JSON对象，然后赋值给`wg_variables`查询参数：
 
 ```
-GET https://<hostname>/operations/<operationName>?wg_variables={"name":"Jannik"}
+GET https://<hostname>/operations/<path>/<operationName>?wg_variables={"name":"Jannik"}
 ```
 
 如果你的变量是扁平的，并且想要使用像Postman或curl这样的客户端，推荐用第一种方式。如果是根据OPERATION自动生成的客户端，推荐使用第二种方式，因为它支持嵌套变量。
@@ -53,7 +51,7 @@ GET https://<hostname>/operations/<operationName>?wg_variables={"name":"Jannik"}
 查询对应POST请求。变量作为JSON在请求体中发送。
 
 ```
-POST https://<hostname>/operations/<operationName>
+POST https://<hostname>/operations/<path>/<operationName>
 Content-Type: application/json
 
 {
@@ -70,7 +68,7 @@ Content-Type: application/json
 发送入参的方式和查询Queries一样。
 
 ```
-GET https://<hostname>/operations/<operationName>?name=Jannik
+GET https://<hostname>/operations/<path>/<operationName>?name=Jannik
 ```
 
 当客户端连接后，服务器将持续发送数据，直到客户端断开连接。
@@ -88,7 +86,7 @@ GET https://<hostname>/operations/<operationName>?name=Jannik
 客户端必须为URL增加wg\_live字段，表明他们想接收实时更新。
 
 ```
-GET https://<hostname>/operations/<operationName>?name=Jannik&wg_live=true
+GET https://<hostname>/operations/<path>/<operationName>?name=Jannik&wg_live=true
 ```
 
 ## 响应格式
