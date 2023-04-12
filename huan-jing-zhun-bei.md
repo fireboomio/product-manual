@@ -1,7 +1,5 @@
 # 环境准备
 
-todo@erguotou
-
 ## NodeJs
 
 在 Fireboom 中使用 NodeJs 钩子时，你需要提前准备 NodeJs 环境。
@@ -181,6 +179,24 @@ node -v
 
 <figure><img src=".gitbook/assets/image (20).png" alt=""><figcaption></figcaption></figure>
 
+### 自部署Casdoor
 
+进入casdoor主页，点击应用入口，进行添加应用操作
 
-### 自部署
+![image](.gitbook/assets/casdoor1.png)
+
+在添加应用页面，可以对默认生成的名称等信息进行修改操作，Access Token格式需修改为JWT-Empty，完成注册项的配置后进行保存操作
+
+![image](.gitbook/assets/casdoor2.png)
+
+查看已创建应用的配置信息
+
+![image](.gitbook/assets/casdoor3.png)
+
+在飞布身份验证模块，进行新增身份验证操作，将Casdoor中获取的信息填写至对应的输入框中，保存完成即可（新增页面的供应商ID对应登录回调地址中的casdoortest）
+
+![image](.gitbook/assets/casdoor4.png)
+
+在Casdoor中配置登录回调 URL：http://localhost:9991/auth/cookie/callback/casdoortest（其中casdoortest对应飞布中的供应商ID）
+
+![image](https://user-images.githubusercontent.com/31681290/231049076-f35f1a23-de64-4758-8a7a-c72b648a273e.png)
