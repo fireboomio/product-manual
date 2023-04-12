@@ -33,6 +33,4 @@
 
 ### 跨源关联
 
-通过 @export 和 \_join 可以进行跨数据源的关联查询
-
-<figure><img src="../../.gitbook/assets/operation-export.gif" alt=""><figcaption></figcaption></figure>
+通过 @export 和 \_join 可以进行跨数据源的关联查询。详情见 [跨源关联](chang-jian-yong-li.md#kua-yuan-guan-lian)。

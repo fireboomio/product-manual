@@ -12,7 +12,7 @@ GET https://<hostname>/auth/cookie/csrf
 
 ## 使用 CSRF token
 
-对于`Mutation`类型对 API，我们需要在每次请求前添加`X-CSRF-Token`请求头，值为上一步获取到的结果
+对于`Mutation`类型对 API，我们需要在每次请求前添加`X-CSRF-Token`请求头，值为上一步获取到的结果。
 
 ## 使用 SDK
 

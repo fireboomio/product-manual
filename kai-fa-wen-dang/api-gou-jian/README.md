@@ -4,9 +4,3 @@ API构建是飞布的核心功能，本章将重点介绍如何使用飞布快�
 
 > WebAPI 是一种用于在 Web 应用程序间进行数据交换的技术，使用 HTTP 协议发送和接收请求和响应。它通常是一个 RESTful API，提供了一组接口，允许开发人员使用不同的语言和平台访问数据和服务。本质上，WebAPI 是一种实现互联网应用程序之间交互的方法。
 
-[api-gui-fan.md](api-gui-fan.md "mention")
-
-[ke-shi-hua-kai-fa.md](ke-shi-hua-kai-fa.md "mention")
-
-[ding-yue.md](ding-yue.md "mention")
-

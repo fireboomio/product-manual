@@ -70,7 +70,7 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
 ```
 {% endcode %}
 
-<mark style="color:red;">当用户登录后</mark>，系统会主动调用授权钩子`mutatingPostAuthentication`，钩子入参中包含`use`r对象，开发者可自行编写业务代码，根据`user_id`或邮箱从对应用户角色数据源中获取当前用户角色，赋值给`user`对象。随后，登录用户调用接口时，系统判断当前用户拥有的角色是否匹配当前接口，匹配则放行，否则返回401未授权错误。
+<mark style="color:red;">当用户登录后</mark>，系统会主动调用授权钩子`mutatingPostAuthentication`，钩子入参中包含`user`对象，开发者可自行编写业务代码，根据`user_id`或邮箱从对应用户角色数据源中获取当前用户角色，赋值给`user`对象。随后，登录用户调用接口时，系统判断当前用户拥有的角色是否匹配当前接口，匹配则放行，否则返回401未授权错误。
 
 <figure><img src="../.gitbook/assets/image (4) (3).png" alt=""><figcaption><p>RBAC指令原理</p></figcaption></figure>
 
@@ -376,7 +376,7 @@ directive @injectEnvironmentVariable(name: String!) on VARIABLE_DEFINITION
 
 ### API响应转换
 
-某些场景下，API所需的结构与数据库对应字段的层级不一致，因此要进行映射。飞布通过自定义GraphQL指令：`@transform`，实现了API入参校验。
+某些场景下，API所需的结构与数据库对应字段的层级不一致，因此要进行映射。飞布通过自定义GraphQL指令：`@transform`，实现了API 响应转换。
 
 ```graphql
 query GettodoList {
@@ -426,7 +426,7 @@ directive @transform(
 * 赋值：将上游数据源的返回字段复制给声明的变量；
 * 使用：将声明的变量传递给下游数据源的入参；
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/operation-export.gif" alt=""><figcaption><p>跨源关联时序图</p></figcaption></figure>
 
 跨源关联本质上是一种流程编排，将通常情况下并行的请求，改造成串行。
 
