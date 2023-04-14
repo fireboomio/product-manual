@@ -29,7 +29,13 @@
 1. 点击需要的分页查询，插入查询语句
 2. 在选择字段时，以大写开头的是关联对象，可以点击展开后选择其中的字段，如果有多层关联，可以依次点击下去
 
-<figure><img src="../../assets/chang-jian-yong-li/search.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Snipaste_2023-04-14_15-39-01.png" alt=""><figcaption></figcaption></figure>
+
+### 关联更新
+
+更新操作中，对于关联字段，可以通过update进行更新关联数据，也可以通过图中的connect等关联到新的内容上。
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 跨源关联
 

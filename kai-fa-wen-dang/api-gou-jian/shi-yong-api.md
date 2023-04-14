@@ -66,7 +66,7 @@ http://localhost:9991/operations/Sub?wg_sse=true
 
 点击右上角"API预览ICON"，打开swagger文档页。
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>预览页</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (5).png" alt=""><figcaption><p>预览页</p></figcaption></figure>
 
 左侧为API列表，以文件夹作为分组名，未分组API位于Others分组，此外，还包含FileUpload分组，用于展示OSS对应的路由。
 
