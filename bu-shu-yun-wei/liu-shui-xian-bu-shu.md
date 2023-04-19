@@ -77,6 +77,14 @@ server {
     proxy_set_header X_Forward_For $proxy_add_x_forwarded_for;
     client_max_body_size 0;
   }
+  
+  location /auth {
+    proxy_pass       http://backend/auth;
+    proxy_set_header X-Real_IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X_Forward_For $proxy_add_x_forwarded_for;
+    client_max_body_size 0;
+  }
 }
 ```
 
