@@ -78,7 +78,7 @@
 
 构建如下URL，在网页上点击跳转即可。
 
-http://localhost:9991/api/main/auth/cookie/authorize/<mark style="color:purple;"><供应商ID></mark>?redirect\_uri=<mark style="color:purple;"><当前页URL></mark>
+http://localhost:9991/api/auth/cookie/authorize/<mark style="color:purple;"><供应商ID></mark>?redirect\_uri=<mark style="color:purple;"><当前页URL></mark>
 
 * 供应商ID：对应OIDC表单中的供应商ID
 * 当前页URL：对应"设置->安全"中的"重定向URL"
