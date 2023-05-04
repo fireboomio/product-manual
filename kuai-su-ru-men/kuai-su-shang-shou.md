@@ -37,6 +37,19 @@
 启动成功后，在 gitpod 底部切换到`PORTS`面板，选择 `9123` 端口打开即可
 {% endhint %}
 
+### Docker运行
+
+> 我们已支持docker运行fireboom和node服务，可以在容器中进行载入镜像、运行镜像，docker使用脚本步骤如下：
+
+```
+docker pull fireboomapi/fireboom_server:latest
+docker run  -p 9123:9123 -p 9991:9991 -p 9992:9992 fireboomapi/fireboom_server:latest test
+```
+
+打开控制面板，使用如下地址进行访问：
+
+[http://localhost:9123](http://localhost:9123)
+
 ### 本地安装
 
 #### 脚本安装
