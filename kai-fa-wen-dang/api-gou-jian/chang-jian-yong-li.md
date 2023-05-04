@@ -27,7 +27,9 @@
 ### 关联查询
 
 1. 点击需要的分页查询，插入查询语句
-2. 在选择字段时，以大写开头的是关联对象，可以点击展开后选择其中的字段，如果有多层关联，可以依次点击下去
+2. 在选择字段时，以大写开头的是关联对象，可以点击展开后选择其中的字段，如果有多层关联，可以依次点击下去，具体使用方法可参考[Prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/one-to-one-relations)
+
+
 
 <figure><img src="../../.gitbook/assets/Snipaste_2023-04-14_15-39-01.png" alt=""><figcaption></figcaption></figure>
 
