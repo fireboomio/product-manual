@@ -22,7 +22,7 @@
 
 概览页包含：数据统计和通知。
 
-<mark style="color:red;">这里插图</mark>
+<figure><img src="../../.gitbook/assets/bz-统计页.png" alt=""><figcaption><p>概览页</p></figcaption></figure>
 
 * 数据统计：统计功能面板各功能的数量，包含数据源、对外API、文件存储、身份验证
 * 通知：展示飞布发布的最新公告信息，点击更多可跳转至官方论坛
@@ -32,7 +32,7 @@
 
 预览页主要用来预览生成的API，它本质上是swagger文档的可视化展示。
 
-<mark style="color:red;">这里插图</mark>
+<figure><img src="../../.gitbook/assets/bz-预览页.png" alt=""><figcaption><p>API预览页</p></figcaption></figure>
 
 * API列表：以分组的形式展示API列表，主要包含operation编译的API和文件上传的API
 * API详情：选中API后，展示详情，包括operation、入参模型、响应模型
@@ -43,8 +43,6 @@
 ## 设置页
 
 设置页用来进行系统设置。
-
-<mark style="color:red;">这里插图</mark>
 
 * 外观：设置语言，当前支持中文和英文
 * 系统：

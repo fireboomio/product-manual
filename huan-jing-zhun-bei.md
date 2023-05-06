@@ -173,7 +173,7 @@ node -v
 
 &#x20;
 
-<figure><img src=".gitbook/assets/image (25).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (19).png" alt=""><figcaption></figcaption></figure>
 
 在飞布身份验证模块，进行新增身份验证操作，将Auth0中获取的信息填写至对应的输入框中，保存完成即可（新增页面的供应商ID对应Allowed Callback URLs中的auth0）
 

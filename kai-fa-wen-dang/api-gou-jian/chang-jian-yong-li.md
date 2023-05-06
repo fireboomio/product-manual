@@ -2,7 +2,7 @@
 
 ### 组装查询&#x20;
 
-在超图中，可以依次点击多个查询函数，被选择查询会合并成一条 Query 语句，在查询结果中一次性返回
+在超图中，依次点击多个查询函数，被选择查询会合并成一条 Query 语句，在查询结果中一次性返回
 
 <figure><img src="../../assets/chang-jian-yong-li/multi.png" alt=""><figcaption></figcaption></figure>
 
@@ -27,9 +27,11 @@
 ### 关联查询
 
 1. 点击需要的分页查询，插入查询语句
-2. 在选择字段时，以大写开头的是关联对象，可以点击展开后选择其中的字段，如果有多层关联，可以依次点击下去，具体使用方法可参考[Prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/one-to-one-relations)
+2. 在选择字段时，点击关联对象字段（前面无复选框），展开后选择其中的字段。如果有多层关联，可依次点击展开。
 
-
+{% hint style="info" %}
+如何用prisma model简历关联关系，可参考[Prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/one-to-one-relations)
+{% endhint %}
 
 <figure><img src="../../.gitbook/assets/Snipaste_2023-04-14_15-39-01.png" alt=""><figcaption></figcaption></figure>
 

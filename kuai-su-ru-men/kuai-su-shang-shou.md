@@ -39,12 +39,11 @@
 
 ### Docker运行
 
-> 我们已支持docker运行fireboom和node服务，可以在容器中进行载入镜像、运行镜像，docker使用脚本步骤如下：
-
-```
-docker pull fireboomapi/fireboom_server:latest
-docker run  -p 9123:9123 -p 9991:9991 -p 9992:9992 fireboomapi/fireboom_server:latest test
-```
+<pre class="language-bash"><code class="lang-bash"><strong># 拉取镜像
+</strong><strong>docker pull fireboomapi/fireboom_server:latest
+</strong><strong># 运行镜像
+</strong>docker run  -p 9123:9123 -p 9991:9991 -p 9992:9992 fireboomapi/fireboom_server:latest test
+</code></pre>
 
 打开控制面板，使用如下地址进行访问：
 

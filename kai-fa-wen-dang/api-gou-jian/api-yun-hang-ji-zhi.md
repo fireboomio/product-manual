@@ -13,7 +13,7 @@
 
 其流程图如下所示：
 
-![HTTP流程图](<../../.gitbook/assets/HTTP流程图 (1).png>)
+![HTTP流程图](../../.gitbook/assets/HTTP流程图.png)
 
 ### 流程讲解
 
