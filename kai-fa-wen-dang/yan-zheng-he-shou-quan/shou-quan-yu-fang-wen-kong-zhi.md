@@ -101,7 +101,7 @@ RBAC（Role-Based Access Control）即：基于角色的权限控制。通过角
 
 * 全部角色：角色管理列表中配置的角色
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>全部角色</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>全部角色</p></figcaption></figure>
 
 * 用户角色：用户拥有的角色，对应[mutatingPostAuthentication](shou-quan-yu-fang-wen-kong-zhi.md#ts)钩子中为用户设置的角色
 * API角色：API RBAC指令上所设置的角色

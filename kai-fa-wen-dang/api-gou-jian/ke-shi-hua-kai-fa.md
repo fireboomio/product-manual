@@ -56,6 +56,8 @@
 
 GraphQL编辑器主要用来查看、修改以及测试 OPERATION ，基于 [GraphiQL](https://graphql-dotnet.github.io/docs/getting-started/graphiql/) 项目二次开发，具体功能如下：
 
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Graphql编辑器</p></figcaption></figure>
+
 * 编辑：手动修改OPERATION，支持语法提醒和自动补全
 * 输入：输入OPERATION的入参
   * 可视化输入：用表格的形式展示入参，提供类型校验，和录入组件，如日期录入
