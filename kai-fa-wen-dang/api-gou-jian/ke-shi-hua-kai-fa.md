@@ -105,6 +105,8 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 编辑器顶部是API工具栏，主要功能如下：
 
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption><p>API工具栏</p></figcaption></figure>
+
 * 重命名：重命名API
 * 状态：展示当前OPERATION是否被保存
 * 克隆：克隆当前OPERATION，包括钩子

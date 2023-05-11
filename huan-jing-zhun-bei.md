@@ -157,7 +157,7 @@ node -v
 
 进入Auth0官网https://manage.auth0.com/，在Applications页面选择或新建一个应用
 
-<figure><img src=".gitbook/assets/image (2) (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (2) (3).png" alt=""><figcaption></figcaption></figure>
 
 &#x20;
 

@@ -6,7 +6,7 @@ description: 相比于传统开发、前端低代码开发，飞布有哪些优�
 
 本文主要阐述飞布的核心优势有哪些，产品的能力如何。
 
-<figure><img src="../.gitbook/assets/image (17).png" alt=""><figcaption><p>飞布同时满足易用性和开放性</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (17) (1).png" alt=""><figcaption><p>飞布同时满足易用性和开放性</p></figcaption></figure>
 
 ## 相对于传统开发
 
