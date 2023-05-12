@@ -16,6 +16,8 @@
 
 ## 飞布云
 
+<figure><img src="../.gitbook/assets/491207e0baf62e7332ae6ac80230af1.jpg" alt=""><figcaption><p>飞布云协同开发示意图</p></figcaption></figure>
+
 飞布云能够帮开发者在几秒内创建高度优化以及可大规模扩展的飞布实例，并包括额外的可靠性、监控、缓存、跟踪、安全和部署特性。当然，开发者也可以使用飞布社区版手动部署飞布。
 
 当前飞布云仍在规划中，详情见[lu-xian-tu.md](../lu-xian-tu.md "mention")

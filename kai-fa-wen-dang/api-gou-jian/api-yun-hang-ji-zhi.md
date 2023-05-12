@@ -51,7 +51,11 @@
 
 其流程图如下所示：
 
-![内部OPERATION流程图示意图](<../../.gitbook/assets/image (2) (1).png>)
+<div align="center">
+
+<img src="../../.gitbook/assets/image (2) (1).png" alt="内部OPERATION流程图示意图">
+
+</div>
 
 在钩子服务中，可通过InternalClient对象访问飞布数据代理（data proxy）中的内部OPERATION。如图中②表示请求流程，③表示响应流程。
 

@@ -464,7 +464,11 @@ directive @transform(
 
 不仅，飞布可以调用钩子，钩子也可以调用飞布。此时，飞布相对于钩子是一个数据代理服务，同时飞布的所有OPERATION都可以供钩子使用。在另一个角度上，钩子也可以认为是serverless架构。
 
+<div align="center">
+
 <figure><img src="../.gitbook/assets/yuque_diagram.png" alt=""><figcaption><p>飞布钩子机制</p></figcaption></figure>
+
+</div>
 
 ## 总结
 
