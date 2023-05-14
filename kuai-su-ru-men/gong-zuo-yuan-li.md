@@ -40,7 +40,7 @@ OPERATION：GraphQL有三种类型的operation，分别为query（查询）, mut
 
 最后，无论客户端还是服务端OPERATION，都能利用GraphQL<mark style="color:orange;">按需取用、类型系统</mark>的优势。
 
-<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption><p>数据流转图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption><p>数据流转图</p></figcaption></figure>
 
 ## 指令系统扩展能力
 

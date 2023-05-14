@@ -1,6 +1,6 @@
 # 批量新建
 
-除了逐条新建API，飞布还提供了批量新建功能，用于快速构建针对数据库的增删改查。
+批量批量除了逐条新建API，飞布还提供了批量新建功能，用于快速构建针对数据库的增删改查。
 
 {% embed url="https://www.bilibili.com/video/BV1CN411c7sm" %}
 02功能介绍 如何用飞布新建API？
@@ -22,6 +22,8 @@
 5. 点击“创建”按钮，并在弹窗中，进行响应操作
    1. 无重复：点击“全部创建”则生成所有API
    2. 重复：选择“跳过已有API”则只生成不存在的API；选择“全部覆盖”则重新生成所有API
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>批量新建页面</p></figcaption></figure>
 
 ## 原理解析
 
