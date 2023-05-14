@@ -11,6 +11,12 @@
 
 接下来，我们学习下如何配置，我们以AUTHING为例。
 
+{% embed url="https://www.bilibili.com/video/BV1wk4y1i7rD/?share_source=copy_web&vd_source=f8709d15baaa835ea2d0bb3bcc6857da" %}
+15功能介绍-飞布如何添加身份验证器？
+{% endembed %}
+
+
+
 ## 快速操作
 
 ### 基本设置
