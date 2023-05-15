@@ -8,6 +8,10 @@
 
 配置S3供应商后，飞布将自动注册上传路由，飞布应用程序的用户可以轻松上传文件。
 
+{% embed url="https://www.bilibili.com/video/BV1hk4y1Y7jM/?share_source=copy_web&vd_source=f8709d15baaa835ea2d0bb3bcc6857da" %}
+16功能介绍-飞布如何实现文件上传？
+{% endembed %}
+
 ## 支持OIDC Provider
 
 目前主流S3供应商如下：阿里云OSS、腾讯云COS、MINIO。
