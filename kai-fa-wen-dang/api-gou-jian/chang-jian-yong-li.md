@@ -44,3 +44,12 @@
 ### 跨源关联
 
 通过 @export 和 \_join 可以进行跨数据源的关联查询。详情见 [跨源关联](chang-jian-yong-li.md#kua-yuan-guan-lian)。
+
+
+
+### **rawQuery特性支持**
+
+在超图中选择queryRaw，勾选query字段后，插入sql查询语句，执行后响应内容中会显示匹配记录
+
+<figure><img src="../../.gitbook/assets/402a490ada8add8fa4af2f9a0c21933.png" alt=""><figcaption></figcaption></figure>
+
