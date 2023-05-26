@@ -1,6 +1,6 @@
 # 跨源关联
 
-{% embed url="https://www.bilibili.com/video/BV1iM4y1U7mE/" %}
+{% embed url="https://www.bilibili.com/video/BV1iM4y1U7mE/" fullWidth="false" %}
 11功能介绍-飞布如何实现跨源关联？
 {% endembed %}
 

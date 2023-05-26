@@ -206,15 +206,19 @@ query GettodoList {
 
 本质上是提取json结构的某个嵌套字段，然后赋值给上级字段。
 
-此外，transfrom指令目前已支持直接将对象数组转换为普通数组，在下方示例中，presetList字段原先的返回值类型是对象数组，通过@transform(get: "\[].I18n.Preset.code")指令转换为普通数组。
+此外，transfrom指令目前已支持直接将对象数组中的某个字段提取为普通数组。
 
-```
+在下方示例中，`presetList`字段原先的返回值类型是对象数组，通过`@transform(get: "[].I18n.Preset.code")`指令将`I18nItem`对象中的`I18n.Preset.code`提取为普通数组。
+
+```graphql
 query GetManyLearningLanguage {
   data: freetalk_findManyLearningLanguage(orderBy: {sort: desc}) {
     id
     name
     azure
-    presetList: I18nItem @transform(get: "[].I18n.Preset.code") #将I18n.Preset.code值转换为普通数组并赋值给presetList字段 {
+    presetList: I18nItem @transform(get: "[].I18n.Preset.code")
+   #将I18n.Preset.code值转换为普通数组并赋值给presetList字段 
+   {
       I18n {
         Preset {
           code
