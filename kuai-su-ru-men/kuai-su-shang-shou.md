@@ -58,12 +58,12 @@
 {% endhint %}
 
 ```bash
-curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name -t fireboomio/fb-init-todo
+curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name -t fb-init-todo
 ```
 
 `project-name`为项目名称，可根据需求更改。
 
-`-t fireboomio/fb-init-todo`为初始化模板，省略后默认创建空项目。
+`-t fb-init-todo`为初始化模板，省略后默认创建空项目。
 
 {% hint style="info" %}
 飞布采用golang语言编写，上述版本基于golang的跨平台编译构建。如果你的操作系统不在上述列表，请[联系我们](https://github.com/fireboomio/product-manual/discussions)兼容。
