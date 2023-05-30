@@ -42,7 +42,7 @@ REST是构建API最常用的风格。REST API无处不在。您自己的应用�
 
 下面是一个动态头示例：
 
-<figure><img src="../../../.gitbook/assets/image (10) (2).png" alt=""><figcaption><p>动态头示例</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (2) (1).png" alt=""><figcaption><p>动态头示例</p></figcaption></figure>
 
 第一个参数是要添加的头的名称。第二个参数是要从客户端请求中获取值的头的名称。使用此配置，我们将发送带有客户端请求的Authorization头的值的报头X-Authorization。
 

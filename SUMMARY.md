@@ -22,7 +22,8 @@
   * [控制台](kai-fa-wen-dang/gai-lan/jie-mian-gai-lan.md)
 * [数据源](kai-fa-wen-dang/shu-ju-yuan/README.md)
   * [数据库](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/README.md)
-    * [数据库连接](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie.md)
+    * [数据库连接](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie/README.md)
+      * [MongoDB](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie/mongodb.md)
     * [数据建模](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)
     * [数据预览](kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-yu-lan.md)
   * [三方数据源](kai-fa-wen-dang/shu-ju-yuan/san-fang-api/README.md)
@@ -60,6 +61,7 @@
 ***
 
 * [部署运维](bu-shu-yun-wei/README.md)
+  * [发布到生产](bu-shu-yun-wei/fa-bu-dao-sheng-chan.md)
   * [手动部署](bu-shu-yun-wei/shou-dong-bu-shu.md)
   * [流水线部署](bu-shu-yun-wei/liu-shui-xian-bu-shu.md)
   * [Docker部署](bu-shu-yun-wei/docker-bu-shu.md)

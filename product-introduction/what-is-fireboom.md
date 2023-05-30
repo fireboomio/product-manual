@@ -26,7 +26,7 @@
 
 目前国内市场上所有低代码平台均从前端切入，通过可视化拖拽构建应用，主要解决前端页面复现和数据绑定的问题，如基于国外开源项目appsmith的国产化低代码产品（卡拉云、码匠等）。尽管这些工具提供了简单的数据处理机制，如连接数据源写SQL等，但该方式不够灵活，遇到稍微复杂的逻辑就无法处理，只适用于中后台系统的开发，例如创建文章后发送一封邮件、从数据库查询设备列表时同时获取设备在线状态等很常见的用例。此外，这些工具无法实现APP或小程序等移动端产品的开发。我更倾向于称这些低代码平台为“<mark style="color:orange;">**前端低代码**</mark>”。
 
-<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption><p>appsmith 预览</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1) (1).png" alt=""><figcaption><p>appsmith 预览</p></figcaption></figure>
 
 ## 飞布是什么？
 
