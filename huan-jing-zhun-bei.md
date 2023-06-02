@@ -57,7 +57,7 @@ node -v
 
 进入腾讯云官网[https://cloud.tencent.com/](https://cloud.tencent.com/)，登录成功后，打开控制台页面，在控制台页面-产品管理页，搜索对象存储，进入到对象存储页面
 
-<figure><img src=".gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (26) (1).png" alt=""><figcaption></figcaption></figure>
 
 在存储桶列表页，进行创建存储桶操作
 
@@ -93,7 +93,7 @@ node -v
 
 存储桶创建完成后，可在存储桶列表中点击对应的存储桶名称，即可获取存储桶名称、AWS区域信息
 
-<figure><img src=".gitbook/assets/image (18).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/image (18) (2).png" alt=""><figcaption></figcaption></figure>
 
 <figure><img src=".gitbook/assets/image (32).png" alt=""><figcaption></figcaption></figure>
 
@@ -200,3 +200,26 @@ node -v
 在Casdoor中配置登录回调 URL：http://localhost:9991/auth/cookie/callback/casdoortest（其中casdoortest对应飞布中的供应商ID）
 
 ![image](https://user-images.githubusercontent.com/31681290/231049076-f35f1a23-de64-4758-8a7a-c72b648a273e.png)
+
+### 自部署Logto
+
+Logoto 作为 Auth0 的开源替代方案，致力于为所有企业和个人提供面向未来的身份认证体系。我们以 Logto 的开源版本为例介绍如何接入 Fireboom。
+
+1.  按照 [Github 中的说明](https://github.com/logto-io/logto#launch-logto)安装好 Logto，打开 [http://localhost:3002](http://localhost:3002) 访问 Logto 后台并初始化一个管理员账号\
+
+
+    <figure><img src=".gitbook/assets/WX20230602-143039.png" alt=""><figcaption></figcaption></figure>
+2. 登录后点击这里切换下语言\
+   ![](<.gitbook/assets/image (9).png>)
+3.  点击“全部应用”，选择“传统网页应用”创建一个应用\
+
+
+    <figure><img src=".gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+4.  跳过示例，在应用信息页修改应用名称，并添加“重定向 URIs”，该值可以从 Fireboom 认证源页面获取到（在第5步图中可以看到登录回调地址为 [http://localhost:9991/auth/cookie/callback/logto](http://localhost:9991/auth/cookie/callback/logto) ）\
+
+
+    <figure><img src=".gitbook/assets/image (26).png" alt=""><figcaption></figcaption></figure>
+5.  在 Fireboom 中添加一个身份认证源，配置信息如下\
+
+
+    <figure><img src=".gitbook/assets/image (21).png" alt=""><figcaption></figcaption></figure>
