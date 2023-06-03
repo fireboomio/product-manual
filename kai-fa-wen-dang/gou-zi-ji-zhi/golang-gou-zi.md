@@ -52,9 +52,7 @@ go run main.go
 #### 函数签名
 
 ```go
-func PostAuthentication(hook *base.AuthenticationHookRequest) error {
-    return nil
-}
+func PostAuthentication(hook *base.AuthenticationHookRequest) error
 ```
 
 ### mutatingPostAuthentication
