@@ -21,7 +21,7 @@
 ### 解析全局参数
 
 1. 所有的钩子请求都是POST请求，并且Content-Type=application/json
-2. 解析参数"\_\_wg"，json结构如下
+2. 解析参数"\_\_wg"，json结构如下（请dump body数据，防止后续请求使用body因为流关闭导致异常）
 
 ```json
 {
