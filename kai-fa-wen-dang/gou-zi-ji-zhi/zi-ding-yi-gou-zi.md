@@ -59,7 +59,7 @@
             "location": "",
             ”roles“: ["admin", "user"], // 用户权限角色
             "customAttributes": [""],
-            "customClaims": {},
+            "customClaims": {}, // 自定义属性，扩展用户信息，可以通过认证钩子修改
             ”accessToken“: "", // accessToken字符串
             "rawAccessToken": [11, 12], // accessToken解析成json的字节数组
             "idToken": "", // idToken字符串
