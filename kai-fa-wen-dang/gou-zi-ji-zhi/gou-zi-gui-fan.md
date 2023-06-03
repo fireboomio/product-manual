@@ -92,6 +92,8 @@ func MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res ge
 
 ### 全局钩子
 
+全局钩子目的是改写原有的request和response，分别在请求最初、opertaion触发前后，可以用来实现全局的参数/响应改写或发送全局的通知，包括预执行、前置、后置钩子。
+
 {% tabs %}
 {% tab title="预执行钩子" %}
 ```go
@@ -155,6 +157,8 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 
 ### 授权钩子
 
+认证钩子目的是在认证成功后执行自定义操作，可以用来实现用户信息同步，用户信息改写，用户重新校验（需要请求携带参数revalidate）
+
 {% tabs %}
 {% tab title="postAuthentication" %}
 <pre class="language-go"><code class="lang-go">// 在认证后做自定义处理，比如同步用户信息等
@@ -187,9 +191,28 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 
 ### 文件钩子
 
+文件钩子目的是在文件上传前后进行自定义操作，可以用来实现重写文件名和自定义处理
 
+{% tabs %}
+{% tab title="前置钩子" %}
+```go
+// 改写上传后的文件名，默认随机字符串
+func PreUpload(request *base.PreUploadHookRequest, body *plugins.UploadBody[any]) (*base.UploadHookResponse, error) {
+    return &base.UploadHookResponse{FileKey: body.File.Name}, nil
+}
+```
+{% endtab %}
 
-
+{% tab title="后置钩子" %}
+```go
+// 自定义后置操作（记录上传日志）
+func PostUpload(request *base.PreUploadHookRequest, body *plugins.UploadBody[any]) (*base.UploadHookResponse, error) {
+    request.Context.Logger().Infof("【%s】上传了文件【%s】", hook.User.NickName, body.File.Name)
+    return nil, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### 数据代理
 
