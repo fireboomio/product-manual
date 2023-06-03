@@ -18,11 +18,25 @@
 
 {% tabs %}
 {% tab title="参数校验" %}
-preResolve（可以校验吗？）
+```go
+func PreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
+    if body.Input.Title == "" {
+	return nil, errors.New("标题不能为空")
+    }
+    return body, nil
+}
+```
 {% endtab %}
 
 {% tab title="修改入参" %}
-需要用mutatingPreResolve
+```go
+func MutatingPreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
+    if body.Input.Title == "" {
+	body.Input.Title = "默认标题"
+    }
+    return body, nil
+}
+```
 {% endtab %}
 {% endtabs %}
 
