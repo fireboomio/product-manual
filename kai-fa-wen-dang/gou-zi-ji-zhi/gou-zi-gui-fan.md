@@ -14,11 +14,12 @@
 
 ![](../../assets/hook-flow.png)
 
-前置钩子在 "执行OPERATION"前执行，可修改校验或修改输入参数。
+前置钩子在 "执行OPERATION"前执行，可校验参数或修改输入参数。
 
 {% tabs %}
-{% tab title="参数校验" %}
+{% tab title="前置普通钩子" %}
 ```go
+// 自定义参数校验
 func PreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
     if body.Input.Title == "" {
 	return nil, errors.New("标题不能为空")
@@ -28,8 +29,9 @@ func PreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) 
 ```
 {% endtab %}
 
-{% tab title="修改入参" %}
+{% tab title="前置修改入参钩子" %}
 ```go
+// 修改operation的input入参
 func MutatingPreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
     if body.Input.Title == "" {
 	body.Input.Title = "默认标题"
@@ -40,13 +42,12 @@ func MutatingPreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTo
 {% endtab %}
 {% endtabs %}
 
-其中mutating开头的钩子可以修改 request 入参。
-
-后置钩子在 "执行OPERATION" 后执行，可触发副作用（发邮件）或修改响应参数。
+后置钩子在 "执行OPERATION" 后执行，可触发自定义操作或修改响应结果。
 
 {% tabs %}
-{% tab title="触发副作用" %}
+{% tab title="后置普通钩子" %}
 ```go
+// 执行自定义操作
 func PostResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
     fmt.Println("我要发一封邮件xxx,标题是：", body.Input.Title, data)
     return body, nil
@@ -54,8 +55,9 @@ func PostResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody)
 ```
 {% endtab %}
 
-{% tab title="修改响应参数" %}
+{% tab title="后置修改响应钩子" %}
 ```go
+// 修改operation响应结果
 func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
     body.Response.Data.Data.UpdateAt = time.Now()
     return body, nil
@@ -64,19 +66,31 @@ func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneT
 {% endtab %}
 {% endtabs %}
 
-其中mutating开头的钩子可以修改 response 结果。
-
 除了上述局部钩子，还有两个特殊的局部钩子：自定义处理钩子和模拟钩子。
 
-自定义处理钩子（customResolve）：
+{% tabs %}
+{% tab title="自定义处理钩子" %}
+```go
+// 若该钩子有返回值，那么将跳过“执行OPERATION”，直接返回当前钩子的返回值 
+func CustomResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {
+    hook.Logger().Info("CustomResolve")
+    return body, nil
+}
+```
+{% endtab %}
 
-如果该钩子有返回值，那么将跳过“执行OPERATION”，直接返回当前钩子的返回值 ，否则继续执行后续流程。使用该钩子，可以修改默认 “执行OPERATION”的逻辑。
+{% tab title="模拟数据钩子" %}
+```go
+// 用于返回模拟值，使用时会短路其余所有局部钩子。
+func MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {
+    hook.Logger().Info("MockResolve")
+    return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
-模拟钩子（mockResolve）：
-
-用于返回模拟值，使用时会短路其余所有局部钩子。
-
-### 全局钩子（数据源钩子）
+### 全局钩子
 
 {% tabs %}
 {% tab title="预执行钩子" %}
@@ -141,15 +155,10 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 
 ### 授权钩子
 
-其中postAuthentication钩子在认证后做自定义处理，比如同步用户信息等
-
-其中mutatingPostAuthentication钩子在认证后修改用户信息
-
-其中revalidateAuthentication钩子在认证后重新认证，默认从缓存中获取，当请求中携带revalidate参数时，所有认证钩子会依次重新执行一次
-
 {% tabs %}
 {% tab title="postAuthentication" %}
-<pre class="language-go"><code class="lang-go">func PostAuthentication(hook *base.AuthenticationHookRequest) error {
+<pre class="language-go"><code class="lang-go">// 在认证后做自定义处理，比如同步用户信息等
+func PostAuthentication(hook *base.AuthenticationHookRequest) error {
     hook.Context.Logger().Infof("用户%s已同步", hook.User.NickName)
     return nil
 <strong>}
@@ -158,6 +167,7 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 
 {% tab title="MutatingPostAuthentication" %}
 ```go
+// 在认证后修改用户信息
 func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
     hook.User.Name = "admin"
     return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
@@ -167,6 +177,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 {% tab title="Revalidate" %}
 ```go
+// 重新认证，默认从缓存中获取，当请求中携带revalidate参数时，所有认证钩子会依次重新执行一次
 func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
     return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
 }
