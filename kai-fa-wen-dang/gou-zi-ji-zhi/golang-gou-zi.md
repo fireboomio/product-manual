@@ -51,8 +51,10 @@ go run main.go
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log }) => Promise<void>
+```go
+func PostAuthentication(hook *base.AuthenticationHookRequest) error {
+    return nil
+}
 ```
 
 ### mutatingPostAuthentication
@@ -61,8 +63,10 @@ go run main.go
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log }) => Promise<{status: 'ok', user} | {status: 'deny', message}>
+```go
+func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
+    return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
+}
 ```
 
 ### revalidate
