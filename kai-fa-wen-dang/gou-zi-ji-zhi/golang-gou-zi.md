@@ -71,8 +71,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log }) => Promise<void>
+```go
+func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error)
 ```
 
 ### postLogout
@@ -81,8 +81,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log }) => Promise<void>
+```go
+func PostLogout(hook *base.AuthenticationHookRequest) error
 ```
 
 ### onRequest
@@ -91,8 +91,18 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input }) => Promise<clientRequest>
+```go
+func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error)
+```
+
+### onResponse
+
+请求完成触发后，可以在此钩子中对响应进行预处理，如修改响应头、响应体等。返回值为修改后的响应对象。
+
+#### 函数签名
+
+```go
+func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) 
 ```
 
 ### preResolve
@@ -101,8 +111,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input }) => Promise<void>
+```go
+func PreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
 
 ### mutatingPreResolve
@@ -111,8 +121,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input }) => Promise<input>
+```go
+func MutatingPreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
 
 ### postResolve
@@ -121,8 +131,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input, response }) => Promise<void>
+```go
+func PostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
 
 ### mutatingPostResolve
@@ -131,8 +141,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input, response }) => Promise<response>
+```go
+func MutatingPostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
 
 ### customResolve
@@ -141,8 +151,8 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input }) => Promise<response>
+```go
+func CustomResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
 
 ### mockResolve
@@ -151,6 +161,6 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 #### 函数签名
 
-```ts
-({ clientRequest, internalRequest, user, log, input }) => Promise<response>
+```go
+func MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
