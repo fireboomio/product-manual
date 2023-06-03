@@ -138,7 +138,7 @@
 3. 后置钩子
 
 * 路径：/global/httpTransport/onOriginResponse
-* 入参：json格式如下，body数据请使用request.originBody
+* 入参：json格式如下，body数据请使用response.body
 
 ```json
 {
