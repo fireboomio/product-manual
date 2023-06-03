@@ -85,6 +85,16 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 func PostLogout(hook *base.AuthenticationHookRequest) error
 ```
 
+### beforeRequest
+
+请求尚未触发时，可以在此钩子中对请求进行预处理，如修改请求头、请求体等。返回值为修改后的请求对象。
+
+#### 函数签名
+
+```go
+func BeforeOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error)
+```
+
 ### onRequest
 
 请求到达时触发，可以在此钩子中对请求进行预处理，如修改请求头、请求体等。返回值为修改后的请求对象。
