@@ -48,14 +48,19 @@ func MutatingPreResolve(hook *base.HookRequest, body generated.Todo__CreateOneTo
 {% tab title="触发副作用" %}
 ```go
 func PostResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
-	fmt.Println("我要发一封邮件xxx,标题是：", body.Input.Title, data)
-	return body, nil
+    fmt.Println("我要发一封邮件xxx,标题是：", body.Input.Title, data)
+    return body, nil
 }
 ```
 {% endtab %}
 
 {% tab title="修改响应参数" %}
-
+```go
+func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneTodoBody) (res generated.Todo__CreateOneTodoBody, err error) {
+    body.Response.Data.Data.UpdateAt = time.Now()
+    return body, nil
+}
+```
 {% endtab %}
 {% endtabs %}
 
