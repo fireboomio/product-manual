@@ -62,9 +62,7 @@ func PostAuthentication(hook *base.AuthenticationHookRequest) error
 #### 函数签名
 
 ```go
-func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
-    return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
-}
+func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error)
 ```
 
 ### revalidate
