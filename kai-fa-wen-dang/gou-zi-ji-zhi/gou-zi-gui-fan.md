@@ -78,16 +78,11 @@ func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneT
 
 ### 全局钩子（数据源钩子）
 
-其中预执行钩子在最初请求，可以修改body和header（请使用OriginBody）
-
-其中前置钩子在operation执行前，可以修改请求的body和header
-
-其中后置钩子在operation执行后，可以修改响应的body和header
-
 {% tabs %}
 {% tab title="预执行钩子" %}
 ```go
 
+// 在最初请求，可以修改body和header（请使用OriginBody）
 func BeforeOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
     return modifyForPayNotify(body)
 }
@@ -120,7 +115,7 @@ func modifyForPayNotify(body *plugins.HttpTransportBody) (*base.ClientRequest, e
 
 {% tab title="前置钩子" %}
 ```go
-
+// 在operation执行前，可以修改请求的body和header
 func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
     modifyBody := string(body.Request.Body)
     modifyBody, err := sjson.Set(modifyBody, "name", "admin")
@@ -132,6 +127,7 @@ func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTran
 
 {% tab title="后置钩子" %}
 ```go
+// 在operation执行后，可以修改响应的body和header
 func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) {
    if hook.User == nil {
        body.Response.StatusCode = 401
