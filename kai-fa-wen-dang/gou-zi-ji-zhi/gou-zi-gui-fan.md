@@ -178,20 +178,21 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 
 其中mutatingPostAuthentication钩子在认证后修改用户信息
 
-其中revalidateAuthentication钩子在operation执行前，可以修改请求的body和header
+其中revalidateAuthentication钩子在认证后重新认证，默认从缓存中获取，当请求中携带revalidate参数时，所有认证钩子会依次重新执行一次
 
 {% tabs %}
 {% tab title="postAuthentication" %}
-```go
-func PostAuthentication(hook *base.AuthenticationHookRequest) error {
+<pre class="language-go"><code class="lang-go">func PostAuthentication(hook *base.AuthenticationHookRequest) error {
+    hook.Context.Logger().Infof("用户%s已同步", hook.User.NickName)
     return nil
-}
-```
+<strong>}
+</strong></code></pre>
 {% endtab %}
 
 {% tab title="MutatingPostAuthentication" %}
 ```go
 func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
+    hook.User.Name = "admin"
     return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
 }
 ```
@@ -200,7 +201,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 {% tab title="Revalidate" %}
 ```go
 func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
-    return nil, nil
+    return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
 }
 ```
 {% endtab %}
