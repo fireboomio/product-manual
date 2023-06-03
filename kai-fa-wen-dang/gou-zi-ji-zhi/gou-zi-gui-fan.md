@@ -217,27 +217,3 @@ func PostUpload(request *base.PreUploadHookRequest, body *plugins.UploadBody[any
 ### 数据代理
 
 飞布服务不仅可以按照约定调用钩子服务，钩子也可以调用其它钩子，此时飞布服务变身为数据代理。
-
-
-
-### NodeJs 上下文参考
-
-```ts
-req.ctx = {
-  log: pino({
-    level: PinoLogLevel.Debug
-  }),
-  user: req.body.__wg.user!,
-  // clientRequest represents the original client request that was sent initially to the WunderNode.
-  clientRequest: {
-    headers: new Headers(req.body.__wg.clientRequest?.headers),
-    requestURI: req.body.__wg.clientRequest?.requestURI || '',
-    method: req.body.__wg.clientRequest?.method || 'GET',
-  },
-  internalClient: clientFactory({ 'x-request-id': req.id }, req.body.__wg.clientRequest),
-}
-```
-
-### NodeJs 钩子参考
-
-参考[ NodeJs 钩子](node-gou-zi.md)实现其它语言的钩子服务。

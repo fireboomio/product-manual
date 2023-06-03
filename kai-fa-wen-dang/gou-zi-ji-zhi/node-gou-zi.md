@@ -180,3 +180,21 @@ npm run watch
 ```ts
 ({ clientRequest, internalRequest, user, log, input }) => Promise<response>
 ```
+
+### NodeJs 上下文参考
+
+```ts
+req.ctx = {
+  log: pino({
+    level: PinoLogLevel.Debug
+  }),
+  user: req.body.__wg.user!,
+  // clientRequest represents the original client request that was sent initially to the WunderNode.
+  clientRequest: {
+    headers: new Headers(req.body.__wg.clientRequest?.headers),
+    requestURI: req.body.__wg.clientRequest?.requestURI || '',
+    method: req.body.__wg.clientRequest?.method || 'GET',
+  },
+  internalClient: clientFactory({ 'x-request-id': req.id }, req.body.__wg.clientRequest),
+}
+```
