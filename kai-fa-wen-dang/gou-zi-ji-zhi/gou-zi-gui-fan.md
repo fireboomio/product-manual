@@ -76,28 +76,7 @@ func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneT
 
 用于返回模拟值，使用时会短路其余所有局部钩子。
 
-
-
-| 路径                                             | 入参                                                                                                                             | 成功出参                                                                                                                              | 失败出参                                                      | 说明                                                    |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
-| /operation/{operationName}/mockResolve         | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input }</p>                                  | { op: operationName, hook: 'mock', response: ret, setClientRequestHeaders: request.ctx.clientRequest.headers }                    | { op: operationName, hook: 'mock', error }                | 模拟钩子，直接返回模拟数据而不经过其它流程                                 |
-| /operation/{operationName}/preResolve          | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input }</p>                                  | { op: operationName, hook: 'preResolve', setClientRequestHeaders: request.ctx.clientRequest.headers }                             | { op: operationName, hook: 'preResolve', error }          | 前置钩子，operation 处理前执行                                  |
-| /operation/{operationName}/postResolve         | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input, response: request.body.response }</p> | { op: operationName, hook: 'postResolve', setClientRequestHeaders: request.ctx.clientRequest.headers }                            | { op: operationName, hook: 'postResolve', error }         | 后置钩子，operation 处理后执行                                  |
-| /operation/{operationName}/mutatingPreResolve  | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input }</p>                                  | { op: operationName, hook: 'mutatingPreResolve', input: ret, setClientRequestHeaders: request.ctx.clientRequest.headers }         | { op: operationName, hook: 'mutatingPreResolve', error }  | 前置可修改钩子，可以修改 request 入参                               |
-| /operation/{operationName}/mutatingPostResolve | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input, response: request.body.response }</p> | { op: operationName, hook: 'mutatingPostResolve', response: ret, setClientRequestHeaders: request.ctx.clientRequest.headers }     | { op: operationName, hook: 'mutatingPostResolve', error } | 后置可修改钩子，可以修改返回的response                               |
-| /operation/{operationName}/customResolve       | <p>{ ctx: { user, internalClient: { quries, mutations } </p><p>}, input: req.body.input }</p>                                  | { op: operationName, hook: 'customResolve', response: ret \|\| null, setClientRequestHeaders: request.ctx.clientRequest.headers } | { op: operationName, hook: 'customResolve', error }       | 自定义处理钩子，如果该钩子有返回值，那么将跳过后续的流程，直接返回 response，否则继续执行后续流程 |
-
-其中`{operationName}`为`api.operations`遍历时的`operation.name`
-
 ### 全局钩子（数据源钩子）
-
-
-
-| 路径                                     | 入参 | 成功出参 | 失败出参 | 说明                                                                         |
-| -------------------------------------- | -- | ---- | ---- | -------------------------------------------------------------------------- |
-| /global/httpTransport/onOriginRequest  | -  | -    | -    | 全局钩子 - 前置拦截                                                                |
-| /global/httpTransport/onOriginResponse | -  | -    | -    | 全局钩子 - 后置拦截                                                                |
-| /global/wsTransport/onConnectionInit   | -  | -    | -    | subscription 钩子， 需根据 `config.global?.wsTransport?.onConnectionInit` 判断是否开启 |
 
 其中预执行钩子在最初请求，可以修改body和header（请使用OriginBody）
 
@@ -165,14 +144,6 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 {% endtabs %}
 
 ### 授权钩子
-
-
-
-| 路径                                         | 入参  | 成功出参                                                                                           | 失败出参                                        | 说明                                                  |
-| ------------------------------------------ | --- | ---------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------- |
-| /authentication/postAuthentication         | ctx | { hook: 'postAuthentication' }                                                                 | { hook: 'postAuthentication', error }       | OIDC流程用户登录成功后，执行该钩子，不可修改user对象，成功200，失败500，下同       |
-| /authentication/mutatingPostAuthentication | ctx | { hook: 'postAuthentication', response: 函数返回值, setClientRequestHeaders: 参考flattenHeaders }     | { hook: 'postAuthentication', error }       | OIDC流程用户登录成功后，执行该钩子。主要用于修改登录对象user的值，实现特定逻辑，如绑定用户角色 |
-| /authentication/revalidateAuthentication   | ctx | { hook: 'revalidateAuthentication', response: ret, setClientRequestHeaders: 参考flattenHeaders } | { hook: 'revalidateAuthentication', error } | 重校验钩子                                               |
 
 其中postAuthentication钩子在认证后做自定义处理，比如同步用户信息等
 
