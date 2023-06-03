@@ -174,6 +174,38 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 | /authentication/mutatingPostAuthentication | ctx | { hook: 'postAuthentication', response: 函数返回值, setClientRequestHeaders: 参考flattenHeaders }     | { hook: 'postAuthentication', error }       | OIDC流程用户登录成功后，执行该钩子。主要用于修改登录对象user的值，实现特定逻辑，如绑定用户角色 |
 | /authentication/revalidateAuthentication   | ctx | { hook: 'revalidateAuthentication', response: ret, setClientRequestHeaders: 参考flattenHeaders } | { hook: 'revalidateAuthentication', error } | 重校验钩子                                               |
 
+其中postAuthentication钩子在认证后做自定义处理，比如同步用户信息等
+
+其中mutatingPostAuthentication钩子在认证后修改用户信息
+
+其中revalidateAuthentication钩子在operation执行前，可以修改请求的body和header
+
+{% tabs %}
+{% tab title="postAuthentication" %}
+```go
+func PostAuthentication(hook *base.AuthenticationHookRequest) error {
+    return nil
+}
+```
+{% endtab %}
+
+{% tab title="MutatingPostAuthentication" %}
+```go
+func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
+    return &plugins.AuthenticationResponse{User: hook.User, Status: "ok"}, nil
+}
+```
+{% endtab %}
+
+{% tab title="Revalidate" %}
+```go
+func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
+    return nil, nil
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ### 文件钩子
 
 
