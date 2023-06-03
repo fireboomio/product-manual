@@ -99,6 +99,71 @@ func MutatingPostResolve(hook *base.HookRequest, body generated.Todo__CreateOneT
 | /global/httpTransport/onOriginResponse | -  | -    | -    | 全局钩子 - 后置拦截                                                                |
 | /global/wsTransport/onConnectionInit   | -  | -    | -    | subscription 钩子， 需根据 `config.global?.wsTransport?.onConnectionInit` 判断是否开启 |
 
+其中预执行钩子在最初请求，可以修改body和header（请使用OriginBody）
+
+其中前置钩子在operation执行前，可以修改请求的body和header
+
+其中后置钩子在operation执行后，可以修改响应的body和header
+
+{% tabs %}
+{% tab title="预执行钩子" %}
+```go
+
+func BeforeOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
+    return modifyForPayNotify(body)
+}
+
+func modifyForPayNotify(body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
+    u, err := url.Parse(body.Request.RequestURI)
+    if err != nil {
+	return nil, err
+    }
+
+    if u.Path != "/operations/Payment/PayNotify" {
+	return body.Request, nil
+    }
+
+    // 1. 从body中取值
+    modifyBody, err := sjson.Set("{}", "data", string(body.Request.OriginBody))
+    if err != nil {
+	return nil, err
+    }
+
+    // 2. 从url中取值
+    for key, valArr := range u.Query() {
+	modifyBody, _ = sjson.Set(modifyBody, key, valArr[0])
+    }
+    body.Request.Body = []byte(modifyBody)
+    return body.Request, nil
+}
+```
+{% endtab %}
+
+{% tab title="前置钩子" %}
+```go
+
+func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
+    modifyBody := string(body.Request.Body)
+    modifyBody, err := sjson.Set(modifyBody, "name", "admin")
+    body.Request.Body = []byte(modifyBody)
+    return body.Request, nil
+}
+```
+{% endtab %}
+
+{% tab title="后置钩子" %}
+```go
+func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) {
+   if hook.User == nil {
+       body.Response.StatusCode = 401
+   }
+   
+   return body.Response, nil
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ### 授权钩子
 
 
