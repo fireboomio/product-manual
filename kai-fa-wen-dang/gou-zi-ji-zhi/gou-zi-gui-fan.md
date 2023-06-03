@@ -160,7 +160,7 @@ func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTra
 认证钩子目的是在认证成功后执行自定义操作，可以用来实现用户信息同步，用户信息改写，用户重新校验（需要请求携带参数revalidate）
 
 {% tabs %}
-{% tab title="postAuthentication" %}
+{% tab title="后置普通钩子" %}
 <pre class="language-go"><code class="lang-go">// 在认证后做自定义处理，比如同步用户信息等
 func PostAuthentication(hook *base.AuthenticationHookRequest) error {
     hook.Context.Logger().Infof("用户%s已同步", hook.User.NickName)
@@ -169,7 +169,7 @@ func PostAuthentication(hook *base.AuthenticationHookRequest) error {
 </strong></code></pre>
 {% endtab %}
 
-{% tab title="MutatingPostAuthentication" %}
+{% tab title="后置修改认证信息钩子" %}
 ```go
 // 在认证后修改用户信息
 func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
@@ -179,7 +179,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 ```
 {% endtab %}
 
-{% tab title="Revalidate" %}
+{% tab title="重新校验钩子" %}
 ```go
 // 重新认证，默认从缓存中获取，当请求中携带revalidate参数时，所有认证钩子会依次重新执行一次
 func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {
