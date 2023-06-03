@@ -69,7 +69,7 @@
 }
 ```
 
-3. 构建internalClient
+3. 构建internalClient [#gou-jian-internalclient](zi-ding-yi-gou-zi.md#gou-jian-internalclient "mention")
 4. 将全局参数和internalClient传递到后续请求中，方便后续钩子函数直接访问
 5. 全局错误统一处理，返回json格式如下
 
@@ -78,6 +78,10 @@
     "error": "error message"
 }
 ```
+
+### 构建internalClient
+
+
 
 ### 注册全局钩子
 
@@ -225,6 +229,49 @@
 * 用途：请求携带revalidate参数会每次重走认证，默认从缓存获取user，根据参数选择是否进行重新认证校验或改写
 
 ### 注册上传钩子
+
+1. 前置钩子
+
+* 路径：/upload/provider/profile/preUpload
+* 入参：
+
+```json
+{
+    "file": {
+        "Name": "TEST.JPG", // 文件名
+        "size": 256, // 文件大小
+        "type": "jpg" // content-type
+    }
+}
+```
+
+* 出参：
+
+```json
+{
+    "fileKey": "test_modify.jpg" // 修改后的文件名
+}
+```
+
+* 用途：校验文件name、size、type等信息，并返回自定义文件名（用户oss上传后显示的名称，默认随机字符串）
+
+2. 后置钩子
+
+* 路径：/upload/provider/profile/postUpload
+* 入参：
+
+```json
+{
+    "file": {
+        "Name": "TEST.JPG", // 文件名
+        "size": 256, // 文件大小
+        "type": "jpg" // content-type
+    }
+}
+```
+
+* 出参：使用全局错误统一处理，正常返回200
+* 用途：上传文件成功后自定义处理，可以用来记录上传日志
 
 ### 注册operation钩子
 
