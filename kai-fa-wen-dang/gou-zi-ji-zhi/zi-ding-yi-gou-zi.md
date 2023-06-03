@@ -205,7 +205,24 @@
 
 * 用途：认证成功后修改用户信息或中断认证
 
-2. 后置重新校验钩子
+3. 后置重新校验钩子
+
+* 路径：/authentication/revalidateAuthentication
+* 入参：请使用全局参数${\_\_wg.user}
+* 出参：
+
+```json
+{
+    "hook": "revalidateAuthentication",
+    "response": {
+        "user": ${__wg.user} // 与全局参数路径__wg.user格式一致
+        "status": "ok", // 状态不为ok时，使用message作为错误抛出
+        "message": "not ok message"
+    }
+}
+```
+
+* 用途：请求携带revalidate参数会每次重走认证，默认从缓存获取user，根据参数选择是否进行重新认证校验或改写
 
 ### 注册上传钩子
 
