@@ -119,7 +119,7 @@
                 }
             }
         },
-        "serverOptions": {
+        "nodeOptions": {
             "nodeUrl": {
                 "staticVariableContent": "http://localhost:9991" // 飞布服务内网访问地址
             },
@@ -132,6 +132,8 @@
 ```
 
 3. api.operations\[\*].path用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的钩子函数
+4. api.serverOptions.listen.port用来指定钩子服务启动端口号
+5. api.nodeOptions.nodeUrl用来 [#gou-jian-internalclient](zi-ding-yi-gou-zi.md#gou-jian-internalclient "mention")指定baseNodeUrl
 
 ### 解析全局参数
 
