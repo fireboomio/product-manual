@@ -64,7 +64,17 @@
 }
 ```
 
-* graphql配置
+* graphql配置，主要包含以下信息
+
+```json
+[
+    {
+        "apiNamespace": "todo_gql", // 自定义数据源名称
+        "enableGraphQLEndpoint": true, // 是否开启graphql端点访问
+        "schema": ${graphql.Schema} // 自定义的graphql解析，需要使用对应语言的sdk
+    }
+]
+```
 
 ### 解析飞布生成的json配置文件
 
