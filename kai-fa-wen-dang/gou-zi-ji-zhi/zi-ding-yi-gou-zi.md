@@ -18,6 +18,54 @@
 
 ### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../sdk-sheng-cheng/ "mention")
 
+1. 生成钩子函数时建议使用对应语言的范型来约束出入参
+2. 模版生成最终应该包含
+
+* 全局钩子，用来 [#zhu-ce-quan-ju-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-quan-ju-gou-zi "mention")
+* 认证钩子，用来 [#zhu-ce-ren-zheng-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-ren-zheng-gou-zi "mention")
+* 查询钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中查询类型的钩子
+* 变更钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中变更类型的钩子
+* 订阅钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中订阅类型的钩子（暂时未支持调用）
+* 上传钩子，用来 [#zhu-ce-shang-chuan-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-shang-chuan-gou-zi "mention")
+* graphql配置，用来 [#zhu-ce-graphql-fu-wu](zi-ding-yi-gou-zi.md#zhu-ce-graphql-fu-wu "mention")
+
+3. 建议最终生成的对象按照key-value的格式
+
+*   全局钩子，value为注册函数${function}，key为
+
+    ```
+    BeforeOriginRequest/OnOriginRequest/OnOriginResponse
+    ```
+*   认证钩子，value为注册函数${function}，key为
+
+    ```
+    PostAuthentication/MutatingPostAuthentication/Revalidate/PostLogout
+    ```
+*   operation钩子，key为${operationPath}, value为
+
+    ```json
+    {
+        "mockResolve": ${function},
+        "preResolve": ${function},
+        "postResolve": ${function},
+        "MutatingPreResolve": ${function},
+        "MutatingPostResolve": ${function},
+        "CustomResolve": ${function}
+    }
+    ```
+* 上传钩子，key为${provider}，value为
+
+```json
+{
+    "image": { // ${profile}
+        "preUpload": ${function},
+        "postUpload": ${funtion}
+    }
+}
+```
+
+* graphql配置
+
 ### 解析飞布生成的json配置文件
 
 1. 文件路径${钩子项目目录}/generated/fireboom.config.json
@@ -29,9 +77,20 @@
     "api": {
         "operations": [
             {
-                "name": "Todo__CreateOne",
-                "path": "Todo/CreateOne",
+                "name": "Todo__CreateOne", 
+                "path": "Todo/CreateOne", // 文档中${operationPath}使用此值
                 "operationType": 1 // 0 QUERY, 1 MUTATION, 2 SUBSCRIPTION
+            }
+        ],
+        "s3UploadConfiguration": [
+            {
+                "name": "oss-todo", // provider name 文档中${provider}使用此值
+                "uploadProfiles": {
+                    "audio": { // profile name 文档中${profile}使用此值 
+                        "preUpload": true,
+                        "postUpload": false
+                    }
+                }
             }
         ],
         "serverOptions": {
@@ -61,7 +120,7 @@
 }
 ```
 
-3.
+3. api.operations\[\*].path用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的钩子函数
 
 ### 解析全局参数
 
