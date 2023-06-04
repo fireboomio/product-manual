@@ -1,0 +1,836 @@
+{
+  "api": {
+    "operations": [
+      {
+        "name": "AIWriting__CreateOneAIWriting",
+        "path": "AIWriting/CreateOneAIWriting",
+        "operationType": 1
+      },
+      {
+        "name": "AIWriting__GetManyAIWriting",
+        "path": "AIWriting/GetManyAIWriting",
+        "operationType": 0
+      },
+      {
+        "name": "AIWriting__UpdateSampleText",
+        "path": "AIWriting/UpdateSampleText",
+        "operationType": 1
+      },
+      {
+        "name": "Account__CostAccountDuration",
+        "path": "Account/CostAccountDuration",
+        "operationType": 1
+      },
+      {
+        "name": "Account__CreateOneAccount",
+        "path": "Account/CreateOneAccount",
+        "operationType": 1
+      },
+      {
+        "name": "Account__FetchAccountDuration",
+        "path": "Account/FetchAccountDuration",
+        "operationType": 1
+      },
+      {
+        "name": "Account__GetAccountByChatId",
+        "path": "Account/GetAccountByChatId",
+        "operationType": 0
+      },
+      {
+        "name": "Account__GetEffectiveAccounts",
+        "path": "Account/GetEffectiveAccounts",
+        "operationType": 0
+      },
+      {
+        "name": "Account__GetMyCost",
+        "path": "Account/GetMyCost",
+        "operationType": 0
+      },
+      {
+        "name": "Account__GetOneAccount",
+        "path": "Account/GetOneAccount",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__AppVersion__CreateOneApp",
+        "path": "Admin/AppVersion/CreateOneApp",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__AppVersion__DeleteManyApp",
+        "path": "Admin/AppVersion/DeleteManyApp",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__AppVersion__UpdateOneApp",
+        "path": "Admin/AppVersion/UpdateOneApp",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Dict__CreateOneDict",
+        "path": "Admin/Dict/CreateOneDict",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Dict__DeleteManyDict",
+        "path": "Admin/Dict/DeleteManyDict",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Dict__GetDictList",
+        "path": "Admin/Dict/GetDictList",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__Dict__UpdateOneDict",
+        "path": "Admin/Dict/UpdateOneDict",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__DictItem__CreateOneDictItem",
+        "path": "Admin/DictItem/CreateOneDictItem",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__DictItem__DeleteManyDictItem",
+        "path": "Admin/DictItem/DeleteManyDictItem",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__DictItem__GetManyDictItem",
+        "path": "Admin/DictItem/GetManyDictItem",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__DictItem__GetOneDictItem",
+        "path": "Admin/DictItem/GetOneDictItem",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__DictItem__UpdateOneDictItem",
+        "path": "Admin/DictItem/UpdateOneDictItem",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__PromptText__CreateOnePromptText",
+        "path": "Admin/PromptText/CreateOnePromptText",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__PromptText__DeleteManyPromptText",
+        "path": "Admin/PromptText/DeleteManyPromptText",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__PromptText__DeleteOnePromptText",
+        "path": "Admin/PromptText/DeleteOnePromptText",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__PromptText__GetPromptTextList",
+        "path": "Admin/PromptText/GetPromptTextList",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__PromptText__UpdateOnePromptText",
+        "path": "Admin/PromptText/UpdateOnePromptText",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Scene__CreateOneScene",
+        "path": "Admin/Scene/CreateOneScene",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Scene__DeleteManyScene",
+        "path": "Admin/Scene/DeleteManyScene",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Scene__GetManyScene",
+        "path": "Admin/Scene/GetManyScene",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__Scene__GetSceneList",
+        "path": "Admin/Scene/GetSceneList",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__Scene__UpdateOneScene",
+        "path": "Admin/Scene/UpdateOneScene",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__SceneCategory__CreateOneSceneCategory",
+        "path": "Admin/SceneCategory/CreateOneSceneCategory",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__SceneCategory__DeleteManySceneCategory",
+        "path": "Admin/SceneCategory/DeleteManySceneCategory",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__SceneCategory__GetManySceneCategory",
+        "path": "Admin/SceneCategory/GetManySceneCategory",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__SceneCategory__GetSceneCategoryList",
+        "path": "Admin/SceneCategory/GetSceneCategoryList",
+        "operationType": 0
+      },
+      {
+        "name": "Admin__SceneCategory__UpdateOneSceneCategory",
+        "path": "Admin/SceneCategory/UpdateOneSceneCategory",
+        "operationType": 1
+      },
+      {
+        "name": "Admin__Teacher__GetManyTeacher",
+        "path": "Admin/Teacher/GetManyTeacher",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Conf__GetManyAnnoConfByType",
+        "path": "Announcement/Conf/GetManyAnnoConfByType",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Receive__CreateOneAnnouncementRecv",
+        "path": "Announcement/Receive/CreateOneAnnouncementRecv",
+        "operationType": 1
+      },
+      {
+        "name": "Announcement__Receive__DeleteOneAnnouncementRecv",
+        "path": "Announcement/Receive/DeleteOneAnnouncementRecv",
+        "operationType": 1
+      },
+      {
+        "name": "Announcement__Receive__GetAnnouncementRecvList",
+        "path": "Announcement/Receive/GetAnnouncementRecvList",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Receive__GetOneAnnouncementRecv",
+        "path": "Announcement/Receive/GetOneAnnouncementRecv",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Receive__GetUnReadAnnoRecvCount",
+        "path": "Announcement/Receive/GetUnReadAnnoRecvCount",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Receive__ReadAnnouncementRecv",
+        "path": "Announcement/Receive/ReadAnnouncementRecv",
+        "operationType": 1
+      },
+      {
+        "name": "Announcement__Send__CreateOneAnnouncement",
+        "path": "Announcement/Send/CreateOneAnnouncement",
+        "operationType": 1
+      },
+      {
+        "name": "Announcement__Send__DeleteManyAnnouncement",
+        "path": "Announcement/Send/DeleteManyAnnouncement",
+        "operationType": 1
+      },
+      {
+        "name": "Announcement__Send__GetAnnouncementList",
+        "path": "Announcement/Send/GetAnnouncementList",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Send__GetManyAnnouncementByScope",
+        "path": "Announcement/Send/GetManyAnnouncementByScope",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Send__GetOneAnnouncement",
+        "path": "Announcement/Send/GetOneAnnouncement",
+        "operationType": 0
+      },
+      {
+        "name": "Announcement__Send__UpdateOneAnnouncement",
+        "path": "Announcement/Send/UpdateOneAnnouncement",
+        "operationType": 1
+      },
+      {
+        "name": "App__GetAppList",
+        "path": "App/GetAppList",
+        "operationType": 0
+      },
+      {
+        "name": "Auth__LoginOrRegister",
+        "path": "Auth/LoginOrRegister",
+        "operationType": 1
+      },
+      {
+        "name": "CDKEY__GetCDKKEYByCode",
+        "path": "CDKEY/GetCDKKEYByCode",
+        "operationType": 0
+      },
+      {
+        "name": "CDKEY__GetRedeemRecord",
+        "path": "CDKEY/GetRedeemRecord",
+        "operationType": 0
+      },
+      {
+        "name": "CDKEY__RedeemCDKEY",
+        "path": "CDKEY/RedeemCDKEY",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__CreateChat",
+        "path": "Chat/CreateChat",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__GetLastChat",
+        "path": "Chat/GetLastChat",
+        "operationType": 0
+      },
+      {
+        "name": "Chat__GetOneChat",
+        "path": "Chat/GetOneChat",
+        "operationType": 0
+      },
+      {
+        "name": "Chat__GetRandomChat",
+        "path": "Chat/GetRandomChat",
+        "operationType": 0
+      },
+      {
+        "name": "Chat__Message__CreateOneChatMessage",
+        "path": "Chat/Message/CreateOneChatMessage",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__Message__GetChatMessageList",
+        "path": "Chat/Message/GetChatMessageList",
+        "operationType": 0
+      },
+      {
+        "name": "Chat__Message__GetChatMessageRecent",
+        "path": "Chat/Message/GetChatMessageRecent",
+        "operationType": 0
+      },
+      {
+        "name": "Chat__Message__SetChatAudioUrl",
+        "path": "Chat/Message/SetChatAudioUrl",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__Message__SetChatContent",
+        "path": "Chat/Message/SetChatContent",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__Message__SetChatErrorRecovery",
+        "path": "Chat/Message/SetChatErrorRecovery",
+        "operationType": 1
+      },
+      {
+        "name": "Chat__Message__SetChatNativeContent",
+        "path": "Chat/Message/SetChatNativeContent",
+        "operationType": 1
+      },
+      {
+        "name": "Dict__GetDictDefaultValue",
+        "path": "Dict/GetDictDefaultValue",
+        "operationType": 0
+      },
+      {
+        "name": "Dict__GetDictItems",
+        "path": "Dict/GetDictItems",
+        "operationType": 0
+      },
+      {
+        "name": "Dict__GetDictList",
+        "path": "Dict/GetDictList",
+        "operationType": 0
+      },
+      {
+        "name": "Dict__GetOneDictItem",
+        "path": "Dict/GetOneDictItem",
+        "operationType": 0
+      },
+      {
+        "name": "Duration__CreateCDKEYDurationHistory",
+        "path": "Duration/CreateCDKEYDurationHistory",
+        "operationType": 1
+      },
+      {
+        "name": "Duration__CreateCostDurationHistory",
+        "path": "Duration/CreateCostDurationHistory",
+        "operationType": 1
+      },
+      {
+        "name": "Duration__CreatePaymentDurationHistory",
+        "path": "Duration/CreatePaymentDurationHistory",
+        "operationType": 1
+      },
+      {
+        "name": "Duration__GetCostDurationHistory",
+        "path": "Duration/GetCostDurationHistory",
+        "operationType": 0
+      },
+      {
+        "name": "Duration__GetManyDurationPackage",
+        "path": "Duration/GetManyDurationPackage",
+        "operationType": 0
+      },
+      {
+        "name": "Duration__GetOneDurationPackage",
+        "path": "Duration/GetOneDurationPackage",
+        "operationType": 0
+      },
+      {
+        "name": "Duration__GetPaymentDurationHistory",
+        "path": "Duration/GetPaymentDurationHistory",
+        "operationType": 0
+      },
+      {
+        "name": "FeedBack__CreateOneFeedBack",
+        "path": "FeedBack/CreateOneFeedBack",
+        "operationType": 1
+      },
+      {
+        "name": "GPT__ChatQuery",
+        "path": "GPT/ChatQuery",
+        "operationType": 0
+      },
+      {
+        "name": "GPT__ChatSubscription",
+        "path": "GPT/ChatSubscription",
+        "operationType": 2
+      },
+      {
+        "name": "HelpQA__GetQaList",
+        "path": "HelpQA/GetQaList",
+        "operationType": 0
+      },
+      {
+        "name": "Language__GetLearningLanguages",
+        "path": "Language/GetLearningLanguages",
+        "operationType": 0
+      },
+      {
+        "name": "Membership__GetFreeMembership",
+        "path": "Membership/GetFreeMembership",
+        "operationType": 0
+      },
+      {
+        "name": "Membership__GetManyMembership",
+        "path": "Membership/GetManyMembership",
+        "operationType": 0
+      },
+      {
+        "name": "Membership__GetOneMembership",
+        "path": "Membership/GetOneMembership",
+        "operationType": 0
+      },
+      {
+        "name": "NewWord__CreateOneNewWord",
+        "path": "NewWord/CreateOneNewWord",
+        "operationType": 1
+      },
+      {
+        "name": "NewWord__DeleteManyNewWord",
+        "path": "NewWord/DeleteManyNewWord",
+        "operationType": 1
+      },
+      {
+        "name": "NewWord__DeleteOneNewWord",
+        "path": "NewWord/DeleteOneNewWord",
+        "operationType": 1
+      },
+      {
+        "name": "NewWord__GetManyNewWords",
+        "path": "NewWord/GetManyNewWords",
+        "operationType": 0
+      },
+      {
+        "name": "NewWord__GetNewWordList",
+        "path": "NewWord/GetNewWordList",
+        "operationType": 0
+      },
+      {
+        "name": "NewWord__GetOneNewWord",
+        "path": "NewWord/GetOneNewWord",
+        "operationType": 0
+      },
+      {
+        "name": "NewWord__GetOneNewWordByContent",
+        "path": "NewWord/GetOneNewWordByContent",
+        "operationType": 0
+      },
+      {
+        "name": "OCR__IdentifyPhoto",
+        "path": "OCR/IdentifyPhoto",
+        "operationType": 0
+      },
+      {
+        "name": "Payment__CreatePaymentDurationPackage",
+        "path": "Payment/CreatePaymentDurationPackage",
+        "operationType": 1
+      },
+      {
+        "name": "Payment__CreatePaymentMembership",
+        "path": "Payment/CreatePaymentMembership",
+        "operationType": 1
+      },
+      {
+        "name": "Payment__GetManyPayments",
+        "path": "Payment/GetManyPayments",
+        "operationType": 0
+      },
+      {
+        "name": "Payment__GetOnePayment",
+        "path": "Payment/GetOnePayment",
+        "operationType": 0
+      },
+      {
+        "name": "Payment__GetPaymentCountByMembership",
+        "path": "Payment/GetPaymentCountByMembership",
+        "operationType": 0
+      },
+      {
+        "name": "Payment__GetPendingPayments",
+        "path": "Payment/GetPendingPayments",
+        "operationType": 0
+      },
+      {
+        "name": "Payment__OrderDurationPackage",
+        "path": "Payment/OrderDurationPackage",
+        "operationType": 1
+      },
+      {
+        "name": "Payment__OrderMembership",
+        "path": "Payment/OrderMembership",
+        "operationType": 1
+      },
+      {
+        "name": "Payment__PayNotify",
+        "path": "Payment/PayNotify",
+        "operationType": 1
+      },
+      {
+        "name": "Payment__UpdateOnePayment",
+        "path": "Payment/UpdateOnePayment",
+        "operationType": 1
+      },
+      {
+        "name": "Preset__GetPresetItems",
+        "path": "Preset/GetPresetItems",
+        "operationType": 0
+      },
+      {
+        "name": "PromptText__GetOnePromptText",
+        "path": "PromptText/GetOnePromptText",
+        "operationType": 0
+      },
+      {
+        "name": "Question__CreateOneNaire",
+        "path": "Question/CreateOneNaire",
+        "operationType": 1
+      },
+      {
+        "name": "Question__GetQuestionAndOption",
+        "path": "Question/GetQuestionAndOption",
+        "operationType": 0
+      },
+      {
+        "name": "Scene__GetChatScenes",
+        "path": "Scene/GetChatScenes",
+        "operationType": 0
+      },
+      {
+        "name": "Scene__GetOneScene",
+        "path": "Scene/GetOneScene",
+        "operationType": 0
+      },
+      {
+        "name": "Teacher__GetChatTeachers",
+        "path": "Teacher/GetChatTeachers",
+        "operationType": 0
+      },
+      {
+        "name": "Teacher__GetOneTeacher",
+        "path": "Teacher/GetOneTeacher",
+        "operationType": 0
+      },
+      {
+        "name": "Teacher__GetRandomChatTeacher",
+        "path": "Teacher/GetRandomChatTeacher",
+        "operationType": 0
+      },
+      {
+        "name": "User__CreateOneUser",
+        "path": "User/CreateOneUser",
+        "operationType": 1
+      },
+      {
+        "name": "User__DeleteOneUser",
+        "path": "User/DeleteOneUser",
+        "operationType": 1
+      },
+      {
+        "name": "User__GetTotalUsage",
+        "path": "User/GetTotalUsage",
+        "operationType": 0
+      },
+      {
+        "name": "User__IsUserExisted",
+        "path": "User/IsUserExisted",
+        "operationType": 0
+      },
+      {
+        "name": "User__Me",
+        "path": "User/Me",
+        "operationType": 0
+      },
+      {
+        "name": "User__UpdateOneUser",
+        "path": "User/UpdateOneUser",
+        "operationType": 1
+      },
+      {
+        "name": "UserSetting__GetOneSetting",
+        "path": "UserSetting/GetOneSetting",
+        "operationType": 0
+      },
+      {
+        "name": "UserSetting__SetDisplayLanguageMode",
+        "path": "UserSetting/SetDisplayLanguageMode",
+        "operationType": 1
+      },
+      {
+        "name": "UserSetting__SetLanguageDifficulty",
+        "path": "UserSetting/SetLanguageDifficulty",
+        "operationType": 1
+      },
+      {
+        "name": "UserSetting__SetSpeedOfSpeech",
+        "path": "UserSetting/SetSpeedOfSpeech",
+        "operationType": 1
+      },
+      {
+        "name": "UserSetting__SetTargetLanguage",
+        "path": "UserSetting/SetTargetLanguage",
+        "operationType": 1
+      },
+      {
+        "name": "WritePolish__CreateOneWritePolish",
+        "path": "WritePolish/CreateOneWritePolish",
+        "operationType": 1
+      },
+      {
+        "name": "WritePolish__GetManyWritePolish",
+        "path": "WritePolish/GetManyWritePolish",
+        "operationType": 0
+      },
+      {
+        "name": "WritePolish__UpdatePolishResult",
+        "path": "WritePolish/UpdatePolishResult",
+        "operationType": 1
+      }
+    ],
+    "authenticationConfig": {
+      "cookieBased": {
+        "providers": [
+          {
+            "id": "admin",
+            "kind": 1,
+            "githubConfig": null,
+            "oidcConfig": {
+              "issuer": {
+                "kind": 0,
+                "staticVariableContent": "https://oidc.100ai.com.cn",
+                "environmentVariableName": "",
+                "environmentVariableDefaultValue": "",
+                "placeholderVariableName": ""
+              },
+              "clientId": {
+                "kind": 0,
+                "staticVariableContent": "f56e526973d50e54c053",
+                "environmentVariableName": "",
+                "environmentVariableDefaultValue": "",
+                "placeholderVariableName": ""
+              },
+              "clientSecret": {
+                "kind": 0,
+                "staticVariableContent": "23d1836beda4e20c5ac3f380df81e7c375b42d8d",
+                "environmentVariableName": "",
+                "environmentVariableDefaultValue": "",
+                "placeholderVariableName": ""
+              },
+              "queryParameters": null,
+              "AuthURL": "https://oidc.100ai.com.cn/login/oauth/authorize",
+              "TokenURL": "https://oidc.100ai.com.cn/api/login/oauth/access_token"
+            }
+          }
+        ],
+        "authorizedRedirectUris": [
+          {
+            "kind": 0,
+            "staticVariableContent": "http://localhost:9123/#/workbench/userInfo",
+            "environmentVariableName": "",
+            "environmentVariableDefaultValue": "",
+            "placeholderVariableName": ""
+          },
+          {
+            "kind": 0,
+            "staticVariableContent": "http://localhost:9123/#/workbench/rapi/loginBack",
+            "environmentVariableName": "",
+            "environmentVariableDefaultValue": "",
+            "placeholderVariableName": ""
+          },
+          {
+            "kind": 0,
+            "staticVariableContent": "http://localhost:8080",
+            "environmentVariableName": "",
+            "environmentVariableDefaultValue": "",
+            "placeholderVariableName": ""
+          }
+        ],
+        "authorizedRedirectUriRegexes": null,
+        "hashKey": {
+          "kind": 0,
+          "staticVariableContent": "12345123451234512345123451234512",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        },
+        "blockKey": {
+          "kind": 0,
+          "staticVariableContent": "12345123451234512345123451234512",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        },
+        "csrfSecret": {
+          "kind": 0,
+          "staticVariableContent": "12345678910",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        }
+      },
+      "hooks": {
+        "postAuthentication": false,
+        "mutatingPostAuthentication": false,
+        "revalidateAuthentication": false,
+        "postLogout": false,
+        "TsPathMap": null
+      },
+      "jwksBased": {
+        "providers": [
+          {
+            "jwksUrl": {
+              "kind": 0,
+              "staticVariableContent": "https://freetalk.authing.cn/oidc/.well-known/jwks.json",
+              "environmentVariableName": "",
+              "environmentVariableDefaultValue": "",
+              "placeholderVariableName": ""
+            },
+            "jwksJson": null,
+            "userInfoEndpoint": {
+              "kind": 0,
+              "staticVariableContent": "https://freetalk.authing.cn/oidc/me",
+              "environmentVariableName": "",
+              "environmentVariableDefaultValue": "",
+              "placeholderVariableName": ""
+            },
+            "userInfoCacheTtlSeconds": 3600
+          }
+        ]
+      },
+      "publicClaims": null
+    },
+    "webhooks": [],
+    "serverOptions": {
+      "serverUrl": {
+        "kind": 0,
+        "staticVariableContent": "http://localhost:9992",
+        "environmentVariableName": "",
+        "environmentVariableDefaultValue": "",
+        "placeholderVariableName": ""
+      },
+      "listen": {
+        "host": {
+          "kind": 0,
+          "staticVariableContent": "localhost",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        },
+        "port": {
+          "kind": 0,
+          "staticVariableContent": "9992",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        }
+      },
+      "logger": {
+        "level": {
+          "kind": 0,
+          "staticVariableContent": "DEBUG",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        }
+      }
+    },
+    "nodeOptions": {
+      "nodeUrl": {
+        "kind": 0,
+        "staticVariableContent": "http://localhost:9991",
+        "environmentVariableName": "",
+        "environmentVariableDefaultValue": "",
+        "placeholderVariableName": ""
+      },
+      "publicNodeUrl": {
+        "kind": 0,
+        "staticVariableContent": "http://localhost:9991",
+        "environmentVariableName": "",
+        "environmentVariableDefaultValue": "",
+        "placeholderVariableName": ""
+      },
+      "listen": {
+        "host": {
+          "kind": 0,
+          "staticVariableContent": "0.0.0.0",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        },
+        "port": {
+          "kind": 0,
+          "staticVariableContent": "9991",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        }
+      },
+      "logger": {
+        "level": {
+          "kind": 0,
+          "staticVariableContent": "DEBUG",
+          "environmentVariableName": "",
+          "environmentVariableDefaultValue": "",
+          "placeholderVariableName": ""
+        }
+      },
+      "defaultRequestTimeoutSeconds": 10
+    }
+  },
+  "environmentIds": [
+    ""
+  ],
+  "dangerouslyEnableGraphQLEndpoint": true,
+  "deploymentName": "main",
+  "apiName": "app"
+}

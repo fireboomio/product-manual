@@ -18,6 +18,49 @@
 
 ### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../sdk-sheng-cheng/ "mention")
 
+### 解析飞布生成的json配置文件
+
+1. 文件路径${钩子项目目录}/generated/fireboom.config.json
+2. 文件内容示例如下：
+
+```json
+{
+    
+    "api": {
+        "operations": [
+            {
+                "name": "Todo__CreateOne",
+                "path": "Todo/CreateOne",
+                "operationType": 1 // 0 QUERY, 1 MUTATION, 2 SUBSCRIPTION
+            }
+        ],
+        "serverOptions": {
+            "listen": {
+                "host": {
+                    "staticVariableContent": "0.0.0.0" // 钩子服务启动地址
+                },
+                "port": {
+                    "staticVariableContent": "" // 钩子服务启动端口
+                }
+            },
+            "logger": {
+                "level: {
+                    "staticVariableContent": "INFO" // 钩子服务日志级别
+                }
+            }
+        },
+        "serverOptions": {
+            "nodeUrl": {
+                "staticVariableContent": "http://localhost:9991" // 飞布服务内网访问地址
+            },
+            "publicNodeUrl": {
+                "staticVariableContent": "http://ip:port" // 飞布服务对外访问地址
+            }
+        }
+    }
+}
+```
+
 ### 解析全局参数
 
 1. 所有的钩子请求都是POST请求，并且Content-Type=application/json
