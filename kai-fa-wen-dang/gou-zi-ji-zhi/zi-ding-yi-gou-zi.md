@@ -21,6 +21,7 @@
 1. 生成钩子函数时建议使用对应语言的范型来约束出入参
 2. 模版生成最终应该包含
 
+* 钩子函数出入参的对象/结构体定义，用来约束类型
 * 全局钩子，用来 [#zhu-ce-quan-ju-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-quan-ju-gou-zi "mention")
 * 认证钩子，用来 [#zhu-ce-ren-zheng-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-ren-zheng-gou-zi "mention")
 * 查询钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中查询类型的钩子
