@@ -561,7 +561,16 @@
 
 ### 注册graphql服务
 
+1. web界面
 
+* 路径：/gqls/${apiNamespace}/graphql
+* 入参：无
+* 出参：返回html页面，将下面的文件读取动态修改其中${graphqlEndpoint}为web界面请求路径
+* html文件&#x20;
+
+{% file src="../../.gitbook/assets/helix.html" %}
+
+2. 内省和访问
 
 ### 注册健康检查
 
