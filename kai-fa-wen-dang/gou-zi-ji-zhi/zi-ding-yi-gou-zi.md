@@ -61,6 +61,8 @@
 }
 ```
 
+3.
+
 ### 解析全局参数
 
 1. 所有的钩子请求都是POST请求，并且Content-Type=application/json
@@ -126,7 +128,7 @@
 
 1. 使用http框架封装一个构造请求和处理响应的函数
 2. 设置请求Method=POST和Content-Type=application/json
-3. 设置请求URL=${baseNodeUrl}/internal/operations/${operationPath}，其中baseNodeUrl为，operationPath为operation路径。
+3. 设置请求URL=${baseNodeUrl}/internal/operations/${operationPath}，其中baseNodeUrl为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")serverOptions.nodeUrl的值，operationPath为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")api.operations\[\*].path路径。
 4. 请求参数，如下。其中input的入参为 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成出operation入参的结构体/对象
 
 ```json
