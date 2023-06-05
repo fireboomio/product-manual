@@ -77,6 +77,19 @@
 ]
 ```
 
+4. ${function}为各个创建的不同目录下的文件，其中包含可执行函数，例如
+
+* 全局钩子文件global/beforeRequest.(go/java/py/ts等)
+* 认证钩子文件authentication/postAuthentication.(go/java/py/ts等)
+* operation钩子hooks/${operationPath}/postResolve.(go/java/py/ts等)
+* 上传钩子uploads/${provider}/${profile}/preUpload.(go/java/py/ts等)
+
+5. ${function}最终需要注册到各个的接口时使用，最终流程为：
+
+```
+钩子接口(处理请求并利用范型转换入参) => 钩子函数(自定义逻辑) => 钩子接口(处理钩子函数返回最终提供响应)
+```
+
 ### 解析飞布生成的json配置文件
 
 1. 文件路径${钩子项目目录}/generated/fireboom.config.json
