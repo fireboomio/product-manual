@@ -226,7 +226,7 @@
     "errors": [
         {
             "message": "error message",
-            "path": "" // 可选
+            "path": "" // 可选，设置报错定位
         }
     ]
 }
