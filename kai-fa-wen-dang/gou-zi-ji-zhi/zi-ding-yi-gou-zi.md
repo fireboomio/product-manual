@@ -450,7 +450,9 @@
 
 ```json
 {
-   “input": {"name": "fireboom"} // operation入参
+   "op": ${operationPath}, // operationPath
+   "hook": "preResolve", // hookName
+   "input": {"name": "fireboom"} // operation入参
 }
 ```
 
@@ -471,7 +473,9 @@
 
 ```json
 {
-   “input": {"name": "fireboom"} // operation入参
+   "op": ${operationPath}, // operationPath
+   "hook": "mutatingPreResolve", // hookName
+   "input": {"name": "fireboom"} // operation入参
 }
 ```
 
@@ -479,7 +483,7 @@
 
 ```json
 {
-    “input": {"name": "fireboom"}, // operation入参
+    "input": {"name": "fireboom"}, // operation入参
     "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
 }
 ```
@@ -493,7 +497,9 @@
 
 ```json
 {
-   “input": {"name": "fireboom"} // operation入参
+   "op": ${operationPath}, // operationPath
+   "hook": "customResolve", // hookName
+   "input": {"name": "fireboom"} // operation入参
 }
 ```
 
@@ -501,7 +507,7 @@
 
 ```json
 {
-    “response": {"name": "fireboom"}, // operation出参
+    "response": {"name": "fireboom"}, // operation出参
     "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
 }
 ```
@@ -515,7 +521,9 @@
 
 ```json
 {
-   “input": {"name": "fireboom"} // operation入参
+   "op": ${operationPath}, // operationPath
+   "hook": "mockResolve", // hookName
+   "input": {"name": "fireboom"} // operation入参
 }
 ```
 
@@ -523,8 +531,8 @@
 
 ```json
 {
-    “response": {"name": "fireboom"}, // operation出参
-    "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
+   "response": {"name": "fireboom"}, // operation出参
+   "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
 }
 ```
 
@@ -537,8 +545,10 @@
 
 ```json
 {
-   “input": {"name": "fireboom"}, // operation入参
-   “response": {"name": "fireboom"} // operation出参
+   "op": ${operationPath}, // operationPath
+   "hook": "postResolve", // hookName
+   "input": {"name": "fireboom"}, // operation入参
+   "response": {"name": "fireboom"} // operation出参
 }
 ```
 
@@ -559,8 +569,10 @@
 
 ```json
 {
+   "op": ${operationPath}, // operationPath
+   "hook": "mutatingPostResolve", // hookName
    “input": {"name": "fireboom"}, // operation入参
-   “response": {"name": "fireboom"} // operation出参
+   "response": {"name": "fireboom"} // operation出参
 }
 ```
 
@@ -568,7 +580,7 @@
 
 ```json
 {
-    “response": {"name": "fireboom"}, // operation出参
+    "response": {"name": "fireboom"}, // operation出参
     "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
 }
 ```
