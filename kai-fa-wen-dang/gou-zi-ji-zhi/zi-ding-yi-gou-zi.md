@@ -268,8 +268,6 @@
 
 ```json
 {
-    "op": "Todo", // operation名字（多级目录以"__"分割）
-    "hook": "beforeOriginRequest",
     "response": {
         "request": ${__wg.clientRequest} // 与全局参数路径__wg.clientRequest格式一致
     }
@@ -295,8 +293,6 @@
 
 ```json
 {
-    "op": "Todo", // operation名字（多级目录以"__"分割）
-    "hook": "onOriginRequest",
     "response": {
         "request": ${__wg.clientRequest} // 与全局参数路径__wg.clientRequest格式一致
     }
@@ -326,8 +322,6 @@
 
 ```json
 {
-    "op": "Todo", // operation名字（多级目录以"__"分割）
-    "hook": "onOriginResponse",
     "response": {
         "response": {
             "status": "200",
