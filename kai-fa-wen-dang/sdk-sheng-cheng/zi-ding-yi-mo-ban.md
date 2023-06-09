@@ -15,13 +15,26 @@
     "isArray": false, // 字段类型是否数组
     "isDefinition": false, // 对象是否全局定义(orderBy, query这些数据库内省的)
     "documentPath": ["TodoInput"], // 文档路径(建议拼接后用来做对象名/字段类型名)
-    "fields": [${objectField}] // 对象字段列表
+    "fields": [${objectField}], // 对象字段列表
+    "root": "Input", // 顶层归属类型(Input/InternalInput/ResponseData/Definitions)
+    "opeartionInfo": ${opeartionInfo} // 对应operation信息
 }
 
 // enumField
 {
     "name": "DictValueType", // 枚举名称
     "values": ["site"] // 枚举值列表
+}
+
+// operationInfo
+{
+    "name": "Todo", // oeprationName
+    "path": "Todo", // opeartionPath
+    "IsInternal": false, // 是否内部
+    "isLiveQuery": false, // 是否实时查询
+    "isQuery": true, // 是否查询
+    "isMutation": false, // 是否变更
+    "isSubscription": false // 是否订阅
 }
 ```
 
