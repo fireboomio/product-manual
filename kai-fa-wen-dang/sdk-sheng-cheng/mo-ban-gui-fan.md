@@ -38,12 +38,25 @@ type objectField struct {
   IsDefinition  bool           // 是否全局定义
   DocumentPath  []string       // 文档路径(建议拼接后用来做对象名)
   Fields        []*objectField // 字段列表(为对象时使用)
+  Root          string         // 归属顶层结构体
+  OperationInfo *operationInfo // operation信息
 }
 
 // 枚举类型(新)
 type enumField struct {
   Name   string   // 枚举名称
   Values []string // 枚举值列表
+}
+
+// operation信息(新)
+type operationInfo struct {
+  Name           string
+  Path           string
+  IsInternal     bool
+  IsQuery        bool
+  IsLiveQuery    bool
+  IsMutation     bool
+  IsSubscription bool
 }
 
 type JsonSchemaOperations struct {
