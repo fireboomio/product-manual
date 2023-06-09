@@ -29,25 +29,45 @@
 
 ```handlebars
 {{#each objectFieldArray}}
-<!-- 使用documentPath拼接'_'对象 -->
+<!-- 使用documentPath拼接'_'对象名称 -->
 type {{joinString '_' documentPath}} struct {
+    <!-- 遍历字段列表 -->
     {{#each fields}}
+    <!-- 字段名首字母大写，并判断类型是否为数组 -->
     {{upperFirst name}} {{#if isArray}}[]{{~/if~}}
     {{~#if typeRefObject~}}
+        <!-- 使用关联对象的documentPath拼接作为类型名称 -->
         {{#if typeRefObject.isDefinition}}*{{/if}}{{~joinString '_' typeRefObject.documentPath~}}
     {{~else~}}
         {{~#if typeRefEnum~}}
+            <!-- 使用关联枚举的name并大写首字母作为类型名称 -->
             {{~upperFirst typeRefEnum.name~}}
         {{~else~}}
+            <!-- 普通类型做类型转换 -->
             {{~#equal typeName 'string'}}string{{/equal~}}
             {{~#equal typeName 'integer'}}int64{{/equal~}}
             {{~#equal typeName 'number'}}float64{{/equal~}}
             {{~#equal typeName 'boolean'}}bool{{/equal~}}
             {{~#equal typeName 'json'}}any{{/equal~}}
         {{~/if}}
+    <!-- 到处使用字段名导出json，并判断字段是否必须 -->
     {{~/if}} `json:"{{name}}{{#unless required}},omitempty{{/unless}}"`
     {{/each}}
 }
 {{/each}}
 ```
 
+3. 定义枚举类型（示例为生成go的枚举【go没有枚举类型，使用别名实现】）
+
+```handlebars
+{{#each enumFieldArray}}
+<!-- 枚举名首字母大写 -->
+type {{upperFirst name}} string
+const (
+    {{#each values}}
+    <!-- 遍历枚举值列表，使用枚举名作为前缀 -->
+    {{upperFirst name}}_{{this}} {{upperFirst name}} = "{{this}}"
+    {{/each}}
+)
+{{/each}}
+```
