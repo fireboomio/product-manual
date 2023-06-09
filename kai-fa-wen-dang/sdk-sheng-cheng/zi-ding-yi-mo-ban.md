@@ -1,4 +1,4 @@
-# 自定义模板（）
+# 自定义模板
 
 ### 生成对象定义
 
@@ -25,9 +25,10 @@
 }
 ```
 
-2. 定义对象类型（示例为生成go的strcut）
+2. 定义对象类型
 
 ```handlebars
+<!-- golang生成struct使用示例 -->
 {{#each objectFieldArray}}
 <!-- 使用documentPath拼接'_'对象名称 -->
 type {{joinString '_' documentPath}} struct {
@@ -55,19 +56,50 @@ type {{joinString '_' documentPath}} struct {
     {{/each}}
 }
 {{/each}}
+
+<!-- typescript生成对象使用示例 -->
+{{#each objectFieldArray}}
+export interface {{joinString '_' documentPath}} {
+    {{#each fields}}
+    {{name}}{{#unless required}}?{{/unless}}:
+    {{~#if typeRefObject~}}
+        {{~joinString '_' typeRefObject.documentPath~}}
+    {{~else~}}
+        {{~#if typeRefEnum~}}
+            {{~typeRefEnum.name~}}
+        {{~else~}}
+            {{~#equal typeName 'string'}}string{{/equal~}}
+            {{~#equal typeName 'integer'}}number{{/equal~}}
+            {{~#equal typeName 'number'}}number{{/equal~}}
+            {{~#equal typeName 'boolean'}}boolean{{/equal~}}
+            {{~#equal typeName 'json'}}any{{/equal~}}
+        {{~/if}}
+    {{~/if}}{{#if isArray}}[]{{~/if~}},
+    {{/each}}
+}
+{{/each}}
 ```
 
-3. 定义枚举类型（示例为生成go的枚举【go没有枚举类型，使用别名实现】）
+3. 定义枚举类型
 
-```handlebars
-{{#each enumFieldArray}}
-<!-- 枚举名首字母大写 -->
+<pre class="language-handlebars"><code class="lang-handlebars"><strong>&#x3C;!-- 示例为生成go的枚举【go没有枚举类型，使用别名实现】-->
+</strong>{{#each enumFieldArray}}
+&#x3C;!-- 枚举名首字母大写 -->
 type {{upperFirst name}} string
 const (
     {{#each values}}
-    <!-- 遍历枚举值列表，使用枚举名作为前缀 -->
+    &#x3C;!-- 遍历枚举值列表，使用枚举名作为前缀 -->
     {{upperFirst name}}_{{this}} {{upperFirst name}} = "{{this}}"
     {{/each}}
 )
 {{/each}}
-```
+
+&#x3C;!-- 示例为生成typescript的枚举-->
+{{#each enumFieldArray}}
+enum {{name}} {
+    {{#each values}}
+    '{{this}}',
+    {{/each}}
+}
+{{/each}}
+</code></pre>
