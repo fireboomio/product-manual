@@ -132,7 +132,7 @@ handlebars.RegisterHelper("stringInArray", func(str string, strArr []string) boo
 1. 判断字符串是否在切片中
  
 // 使用姿势
-{{#if (stringInArray key slice)}}123{{/if}}
+{{#if (stringInArray 'age' slice)}}123{{/if}}
 
 
 // 注册函数（首字母小写）
@@ -149,22 +149,6 @@ handlebars.RegisterHelper("joinString", func(sep string, strArr []string) string
 })
 // 使用姿势
 {{joinString ',' slice}}
-
-
-// 注册函数（获取schemaType的真实类型）
-handlebars.RegisterHelper("realType", func(val any) string {
-    schemaType := ""
-    switch ret := val.(type) {
-        case string:
-        schemaType = ret
-        case []string:
-        schemaType = ret[0]
-        case []interface{}:
-        schemaType = fmt.Sprint(ret[0])
-    }
-    return schemaType
-})
-
 
 // 注册函数（替换特殊字符为指定字符）
 handlebars.RegisterHelper("replaceSpecial", func(str, sep string) string {
@@ -194,7 +178,22 @@ handlebars.RegisterHelper("isNotEmpty", func(val any) bool {
 {{#if (isNotEmpty operations)}}
 
 
-// 注册函数（根据key和value过滤operations，key为","分隔多个）
+// 注册函数（获取schemaType的真实类型）(老版使用)
+handlebars.RegisterHelper("realType", func(val any) string {
+    schemaType := ""
+    switch ret := val.(type) {
+        case string:
+        schemaType = ret
+        case []string:
+        schemaType = ret[0]
+        case []interface{}:
+        schemaType = fmt.Sprint(ret[0])
+    }
+    return schemaType
+})
+
+
+// 注册函数（根据key和value过滤operations，key为","分隔多个）(老版使用)
 handlebars.RegisterHelper("filterOperations", func(operations []*JsonSchemaOperations, key string, val any) []*JsonSchemaOperations {
     var result []*JsonSchemaOperations
     keyArr := strings.Split(key, ",")
