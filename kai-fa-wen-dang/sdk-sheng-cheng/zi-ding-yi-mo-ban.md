@@ -124,7 +124,7 @@ enum {{name}} {
 </strong>
 import lombok.Data;
 
-&#x3C;!-- &#x3C;#fileName#>标签用来标识文件名【支持路径】 -->
+&#x3C;!-- &#x3C;#fileName#>标签用来标识文件名【支持路径】用来替换${objectFieldArray} -->
 // &#x3C;#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}&#x3C;#fileName#>
 @Data
 public class {{upperFirst (joinString '_' documentPath)}} {
@@ -160,14 +160,15 @@ public class {{upperFirst (joinString '_' documentPath)}} {
 {{#if isArray}}>{{~/if~}}
 </code></pre>
 
-5. 单枚举模板生成多个文件
+5. 单枚举模板生成多个文件（以java为例）
 
 ```handlebars
-<!-- ${enumFieldArray}.java.hbs (对象文件枚举须以${objectFieldArray}开头) -->
+<!-- ${enumFieldArray}.java.hbs (枚举文件名${enumFieldArray}开头) -->
 package com.fireboom.entity.enums;
 
 import lombok.Getter;
 
+<!-- <#fileName#>标签用来标识文件名【支持路径】用来替换${enumFieldArray} -->
 // <#fileName#>enums/{{upperFirst name}}<#fileName#>
 public enum {{upperFirst name}} {
     {{#each values}}
