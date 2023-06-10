@@ -48,7 +48,7 @@ type {{upperFirst (joinString '_' documentPath)}} struct {
     <!-- 遍历字段列表 -->
     {{#each fields}}
     <!-- 字段名首字母大写，并判断类型是否为数组 -->
-    {{upperFirst name}} {{#if isArray}}[]{{~/if~}}
+    {{upperFirst (trimPrefix name '_')}} {{#if isArray}}[]{{~/if~}}
     {{~#if typeRefObject~}}
         <!-- 使用关联对象的documentPath拼接作为类型名称 -->
         {{#if typeRefObject.isDefinition}}*{{/if}}{{~upperFirst (joinString '_' typeRefObject.documentPath)~}}
