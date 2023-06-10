@@ -117,10 +117,10 @@ enum {{name}} {
 {{/each}}
 </code></pre>
 
-4. 单模版生成多个文件（以java为例）
+4. 单对象模版生成多个文件（以java为例）
 
 ```handlebars
-<!-- ${objectFieldArray}.java.hbs (文件名必须以${objectFieldArray}开头) -->
+<!-- ${objectFieldArray}.java.hbs (对象文件名必须以${objectFieldArray}开头) -->
 package com.fireboom.entity.{{root}};
 
 import lombok.Data;
@@ -143,5 +143,20 @@ public class {{upperFirst (joinString '_' documentPath)}} {
     {{/each}}
 }
 
-
+<!-- field_type_java.hbs片段函数用来定义字段类型 -->
+{{#if isArray}}java.util.List<{{~/if~}}
+{{~#if typeRefObject~}}
+    com.fireboom.entity.{{root}}.{{~upperFirst (joinString '_' typeRefObject.documentPath)~}}
+    {{~else~}}
+    {{~#if typeRefEnum~}}
+        com.fireboom.entity.enums.{{~upperFirst typeRefEnum.name~}}
+    {{~else~}}
+        {{~#equal typeName 'string'}}String{{/equal~}}
+        {{~#equal typeName 'integer'}}Integer{{/equal~}}
+        {{~#equal typeName 'number'}}Double{{/equal~}}
+        {{~#equal typeName 'boolean'}}Boolean{{/equal~}}
+        {{~#equal typeName 'json'}}com.alibaba.fastjson.JSON{{/equal~}}
+    {{~/if~}}
+{{~/if~}}
+{{#if isArray}}>{{~/if~}}
 ```
