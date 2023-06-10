@@ -119,14 +119,13 @@ enum {{name}} {
 
 4. 单对象模版生成多个文件（以java为例）
 
-```handlebars
-<!-- ${objectFieldArray}.java.hbs (对象文件名必须以${objectFieldArray}开头) -->
-package com.fireboom.entity.{{root}};
-
+<pre class="language-handlebars"><code class="lang-handlebars">&#x3C;!-- ${objectFieldArray}.java.hbs (对象文件名必须以${objectFieldArray}开头) -->
+<strong>package com.fireboom.entity.{{root}};
+</strong>
 import lombok.Data;
 
-<!-- <#fileName#>标签用来标识文件名【支持路径】 -->
-// <#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}<#fileName#>
+&#x3C;!-- &#x3C;#fileName#>标签用来标识文件名【支持路径】 -->
+// &#x3C;#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}&#x3C;#fileName#>
 @Data
 public class {{upperFirst (joinString '_' documentPath)}} {
     public {{upperFirst (joinString '_' documentPath)}}(
@@ -143,8 +142,8 @@ public class {{upperFirst (joinString '_' documentPath)}} {
     {{/each}}
 }
 
-<!-- field_type_java.hbs片段函数用来定义字段类型 -->
-{{#if isArray}}java.util.List<{{~/if~}}
+&#x3C;!-- field_type_java.hbs片段函数用来定义字段类型 -->
+{{#if isArray}}java.util.List&#x3C;{{~/if~}}
 {{~#if typeRefObject~}}
     com.fireboom.entity.{{root}}.{{~upperFirst (joinString '_' typeRefObject.documentPath)~}}
     {{~else~}}
@@ -159,4 +158,27 @@ public class {{upperFirst (joinString '_' documentPath)}} {
     {{~/if~}}
 {{~/if~}}
 {{#if isArray}}>{{~/if~}}
+</code></pre>
+
+5. 单枚举模板生成多个文件
+
+```handlebars
+<!-- ${enumFieldArray}.java.hbs (对象文件枚举须以${objectFieldArray}开头) -->
+package com.fireboom.entity.enums;
+
+import lombok.Getter;
+
+// <#fileName#>enums/{{upperFirst name}}<#fileName#>
+public enum {{upperFirst name}} {
+    {{#each values}}
+    {{this}}("{{this}}"){{#if @last}};{{else}},{{/if}}
+    {{/each}}
+
+    @Getter
+    private final String value;
+
+    {{upperFirst name}}(String value) {
+        this.value = value;
+    }
+}
 ```
