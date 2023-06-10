@@ -142,7 +142,7 @@ public class {{upperFirst (joinString '_' documentPath)}} {
     {{/each}}
 }
 
-&#x3C;!-- field_type_java.hbs片段函数用来定义字段类型 -->
+&#x3C;!-- field_type_java.hbs片段函数用来定义字段类型【多处使用，提取片段】 -->
 {{#if isArray}}java.util.List&#x3C;{{~/if~}}
 {{~#if typeRefObject~}}
     com.fireboom.entity.{{root}}.{{~upperFirst (joinString '_' typeRefObject.documentPath)~}}
