@@ -125,7 +125,7 @@ package com.fireboom.entity.{{root}};
 
 import lombok.Data;
 
-<!-- <#fileName#> -->
+<!-- <#fileName#>标签用来标识文件名，【支持路径】 -->
 // <#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}<#fileName#>
 @Data
 public class {{upperFirst (joinString '_' documentPath)}} {
