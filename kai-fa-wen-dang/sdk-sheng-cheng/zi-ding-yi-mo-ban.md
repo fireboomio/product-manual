@@ -163,7 +163,7 @@ public class {{upperFirst (joinString '_' documentPath)}} {
 5. 单枚举模板生成多个文件（以java为例）
 
 ```handlebars
-<!-- ${enumFieldArray}.java.hbs (枚举文件名${enumFieldArray}开头) -->
+<!-- ${enumFieldArray}.java.hbs (枚举文件名必须以${enumFieldArray}开头) -->
 package com.fireboom.entity.enums;
 
 import lombok.Getter;
