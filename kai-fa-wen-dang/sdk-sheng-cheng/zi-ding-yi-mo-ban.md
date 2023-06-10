@@ -44,14 +44,14 @@
 <!-- golang生成struct使用示例 -->
 {{#each objectFieldArray}}
 <!-- 使用documentPath拼接'_'对象名称 -->
-type {{joinString '_' documentPath}} struct {
+type {{upperFirst (joinString '_' documentPath)}} struct {
     <!-- 遍历字段列表 -->
     {{#each fields}}
     <!-- 字段名首字母大写，并判断类型是否为数组 -->
     {{upperFirst name}} {{#if isArray}}[]{{~/if~}}
     {{~#if typeRefObject~}}
         <!-- 使用关联对象的documentPath拼接作为类型名称 -->
-        {{#if typeRefObject.isDefinition}}*{{/if}}{{~joinString '_' typeRefObject.documentPath~}}
+        {{#if typeRefObject.isDefinition}}*{{/if}}{{~upperFirst (joinString '_' typeRefObject.documentPath)~}}
     {{~else~}}
         {{~#if typeRefEnum~}}
             <!-- 使用关联枚举的name并大写首字母作为类型名称 -->
