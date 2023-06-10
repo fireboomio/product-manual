@@ -116,3 +116,30 @@ enum {{name}} {
 }
 {{/each}}
 </code></pre>
+
+4. 单模版生成多个文件（以java为例）
+
+```handlebars
+// ${objectFieldArray}.java.hbs (文件名必须以${objectFieldArray}开头)
+package com.fireboom.entity.{{root}};
+
+import lombok.Data;
+
+<!-- <#fileName#> -->
+// <#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}<#fileName#>
+@Data
+public class {{upperFirst (joinString '_' documentPath)}} {
+    public {{upperFirst (joinString '_' documentPath)}}(
+    {{~#each fields}}
+        {{~> field_type_java this}} {{name}}{{#unless @last}}, {{/unless~}}
+    {{/each~}}
+    ) {
+        {{#each fields}}
+        this.{{name}} = {{name}};
+        {{/each}}
+    }
+    {{#each fields}}
+    private {{> field_type_java this}} {{name}};
+    {{/each}}
+}
+```
