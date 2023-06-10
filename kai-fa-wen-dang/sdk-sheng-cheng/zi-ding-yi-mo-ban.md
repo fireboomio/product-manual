@@ -120,12 +120,12 @@ enum {{name}} {
 4. 单模版生成多个文件（以java为例）
 
 ```handlebars
-// ${objectFieldArray}.java.hbs (文件名必须以${objectFieldArray}开头)
+<!-- ${objectFieldArray}.java.hbs (文件名必须以${objectFieldArray}开头) -->
 package com.fireboom.entity.{{root}};
 
 import lombok.Data;
 
-<!-- <#fileName#>标签用来标识文件名，【支持路径】 -->
+<!-- <#fileName#>标签用来标识文件名【支持路径】 -->
 // <#fileName#>{{root}}/{{upperFirst (joinString '_' documentPath)}}<#fileName#>
 @Data
 public class {{upperFirst (joinString '_' documentPath)}} {
@@ -142,4 +142,6 @@ public class {{upperFirst (joinString '_' documentPath)}} {
     private {{> field_type_java this}} {{name}};
     {{/each}}
 }
+
+
 ```
