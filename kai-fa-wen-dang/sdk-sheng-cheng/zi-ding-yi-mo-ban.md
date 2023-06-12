@@ -183,3 +183,17 @@ public enum {{upperFirst name}} {
     }
 }
 ```
+
+6. 生成文件示例
+
+{% file src="../../.gitbook/assets/test.go" %}
+GOLANG 结构体示例
+{% endfile %}
+
+{% file src="../../.gitbook/assets/test.ts" %}
+Typescript 对象示例
+{% endfile %}
+
+{% file src="../../.gitbook/assets/java对象.zip" %}
+Java 对象示例（多文件）
+{% endfile %}
