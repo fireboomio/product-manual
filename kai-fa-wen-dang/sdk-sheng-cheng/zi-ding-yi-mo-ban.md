@@ -1,6 +1,6 @@
 # 自定义模板
 
-### 生成对象定义
+### Java生成对象定义
 
 1. json结构说明
 
@@ -194,6 +194,6 @@ GOLANG 结构体示例
 Typescript 对象示例
 {% endfile %}
 
-{% file src="../../.gitbook/assets/java对象.zip" %}
-Java 对象示例（多文件）
+{% file src="../../.gitbook/assets/Java对象（多文件）.zip" %}
+&#x20;Java 对象示例
 {% endfile %}
