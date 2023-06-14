@@ -172,3 +172,10 @@ func CustomResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res 
 ```go
 func MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error)
 ```
+
+
+
+### 参考仓库
+
+golang 钩子示例：[https://github.com/fireboomio/simple-firetalk](https://github.com/fireboomio/simple-firetalk) （包含了所有常见钩子的使用示例。）
+

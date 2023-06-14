@@ -58,7 +58,6 @@
   * [微信小程序SDK](kai-fa-wen-dang/sdk-sheng-cheng/wei-xin-xiao-cheng-xu-sdk.md)
   * [React SDK](kai-fa-wen-dang/sdk-sheng-cheng/react-sdk.md)
 * [开放API（开发中）](kai-fa-wen-dang/kai-fang-api.md)
-* [命令行参数](kai-fa-wen-dang/ming-ling-hang-can-shu.md)
 
 ***
 
