@@ -16,6 +16,6 @@
 
 当前钩子支持的语言列表：
 
-[node-gou-zi.md](node-gou-zi.md "mention")
+[node-gou-zi](node-gou-zi/ "mention")
 
-[golang-gou-zi.md](golang-gou-zi.md "mention")
+[golang-gou-zi](golang-gou-zi/ "mention")

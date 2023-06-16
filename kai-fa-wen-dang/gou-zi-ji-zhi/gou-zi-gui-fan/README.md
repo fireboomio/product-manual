@@ -1,4 +1,8 @@
-# 自定义钩子
+# 钩子规范
+
+钩子服务本质上是一个实现了飞布钩子规范的WEB服务，可以用任意后端语言实现。
+
+如果你希望实现其他语言的 hook SDK，需要遵从如下协议。
 
 ### 搭建一个可以提供Rest服务的项目
 
@@ -16,19 +20,19 @@
 
 这些框架都提供了丰富的功能和插件，可以方便地实现HTTP对外访问。通常来说，这些框架都支持动态注册路由和中间件，可以根据不同的URL和HTTP方法，将请求路由到相应的处理函数，从而实现动态注册HTTP对外访问。使用这些框架可以很好地提高开发效率和代码质量。
 
-### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../sdk-sheng-cheng/ "mention")
+### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../../sdk-sheng-cheng/ "mention")
 
 1. 生成钩子函数时建议使用对应语言的范型来约束出入参
 2. 模版生成最终应该包含
 
 * 钩子函数出入参的对象/结构体定义，用来约束类型
-* 全局钩子，用来 [#zhu-ce-quan-ju-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-quan-ju-gou-zi "mention")
-* 认证钩子，用来 [#zhu-ce-ren-zheng-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-ren-zheng-gou-zi "mention")
-* 查询钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中查询类型的钩子
-* 变更钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中变更类型的钩子
-* 订阅钩子，用来 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")中订阅类型的钩子（暂时未支持调用）
-* 上传钩子，用来 [#zhu-ce-shang-chuan-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-shang-chuan-gou-zi "mention")
-* graphql配置，用来 [#zhu-ce-graphql-fu-wu](zi-ding-yi-gou-zi.md#zhu-ce-graphql-fu-wu "mention")
+* 全局钩子，用来 [#zhu-ce-quan-ju-gou-zi](./#zhu-ce-quan-ju-gou-zi "mention")
+* 认证钩子，用来 [#zhu-ce-ren-zheng-gou-zi](./#zhu-ce-ren-zheng-gou-zi "mention")
+* 查询钩子，用来 [#zhu-ce-operation-gou-zi](./#zhu-ce-operation-gou-zi "mention")中查询类型的钩子
+* 变更钩子，用来 [#zhu-ce-operation-gou-zi](./#zhu-ce-operation-gou-zi "mention")中变更类型的钩子
+* 订阅钩子，用来 [#zhu-ce-operation-gou-zi](./#zhu-ce-operation-gou-zi "mention")中订阅类型的钩子（暂时未支持调用）
+* 上传钩子，用来 [#zhu-ce-shang-chuan-gou-zi](./#zhu-ce-shang-chuan-gou-zi "mention")
+* graphql配置，用来 [#zhu-ce-graphql-fu-wu](./#zhu-ce-graphql-fu-wu "mention")
 
 3. 建议最终生成的对象按照key-value的格式
 
@@ -146,10 +150,10 @@
 }
 ```
 
-3. api.operations\[\*].path用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的operation钩子函数
-4. api.s3UploadConfiguration.name和api.s3UploadConfiguration.uploadProfiles.\*用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的上传钩子函数
+3. api.operations\[\*].path用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](./#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的operation钩子函数
+4. api.s3UploadConfiguration.name和api.s3UploadConfiguration.uploadProfiles.\*用来过滤 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](./#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成的上传钩子函数
 5. api.serverOptions.listen.port用来指定钩子服务启动端口号
-6. api.nodeOptions.nodeUrl用来 [#gou-jian-internalclient](zi-ding-yi-gou-zi.md#gou-jian-internalclient "mention")指定baseNodeUrl
+6. api.nodeOptions.nodeUrl用来 [#gou-jian-internalclient](./#gou-jian-internalclient "mention")指定baseNodeUrl
 
 ### 解析全局参数
 
@@ -202,7 +206,7 @@
 }
 ```
 
-3. 构建internalClient [#gou-jian-internalclient](zi-ding-yi-gou-zi.md#gou-jian-internalclient "mention")
+3. 构建internalClient [#gou-jian-internalclient](./#gou-jian-internalclient "mention")
 4. 将全局参数和internalClient传递到后续请求中，方便后续钩子函数直接访问
 5. 全局错误统一处理，返回json格式如下
 
@@ -216,8 +220,8 @@
 
 1. 使用http框架封装一个构造请求和处理响应的函数
 2. 设置请求Method=POST和Content-Type=application/json
-3. 设置请求URL=${baseNodeUrl}/internal/operations/${operationPath}，其中baseNodeUrl为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")serverOptions.nodeUrl的值，operationPath为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")api.operations\[\*].path路径。
-4. 请求参数，如下。其中input的入参为 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成出operation入参的结构体/对象
+3. 设置请求URL=${baseNodeUrl}/internal/operations/${operationPath}，其中baseNodeUrl为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](./#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")serverOptions.nodeUrl的值，operationPath为 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](./#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")api.operations\[\*].path路径。
+4. 请求参数，如下。其中input的入参为 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](./#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成出operation入参的结构体/对象
 
 ```json
 {
@@ -233,7 +237,7 @@
 }
 ```
 
-4. 响应结果，如下。其中data的返回结果为 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](zi-ding-yi-gou-zi.md#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成出operation返回的结构体/对象
+4. 响应结果，如下。其中data的返回结果为 [#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma](./#shou-xi-bing-shi-yong-handlerbars-yu-fa-sheng-cheng-dai-ma "mention")生成出operation返回的结构体/对象
 
 ```json
 {
@@ -247,7 +251,7 @@
 }
 ```
 
-5. 用途：在钩子服务中使用飞布发布的接口，若存在钩子会调用 [#zhu-ce-operation-gou-zi](zi-ding-yi-gou-zi.md#zhu-ce-operation-gou-zi "mention")的函数
+5. 用途：在钩子服务中使用飞布发布的接口，若存在钩子会调用 [#zhu-ce-operation-gou-zi](./#zhu-ce-operation-gou-zi "mention")的函数
 
 ### 注册全局钩子
 
@@ -437,6 +441,14 @@
 
 前置和后置的四个钩子中返回均会改写clientRequestHeaders（后续全局参数中headers均会改变）
 
+局部钩子目的是扩展OPEARTION的能力，分别在“OPEARTION执行”前后执行，主要用途是参数校验和副作用触发，如创建文章后发送邮件通知审核。
+
+详情见如下流程图。
+
+![](../../../assets/hook-flow.png)
+
+前置钩子在 "执行OPERATION"前执行，可校验参数或修改输入参数。
+
 1. 前置普通钩子
 
 * 路径：/operation/${operationPath}/preResolve
@@ -532,6 +544,8 @@
 
 * 用途：模拟数据，此钩子打开会中断后置钩子执行
 
+后置钩子在 "执行OPERATION" 后执行，可触发自定义操作或修改响应结果。
+
 5. 后置普通钩子
 
 * 路径：/operation/${operationPath}/postResolve
@@ -590,7 +604,7 @@
 * 出参：返回html页面，将下面的文件读取动态修改其中${graphqlEndpoint}为web界面请求路径
 * html文件&#x20;
 
-{% file src="../../.gitbook/assets/helix.html" %}
+{% file src="../../../.gitbook/assets/helix.html" %}
 
 2. 内省和访问（POST请求）
 
@@ -607,7 +621,7 @@
 
 * 出参：使用对应sdk的返回graphql.result
 * 用途：自定义数据源，处理复杂业务，内省后可以在飞布中提供api以供使用
-* 注意：请求的参数需要结合 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")中graphql配置的graphql.schema结合使用，组装对应语言的graphql-sdk需要的params
+* 注意：请求的参数需要结合 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](./#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")中graphql配置的graphql.schema结合使用，组装对应语言的graphql-sdk需要的params
 
 ### 注册健康检查
 
