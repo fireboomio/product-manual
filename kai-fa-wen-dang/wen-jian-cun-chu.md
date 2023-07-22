@@ -18,7 +18,7 @@
 
 环境准备请参考：
 
-[#wen-jian-cun-chu-s3](../huan-jing-zhun-bei.md#wen-jian-cun-chu-s3 "mention")
+[#wen-jian-cun-chu-s3](../huan-jing-zhun-bei/#wen-jian-cun-chu-s3 "mention")
 
 ## 快速操作
 
