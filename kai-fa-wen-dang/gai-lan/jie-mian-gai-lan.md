@@ -64,9 +64,9 @@
   * 允许头：允许跨域访问的请求头，默认全部（\*）
   * <mark style="color:red;">跨域时间：跨域访问OPTION请求的有效时间，单位秒</mark>
 * 环境变量：环境变量的增删改查，用于保证私密数据的安全
-  * 环境变量列表中存在两个内置变量，其中变量prismaEngineVersion主要作用是维护prisma的引擎的版本信息，变量prismaVersion主要作用是维护prisma的版本信息
-  * 可手动添加变量，变量名：GITHUB\_RAW\_PROXY\_URL，变量值：raw.fastgit.org，主要作用是加速访问sdk市场
-  * 变量名：GITHUB\_PROXY\_URL，变量值：hub.fastgit.xyz，主要作用是加速git pull
+  * 环境变量列表中存在内置变量，其中变量prismaEngineVersion主要作用是维护prisma的引擎的版本信息，变量prismaVersion主要作用是维护prisma的版本信息
+  * 可手动添加变量
+  * 环境变量也可以在钩子服务中直接引用
 * 版本：展示系统版本和依赖库的版本信息
 
 
