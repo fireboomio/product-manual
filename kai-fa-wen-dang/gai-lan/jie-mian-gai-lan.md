@@ -44,7 +44,7 @@
 
 设置页用来进行系统设置。
 
-<figure><img src="../../.gitbook/assets/image (17).png" alt=""><figcaption><p>设置页</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (17) (2).png" alt=""><figcaption><p>设置页</p></figcaption></figure>
 
 * 外观：设置语言，当前支持中文和英文
 * 系统：

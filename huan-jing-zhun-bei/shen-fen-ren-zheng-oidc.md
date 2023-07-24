@@ -12,7 +12,7 @@
 
 配置登录回调 URL：http://localhost:9991/auth/cookie/callback/authing（其中auth0可修改为其他）
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (3).png" alt=""><figcaption></figcaption></figure>
 
 在飞布身份验证模块，进行新增身份验证操作，将Authing中获取的信息填写至对应的输入框中，保存完成即可（新增页面的供应商ID对应登录回调地址中的authing）
 

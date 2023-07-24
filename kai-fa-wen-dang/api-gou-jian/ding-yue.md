@@ -23,7 +23,7 @@
    1. 无重复：点击“全部创建”则生成所有API
    2. 重复：选择“跳过已有API”则只生成不存在的API；选择“全部覆盖”则重新生成所有API
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>批量新建页面</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (11).png" alt=""><figcaption><p>批量新建页面</p></figcaption></figure>
 
 ## 原理解析
 

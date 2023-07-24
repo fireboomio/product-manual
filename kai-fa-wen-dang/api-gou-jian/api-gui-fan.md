@@ -172,4 +172,4 @@ POST https://<hostname>/s3/<storageID>/upload
 
 响应包含一个带有字段`fileKeys`的json对象，该对象是上传文件生成的id列表。
 
-[wen-jian-cun-chu.md](../wen-jian-cun-chu.md "mention")
+[wen-jian-cun-chu](../wen-jian-cun-chu/ "mention")

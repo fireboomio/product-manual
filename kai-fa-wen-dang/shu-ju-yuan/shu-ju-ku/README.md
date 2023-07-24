@@ -20,7 +20,7 @@ Prisma ORM一般指的是基于Ts对Prisma Engine的封装，而飞布只使用�
 
 Prisma查询引擎是一个常驻WEB SERVER，用于执行GraphQL Operation（通过HTTP协议或NODE API）。本质上是将GraphQL Operation转换成SQL语句，发送至数据库执行，并将查询结果拼装成JSON响应返回。下图是Prisma Client调用查询引擎的原理图。
 
-<figure><img src="../../../.gitbook/assets/image (2).png" alt=""><figcaption><p>查询引擎Ts调用原理图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (4).png" alt=""><figcaption><p>查询引擎Ts调用原理图</p></figcaption></figure>
 
 Prisma Client用TS函数封装了GraphQL Operation。下图的`findMany`，在飞布中对应如下GraphQL Operation。
 
@@ -68,7 +68,7 @@ Prisma内省引擎是一个二进制命令行，用于内省数据库，获得�
 
 对应`prisma db pull`命令。
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>内省引擎Ts调用原理图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (4).png" alt=""><figcaption><p>内省引擎Ts调用原理图</p></figcaption></figure>
 
 了解更多，前往 [Prisma 文档](https://www.prisma.io/docs/concepts/components/introspection) 查看。
 
