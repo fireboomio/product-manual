@@ -17,9 +17,24 @@
 
 * 以开发模式启动，不可用于正式环境！
 
+{% tabs %}
+{% tab title="Linux/Mac" %}
+```bash
+docker run -it -v $(pwd)/store:/fbserver/store \
+		-v $(pwd)/upload:/fbserver/upload \
+		-v $(pwd)/template:/fbserver/template \
+		-v $(pwd)/exported:/fbserver/exported \
+		-v $(pwd)/custom-go:/fbserver/custom-go \
+		-v $(pwd)/custom-ts:/fbserver/custom-ts \
+		-p 9123:9123 -p 9991:9991 \
+		 fireboomapi/fireboom_server:latest dev 
+```
+{% endtab %}
+
+{% tab title="windows/Powershell" %}
 ```bash
 docker run -it -v ${pwd}/store:/fbserver/store \
-		-v ${pwd}upload:/fbserver/upload \
+		-v ${pwd}/upload:/fbserver/upload \
 		-v ${pwd}/template:/fbserver/template \
 		-v ${pwd}/exported:/fbserver/exported \
 		-v ${pwd}/custom-go:/fbserver/custom-go \
@@ -27,13 +42,13 @@ docker run -it -v ${pwd}/store:/fbserver/store \
 		-p 9123:9123 -p 9991:9991 \
 		 fireboomapi/fireboom_server:latest dev 
 ```
+{% endtab %}
+{% endtabs %}
 
 * 以生产模式启动
 
 ```bash
-docker run -it -v 你的目录:需要挂载的目录
-		 -p 9123:9123 -p 9991:9991 \
-		fireboom_server:latest start 
+docker run -it -p 9123:9123 -p 9991:9991 fireboom_server:latest start 
 ```
 
 **挂载目录**
