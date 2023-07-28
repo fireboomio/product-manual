@@ -1,6 +1,6 @@
 # Docker部署
 
-当前Docker镜像支持开发模式和生产模式。
+当前Docker镜像支持开发模式`dev`和生产模式`start`。
 
 * 开发模式内置了golang和nodejs环境；
 * 生产模式提供了飞布运行所必须得环境；
@@ -17,9 +17,10 @@
 
 * 以开发模式启动，不可用于正式环境！
 
-{% tabs %}
-{% tab title="Linux/Mac" %}
 ```bash
+# 1，前往工作目录
+cd workspace
+# 2，以挂载目录的方式运行容器
 docker run -it -v $(pwd)/store:/fbserver/store \
 		-v $(pwd)/upload:/fbserver/upload \
 		-v $(pwd)/template:/fbserver/template \
@@ -29,21 +30,10 @@ docker run -it -v $(pwd)/store:/fbserver/store \
 		-p 9123:9123 -p 9991:9991 \
 		 fireboomapi/fireboom_server:latest dev 
 ```
-{% endtab %}
 
-{% tab title="windows/Powershell" %}
-```bash
-docker run -it -v ${pwd}/store:/fbserver/store \
-		-v ${pwd}/upload:/fbserver/upload \
-		-v ${pwd}/template:/fbserver/template \
-		-v ${pwd}/exported:/fbserver/exported \
-		-v ${pwd}/custom-go:/fbserver/custom-go \
-		-v ${pwd}/custom-ts:/fbserver/custom-ts \
-		-p 9123:9123 -p 9991:9991 \
-		 fireboomapi/fireboom_server:latest dev 
-```
-{% endtab %}
-{% endtabs %}
+{% hint style="info" %}
+若是windows系统，请将 **$(pwd)** 替换为**`${pwd}`**
+{% endhint %}
 
 * 以生产模式启动
 
@@ -53,7 +43,7 @@ docker run -it -p 9123:9123 -p 9991:9991 fireboom_server:latest start
 
 **挂载目录**
 
-工作目录为：fbserver，根据需求挂载下述子目录。
+容器的工作目录为：`./fbserver`，根据需求挂载下述子目录。
 
 * 存储目录： store、upload、exported
 * 钩子目录：custom-go 或 custom-ts  （不用钩子，无需暴露）
