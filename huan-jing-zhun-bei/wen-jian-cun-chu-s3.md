@@ -38,7 +38,7 @@
 
 在存储桶列表页，进行创建存储桶操作
 
-<figure><img src="../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (2) (3).png" alt=""><figcaption></figcaption></figure>
 
 存储桶创建完成后，可在存储桶列表中点击对应的配置管理按钮，即可获取存储桶名称、所属地域、访问域名信息
 

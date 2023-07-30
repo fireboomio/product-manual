@@ -42,7 +42,7 @@
 <pre class="language-bash"><code class="lang-bash"><strong># 拉取镜像
 </strong><strong>docker pull fireboomapi/fireboom_server:latest
 </strong><strong># 运行镜像
-</strong>docker run  -p 9123:9123 -p 9991:9991 -p 9992:9992 fireboomapi/fireboom_server:latest test
+</strong>docker run -it -p 9123:9123 -p 9991:9991 fireboomapi/fireboom_server:latest dev 
 </code></pre>
 
 打开控制面板，使用如下地址进行访问：
@@ -227,14 +227,14 @@ subscription MySubscription {
 
 ### 数据库操作
 
-* [数据库建模](../kai-fa-wen-dang/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)：学习如何使用飞布建模数据库，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-schema/data-model)
-* [数据库CRUD](../kai-fa-wen-dang/api-gou-jian/ke-shi-hua-kai-fa.md#chao-tu-schema-mian-ban)：了解数据库表结构和graphql的映射关系，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-client/crud) 。
+* [数据库建模](../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)：学习如何使用飞布建模数据库，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-schema/data-model)
+* [数据库CRUD](../ji-chu-ke-shi-hua-kai-fa/api-gou-jian/ke-shi-hua-kai-fa.md#chao-tu-schema-mian-ban)：了解数据库表结构和graphql的映射关系，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-client/crud) 。
 
 ### 业务逻辑
 
 实现自定义业务逻辑有几种不同的选项，具体取决于你的用例。
 
-* [API钩子](../kai-fa-wen-dang/gou-zi-ji-zhi/)：在请求API的生命周期中，插入代码，以更改或扩展API行为，例如用户新建文章后，通过后置钩子发送邮件通知管理员审核。
-* [API数据源](../kai-fa-wen-dang/shu-ju-yuan/san-fang-api/)：除数据库外，飞布支持集成REST API和GraphQL API，开发者可以自行用喜欢的方式实现自定义逻辑的API，但无需考虑权限问题。飞布此时变身API网关，作为BFF层对外提供接口。
-* [自定义数据源](../kai-fa-wen-dang/shu-ju-yuan/san-fang-api/zi-ding-yi-api.md)：飞布还内置了自定义数据源，开发者可以直接编写脚本扩展逻辑。它本质上也是一个GraphQL API。
-* [组合式API](../kai-fa-wen-dang/gou-zi-ji-zhi/node-gou-zi/zu-he-shi-api.md)：适用于复杂业务逻辑的构建，当前只支持TS hooks。
+* [API钩子](../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/)：在请求API的生命周期中，插入代码，以更改或扩展API行为，例如用户新建文章后，通过后置钩子发送邮件通知管理员审核。
+* [API数据源](../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/san-fang-api/)：除数据库外，飞布支持集成REST API和GraphQL API，开发者可以自行用喜欢的方式实现自定义逻辑的API，但无需考虑权限问题。飞布此时变身API网关，作为BFF层对外提供接口。
+* [自定义数据源](../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/san-fang-api/zi-ding-yi-api.md)：飞布还内置了自定义数据源，开发者可以直接编写脚本扩展逻辑。它本质上也是一个GraphQL API。
+* [组合式API](../jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/node-gou-zi/zu-he-shi-api.md)：适用于复杂业务逻辑的构建，当前只支持TS hooks。
