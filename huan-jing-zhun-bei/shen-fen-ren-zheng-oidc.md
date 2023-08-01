@@ -77,11 +77,11 @@ Logoto 作为 Auth0 的开源替代方案，致力于为所有企业和个人提
 
     <figure><img src="../.gitbook/assets/WX20230602-143039.png" alt=""><figcaption></figcaption></figure>
 2. 登录后点击这里切换下语言\
-   ![](<../.gitbook/assets/image (9).png>)
+   ![](<../.gitbook/assets/image (9) (2).png>)
 3.  点击“全部应用”，选择“传统网页应用”创建一个应用\
 
 
-    <figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+    <figure><img src="../.gitbook/assets/image (12) (1).png" alt=""><figcaption></figcaption></figure>
 4.  跳过示例，在应用信息页修改应用名称，并添加“重定向 URIs”，该值可以从 Fireboom 认证源页面获取到（在第5步图中可以看到登录回调地址为 [http://localhost:9991/auth/cookie/callback/logto](http://localhost:9991/auth/cookie/callback/logto) ）\
 
 

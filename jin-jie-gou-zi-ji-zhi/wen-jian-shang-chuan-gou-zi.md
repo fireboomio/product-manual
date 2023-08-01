@@ -4,7 +4,7 @@
 
 首先，我们看下文件上传的时序图。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (4).png" alt=""><figcaption></figcaption></figure>
 
 它涉及4部分，客户端、飞布服务、钩子服务和OSS服务。
 

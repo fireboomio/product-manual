@@ -98,6 +98,13 @@
 * [路线图](lu-xian-tu.md)
 * [常见问题](https://github.com/fireboomio/product-manual/discussions/categories/q-a)
 
+## 核心概念
+
+* [GraphQL](he-xin-gai-nian/graphql.md)
+* [超图](he-xin-gai-nian/chao-tu.md)
+* [请求时序图](he-xin-gai-nian/qing-qiu-shi-xu-tu.md)
+* [服务端Operation](he-xin-gai-nian/fu-wu-duan-operation.md)
+
 ## 二次开发
 
 * [模板规范](er-ci-kai-fa/mo-ban-gui-fan.md)

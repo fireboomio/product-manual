@@ -229,6 +229,6 @@ query GetManyLearningLanguage {
 } 
 ```
 
-<figure><img src="../../.gitbook/assets/image (10).png" alt=""><figcaption><p>对象数组转换前返回的结果</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption><p>对象数组转换前返回的结果</p></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/737eaec541ccda943bd6484b0e4cf5a.jpg" alt=""><figcaption><p>对象数组转换后返回的结果</p></figcaption></figure>

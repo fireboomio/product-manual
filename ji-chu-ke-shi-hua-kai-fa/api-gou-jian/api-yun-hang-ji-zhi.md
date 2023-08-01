@@ -53,7 +53,7 @@
 
 <div align="center">
 
-<img src="../../.gitbook/assets/image (2) (1) (4).png" alt="内部OPERATION流程图示意图">
+<img src="../../.gitbook/assets/image (2) (1) (4) (1).png" alt="内部OPERATION流程图示意图">
 
 </div>
 
@@ -73,7 +73,7 @@ SUBSCRIPTION OPERATION不能被声明为内部。
 
 其流程图如下所示：
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
 
 ### 流程讲解
 

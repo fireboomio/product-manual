@@ -30,7 +30,7 @@ http://localhost:9991/S3/文件存储名称/upload?directory=xxx
 
 用户可通过该路由，上传文件至指定目录，目录由directory字段指定。需要注意的是，使用该路由上传文件时，必须要登录。
 
-<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (13) (4).png" alt=""><figcaption></figcaption></figure>
 
 上传文件后，返回文件的相对地址，为：
 

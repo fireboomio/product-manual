@@ -8,7 +8,7 @@
 
 飞布愿景是：极致开发体验，“飞速布署”应用。
 
-<figure><img src="../.gitbook/assets/image (8) (2).png" alt=""><figcaption><p>飞布API构建页面</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (2) (1).png" alt=""><figcaption><p>飞布API构建页面</p></figcaption></figure>
 
 如果你是后端，厌倦了做CRUD BOY的日子，希望快速成长并接受更有意义的挑战，使用飞布后，你将摆脱重复、低效的开发现状，有时间专注于更有价值的业务逻辑，实现人生更大的梦想。
 
