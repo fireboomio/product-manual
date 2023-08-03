@@ -8,7 +8,7 @@ GraphQL有两个核心概念：GraphQL schema和GraphQL OPERATION。
 
 ## GraphQL schema
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 schema指的是graphql结构定义的集合，类似数据库schema或数据库建表语句，operation指的是从schema中取的子集，类似数据库的查询sql。
 
@@ -64,7 +64,7 @@ findmanytodo既然是函数，自然有入参和出参（返回值）。其出�
 
 接下来，我们学习operation。
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 operation指的是从schema中的Query里取的子集，如果把schema queryr中的跟字段比作函数定义，那operation就是函数调用。
 
@@ -88,7 +88,7 @@ operation和SCHEMA query类型一一对应，也分为3中类型，分别是quer
 
 接下来，我们学习：如何使用基于GraphQL协议构建的服务。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Gql服务启动后，会对外暴露gql端点，其路由一般由graphql结尾。
 
