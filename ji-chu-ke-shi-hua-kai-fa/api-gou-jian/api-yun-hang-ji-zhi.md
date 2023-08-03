@@ -37,7 +37,7 @@
 
 局部钩子：每个API独立编写和启用，包括前置：preResolve、mutatingPreResolve，后置：postResolve、mutatingPostResolve，模拟钩子 mockResolve以及自定义钩子customResolve。
 
-详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/)。
+详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
 
 点击钩子开关，可启停钩子；点击钩子名称，可打开在线IDE。
 
@@ -95,4 +95,4 @@ SUBSCRIPTION OPERATION不能被声明为内部。
 
 局部钩子：每个API独立编写和启用，包括前置：preResolve、mutatingPreResolve，后置：postResolve、mutatingPostResolve。
 
-详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/)。
+详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。

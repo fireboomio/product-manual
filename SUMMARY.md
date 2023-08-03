@@ -11,7 +11,8 @@
   * [产品案例](product-introduction/product-case.md)
 * [快速入门](kuai-su-ru-men/README.md)
   * [初识飞布](kuai-su-ru-men/chu-shi-fei-bu.md)
-  * [快速上手](kuai-su-ru-men/kuai-su-shang-shou.md)
+  * [快速上手](kuai-su-ru-men/kuai-su-shang-shou/README.md)
+    * [图文版](kuai-su-ru-men/kuai-su-shang-shou/tu-wen-ban.md)
   * [词汇概览](kuai-su-ru-men/ci-hui-gai-lan.md)
   * [工作原理](kuai-su-ru-men/gong-zuo-yuan-li.md)
 
@@ -52,9 +53,7 @@
 
 ## 进阶-钩子机制
 
-* [钩子概览](jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/README.md)
-  * [钩子规范](jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/gou-zi-gui-fan/README.md)
-    * [钩子规范bak](jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/gou-zi-gui-fan/gou-zi-gui-fan.md)
+* [钩子概览](jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)
 * [OPERATION钩子](jin-jie-gou-zi-ji-zhi/operation-gou-zi.md)
 * [身份验证钩子](jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md)
 * [自定义逻辑](jin-jie-gou-zi-ji-zhi/zi-ding-yi-luo-ji.md)
@@ -107,5 +106,7 @@
 
 ## 二次开发
 
+* [钩子规范](er-ci-kai-fa/gou-zi-gui-fan/README.md)
+  * [钩子规范bak](er-ci-kai-fa/gou-zi-gui-fan/gou-zi-gui-fan.md)
 * [模板规范](er-ci-kai-fa/mo-ban-gui-fan.md)
 * [自定义模板](er-ci-kai-fa/zi-ding-yi-mo-ban.md)

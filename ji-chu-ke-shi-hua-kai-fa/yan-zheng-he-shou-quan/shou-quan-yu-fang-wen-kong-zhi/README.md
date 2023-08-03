@@ -13,7 +13,7 @@
 1. 在身份验证面板中点击“<img src="http://localhost:9123/assets/workbench/panel-role.png" alt="头像" data-size="line">”，进入“角色管理”TAB
 2. 根据业务需求添加角色，系统默认内置admin和user角色（请确保必须有1个角色）
 3. 切换到“身份鉴权”TAB，在auth目录下选择`mutatingPostAuthentication`文件
-4. 编写钩子脚本或选择预制脚本，这里设置所有用户拥有`user`权限，启动钩子，详情前往[钩子章节](../../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/)
+4. 编写钩子脚本或选择预制脚本，这里设置所有用户拥有`user`权限，启动钩子，详情前往[钩子章节](../../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)
 
 {% tabs %}
 {% tab title="TS" %}

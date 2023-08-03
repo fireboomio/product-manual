@@ -20,7 +20,7 @@
 
 这些框架都提供了丰富的功能和插件，可以方便地实现HTTP对外访问。通常来说，这些框架都支持动态注册路由和中间件，可以根据不同的URL和HTTP方法，将请求路由到相应的处理函数，从而实现动态注册HTTP对外访问。使用这些框架可以很好地提高开发效率和代码质量。
 
-### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../../../shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/ "mention")
+### 熟悉并使用handlerbars语法生成代码 [sdk-sheng-cheng](../../shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/ "mention")
 
 1. 生成钩子函数时建议使用对应语言的范型来约束出入参
 2. 模版生成最终应该包含
@@ -215,20 +215,4 @@
     "error": "error message"
 }
 ```
-
-### 注册健康检查
-
-* 路径：/health
-* 入参：无
-* 出参：
-
-```json
-{
-    "status": "ok"
-}
-```
-
-* 用途：钩子服务健康检查使用
-
-
 

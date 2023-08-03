@@ -41,7 +41,7 @@ query GetOneTodo($id: Int!) @internalOperation {
 
 `@internalOperation`仅能修饰QUERY 和 MUTATION OPERATION 。
 
-详情见 [钩子](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi/)。
+详情见 [钩子](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
 
 ## 入参指令
 
