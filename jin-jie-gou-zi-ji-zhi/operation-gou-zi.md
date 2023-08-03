@@ -21,6 +21,27 @@
 
 <figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>飞布服务请求流程</p></figcaption></figure>
 
+为了方便理解，我们采用如下OPERATION说明情况。
+
+{% code title="Weather.graphql" %}
+```graphql
+query MyQuery($capital: String!) {
+  weather_getCityByName(name: $capital) {
+    weather {
+      summary {
+        title
+        description
+      }
+      temperature {
+        actual
+        feelsLike
+      }
+    }
+  }
+}
+```
+{% endcode %}
+
 ## 全局钩子
 
 ### 网关钩子
@@ -37,13 +58,13 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 
 # JSON request
 {
-  "request": { // 与全局参数路径__wg.clientRequest格式一致
-    "method": "POST",
-    "requestURI":"/operations/Weather",
+  "request": { # 客户端请求对象，即请求9991端口的参数
+    "method": "GET", 
+    "requestURI":"/operations/Weather?capital=DE",
     "headers": {
       "Content-Type": "application/json; charset=utf-8"
-    },
-    "body": { "data": { "country": { "code": "DE", "name": "Germany", "capital": "Berlin" } } }
+    }，
+    "body":null
   },
   "operationName": "Weather",
   "operationType": "query"
@@ -54,30 +75,40 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
   "op": "Weather",
   "hook": "beforeOriginRequest",
   "response": {
-    "skip": false,
-    "cancel": false,
-    "request": { // 与全局参数路径__wg.clientRequest格式一致
-      "statusCode": 200,
-      "status": "200 OK",
-      "method": "POST",
-      "requestURI": "https://weather-api.fireboom.io/",
+    "skip": false, # 如果true，忽略该钩子的响应
+    "cancel": false, # 如果true，取消请求
+    "request": { # 修改后的客户端请求对象
+      "method": "GET",
+      "requestURI":"/operations/Weather?capital=DE",
       "headers": {
         "content-type": "application/json; charset=utf-8"
       },
-      "body": {
-        "data": {
-          "weather_getCityByName": {
-            "weather": {
-              "summary": { "title": "Clear", "description": "clear sky" },
-              "temperature": { "actual": 290.45, "feelsLike": 289.23 }
-            }
-          }
-        }
-      }
+      "body":null
     }
   }
 }
 ```
+
+{% tabs %}
+{% tab title="nodejs" %}
+暂未支持
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func BeforeOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
+	// 实现OPEN API能力
+	if key, ok := body.Request.Headers["key1"]; ok {
+		realJwt := getAccessTokenByOpenKEY(key)
+		body.Request.Headers["Authorization"] = "Bearer " + realJwt
+		hook.Logger().Infof("match real JWT [%s] for key [%s]", realJwt, key)
+	}
+	// body.Request对应上面的response.request
+	return body.Request, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### 数据源前置钩子
 
@@ -101,9 +132,9 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "Content-Type": "application/json",
       "X-Request-Id": "83850325-9638-e5af-f27d-234624aa1824"
     },
-    "body": {
+    "body": { # 请求数据源的body
       "variables": {
-        "capital": "Berlin"
+        "capital": "beijing"
       },
       "query": "query($capital: String!){weather_getCityByName: getCityByName(name: $capital){weather {summary {title description} temperature {actual feelsLike}}}}"
     }
@@ -113,7 +144,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": { # 全局参数
     "clientRequest": { # 原始客户端请求，即请求9991端口的request对象
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "application/json",
         "Content-Type": "application/json"
@@ -133,7 +164,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "response": {
     "skip": false, # 如果true，忽略该钩子的响应
     "cancel": false, # 如果true，取消请求
-    "request": {
+    "request": { # 修改访问数据源的请求对象
       "method": "POST",
       "requestURI": "https://weather-api.fireboom.com/",
       "headers": {
@@ -142,13 +173,40 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
         "X-Request-Id": "83850325-9638-e5af-f27d-234624aa1824"
       },
       "body": {
-        "variables": { "capital": "Berlin" },
+        "variables": { "capital": "beijing" },
         "query": "query($capital: String!){weather_getCityByName: getCityByName(name: $capital){weather {summary {title description} temperature {actual feelsLike}}}}"
       }
     }
   }
 }
 ```
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
+	fmt.Println("OnOriginRequest")
+	// 修改请求数据源的请求头
+	if body.Request.RequestURI == "https://api.openweathermap.org/data/2.5/weather?appid=322110335eaafeea8b31d8263910ac70&q=beijing" {
+		body.Request.Headers["test1"] = "sss1"
+	} else if body.Request.RequestURI == "http://localhost:58688/" {
+		body.Request.Headers["test2"] = "sss2"
+	} else if body.Request.RequestURI == "https://fireboom-gql.ansoncode.repl.co/graphql" {
+		body.Request.Headers["test3"] = "sss3"
+	} else {
+		fmt.Println("未支持数据源...", body.Request.RequestURI)
+	}
+	fmt.Println("数据源:", body.Request.RequestURI)
+	// body.Request对应上面JSON response的response.request
+	return body.Request, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### 数据源后置钩子
 
@@ -168,18 +226,27 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
     "statusCode": 200,
     "status": "200 OK",
     "method": "POST",
-    "requestURI": "https://countries.trevorblades.com/",
+    "requestURI": "https://weather-api.fireboom.com/",
     "headers": {
       "Content-Type": "application/json; charset=utf-8"
     },
-    "body": { "data": { "country": { "code": "DE", "name": "Germany", "capital": "Berlin" } } }
+    "body": {
+      "data": { # 从数据源获取的数据
+            "weather_getCityByName": {
+              "weather": {
+                "summary": { "title": "Clear", "description": "clear sky" },
+                "temperature": { "actual": 290.45, "feelsLike": 289.23 }
+            }
+          }
+        }
+    }
   },
   "operationName": "Weather",
   "operationType": "query",
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -207,7 +274,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
         "date": "Mon, 01 May 2023 10:46:39 GMT"
       },
       "body": {
-        "data": {
+        "data": { # 钩子修改后的数据
           "weather_getCityByName": {
             "weather": {
               "summary": { "title": "Clear", "description": "clear sky" },
@@ -221,6 +288,33 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 }
 ```
 
+
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) {
+	fmt.Println("OnOriginResponse")
+	if body.Response.RequestURI == "https://api.openweathermap.org/data/2.5/weather?appid=322110335eaafeea8b31d8263910ac70&q=beijing" {
+		fmt.Println("协议转换，将xml数据转成JSON")
+	} else if body.Response.RequestURI == "http://localhost:58688/" {
+
+	} else if body.Response.RequestURI == "https://fireboom-gql.ansoncode.repl.co/graphql" {
+
+	} else {
+		fmt.Println("未支持数据源...", body.Response.RequestURI)
+	}
+	// body.Response对应response.response
+	return body.Response, nil
+}
+```
+{% endtab %}
+{% endtabs %}
+
 ## 局部钩子
 
 与全局钩子不同，每个OPERTION都有对应的局部钩子，由开关单独控制。
@@ -233,8 +327,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 
 preResolve 钩子在参数注入后执行，能拿到请求入参，常用于入参校验。
 
-```http
-http://{serverAddress}/operation/{operation}/preResolve
+<pre class="language-http"><code class="lang-http">http://{serverAddress}/operation/{operation}/preResolve
 
 # Example:: http://localhost:9992/operation/Weather/preResolve
 
@@ -246,7 +339,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -259,16 +352,39 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" } # (可选)请求的输入参数
+  "input": { "capital": "beijing" } # (可选)请求的输入参数
 }
 
 # JSON response
 {
-  "setClientRequestHeaders": ${__wg.clientRequest.headers} // 与全局参数__wg.clientRequest.headers格式保持一致
+<strong>  "setClientRequestHeaders": { # 设置值后，可传递给后续的钩子
+</strong>        "Accept": "text/html"
+  },
   "op": "Weather",
   "hook": "preResolve"
 }
+</code></pre>
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func PreResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("PreResolve")
+
+	hook.Logger().Info("请求参数是：", body.Input.Capital)
+	if body.Input.Capital != "beijing" {
+		msg := fmt.Sprintf("入参必须是beijing，当前入参是：%s", body.Input.Capital)
+		return body, errors.New(msg)
+	}
+	return body, nil
+}
 ```
+{% endtab %}
+{% endtabs %}
 
 #### 前置修改入参钩子
 
@@ -287,7 +403,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -300,16 +416,32 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" }
+  "input": { "capital": "beijing" }
 }
 
 # JSON response
 {
   "op": "Weather",
   "hook": "mutatingPreResolve",
-  "input": { "code": "US" } # 用来修改入参
+  "input": { "capital": "修改为固定值" } # 用来修改入参
 }
 ```
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func MutatingPreResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("MutatingPreResolve")
+	body.Input.Capital = "修改为固定值"
+	return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### 后置钩子
 
@@ -332,7 +464,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -345,7 +477,17 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" }
+  "input": { "capital": "beijing" },
+   "response": {
+    "data": {
+      "weather_getCityByName": {
+        "weather": {
+          "summary": { "title": "Clear", "description": "clear sky" },
+          "temperature": { "actual": 290.45, "feelsLike": 289.23 }
+        }
+      }
+    }
+  }
 }
 
 # JSON response
@@ -354,6 +496,23 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "hook": "postResolve"
 }
 ```
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func PostResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("PostResolve")
+	// 可以拿到入参和响应
+	hook.Logger().Info("发送一封邮件：", body.Input, body.Response.Data)
+	return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 #### 后置修改出参钩子
 
@@ -372,7 +531,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -385,12 +544,14 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" },
+  "input": { "capital": "beijing" },
   "response": {
     "data": {
-      "weather": {
-        "temperature": 10,
-        "description": "Sunny"
+      "weather_getCityByName": {
+        "weather": {
+          "summary": { "title": "Clear", "description": "clear sky" },
+          "temperature": { "actual": 290.45, "feelsLike": 289.23 }
+        }
       }
     }
   }
@@ -401,18 +562,39 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "op": "Weather",
   "hook": "mutatingPostResolve",
   "response": {
-    "data": { # 修改响应的结果
-      "weather": {
-        "temperature": 10,
-        "description": "Sunny"
+    "data": { # 修改响应的结果（响应结构可以变化！！！）
+      "weather_getCityByName": {
+        "weather": {
+          "summary": { "title": "Clear", "description": "修改响应值" },
+          "temperature": { "actual": 290.45, "feelsLike": 289.23 }
+        }
       }
     }
   }
 }
 ```
 
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func MutatingPostResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("MutatingPostResolve")
+	if body.Input.Capital == "beijing" {
+		body.Response.Data.Weather_getCityByName.Weather.Summary.Description = "修改响应值"
+		return body, nil
+	}
+	return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}
+
 {% hint style="info" %}
-该钩子可以修改响应结构体，例如增加字段。当前仅node钩子支持，golang钩子暂不支持。
+nodejs钩子可以修改响应形状，golang钩子暂未支持。
 {% endhint %}
 
 ### 模拟钩子
@@ -432,7 +614,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -445,7 +627,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" }
+  "input": { "capital": "beijing" }
 }
 
 # JSON response
@@ -454,14 +636,42 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "hook": "mockResolve",
   "response": {
     "data": { # 模拟的数据
-      "weather": {
-        "temperature": 10,
-        "description": "Sunny"
+      "weather_getCityByName": {
+        "weather": {
+          "summary": { "title": "Clear", "description": "mockdata" }
+        }
       }
     }
   }
 }
 ```
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func MockResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("MockResolve")
+	body.Response = &base.OperationBodyResponse[generated.WeatherResponseData]{
+		Data: generated.WeatherResponseData{
+			Weather_getCityByName: generated.WeatherResponseData_weather_getCityByName{
+				Weather: generated.WeatherResponseData_weather_getCityByName_weather{
+					Summary: generated.WeatherResponseData_weather_getCityByName_weather_summary{
+						Description: "mock data",
+						Title:       "Clear",
+					},
+				},
+			},
+		},
+	}
+	return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ### 自定义钩子
 
@@ -487,7 +697,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "__wg": {
     "clientRequest": {
       "method": "GET",
-      "requestURI": "/operations/Weather?code=DE",
+      "requestURI": "/operations/Weather?code=beijing",
       "headers": {
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding": "gzip, deflate, br",
@@ -500,7 +710,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
       "userID": "1"
     }
   },
-  "input": { "code": "DE" }
+  "input": { "capital": "beijing" }
 }
 
 # JSON response
@@ -509,11 +719,48 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
   "hook": "customResolve",
   "response": { # 若response不为空会中断后置钩子执行
     "data": {
-      "weather": {
-        "temperature": 10,
-        "description": "Sunny"
+      "weather_getCityByName": {
+        "weather": {
+          "summary": { "title": "Clear", "description": "custom data" }
+        }
       }
     }
   }
 }
 ```
+
+
+
+{% tabs %}
+{% tab title="nodejs" %}
+
+{% endtab %}
+
+{% tab title="golang" %}
+```go
+func CustomResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
+	hook.Logger().Info("CustomResolve")
+	// 1，如果返回null,则继续接下来的逻辑
+	if body.Input.Capital == "beijing" {
+		hook.Logger().Info("写一些自定义逻辑")
+		// 继续后面的流程
+		return nil, nil
+	}
+	// 2，类似mock钩子
+	body.Response = &base.OperationBodyResponse[generated.WeatherResponseData]{
+		Data: generated.WeatherResponseData{
+			Weather_getCityByName: generated.WeatherResponseData_weather_getCityByName{
+				Weather: generated.WeatherResponseData_weather_getCityByName_weather{
+					Summary: generated.WeatherResponseData_weather_getCityByName_weather_summary{
+						Description: "custom data",
+						Title:       "Clear",
+					},
+				},
+			},
+		},
+	}
+	return body, nil
+}
+```
+{% endtab %}
+{% endtabs %}

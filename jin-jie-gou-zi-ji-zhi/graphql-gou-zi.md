@@ -1,4 +1,6 @@
-# 自定义逻辑
+# graphql钩子
+
+###
 
 ### 注册graphql服务
 
@@ -26,4 +28,4 @@
 
 * 出参：使用对应sdk的返回graphql.result
 * 用途：自定义数据源，处理复杂业务，内省后可以在飞布中提供api以供使用
-* 注意：请求的参数需要结合 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](zi-ding-yi-luo-ji.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")中graphql配置的graphql.schema结合使用，组装对应语言的graphql-sdk需要的params
+* 注意：请求的参数需要结合 [#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian](graphql-gou-zi.md#jie-xi-fei-bu-sheng-cheng-de-json-pei-zhi-wen-jian "mention")中graphql配置的graphql.schema结合使用，组装对应语言的graphql-sdk需要的params

@@ -54,11 +54,6 @@
 ## 进阶-钩子机制
 
 * [钩子概览](jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)
-* [OPERATION钩子](jin-jie-gou-zi-ji-zhi/operation-gou-zi.md)
-* [身份验证钩子](jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md)
-* [自定义逻辑](jin-jie-gou-zi-ji-zhi/zi-ding-yi-luo-ji.md)
-* [文件上传钩子](jin-jie-gou-zi-ji-zhi/wen-jian-shang-chuan-gou-zi.md)
-* [内部调用](jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md)
 * [使用钩子](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/README.md)
   * [Node钩子](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/node-gou-zi/README.md)
     * [组合式API](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/node-gou-zi/zu-he-shi-api.md)
@@ -66,6 +61,11 @@
     * [Proxy](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/golang-gou-zi/proxy.md)
   * [Python钩子](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/python-gou-zi.md)
   * [Java钩子](jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/java-gou-zi.md)
+* [OPERATION钩子](jin-jie-gou-zi-ji-zhi/operation-gou-zi.md)
+* [身份验证钩子](jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md)
+* [graphql钩子](jin-jie-gou-zi-ji-zhi/graphql-gou-zi.md)
+* [文件上传钩子](jin-jie-gou-zi-ji-zhi/wen-jian-shang-chuan-gou-zi.md)
+* [内部调用](jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md)
 
 ## 使用-部署上线
 

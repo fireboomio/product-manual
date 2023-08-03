@@ -13,33 +13,3 @@
 <figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>飞布服务与钩子服务调用关系</p></figcaption></figure>
 
 不仅，飞布可以调用钩子，钩子也可以调用飞布。此时，飞布相对于钩子是一个数据代理服务，同时飞布的所有OPERATION都可以供钩子使用。在另一个角度上，钩子也可以认为是serverless架构。
-
-接下来，我们学习Fireboom调用钩子时的HTTP请求协议——即钩子服务接口。
-
-[operation-gou-zi.md](operation-gou-zi.md "mention")
-
-[shen-fen-yan-zheng-gou-zi.md](shen-fen-yan-zheng-gou-zi.md "mention")
-
-[zi-ding-yi-luo-ji.md](zi-ding-yi-luo-ji.md "mention")
-
-[wen-jian-shang-chuan-gou-zi.md](wen-jian-shang-chuan-gou-zi.md "mention")
-
-[nei-bu-tiao-yong.md](nei-bu-tiao-yong.md "mention")
-
-在开始前我们先学习钩子服务的第一个协议：健康检查接口
-
-### 健康检查接口
-
-{% swagger method="get" path="health" baseUrl="http://127.0.0.1:9992/" summary="健康检查接口" %}
-{% swagger-description %}
-检查钩子服务健康状态，用于在界面上展示钩子是否已启动
-{% endswagger-description %}
-
-{% swagger-response status="200: OK" description="" %}
-```json
-{
-    "status": "ok"
-}
-```
-{% endswagger-response %}
-{% endswagger %}
