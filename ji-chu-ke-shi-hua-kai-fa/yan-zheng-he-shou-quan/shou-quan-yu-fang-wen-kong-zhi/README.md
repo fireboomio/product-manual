@@ -128,4 +128,4 @@ query GetOneTodo($id: Int!) @rbac(requireMatchAny: [admin]) {
 
 ## 下一步
 
-飞布提供了完整的后台管理示例，您可以[参考代码](https://github.com/fireboomio/case-element-admin)实现自己的管理后台。
+飞布提供了完整的后台管理示例，您可以[参考代码](https://github.com/fireboomio/fb-admin)实现自己的管理后台。

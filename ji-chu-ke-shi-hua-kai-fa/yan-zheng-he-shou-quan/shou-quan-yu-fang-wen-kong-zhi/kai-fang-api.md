@@ -56,4 +56,4 @@ body 参数结构为
 
 要实现前面说的角色绑定接口功能，我们需要先在查询角色列表时调用接口 1，在给具体角色绑定 API 接口列表时调用接口 2。
 
-具体使用方法可参考 [refine 管理后台案例](../../../zui-jia-shi-jian/guan-li-hou-tai-refine.md)
+具体使用方法可参考 [refine 管理后台案例](../../../zui-jia-shi-jian/fireboom-admin/guan-li-hou-tai-refine.md)

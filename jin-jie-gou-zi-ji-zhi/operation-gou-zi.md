@@ -19,7 +19,7 @@
 
 ## HTTP请求流程图
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>飞布服务请求流程</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>飞布服务请求流程</p></figcaption></figure>
 
 为了方便理解，我们采用如下OPERATION说明情况。
 

@@ -51,5 +51,28 @@
 
 在超图中选择queryRaw，勾选query字段后，插入sql查询语句，执行后响应内容中会显示匹配记录
 
+```graphql
+# 执行查询SQL，返回值是对象数组
+mutation MyQuery($id:Int=1) {
+  todo_queryRaw(query: "SELECT *,rowid \"NAVICAT_ROWID\" FROM \"main\".\"Todo\"  WHERE id=$1", parameters: [$id])
+} 
+
+# 执行变更SQL，返回值是包含count字段的对象
+# 用法1
+mutation MyQuery($title: String = "beijing",$id:Int=1) {
+  todo_executeRaw(
+    query: "UPDATE \"main\".\"Todo\" SET \"title\" = $1 WHERE id=$2"
+    parameters: [$title,$id]
+  )
+}
+# 用法2
+mutation MyQuery($parameters: todo_Json = ["beijing", 1]) {
+  todo_executeRaw(
+    query: "UPDATE \"main\".\"Todo\" SET \"title\" = $1 WHERE id=$2"
+    parameters: $parameters
+  )
+}
+```
+
 <figure><img src="../../.gitbook/assets/402a490ada8add8fa4af2f9a0c21933.png" alt=""><figcaption></figcaption></figure>
 

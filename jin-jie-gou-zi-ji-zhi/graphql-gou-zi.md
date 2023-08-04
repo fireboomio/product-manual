@@ -4,9 +4,9 @@
 
 ## 新建GraphQL钩子
 
-在数据源新建页面，选择 自定义->脚本，设置起名称为：Custom。系统自动初始化如下脚本。
+在数据源新建页面，选择 自定义->脚本，设置起名称为：`Custom`。系统自动初始化如下脚本。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
 
 {% tabs %}
 {% tab title="golang" %}
@@ -243,7 +243,7 @@ fragment TypeRef on __Type {
 
 </details>
 
-<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>内省</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption><p>内省</p></figcaption></figure>
 
 
 
