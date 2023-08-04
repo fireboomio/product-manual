@@ -16,29 +16,46 @@
 
 ## 前置钩子
 
-在文件上传到OSS前执行，主要用例：
+`preUpload` 钩子又名文件上传前置钩子，在文件上传到OSS前执行，主要用例：
 
 * 改变文件的存储路径
 * 或校验文件格式是否合法
 
-路径：/upload/{providerName}/{profileName}/preUpload
+```http
+http://{serverAddress}/upload/{providerName}/{profileName}/preUpload
 
-入参：
+Example:: http://localhost:9992/upload/alioss/default/preUpload
 
-* file：上传文件的信息
-* meta：上传时携带的元数据。由请求头X-Metadata设置
-* wg：全局参数（user字段可选）
+Content-Type: application/json
+X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 
-出参：
-
-<pre class="language-json" data-line-numbers><code class="lang-json">{
-<strong>"error": “unauthenticated”,// 异常时返回的报错
-</strong>"fileKey": “my-file.jpg”// 自定义OSS中使用的文件名
+# JSON request
+{
+  "file": { // 上传文件的信息
+    "name": "my-file.jpg",
+    "type": "image/jpeg",
+    "size": 12345
+  },
+  "meta": "meta-data", // 上传时携带的元数据。由请求头X-Metadata设置
+  "__wg": { // 全局参数（user字段可选）
+    "clientRequest": {},
+    "user": {
+      "userID": "1"
+    }
+  }
 }
-</code></pre>
 
-golang示例：
+# JSON response
+{
+  "error": "unauthenticated", // 异常时返回的报错
+  "fileKey": "my-file.jpg" // 自定义OSS中使用的文件名
+}
+```
 
+
+
+{% tabs %}
+{% tab title="golang" %}
 ```go
 package avatar
 import (
@@ -47,32 +64,58 @@ import (
 	"custom-go/pkg/plugins"
 )
 func PreUpload(request *base.UploadHookRequest, body *plugins.UploadBody[generated.Fireboom_avatarProfileMeta]) (*base.UploadHookResponse, error) {
+	// 修改上传到OSS中的文件名称
 	return &base.UploadHookResponse{FileKey: body.File.Name}, nil
 }
 ```
+{% endtab %}
 
+{% tab title="nodejs" %}
 
+{% endtab %}
+{% endtabs %}
 
 ## 后置钩子
 
-在文件上传到OSS后执行，主要用例：
+postUpload 钩子又名文件上传后置钩子，在文件上传到OSS后执行，主要用例：
 
 * 上传成功或失败后发送消息通知
 * 或存储文件的URL到数据库
 
-路径：/upload/{providerName}/{profileName}/postUpload
+```http
+http://{serverAddress}/upload/{providerName}/{profileName}/postUpload
 
-入参：
+Example:: http://localhost:9992/upload/alioss/default/postUpload
 
-* error：上传到OSS时的错误信息（name：固定值，message：异常原因）
-* file：上传文件的信息
-* meta：上传时携带的元数据。由请求头X-Metadata设置
-* wg：全局参数（user字段可选）
+Content-Type: application/json
+X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 
-出参：无
+# JSON request
+{
+  "error": {//上传到OSS时的错误信息
+    "name": "UploadError", // 固定值
+    "message": "unauthenticated" // 异常原因
+  },
+  "file": { // 上传文件的信息
+    "name": "my-file.jpg", // 这里是修改过后的文件名称，不一定是客户端的名称
+    "type": "image/jpeg",
+    "size": 12345
+  },
+  "meta": "meta-data", // 上传时携带的元数据。由请求头X-Metadata设置
+  "__wg": {
+    "clientRequest": {},
+    "user": {
+      "userID": "1"
+    }
+  }
+}
 
-golang示例：
+# JSON response
+no response
+```
 
+{% tabs %}
+{% tab title="golang" %}
 ```go
 package avatar
 
@@ -87,18 +130,26 @@ import (
 )
 func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[generated.Fireboom_avatarProfileMeta]) (*base.UploadHookResponse, error) {
 	if body.Error.Name != "" {
+	// 这里可以发送通知~
 		return nil, errors.New(body.Error.Message)
 	}
 	// 文件上传成功
 	fmt.Println(body.File.Name)
+	// 根据当前的Provider名读取S3配置
 	provider := types.GetS3ConfigByProvider(body.File.Provider)
-
+	// 构建访问文件的URL
 	fmt.Println(utils.GetConfigurationVal(provider.Endpoint), "/", utils.GetConfigurationVal(provider.BucketName), "/", body.File.Name)
 	fmt.Println(utils.GetConfigurationVal(provider.BucketName), ".", utils.GetConfigurationVal(provider.Endpoint), "/", body.File.Name)
 
 	return nil, nil
 }
 ```
+{% endtab %}
+
+{% tab title="nodejs" %}
+
+{% endtab %}
+{% endtabs %}
 
 ## 文件元数据meta
 
@@ -113,9 +164,7 @@ func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[genera
 * 在meta中填入JSON对象的json schema描述，限制元数据的格式。
 * 在调用上传接口时，在请求头中设置x-meatadata为对应的JSON data。
 
-jsonschema比较复杂，可以利用[工具](https://www.lddgo.net/string/generate-json-schema)自动生成。
-
-例如，若想在上传图片的同时也附带图片所属的文章id，其：
+jsonschema比较复杂，可以利用[工具](https://www.lddgo.net/string/generate-json-schema)自动生成。例如，若想在上传图片的同时也附带图片所属的文章id，其：
 
 JSON DATA为：
 
@@ -138,23 +187,33 @@ JSON SCHEMA为：
         }
     },
     "additionalProperties": false,// 暂不支持该特性，需要删除
-    "required": [
+    "required": [ // 意思是使用该profile上传文件时，必须要在 x-meatadata 中携带 下列字段
         "postId"
     ]
 }
 ```
 {% endcode %}
 
-需要注意的是，要手工删除第9行：additionproperties字段。粘贴到META字段中即可！
+{% hint style="info" %}
+由于Fireboom兼容的json schema版本较低，要手工删除第9行：additionproperties字段。
+{% endhint %}
 
 后续可以在钩子中使用！
 
+{% tabs %}
+{% tab title="golang" %}
 ```go
 func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[generated.Tengxunyun_avatarProfileMeta]) (*base.UploadHookResponse, error) {
 	fmt.Println(body.Meta)//使用Meta
 	return nil, nil
 }
 ```
+{% endtab %}
+
+{% tab title="nodejs" %}
+
+{% endtab %}
+{% endtabs %}
 
 ## 临时签名
 
@@ -168,6 +227,8 @@ func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[genera
 
 golang示例：
 
+{% tabs %}
+{% tab title="golang" %}
 ```go
 package customize
 
@@ -237,52 +298,9 @@ func NewMinioClient(s3Upload *wgpb.S3UploadConfiguration) (client *minio.Client,
 	return
 }
 ```
+{% endtab %}
 
+{% tab title="nodejs" %}
 
-
-
-
-### 注册上传钩子
-
-1. 前置钩子
-
-* 路径：/upload/${provider}/${profile}/preUpload
-* 入参：
-
-```json
-{
-    "file": {
-        "Name": "TEST.JPG", // 文件名
-        "size": 256, // 文件大小
-        "type": "jpg" // content-type
-    }
-}
-```
-
-* 出参：
-
-```json
-{
-    "fileKey": "test_modify.jpg" // 修改后的文件名
-}
-```
-
-* 用途：校验文件name、size、type等信息，并返回自定义文件名（用户oss上传后显示的名称，默认随机字符串）
-
-2. 后置钩子
-
-* 路径：/upload/${provider}/${profile}/postUpload
-* 入参：
-
-```json
-{
-    "file": {
-        "Name": "TEST.JPG", // 文件名
-        "size": 256, // 文件大小
-        "type": "jpg" // content-type
-    }
-}
-```
-
-* 出参：使用全局错误统一处理，正常返回200
-* 用途：上传文件成功后自定义处理，可以用来记录上传日志
+{% endtab %}
+{% endtabs %}
