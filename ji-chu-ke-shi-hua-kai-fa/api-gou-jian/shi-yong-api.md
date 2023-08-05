@@ -6,7 +6,7 @@
 
 点击“API管理”面板后的筛选按钮，或按住快捷键Ctrl+K，打开搜索面板，搜索对应API，并打开。
 
-### 测试接口
+## 测试接口
 
 在底部“输入”TAB中，输入参数，点击OPERATION编辑区上方工具栏的“测试”按钮，可在“响应”TAB中查看测试结果。
 
@@ -25,38 +25,118 @@ curl 'http://localhost:9123/app/main/graphql'
 出于安全考虑，生产环境下，请不要暴露当前端口。
 {% endhint %}
 
-### 复制链接
+## 复制链接
 
 对于已上线API，点击顶部的“链接复制ICON”，可获得对应的访问链接。
 
-Query Operation：对应为GET请求，复制为普通URL，如下：
+### Query Operation
 
+{% code title="Page.graphql" %}
+```graphql
+query GetTodoList(
+  $take: Int = 10, $skip: Int = 0,
+  $orderBy: [todo_TodoOrderByWithRelationInput], 
+  $query: todo_TodoWhereInput) {
+  data: todo_findManyTodo(skip: $skip take: $take orderBy: $orderBy where: {AND: $query}) {
+    id
+    title
+    completed
+    createdAt
+  }
+  total: todo_aggregateTodo(where: {AND: $query}) @transform(get: "_count.id") {
+    _count {
+      id
+    }
+  }
+}
 ```
-http://localhost:9991/operations/Goods/GetManyGoods
-```
+{% endcode %}
 
-Mutation Operation：对应为POST请求，复制为curl，如下：
+对应为GET请求，复制为普通URL，如下：
 
-```bash
-curl 'http://localhost:9991/operations/Goods/DeleteOneGoods' \
-  -X POST  \
-  -H 'Content-Type: application/json' \
-  --data-raw '{"id":1}' \
-  --compressed
-```
-
-Subscription Operation：对应为GET请求，复制为如下URL：
-
-```
-# 加上了?wg_sse=true
-http://localhost:9991/operations/Sub?wg_sse=true
+```http
+http://localhost:9991/operations/Page?
+# GET QUERY 标量入参
+take=10&skip=0&
+# GET QUERY 对象入参
+orderBy=[{"createdAt":"asc"}]&
+query={"title":{"contains":"fireboom"}}
 ```
 
 若Query Operation开启了实时查询，则复制为如下URL：
 
-<pre><code># 加上了?wg_live=true后缀
-<strong>http://localhost:9991/operations/Goods/GetManyGoods?wg_live=true
-</strong></code></pre>
+```http
+# 加上了?wg_live=true后缀
+http://localhost:9991/operations/Page?take=10&skip=0&orderBy=[{"createdAt":"asc"}]&query={"title":{"contains":"fireboom"}}&
+wg_live=true
+```
+
+### Mutation Operation
+
+{% code title="Update.graphql" %}
+```graphql
+mutation MyQuery($id: Int!,$update: mysql_TodoUpdateInput!, $create: mysql_TodoCreateInput!) {
+  mysql_upsertOneTodo(create: $create, update: $update, where: {id: $id}) {
+    id
+  }
+} 
+```
+{% endcode %}
+
+对应为POST请求，复制为curl，如下：
+
+```bash
+curl 'http://localhost:9991/operations/Lesson0202/Basic/Update' \
+  -X POST  \
+  -H 'Content-Type: application/json' \
+  # POST 对象入参
+  --data-raw '{"id":1,"update":{"completed":{"set":true}},"create":{"title":"测试","completed":false}}' \
+  --compressed
+```
+
+Mutation 特殊标量入参
+
+{% code title="RawExecute.graphql" %}
+```graphql
+mutation MyQuery($parameters: todo_Json = ["beijing", 1]) {
+  todo_executeRaw(
+    query: "UPDATE \"main\".\"Todo\" SET \"title\" = $1 WHERE id=$2"
+    parameters: $parameters
+  )
+}
+```
+{% endcode %}
+
+```bash
+curl 'http://localhost:9991/operations/Lesson0202/Basic/RawExecute2' \
+  -X POST  \
+  -H 'Content-Type: application/json' \
+  # POST 特殊标量JSON 入参
+  --data-raw '{"parameters":["beijing",1]}' \
+  --compressed
+```
+
+### Subscription Operation
+
+{% code title="Sub.graphql" %}
+```graphql
+subscription MyQuery {
+  gql_messageCreated {
+    content
+    id
+  }
+}
+```
+{% endcode %}
+
+对应为GET请求，复制为如下URL：
+
+```http
+# 加上了?wg_sse=true
+http://localhost:9991/operations/Sub?wg_sse=true
+```
+
+
 
 {% hint style="info" %}
 复制连接中对应的域名：http://localhost:9991，需要前往设置->系统  API外网地址中修改。

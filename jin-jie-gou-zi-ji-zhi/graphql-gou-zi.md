@@ -2,9 +2,17 @@
 
 为了进一步提升开发体验，Fireboom在HOOKS框架中集成了graphql端点。它本质上是一个内置的grphql数据源。可以用来实现复杂的业务逻辑。
 
+{% hint style="info" %}
+该方式有循环依赖，要遵循[下述方法](graphql-gou-zi.md#gou-jian-api)绕开依赖！你也可以自行在HOOKS SDK中实现GraphQL服务。
+{% endhint %}
+
 ## 新建GraphQL钩子
 
-在数据源新建页面，选择 自定义->脚本，设置起名称为：`Custom`。系统自动初始化如下脚本。
+1，在 Fireboom 控制台点击`数据源`面板的`+`号，进入数据源新建页。
+
+2，在数据源新建页面，选择 自定义-> 脚本，设置起名称为：`Custom`。
+
+3，系统自动初始化如下脚本。默认填充的是示例代码，你可以根据业务需求修改代码。
 
 <figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
 
@@ -81,7 +89,9 @@ var (
 {% endtab %}
 {% endtabs %}
 
-在数据源列表，右击 开启当前钩子，然后重新启动，其路由格式如下：
+4，在数据源列表，右击 开启当前钩子，然后重新启动钩子服务
+
+5，钩子服务启动后，将注册对应的graphql服务端点，其路由格式如下：
 
 <pre class="language-http"><code class="lang-http"><strong>http://{serverAddress}/gqls/${gql-name}/graphql
 </strong>
@@ -285,3 +295,8 @@ GraphqlServers: []plugins.GraphQLServerConfig{
 通过该方式可以实现任意复杂的业务需求！且可以复用Fireboom的权限体系。
 
 此外，通过该方式可以将消息队列接入到Fireboom中，将事件订阅转变成GraphQL SUBSCRIPTION，然后转变成SSE推送，供客户端消费！
+
+## 示例
+
+* Nodejs示例：[case-element-admin](https://github.com/fireboomio/case-element-admin/blob/main/server/custom-ts/customize/statistics.ts)
+* golang示例：[fb-admin](https://github.com/fireboomio/fb-admin/blob/main/backend/custom-go/customize/statistics.go)

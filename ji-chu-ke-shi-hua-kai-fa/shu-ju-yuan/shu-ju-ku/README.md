@@ -101,7 +101,7 @@ Prisma迁移引擎是一个二进制命令行，用于设计或迁移数据库�
 * [x] [MySQL](https://www.prisma.io/docs/concepts/database-connectors/mysql)
 * [x] [SQLite](https://www.prisma.io/docs/concepts/database-connectors/sqlite)
 * [x] [PostgreSQL](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
-* [ ] [MongoDB](https://www.prisma.io/docs/concepts/database-connectors/mongodb)
+* [x] [MongoDB](https://www.prisma.io/docs/concepts/database-connectors/mongodb)
 * [ ] [SQL Server](https://www.prisma.io/docs/concepts/database-connectors/sql-server)
 * [ ] [CockroachDB](https://www.prisma.io/docs/concepts/database-connectors/cockroachdb)
 

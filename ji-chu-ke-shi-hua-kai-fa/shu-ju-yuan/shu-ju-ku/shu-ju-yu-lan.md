@@ -6,7 +6,7 @@
 
 下述为本文档对应数据模型的Prisma schema，了解更多请前往[prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema)学习。
 
-```
+```prisma
 model todo {
   id           Int       @id @default(autoincrement())
   title        String    @db.VarChar(255)

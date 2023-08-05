@@ -32,7 +32,7 @@ https://example.com/operations/Todo/GetManyTodo
 
 在URL查询字符串中：
 
-```
+```http
 GET https://<hostname>/operations/<path>/<operationName>?name=Jannik
 ```
 
@@ -48,7 +48,7 @@ GET https://<hostname>/operations/<path>/<operationName>?wg_variables={"name":"J
 
 ### 变更Mutations
 
-查询对应POST请求。变量作为JSON在请求体中发送。
+变更对应POST请求。变量作为JSON在请求体中发送。
 
 ```
 POST https://<hostname>/operations/<path>/<operationName>
@@ -63,7 +63,7 @@ Content-Type: application/json
 
 ### 订阅Subscriptions
 
-查询也对应GET请求。响应是一个JSON对象流，由两个换行符分割。
+订阅也对应GET请求。响应是一个JSON对象流，由两个换行符分割。
 
 发送入参的方式和查询Queries一样。
 

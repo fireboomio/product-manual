@@ -225,8 +225,6 @@ func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[genera
 
 
 
-golang示例：
-
 {% tabs %}
 {% tab title="golang" %}
 ```go

@@ -22,6 +22,10 @@
 
 数据建模支持两种模式：普通视图和源码视图，分别适用于新手开发者和熟悉Prisma的开发者。点击右上角的图标![](<../../../.gitbook/assets/image (13) (3).png>)和![](<../../../.gitbook/assets/image (21) (1).png>)，可切换两种视图。
 
+{% hint style="info" %}
+MongoDB数据库暂不支持模型设计。
+{% endhint %}
+
 ### 普通视图
 
 #### 新增表
@@ -53,7 +57,7 @@
 
 一对一（1-1）关系是指最多一个记录可以在关系的两边连接。在下面的示例中，User和Profile：
 
-```
+```prisma
 model User {
   id      Int      @id @default(autoincrement())
   profile Profile?
@@ -72,7 +76,7 @@ model Profile {
 
 在关系型数据库中可以定义多个字段的一对一关联：
 
-```
+```prisma
 model User {
   firstName String
   lastName  String
@@ -99,7 +103,7 @@ userLastName  String // relation scalar field (used in the `@relation` attribute
 
 一对多（1-n）关系是指关系一侧的一个记录可以连接到另一侧的零或多个记录的关系。在以下示例中，User和Post模型之间有一个一对一的关系：
 
-```
+```prisma
 model User {
   id    Int    @id @default(autoincrement())
   posts Post[]
@@ -118,7 +122,7 @@ model Post {
 
 在关系型数据库中可以定义多个字段的一对多关联：
 
-```
+```prisma
 model User {
   firstName String
   lastName  String
@@ -148,7 +152,7 @@ model Post {
 
 在本例中，表示关系表的模型定义了描述Post/Category关系的其他字段-谁分配了类别（assignedBy），以及何时分配了类别（assignedAt）：
 
-```
+```prisma
 model Post {
   id         Int                 @id @default(autoincrement())
   title      String

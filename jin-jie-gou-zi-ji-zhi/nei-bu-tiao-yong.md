@@ -59,6 +59,7 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 {% tab title="golang" %}
 {% code title="server/start.go" %}
 ```go
+// 用中间件的方式挂载InternalClient
 e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		if c.Request().Method == http.MethodGet {
@@ -82,14 +83,15 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 				c.Request().Header.Set(name, value)
 			}
 		}
+		// 用来追踪调用过程
 		reqId := c.Request().Header.Get("x-request-id")
+		// 构建InternalClient
 		internalClient := base.InternalClientFactoryCall(map[string]string{"x-request-id": reqId}, body.Wg.ClientRequest, body.Wg.User)
 		internalClient.Queries = internalQueries
 		internalClient.Mutations = internalMutations
 		brc := &base.BaseRequestContext{
 			Context:        c,
 			User:           body.Wg.User,
-		// 挂载内部对象
 			InternalClient: internalClient,
 		}
 		return next(brc)
@@ -121,7 +123,7 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 
 ## 内部OPERATION
 
-如果，我们希望某个OPERATION只能被钩子访问，不对外暴露API，应该怎么做呢？这就要提到`@internalOperation`指令。它的用途就是将某些OPERATON声明为内部，类似私有方法，只能被钩子调用，而不会编译为API。
+如果我们希望某个OPERATION只能被钩子访问，不对外暴露API，应该怎么做呢？这就要提到`@internalOperation`指令。它的用途就是将某些OPERATON声明为内部，类似私有方法，只能被钩子调用，而不会编译为API。
 
 ```graphql
 # @internalOperation 指令声明当前OPERATION为内部

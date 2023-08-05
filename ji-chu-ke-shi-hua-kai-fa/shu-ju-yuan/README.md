@@ -8,9 +8,11 @@
 
 ## 支持数据源
 
-飞布当前支持API、数据库、消息队列、自定义四类数据源类型，详情见下文。各数据源间通过命名空间进行区分。
+飞布当前支持API、数据库、消息队列、[自定义](../../jin-jie-gou-zi-ji-zhi/graphql-gou-zi.md) 四类数据源类型，详情见下文。
 
 每个数据源都需要设置不同的“**名称**”，用作命名空间。
+
+<mark style="color:red;">若想进一步了解底层原理，请学习</mark> [chao-tu.md](../../he-xin-gai-nian/chao-tu.md "mention") <mark style="color:red;">！！！</mark>
 
 ## 新建数据源
 
@@ -37,5 +39,3 @@
 为方便开发者快速上手，飞布还内置了示例数据源，只需点击即可添加。
 
 示例数据源托管在公开仓库，可前往[这里](https://github.com/fireboomio/files/blob/main/datasource.example.json)查看。
-
-\
