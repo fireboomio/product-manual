@@ -1,64 +1,221 @@
 # 常见用例
 
-### 组装查询&#x20;
+## 组装查询&#x20;
 
-在超图中，依次点击多个查询函数，被选择查询会合并成一条 Query 语句，在查询结果中一次性返回
+### QUERY
 
-<figure><img src="../../assets/chang-jian-yong-li/multi.png" alt=""><figcaption></figcaption></figure>
+在一个接口中，同时拿到多个数据源的数据。
 
-### 分页
+```graphql
+query MyQuery{
+  # mysql 数据源
+  mysql_findFirstPost {
+    createdAt
+    id
+  }
+  # pgsql 数据源
+  pgsql_findFirstTodo {
+    completed
+    content
+    createdAt
+  }
+  # rest 数据源
+  system_getAllRoles {
+    code
+    remark
+  }
+}
+```
 
-1. 点击需要的分页查询，插入查询语句
-2. 点击 skip 和 take，会自动在代码中插入 skip 和 take 语句
-3. 点击超图中的$符号，自动插入对应的url参数，如图所示，skip参数已经插入，take参数还未插入
-4. 点击查询下方的返回值，选择需要返回的字段
+### MUTATION
 
-<figure><img src="../../assets/chang-jian-yong-li/paging.png" alt=""><figcaption></figcaption></figure>
+在一个接口中，同时变更多个数据源的数据。同步执行，暂不支持事务。
 
-### 模糊搜索
+```graphql
+mutation MyQuery {
+  # mysql创建数据
+  mysql_createOneTodo(data: {title: "test"}) {
+    id
+  }
+  # mysql删除数据
+  mysql_deleteOneTodo(where: {id: 10}) {
+    id
+  }
+  # pgsql删除数据
+  pgsql_deleteOneTodo(where: {id: 10}) {
+    id
+  }
+}
+```
 
-1. 点击需要的分页查询，插入查询语句
-2. 点击where展开查询字段
-3. 点击需要查询的字段，如果需要做多条件查询，可以点击 \[AND / OR / NOT]进一步展开
-4. 点击想要的查询方式，然后点击$符号插入查询变量，如图中已插入contains变量
+## 分页
 
-<figure><img src="../../assets/chang-jian-yong-li/search.png" alt=""><figcaption></figcaption></figure>
+分页查询，支持排序和查询条件（例如模糊搜索）。具体用法参考：[#query-operation](shi-yong-api.md#query-operation "mention")
 
-### 关联查询
+```graphql
+query GetTodoList(
+  $take: Int = 10, $skip: Int = 0, # 分页 skip=(page-1)*take
+  $orderBy: [todo_TodoOrderByWithRelationInput], # 排序
+  $query: todo_TodoWhereInput) { # 查询条件，支持模糊搜索
+  # 获取列表
+  data: todo_findManyTodo(skip: $skip take: $take orderBy: $orderBy where: {AND: $query}) {
+    id
+    title
+    completed
+    createdAt
+  }
+  # 获取记录数
+  total: todo_aggregateTodo(where: {AND: $query}) @transform(get: "_count.id") {
+    _count {
+      id
+    }
+  }
+}
+```
 
-1. 点击需要的分页查询，插入查询语句
-2. 在选择字段时，点击关联对象字段（前面无复选框），展开后选择其中的字段。如果有多层关联，可依次点击展开。
+
+
+## 模糊搜索
+
+模糊搜索，对应sql like 匹配，例如：根据$title模糊搜索待做事项列表
+
+```graphql
+query MyQuery($title: String, $skip: Int!) {
+  todo_findFirstTodo(skip: $skip, take: 10, where: {title: {contains: $title}}) {
+    createdAt
+    completed
+    id
+    title
+  }
+}gr
+```
+
+## 关联查询
+
+在查询某个对象的同时，获取其关联对象，对应sql left join。使用关联查询，需要在数据库表间建立外键。若无外键，请使用 [kua-yuan-guan-lian.md](kua-yuan-guan-lian.md "mention")
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+<details>
+
+<summary>prisma model</summary>
+
+```prisma
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+  Post Post[]
+}
+
+model Post {
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  title     String
+  published Boolean    @default(false)
+  authorId  Int
+  User      User       @relation(fields: [authorId], references: [id])
+  Category  Category[]
+
+  @@index([authorId], map: "Post_authorId_fkey")
+}
+
+model Profile {
+  id     Int    @id @default(autoincrement())
+  bio    String
+  userId Int    @unique
+  User   User   @relation(fields: [userId], references: [id])
+}
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @unique
+  name    String?
+  role    String   @default("admin")
+  Post    Post[]
+  Profile Profile?
+}
+```
+
+
+
+</details>
 
 {% hint style="info" %}
-如何用prisma model简历关联关系，可参考[Prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/one-to-one-relations)
+如何用prisma model建立关联关系，可参考[Prisma文档](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/one-to-one-relations)
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Snipaste_2023-04-14_15-39-01.png" alt=""><figcaption></figcaption></figure>
+```graphql
+query MyQuery {
+  mysql_findFirstUser {
+    id
+    name
+    email
+    # 1:n关联：post为对象数组
+    Post(where: {title: {contains: "test"}}) {
+      id
+      title
+      # n:n关联：category为对象数组
+      Category {
+        id
+        name
+      }
+    }
+    # 1:1关联：profile为对象
+    Profile {
+      id
+      userId
+    }
+  }
+} 
+```
 
-### 关联更新
+## 关联更新
 
-更新操作中，对于关联字段，可以通过update进行更新关联数据，也可以通过图中的connect等关联到新的内容上。
+在更新某个对象数据的同时，关联更新其关联对象的数据，仅适用于1:1关联。
 
-<figure><img src="../../.gitbook/assets/image (1) (2).png" alt=""><figcaption></figcaption></figure>
+```graphql
+# 更新用户$name的同时，更新其profile的$bio字段。
+mutation MyQuery( $id: Int!, $name: String, $bio: String) {
+  mysql_updateOneUser(
+    data: {name: {set: $name}, Profile: {update: {bio: {set: $bio}}}}
+    where: {id: $id}
+  ) {
+    id
+  }
+}
+```
 
-### 跨源关联
+## 跨源关联
 
 通过 @export 和 \_join 可以进行跨数据源的关联查询。详情见 [跨源关联](chang-jian-yong-li.md#kua-yuan-guan-lian)。
 
+## **原生sql**
 
+数据库内省的“函数”基于prisma构建，有些场景无法支持，如数据统计类需求。因此，支持raw sql，以实现任意复杂度的需求。
 
-### **rawQuery特性支持**
+### queryRaw
 
-在超图中选择queryRaw，勾选query字段后，插入sql查询语句，执行后响应内容中会显示匹配记录
+执行查询SQL，返回值是对象数组
 
 ```graphql
-# 执行查询SQL，返回值是对象数组
+# 用法1：界面上语法会报错，但实际上支持
 mutation MyQuery($id:Int=1) {
   todo_queryRaw(query: "SELECT *,rowid \"NAVICAT_ROWID\" FROM \"main\".\"Todo\"  WHERE id=$1", parameters: [$id])
 } 
+# 用法2
+mutation MyQuery($parameters: todo_Json = [1]) {
+  todo_queryRaw(
+    query: "SELECT *,rowid \"NAVICAT_ROWID\" FROM \"main\".\"Todo\"  WHERE id=$1"
+    parameters: $parameters
+  )
+}
+```
 
-# 执行变更SQL，返回值是包含count字段的对象
-# 用法1
+### executeRaw
+
+执行变更SQL，返回值是包含count字段的对象
+
+```graphql
+# 用法1：界面上语法会报错，但实际上支持
 mutation MyQuery($title: String = "beijing",$id:Int=1) {
   todo_executeRaw(
     query: "UPDATE \"main\".\"Todo\" SET \"title\" = $1 WHERE id=$2"
@@ -73,6 +230,4 @@ mutation MyQuery($parameters: todo_Json = ["beijing", 1]) {
   )
 }
 ```
-
-<figure><img src="../../.gitbook/assets/402a490ada8add8fa4af2f9a0c21933.png" alt=""><figcaption></figcaption></figure>
 

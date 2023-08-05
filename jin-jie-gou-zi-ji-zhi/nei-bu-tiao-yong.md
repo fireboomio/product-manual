@@ -6,7 +6,7 @@
 
 此时，飞布升级为数据代理层。internalClient，就是使用数据代理的对象，其上挂在了所有的query和mutation。
 
-<img src="../.gitbook/assets/image.png" alt="" data-size="original">
+<img src="../.gitbook/assets/image (1).png" alt="" data-size="original">
 
 ## 内部调用协议
 

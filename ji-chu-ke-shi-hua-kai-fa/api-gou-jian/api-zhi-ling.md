@@ -41,7 +41,7 @@ query GetOneTodo($id: Int!) @internalOperation {
 
 `@internalOperation`仅能修饰QUERY 和 MUTATION OPERATION 。
 
-详情见 [钩子](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
+详情见 [#nei-bu-operation](../../jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md#nei-bu-operation "mention")。
 
 ## 入参指令
 
@@ -170,6 +170,10 @@ query myQuery ($applicationID: String! @injectEnvironmentVariable(name: "AUTH_AP
 特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](kua-yuan-guan-lian.md)。
 
 ## 字段指令
+
+### **export**
+
+特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](kua-yuan-guan-lian.md)。
 
 ### 响应转换
 

@@ -30,7 +30,6 @@ query MyQuery($device_id:Int! @internal) {  # 声明
     }
   } 
 }
-
 ```
 
 上述示例，主要分为三个环节：

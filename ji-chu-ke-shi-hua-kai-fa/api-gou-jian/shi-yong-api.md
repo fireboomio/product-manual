@@ -2,10 +2,6 @@
 
 学习了如何构建API后，接下来我们学习如何测试和使用API。
 
-## 单API使用
-
-点击“API管理”面板后的筛选按钮，或按住快捷键Ctrl+K，打开搜索面板，搜索对应API，并打开。
-
 ## 测试接口
 
 在底部“输入”TAB中，输入参数，点击OPERATION编辑区上方工具栏的“测试”按钮，可在“响应”TAB中查看测试结果。
@@ -135,8 +131,6 @@ subscription MyQuery {
 # 加上了?wg_sse=true
 http://localhost:9991/operations/Sub?wg_sse=true
 ```
-
-
 
 {% hint style="info" %}
 复制连接中对应的域名：http://localhost:9991，需要前往设置->系统  API外网地址中修改。
