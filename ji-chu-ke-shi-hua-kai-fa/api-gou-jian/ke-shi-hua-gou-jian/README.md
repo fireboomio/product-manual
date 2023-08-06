@@ -4,8 +4,6 @@
 
 ## 构建OPERATION
 
-首先，我们学习如何可视化构建OPERATION。
-
 飞布的主功能区基于超图的gql 服务构建，其核心目标是，如何快速构建和测试GraphQL operation。
 
 它包含四部分：超图面板、OPERATION编辑区、指令面板、参数输入区（响应区）。

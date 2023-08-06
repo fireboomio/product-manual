@@ -55,6 +55,8 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 {nodeAddress} 默认为：localhost:9991，而不是钩子的9992端口
 {% endhint %}
 
+### InternalClient实现及使用
+
 {% tabs %}
 {% tab title="golang" %}
 {% code title="server/start.go" %}
@@ -117,13 +119,40 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 {% endtab %}
 {% endtabs %}
 
-### 安全
+### 内部调用安全
 
 为了保证安全，`http://{nodeAddress}/internal` 只能被内网访问！！！
 
 ## 内部OPERATION
 
-如果我们希望某个OPERATION只能被钩子访问，不对外暴露API，应该怎么做呢？这就要提到`@internalOperation`指令。它的用途就是将某些OPERATON声明为内部，类似私有方法，只能被钩子调用，而不会编译为API。
+如果我们希望某个OPERATION只能被钩子访问，不对外暴露API，需要借助：`@internalOperation`指令。
+
+`@internalOperation`指令，设置OPERATION为内部，类似私有方法，只能被钩子调用，而不会编译为API。
+
+`@internalOperation`仅能修饰QUERY 和 MUTATION OPERATION 。
+
+### 流程图
+
+设置后，可在右侧概览面板看到对应流程图的变化。
+
+```graphql
+query GetOneTodo($id: Int!) @internalOperation {
+  data: todo_findFirstTodo(where: {id: {equals: $id}}) {
+    id
+    title
+  }
+}
+```
+
+<div align="center">
+
+<img src="../.gitbook/assets/image (2) (1) (4) (1).png" alt="内部OPERATION流程图示意图" width="295">
+
+</div>
+
+在钩子服务中，可通过InternalClient对象访问飞布数据代理（data proxy）中的内部OPERATION。如图中②表示请求流程，③表示响应流程。
+
+### 常见用例
 
 ```graphql
 # @internalOperation 指令声明当前OPERATION为内部
@@ -149,5 +178,3 @@ mutation MyQuery($query: String!) @internalOperation {
 {% hint style="info" %}
 不要在钩子调用了自己的OEPRATION。不然会循环调用。
 {% endhint %}
-
-###
