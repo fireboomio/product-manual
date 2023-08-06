@@ -24,11 +24,11 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
 ```
 {% endcode %}
 
-详情见 [授权与访问控制](../yan-zheng-he-shou-quan/shou-quan-yu-fang-wen-kong-zhi/)。
+详情见 [授权与访问控制](../../yan-zheng-he-shou-quan/shou-quan-yu-fang-wen-kong-zhi/)。
 
 ### 内部
 
-飞布通过自定义GraphQL指令：`@internalOperation`，设置OPERATION为内部方法。设置后不对外暴露，仅能用于钩子服务调用。可在右侧概览面板看到对应[流程图](ke-shi-hua-kai-fa.md#nei-bu-tiao-yong-liu-cheng-tu)的变化。
+飞布通过自定义GraphQL指令：`@internalOperation`，设置OPERATION为内部方法。设置后不对外暴露，仅能用于钩子服务调用。可在右侧概览面板看到对应[流程图](../ke-shi-hua-gou-jian/ke-shi-hua-kai-fa.md#nei-bu-tiao-yong-liu-cheng-tu)的变化。
 
 ```graphql
 query GetOneTodo($id: Int!) @internalOperation {
@@ -41,7 +41,7 @@ query GetOneTodo($id: Int!) @internalOperation {
 
 `@internalOperation`仅能修饰QUERY 和 MUTATION OPERATION 。
 
-详情见 [#nei-bu-operation](../../jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md#nei-bu-operation "mention")。
+详情见 [#nei-bu-operation](../../../jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md#nei-bu-operation "mention")。
 
 ## 入参指令
 
@@ -167,13 +167,13 @@ query myQuery ($applicationID: String! @injectEnvironmentVariable(name: "AUTH_AP
 
 #### **internal**
 
-特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](kua-yuan-guan-lian.md)。
+特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](../kua-yuan-guan-lian.md)。
 
 ## 字段指令
 
 ### **export**
 
-特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](kua-yuan-guan-lian.md)。
+特殊修饰符，与`_join`联合使用，实现跨源关联，详情见[跨源关联](../kua-yuan-guan-lian.md)。
 
 ### 响应转换
 
@@ -233,6 +233,6 @@ query GetManyLearningLanguage {
 } 
 ```
 
-<figure><img src="../../.gitbook/assets/image (10) (1).png" alt=""><figcaption><p>对象数组转换前返回的结果</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (1).png" alt=""><figcaption><p>对象数组转换前返回的结果</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/737eaec541ccda943bd6484b0e4cf5a.jpg" alt=""><figcaption><p>对象数组转换后返回的结果</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/737eaec541ccda943bd6484b0e4cf5a.jpg" alt=""><figcaption><p>对象数组转换后返回的结果</p></figcaption></figure>

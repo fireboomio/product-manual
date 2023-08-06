@@ -23,9 +23,9 @@ S3配置主要有：
 
 配置S3供应商后，飞布将注册上传路由，路由规则为：
 
-```
+```http
 http://localhost:9991/S3/文件存储名称/upload?directory=xxx
-// 文件存储名称，不是存储桶名称。
+# 文件存储名称，不是存储桶名称。
 ```
 
 用户可通过该路由，上传文件至指定目录，目录由directory字段指定。需要注意的是，使用该路由上传文件时，必须要登录。
@@ -49,22 +49,18 @@ http://localhost:9991/S3/文件存储名称/upload?directory=xxx
 
 对于私有桶，还需要追加临时签名才能访问：
 
-```
+```http
 https://桶名称.服务地址/fileKey
 ?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=LTAI5tGAiNbpnDb4ZghQ7MaG%2F20230720%2Foss-cn-beijing%2Fs3%2Faws4_request&X-Amz-Date=20230720T072030Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&response-content-disposition=attachment%3B%20filename%3D%22%22&X-Amz-Signature=9c09d9ba4b03180bfc524ff986b3ed8d1b785f665c4fc1e8bf99ef96160568a2
 ```
 
-查看临时签名的生成方式，请前往这里\~
+查看临时签名的生成方式，请前往 [wen-jian-shang-chuan-gou-zi.md](../../jin-jie-gou-zi-ji-zhi/wen-jian-shang-chuan-gou-zi.md "mention")
 
 测试步骤：
 
 1. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页
-2. 在FileUpload中选择上传路由，设置上传目录directory的值，选择文件，点击”TRY“，返回数组，fileKey
+2. 在左侧FileUpload中选择上传路由，设置上传目录directory的值，选择文件，点击”TRY“，返回数组，fileKey
    1. 若上传时返回401错误，请登录后重试
    2. 在预览页顶部，选择OIDC供应商，点击前往登录
 3. 拼接目录，访问文件
-
-
-
-~~需要注意的是：如果设置了profile，s3上传时就必须要设置profile~~
 

@@ -20,7 +20,7 @@
 
 主要用途是新建或管理API，参考VSCODE的文件目录实现。
 
-* API新建：点击右上角“+”或下方“新建”，可创建API
+* API新建：点击右上角“+”或下方“新建”，可创建API（注意首字符要大写）
 * API列表：展示所有API，不同状态说明如下
   * 方法：POST对应MUTATION，GET对应QUERY和SUBSCRIPTION
   * 实时：GET标识右上角的闪电符表示当前API为QUERY的实时查询或SUBSCRIPTION
@@ -28,7 +28,7 @@
   * 上线：未上线API用灰色表示表示
   * 非法：“非法”标识当前API的OPERATION有异常，无法正常使用
 * 全局设置：应用于所有API的全局设置，主要包含授权配置、缓存配置、实时配置
-* 批量新建：进入批量新建页，了解更多[前往查看](ding-yue.md)
+* 批量新建：进入批量新建页，了解更多[前往查看](../ding-yue.md)
 * 端点测试：进入GraphQL测试页，用于探索超图的GraphQL端点
 * 批量操作：按住shift键多选API，右击可进行批量操作，包括上下线、删除等
 
@@ -49,14 +49,14 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](kua-yuan-guan-lian.md)”
+\_join字段的用法比较特殊，详情见下文“[跨源关联](../kua-yuan-guan-lian.md)”
 {% endhint %}
 
 ## 编辑器GraphQL
 
 GraphQL编辑器主要用来查看、修改以及测试 OPERATION ，基于 [GraphiQL](https://graphql-dotnet.github.io/docs/getting-started/graphiql/) 项目二次开发，具体功能如下：
 
-<figure><img src="../../.gitbook/assets/image (3) (1) (2).png" alt=""><figcaption><p>Graphql编辑器</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (2).png" alt=""><figcaption><p>Graphql编辑器</p></figcaption></figure>
 
 * 编辑：手动修改OPERATION，支持语法提醒和自动补全
 * 输入：输入OPERATION的入参
@@ -76,13 +76,13 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 **字段指令：**作用于GraphQL 字段，包括@transform。
 
-详情见 [API指令](api-zhi-ling.md)。
+详情见 [API指令](../api-zhi-ling/)。
 
 ## 概览面板
 
 概览面板以可视化的形式展示当前 OPERATION 的运行机制，主要包括：HTTP流程图、内部调用流程图、订阅流程图。
 
-详情见，[API运行机制](api-yun-hang-ji-zhi.md)。
+详情见，[API运行机制](../api-zhi-ling/api-yun-hang-ji-zhi.md)。
 
 ## 设置面板
 
@@ -105,18 +105,14 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 编辑器顶部是API工具栏，主要功能如下：
 
-<figure><img src="../../.gitbook/assets/image (8) (2).png" alt=""><figcaption><p>API工具栏</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (8) (2).png" alt=""><figcaption><p>API工具栏</p></figcaption></figure>
 
 * 重命名：重命名API
 * 状态：展示当前OPERATION是否被保存
 * 克隆：克隆当前OPERATION，包括钩子
-* 复制：复制当前OPERATION的API地址
-  * QUERY  OPEARTION：对应GET请求，复制URL，粘贴到浏览器中可直接访问
-    * 若开启实时查询，则转换为SSE推送，通过后缀\&wg\_live=true指定是否启用
-  * MUTATION OPERATION：对应POST 请求，复制CURL链接，在terminal中可直接执行
-  * SUBSCRIPTION OPERATION：对应GET请求（SSE推送），通过后缀 \&wg\_sse=true制定是否启用
+* 复制：复制当前OPERATION的API地址，详情查看 [#fu-zhi-lian-jie](shi-yong-api.md#fu-zhi-lian-jie "mention")
 * 保存：保存当前OPEARTION
-* 开关：上下线当前API
+* <mark style="color:red;">开关</mark>：上下线当前API，新建的OPERATION默认为下线状态
 
 {% hint style="info" %}
 关于API和OPERATION用词说明：
@@ -125,4 +121,3 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 但API的范围更广，它不仅包含OPERATION，还包含钩子。
 {% endhint %}
-

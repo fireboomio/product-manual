@@ -14,19 +14,5 @@
 
 任意S3兼容的供应商都能轻松接入飞布。例如，云存储供应商：阿里云存储OSS、腾讯云存储COS，或者通过MINO自建云存储服务。
 
-环境准备请参考：
-
-[#wen-jian-cun-chu-s3](../../huan-jing-zhun-bei/#wen-jian-cun-chu-s3 "mention")
-
-## 工作原理
-
-飞布自动将S3供应商注册到特定端点中，用户可直接通过该端点上传文件。
-
-具体规则，请前往API构建->API规范的[#wen-jian-shang-chuan](../api-gou-jian/api-gui-fan.md#wen-jian-shang-chuan "mention") 查看。
-
-若要使用高级功能，需要先配置Profile项。从文件上传生命周期角度来分析，配置项主要分为3个触点：上传校验、前置钩子以及后置钩子。
-
-* 上传校验：文件上传前的一些校验，例如文件大小、文件类型、文件数量等
-* 前置钩子：文件通过校验，但未上传到OSS前的时刻
-* 后置钩子：文件上传到OSS后的时刻
+环境准备请参考：[wen-jian-cun-chu-s3.md](../../huan-jing-zhun-bei/wen-jian-cun-chu-s3.md "mention")
 

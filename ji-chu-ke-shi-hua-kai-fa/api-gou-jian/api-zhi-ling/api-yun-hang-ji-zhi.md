@@ -13,7 +13,7 @@
 
 其流程图如下所示：
 
-![HTTP流程图](../../.gitbook/assets/HTTP流程图.png)
+![HTTP流程图](../../../.gitbook/assets/HTTP流程图.png)
 
 ### 流程讲解
 
@@ -37,11 +37,11 @@
 
 局部钩子：每个API独立编写和启用，包括前置：preResolve、mutatingPreResolve，后置：postResolve、mutatingPostResolve，模拟钩子 mockResolve以及自定义钩子customResolve。
 
-详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
-
 点击钩子开关，可启停钩子；点击钩子名称，可打开在线IDE。
 
 系统将根据当前选择的钩子语言，打开不同的钩子。
+
+详情请前往：[operation-gou-zi.md](../../../jin-jie-gou-zi-ji-zhi/operation-gou-zi.md "mention")
 
 ## 内部调用流程图
 
@@ -53,11 +53,13 @@
 
 <div align="center">
 
-<img src="../../.gitbook/assets/image (2) (1) (4) (1).png" alt="内部OPERATION流程图示意图">
+<img src="../../../.gitbook/assets/image (2) (1) (4) (1).png" alt="内部OPERATION流程图示意图">
 
 </div>
 
 在钩子服务中，可通过InternalClient对象访问飞布数据代理（data proxy）中的内部OPERATION。如图中②表示请求流程，③表示响应流程。
+
+详情请前往 [nei-bu-tiao-yong.md](../../../jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md "mention")
 
 {% hint style="info" %}
 事实上，钩子服务不仅能调用内部OPERATION，还可以调用外部OPERATION。其唯一的区别就是，内部OPERATION无法编译为REST API供外部调用。
@@ -73,7 +75,7 @@ SUBSCRIPTION OPERATION不能被声明为内部。
 
 其流程图如下所示：
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
 
 ### 流程讲解
 
@@ -95,4 +97,4 @@ SUBSCRIPTION OPERATION不能被声明为内部。
 
 局部钩子：每个API独立编写和启用，包括前置：preResolve、mutatingPreResolve，后置：postResolve、mutatingPostResolve。
 
-详情请前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
+详情请前往[钩子章节](../../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)。
