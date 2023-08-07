@@ -1,20 +1,4 @@
-# 新建API
-
-了解飞布的API规范后，接下来我们学习下如何新建一条API。
-
-新建API可能需要同时操作 API管理面板、超图Schema面板、编辑器GraphQL面板、概览面板、钩子面板以及工具栏。
-
-为了更加直观的演示，我们提供了如下视频，供您快速上手：
-
-{% embed url="https://www.bilibili.com/video/BV1MG4y1j7rf/" %}
-\[飞布入门课程] 01-API创建
-{% endembed %}
-
-
-
-接下来，我们在分别介绍各面板的功能及用途。
-
-下面内容只是简单概述，建议结合[视频](https://space.bilibili.com/3493080529373820/channel/collectiondetail?sid=1267673)进行学习。
+# 主功能区
 
 ## API管理面板
 

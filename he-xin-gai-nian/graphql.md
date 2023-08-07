@@ -1,6 +1,6 @@
 # GraphQL
 
-本文是其GraphQL的高度浓缩，若难以理解，推荐教程 [前往](https://graphql.cn/learn/) 。
+本文是GraphQL的高度浓缩，若难以理解，推荐教程 [前往](https://graphql.cn/learn/) 。
 
 GraphQL是一个用于 API 的查询语言。他是强类型的，可以校验入参，并确定响应类型。
 
@@ -64,7 +64,7 @@ findmanytodo既然是函数，自然有入参和出参（返回值）。其出�
 
 接下来，我们学习operation。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 operation指的是从schema中的Query里取的子集，如果把schema queryr中的跟字段比作函数定义，那operation就是函数调用。
 
@@ -88,17 +88,117 @@ operation和SCHEMA query类型一一对应，也分为3中类型，分别是quer
 
 接下来，我们学习：如何使用基于GraphQL协议构建的服务。
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<details>
+
+<summary>nodejs构建的GraphQL服务代码</summary>
+
+```javascript
+// graphql server code
+import express from 'express';
+import { createServer } from 'http';
+import { PubSub } from 'apollo-server';
+import { ApolloServer, gql } from 'apollo-server-express';
+
+const app = express();
+
+const pubsub = new PubSub();
+const MESSAGE_CREATED = 'MESSAGE_CREATED';
+
+const typeDefs = gql`
+  type Query {
+    messages: [Message!]!
+    deatail(title:String!):String
+  }
+
+  type Subscription {
+    messageCreated: Message
+  }
+
+  type Message {
+    id: String
+    content: String
+  }
+`;
+
+const resolvers = {
+  Query: {
+    messages: (ctx) => {
+      console.log("test", ctx)
+      return [
+        { id: 0, content: 'Hello!' },
+        { id: 1, content: 'Bye!' },
+      ]
+    },
+    deatail: (ctx,{title}) => {
+      console.log("test", ctx,title)
+      return "echo:"+title
+    },
+    
+  },
+  Subscription: {
+    messageCreated: {
+      subscribe: () => pubsub.asyncIterator(MESSAGE_CREATED),
+    },
+  },
+};
+const myPlugin = {
+  // Fires whenever a GraphQL request is received from a client.
+  async requestDidStart(requestContext) {
+    console.log('Request started!')
+    console.log(requestContext.request.http.headers)
+    return {
+      async parsingDidStart(requestContext) {
+        console.log('Parsing started!');
+      },
+      async validationDidStart(requestContext) {
+        console.log('Validation started!');
+      },
+    }
+  },
+};
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  plugins: [
+    myPlugin
+  ]
+});
+
+server.applyMiddleware({ app, path: '/graphql' });
+
+const httpServer = createServer(app);
+server.installSubscriptionHandlers(httpServer);
+
+httpServer.listen({ port: 8000 }, () => {
+  console.log('Apollo Server on http://localhost:8000/graphql');
+});
+
+let id = 2;
+
+setInterval(() => {
+  pubsub.publish(MESSAGE_CREATED, {
+    messageCreated: { id, content: new Date().toString() },
+  });
+
+  id++;
+}, 1000);
+```
+
+</details>
+
+服务启动后，本地访问地址：`http://localhost:8000/graphql` ，界面如下：
+
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 Gql服务启动后，会对外暴露gql端点，其路由一般由graphql结尾。
 
 以GET请求访问端点时，会返回一个gql操作界面。
 
-基于界面可以方便的构建OPERATION，并执行该OPE拿到响应。分别，对应步骤2xxx和3xxx。
+基于界面可以方便的构建OPERATION，并执行该OPERATION拿到响应。分别对应步骤2和3。
 
 其中3的底层是向该Gql端点，发送POST请求。
 
-我们以该opration为例，它有2个跟字段，message和detail，其中messsage字段的类型为对象，且无入参，detail的类型为标量，有一个入参title，并通过Operation的变量$titlevar为其赋值。
+我们以该opration为例，它有2个根字段：message和detail，其中messsage字段的类型为对象，且无入参；detail的类型为标量，有一个入参title，并通过Operation的变量$titlevar为其赋值。
 
 当我们点击执行按钮时，其请求如下：
 
@@ -251,100 +351,6 @@ fragment TypeRef on __Type {
 }
 ```
 {% endcode %}
-
-
-
-```javascript
-// graphql server code
-import express from 'express';
-import { createServer } from 'http';
-import { PubSub } from 'apollo-server';
-import { ApolloServer, gql } from 'apollo-server-express';
-
-const app = express();
-
-const pubsub = new PubSub();
-const MESSAGE_CREATED = 'MESSAGE_CREATED';
-
-const typeDefs = gql`
-  type Query {
-    messages: [Message!]!
-    deatail(title:String!):String
-  }
-
-  type Subscription {
-    messageCreated: Message
-  }
-
-  type Message {
-    id: String
-    content: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    messages: (ctx) => {
-      console.log("test", ctx)
-      return [
-        { id: 0, content: 'Hello!' },
-        { id: 1, content: 'Bye!' },
-      ]
-    },
-    deatail: (ctx,{title}) => {
-      console.log("test", ctx,title)
-      return "echo:"+title
-    },
-    
-  },
-  Subscription: {
-    messageCreated: {
-      subscribe: () => pubsub.asyncIterator(MESSAGE_CREATED),
-    },
-  },
-};
-const myPlugin = {
-  // Fires whenever a GraphQL request is received from a client.
-  async requestDidStart(requestContext) {
-    console.log('Request started!')
-    console.log(requestContext.request.http.headers)
-    return {
-      async parsingDidStart(requestContext) {
-        console.log('Parsing started!');
-      },
-      async validationDidStart(requestContext) {
-        console.log('Validation started!');
-      },
-    }
-  },
-};
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  plugins: [
-    myPlugin
-  ]
-});
-
-server.applyMiddleware({ app, path: '/graphql' });
-
-const httpServer = createServer(app);
-server.installSubscriptionHandlers(httpServer);
-
-httpServer.listen({ port: 8000 }, () => {
-  console.log('Apollo Server on http://localhost:8000/graphql');
-});
-
-let id = 2;
-
-setInterval(() => {
-  pubsub.publish(MESSAGE_CREATED, {
-    messageCreated: { id, content: new Date().toString() },
-  });
-
-  id++;
-}, 1000);
-```
 
 ## 参考
 

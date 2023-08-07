@@ -2,7 +2,7 @@
 
 飞布底层基于GraphQL协议构建，因此能充分发挥其指令系统的优势，扩展功能。
 
-我们知道，GraphQL指令按作用位置分为3类：全局指令、入参指令、字段指令。
+我们知道，GraphQL指令按作用位置分为3类：全局指令、入参指令、字段指令。详情见 [#graphql-zhi-ling-zhu-jie](../../../he-xin-gai-nian/fu-wu-duan-operation.md#graphql-zhi-ling-zhu-jie "mention")
 
 但，按照影响的流程也可以分为3类：HTTP请求流程、[内部流程](../../../jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md#nei-bu-operation)、[跨源关联](../kua-yuan-guan-lian.md)。
 

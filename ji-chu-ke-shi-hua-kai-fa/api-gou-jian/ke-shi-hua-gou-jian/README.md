@@ -139,7 +139,7 @@ orderBy=[{"createdAt":"asc"}]&
 query={"title":{"contains":"fireboom"}}
 ```
 
-若Query Operation开启了实时查询，则复制为如下URL：
+若Query Operation开启了[实时查询](../shi-shi-cha-xun.md)，则复制为如下URL：
 
 ```http
 # 加上了?wg_live=true后缀
