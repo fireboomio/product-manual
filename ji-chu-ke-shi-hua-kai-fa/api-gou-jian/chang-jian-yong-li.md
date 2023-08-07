@@ -50,7 +50,7 @@ mutation MyQuery {
 
 ## 分页
 
-分页查询，支持排序和查询条件（例如模糊搜索）。具体用法参考：[#query-operation](ke-shi-hua-gou-jian/shi-yong-api.md#query-operation "mention")
+分页查询，支持排序和查询条件（例如模糊搜索）。具体用法参考：[#query-operation](shi-yong-api.md#query-operation "mention")
 
 ```graphql
 query GetTodoList(

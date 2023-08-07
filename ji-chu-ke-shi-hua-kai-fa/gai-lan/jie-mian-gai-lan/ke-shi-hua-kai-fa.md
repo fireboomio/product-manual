@@ -12,7 +12,7 @@
   * 上线：未上线API用灰色表示表示
   * 非法：“非法”标识当前API的OPERATION有异常，无法正常使用
 * 全局设置：应用于所有API的全局设置，主要包含授权配置、缓存配置、实时配置
-* 批量新建：进入批量新建页，了解更多[前往查看](../ding-yue.md)
+* 批量新建：进入批量新建页，了解更多[前往查看](../../api-gou-jian/ding-yue.md)
 * 端点测试：进入GraphQL测试页，用于探索超图的GraphQL端点
 * 批量操作：按住shift键多选API，右击可进行批量操作，包括上下线、删除等
 
@@ -33,7 +33,7 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](../kua-yuan-guan-lian.md)”
+\_join字段的用法比较特殊，详情见下文“[跨源关联](../../api-gou-jian/kua-yuan-guan-lian.md)”
 {% endhint %}
 
 ## 编辑器GraphQL
@@ -60,13 +60,13 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 **字段指令：**作用于GraphQL 字段，包括@transform。
 
-详情见 [API指令](../api-zhi-ling/)。
+详情见 [API指令](../../api-gou-jian/api-zhi-ling.md)。
 
 ## 概览面板
 
 概览面板以可视化的形式展示当前 OPERATION 的运行机制，主要包括：HTTP流程图、内部调用流程图、订阅流程图。
 
-详情见，[API运行机制](../api-zhi-ling/api-yun-hang-ji-zhi.md)。
+详情见，[API运行机制](broken-reference)。
 
 ## 设置面板
 
@@ -94,7 +94,7 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 * 重命名：重命名API
 * 状态：展示当前OPERATION是否被保存
 * 克隆：克隆当前OPERATION，包括钩子
-* 复制：复制当前OPERATION的API地址，详情查看 [#fu-zhi-lian-jie](shi-yong-api.md#fu-zhi-lian-jie "mention")
+* 复制：复制当前OPERATION的API地址，详情查看 [#fu-zhi-lian-jie](../../api-gou-jian/shi-yong-api.md#fu-zhi-lian-jie "mention")
 * 保存：保存当前OPEARTION
 * <mark style="color:red;">开关</mark>：上下线当前API，新建的OPERATION默认为下线状态
 

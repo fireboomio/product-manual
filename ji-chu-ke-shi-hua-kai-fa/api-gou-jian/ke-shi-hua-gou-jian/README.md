@@ -41,7 +41,7 @@ curl 'http://localhost:9123/app/main/graphql' \
 3. 点击参数后的$符，参数变成 OPERATION 变量
 4. 若生成有误，也可以在OPERATION编辑区手动修改
 
-3，在指令面板， 点击对应按钮 为OPERATION增加指令，详情见 [api-zhi-ling](../api-zhi-ling/ "mention")
+3，在指令面板， 点击对应按钮 为OPERATION增加指令，详情见 [api-zhi-ling.md](../api-zhi-ling.md "mention")
 
 4，OPERATION构建完毕后，在参数输入区录入OPERATION入参，支持两种模式：
 
@@ -67,7 +67,7 @@ curl 'http://localhost:9123/app/main/graphql'
 
 总的来说，飞布的主功能区就是 gql 服务 控制台的升级版，提供了更加友好的交互。
 
-了解更多，请查看 [#api-guan-li-mian-ban](ke-shi-hua-kai-fa.md#api-guan-li-mian-ban "mention")
+了解更多，请查看 [#api-guan-li-mian-ban](../../gai-lan/jie-mian-gai-lan/ke-shi-hua-kai-fa.md#api-guan-li-mian-ban "mention")
 
 ## 路由规则
 
@@ -229,5 +229,5 @@ OPERATION上线后，将被编译为REST API。当用户访问接口时，其对
 * 200：Operation执行成功
 * 500：Operation执行失败，例如：数据源无法访问时
 * 404：Operation未找到，访问未上线或不存在的OPERATION
-* 401：身份验证或身份鉴权失败，例如OPEARTION开启了授权登录或使用了[ fromclaim指令](../api-zhi-ling/#fromclaim)
+* 401：身份验证或身份鉴权失败，例如OPEARTION开启了授权登录或使用了[ fromclaim指令](../api-zhi-ling.md#fromclaim)
 

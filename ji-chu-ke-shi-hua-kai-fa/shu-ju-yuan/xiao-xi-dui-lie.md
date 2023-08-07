@@ -4,6 +4,6 @@
 
 当前该特性暂未上线，正在规划中\~
 
-
+<mark style="color:red;">可参考：</mark>[shi-shi-tui-song.md](../api-gou-jian/shi-shi-tui-song.md "mention")<mark style="color:red;">，手工实现！！！</mark>
 
 参考：[https://github.com/apollographql/graphql-subscriptions](https://github.com/apollographql/graphql-subscriptions)

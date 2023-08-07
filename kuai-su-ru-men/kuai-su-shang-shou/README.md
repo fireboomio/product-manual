@@ -110,7 +110,7 @@ curl -fsSL https://www.fireboom.io/update.sh | bash
 ### 数据库操作
 
 * [数据库建模](../../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)：学习如何使用飞布建模数据库，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-schema/data-model)
-* [数据库CRUD](../../ji-chu-ke-shi-hua-kai-fa/api-gou-jian/ke-shi-hua-gou-jian/ke-shi-hua-kai-fa.md#chao-tu-schema-mian-ban)：了解数据库表结构和graphql的映射关系，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-client/crud) 。
+* [数据库CRUD](../../ji-chu-ke-shi-hua-kai-fa/gai-lan/jie-mian-gai-lan/ke-shi-hua-kai-fa.md#chao-tu-schema-mian-ban)：了解数据库表结构和graphql的映射关系，参考[prisma文档](https://prisma.yoga/concepts/components/prisma-client/crud) 。
 
 ### 业务逻辑
 

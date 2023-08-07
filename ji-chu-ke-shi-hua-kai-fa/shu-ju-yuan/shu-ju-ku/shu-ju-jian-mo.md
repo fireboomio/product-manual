@@ -2,6 +2,10 @@
 
 数据建模用来进行数据库设计，具有完备的数据表设计能力，类似[Navicat](https://navicat.com.cn/products#navicat)数据库开发工具。它本质上是对Prisma Schema的可视化封装。
 
+{% hint style="info" %}
+该功能为Beta版本，不推荐生产环境使用！！！
+{% endhint %}
+
 你也可以使用Navicat等数据库管理工具进行表结构设计。
 
 {% embed url="https://www.bilibili.com/video/BV1TM411s7aF" %}
