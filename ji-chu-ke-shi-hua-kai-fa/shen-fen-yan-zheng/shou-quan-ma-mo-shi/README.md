@@ -11,7 +11,7 @@
 OIDC是行业内的通用规范，飞布能与任意实现OIDC规范的供应商集成，例如：
 
 * IDaaS服务商：auth0、authing等
-* 开源OIDC服务：okta、casdoor、[fb-oidc](https://github.com/fireboomio/fb-oidc)等
+* 开源OIDC服务：okta、casdoor等
 
 {% embed url="https://www.bilibili.com/video/BV1wk4y1i7rD/?share_source=copy_web&vd_source=f8709d15baaa835ea2d0bb3bcc6857da" %}
 15功能介绍-飞布如何添加身份验证器？

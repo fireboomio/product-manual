@@ -13,7 +13,7 @@ OIDC除了授权码模式，还有隐式模式，即基于token的登录。该�
 隐式模式不需要配置`App Secret`，但开启该模式后，需要保证`JWKS`可用，有两种指定方式：
 
 * JWKS端点：[https://dev-5kzk7gzc.us.auth0.com/.well-known/jwks.json](https://dev-5kzk7gzc.us.auth0.com/.well-known/jwks.json)
-* JWKS json文件：
+* JWKS JSON文件：
 
 ```json
 {
@@ -36,10 +36,10 @@ https://dev-5kzk7gzc.us.auth0.com/.well-known/openid-configuration
 
 ### 获取Token
 
-获取Token有两种方式：id\_token Flow和SDK。
+获取Token有两种方式：id\_token Flow和登录接口。
 
 {% hint style="info" %}
-<mark style="color:purple;">区别是id\_token Flow需要依赖OIDC的登录页，而SDK获取可以自定义登录页！</mark>
+<mark style="color:purple;">区别是：id\_token Flow需要依赖OIDC的登录页，而登录接口获取可以自定义登录页！</mark>
 {% endhint %}
 
 #### id\_token Flow
@@ -125,10 +125,43 @@ Fireboom官方也开源一个简单的OIDC服务，当前仅支持隐式模式�
 
 ### 使用Token
 
-客户端需要向请求中添加以下请求头：
+假设，有如下OPERATION，使用 `@fromClaim` 指令修饰，意思是根据当前登录用户的UID，查询待做事项列表：
 
-```http
-Authorization: Bearer <access_token>
+{% code title="FromClaim.graphql" %}
+```graphql
+query MyQuery($uid: String! @fromClaim(name: USERID)) {
+  todo_findManyTodo(where: {uid: {equals: $uid}}) {
+    id
+    title
+  }
+}
+```
+{% endcode %}
+
+其将被编译为如下REST API，请求如下：
+
+```bash
+curl -X GET "http://localhost:9991/operations/FromClaim" \
+# 添加以下请求头
+--header 'Authorization: Bearer <access_token>' \
+ -H "accept: application/json" \
+```
+
+```json
+{
+  "data": {
+    "todo_findUniqueClaim": {
+      "email": "test@example.com",
+      "emailVerified": false,
+      "location": "",
+      "name": "test@example.com",
+      "nickname": "test",
+      "provider": "auth0",
+      "roles": null,
+      "userId": "auth0|637b4ab0c0cb508c49de7cf3"
+    }
+  }
+}
 ```
 
 ## 工作原理
@@ -228,42 +261,10 @@ curl --location --request GET 'https://xxx.authing.cn/oidc/me' \
 
 #### 6.客户端请求Fireboom API
 
-假设，有如下OPERATION，使用 `@fromClaim` 指令修饰，意思是根据当前登录用户的UID，查询待做事项列表：
+客户端请求Fireboom API时，携带如下请求头 ，示例见 [#shi-yong-token](yin-shi-mo-shi.md#shi-yong-token "mention")
 
-{% code title="FromClaim.graphql" %}
-```graphql
-query MyQuery($uid: String! @fromClaim(name: USERID)) {
-  todo_findManyTodo(where: {uid: {equals: $uid}}) {
-    id
-    title
-  }
-}
-```
-{% endcode %}
-
-其将被编译为如下REST API，请求如下：
-
-```bash
-curl -X GET "http://localhost:9991/operations/FromClaim" \
---header 'Authorization: Bearer <access_token>' \
- -H "accept: application/json" \
-```
-
-```json
-{
-  "data": {
-    "todo_findUniqueClaim": {
-      "email": "test@example.com",
-      "emailVerified": false,
-      "location": "",
-      "name": "test@example.com",
-      "nickname": "test",
-      "provider": "auth0",
-      "roles": null,
-      "userId": "auth0|637b4ab0c0cb508c49de7cf3"
-    }
-  }
-}
+```http
+Authorization: Bearer <access_token>
 ```
 
 #### 7.Fireboom校验令牌

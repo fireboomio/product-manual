@@ -4,7 +4,7 @@ description: '@fromClaim指令'
 
 # 数据权限控制
 
-最后，我们学习接口的数据权限控制，其核心是`@fromclaim`指令。
+接着，我们学习接口的数据权限控制，其核心是`@fromclaim`指令。
 
 `@fromclaim`指令，又叫 [#deng-lu-xiao-yan-zhi-ling](../api-gou-jian/api-zhi-ling.md#deng-lu-xiao-yan-zhi-ling "mention") ，是注入指令的一种，适用于查询、变更和订阅OPERATION。
 
@@ -29,6 +29,4 @@ description: '@fromClaim指令'
 * NICKNAME
 * LOCATION
 * PROVIDER &#x20;
-* ROLES：ROLES is string array, Please use in \[in, notIn]
-
-roles比较特殊，我们后续讲到角色鉴权时再展开。
+* ROLES：ROLES 是一个字符串数组，请在\[in, notIn]中使用。OIDC协议并未声明该字段，因此无法从OIDC供应商的获取用户端点拿到该字段。若想为该字段赋值，<mark style="color:red;">请参考 ...</mark>
