@@ -20,7 +20,7 @@
 
 其流程图如下所示：
 
-<figure><img src="../../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (2) (1).png" alt=""><figcaption><p>订阅流程图</p></figcaption></figure>
 
 首先，当客户端订阅服务时①，飞布服务同步订阅事件源②。
 
@@ -59,3 +59,7 @@ subscription MyQuery {
 {% hint style="info" %}
 SUBSCRIPTION OPERATION不能被声明为内部。
 {% endhint %}
+
+## 客户端使用
+
+* SSE TypeScript示例：[前往](https://github.com/fireboomio/fb-admin/blob/46c919afd4fe80ab2ee89560ba394cc5ae3f9da7/front/src/layout/components/notice/index.vue#L29C16-L29C33)

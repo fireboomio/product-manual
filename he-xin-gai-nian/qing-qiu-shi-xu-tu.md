@@ -2,7 +2,7 @@
 
 ## 单数据源
 
-<figure><img src="../.gitbook/assets/image (8).png" alt=""><figcaption><p>Fireboom单数据源请求时序图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption><p>Fireboom单数据源请求时序图</p></figcaption></figure>
 
 0 定义接口
 

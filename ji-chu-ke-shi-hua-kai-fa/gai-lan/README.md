@@ -6,7 +6,7 @@
 
 飞布本身分为两大块：控制台界面和飞布核心引擎。
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布架构图</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布架构图</p></figcaption></figure>
 
 飞布引擎基于声明式架构实现，具体原理见 [工作原理](../../kuai-su-ru-men/gong-zuo-yuan-li.md) 。基于飞布开发API，本质上就是构建符合飞布引擎规范的配置文件。而控制台就是简化该工作的核心模块。
 

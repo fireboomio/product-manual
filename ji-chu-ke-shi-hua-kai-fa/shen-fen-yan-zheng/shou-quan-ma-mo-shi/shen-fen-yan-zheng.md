@@ -1,4 +1,4 @@
-# 身份验证
+# 身份验证（废弃）
 
 飞布支持OIDC进行身份验证，实现了OIDC中定义的两种授权流程：基于cookie登录-授权码模式（Authorization Code）和基于Token登录-隐式模式（Implicit）。
 
@@ -7,15 +7,7 @@
 飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：
 
 * IDaaS服务商auth0、authing等
-* 开源OIDC服务：okta、[casdoor](../../huan-jing-zhun-bei/#zi-bu-shu-casdoor)等。
-
-接下来，我们学习下如何配置，我们以AUTHING为例。
-
-{% embed url="https://www.bilibili.com/video/BV1wk4y1i7rD/?share_source=copy_web&vd_source=f8709d15baaa835ea2d0bb3bcc6857da" %}
-15功能介绍-飞布如何添加身份验证器？
-{% endembed %}
-
-
+* 开源OIDC服务：okta、[casdoor](../../../huan-jing-zhun-bei/#zi-bu-shu-casdoor)等。
 
 ## 快速操作
 

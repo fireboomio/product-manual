@@ -68,17 +68,13 @@ mongodb://USERNAME:PASSWORD@HOST/DATABASE
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
+若链接URL中有特殊字符，包括密码，需要进行替换，例如  `p@$$w0rd` 改为 `p%40%24%24w0rd`。详情请参考[该文档](https://www.prisma.io/docs/reference/database-reference/connection-urls#special-characters) 。
+
 你可以使用环境变量或字面量连接数据库。为了安全起见，推荐使用环境变量连接。在连接URL或用户名+密码字段前选择“环境变量”，即可使用环境变量连接数据库。
-{% endhint %}
 
 {% hint style="info" %}
 SSH隧道模式
 
 Fireboom暂时不支持直接配置SSH Tunnel连接，你可以通过执行ssh脚本将远程的数据库端口映射到本地，然后连接本地映射后的端口即可。这里有个示例 ssh -L 3306:localhost:3306 database-machine.org 然后Fireboom中使用localhost:3306进行连接即可
 {% endhint %}
-
-
-
-
 

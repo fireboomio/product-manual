@@ -56,6 +56,8 @@ query GetOnetodo($uid: Int! @fromClaim(name: USERID) # 注入当前登录用户�
 08功能介绍-飞布如何限制API数据权限?
 {% endembed %}
 
+详情，请查看 [shu-ju-quan-xian-kong-zhi.md](../shen-fen-yan-zheng/shu-ju-quan-xian-kong-zhi.md "mention")
+
 ## 授权校验指令
 
 `@rbac`指令，又名授权校验指令，实现了API接口的RBAC控制，对应到流程图上，为授权校验节点。它本质上是全局指令，作用于整个OPERATION上，修改了OPERATION的整体行为。

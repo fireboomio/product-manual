@@ -15,7 +15,7 @@
 1. 在文件存储面板中，选择列表项，右击点击“新建Profile”
 2. 重命名Profile名称，并填写基本设置（meta和钩子后续讲解）
 
-<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 使用profile，需要在上传文件的请求头中增加X-Upload-Profile字段，该字段为枚举类型，从profile中选择。
 

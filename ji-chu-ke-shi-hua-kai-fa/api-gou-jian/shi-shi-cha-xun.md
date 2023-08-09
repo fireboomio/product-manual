@@ -37,7 +37,7 @@ setInterval(()=>{
 
 服务端轮询把轮询逻辑从客户端移动到服务端，由服务端定时请求数据，并比对前后两次数据是否一致，若数据变化，则推送数据到客户端。同时，只有当客户端打开链接时，服务端才会定时轮询数据，保证系统性能。
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
 
 该时序图包括客户端、服务端和数据库。
 
@@ -67,7 +67,7 @@ setInterval(()=>{
 * 开启 实时查询
 * 设置 轮训间隔，单位是秒，最小值为1秒
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 设置完毕后，可以看到流程图中多了一条循环线，上面标记了轮训间隔。
 
@@ -79,4 +79,8 @@ setInterval(()=>{
 
 基于SSE的实时查询，相对于websocket协议，还具有另一个优势，即复用HTTP的身份鉴权。在该OPERTION中设置的登录校验或者权限控制，无需任何额外操作，都可以应用到实时查询接口中。
 
-而webssocket若要实现权限控制，则需要客户端的额外编写代码支持。\
+而webssocket若要实现权限控制，则需要客户端的额外编写代码支持。
+
+## 客户端使用
+
+* SSE TypeScript示例：[前往](https://github.com/fireboomio/fb-admin/blob/46c919afd4fe80ab2ee89560ba394cc5ae3f9da7/front/src/layout/components/notice/index.vue#L29C16-L29C33)

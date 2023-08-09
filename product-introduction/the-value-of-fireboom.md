@@ -32,7 +32,7 @@
 
 基于PMP软件开发成本评估案例，软件项目开发的成本分布如下，其中前后端+测试耗费了75%的费用。使用飞布后，不仅节省后端人力，原来需要3个后端的项目，现在只需要1个，而且提升了前后端联调的效率，提升了前端开发的速度，同时基于声明式引擎构建的接口BUG更好，测试成本也同步降低了。整体而言，应用开发成本节省60%。
 
-<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption><p>PMP软件开发成本占比</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (1).png" alt=""><figcaption><p>PMP软件开发成本占比</p></figcaption></figure>
 
 ### 应用质量大幅提升
 

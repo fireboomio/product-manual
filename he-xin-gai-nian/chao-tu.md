@@ -10,7 +10,7 @@
 
 ## 统一协议
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 gql作为一种强类型API语言，非常适合作为该统一协议。
 
@@ -34,7 +34,7 @@ gql作为一种强类型API语言，非常适合作为该统一协议。
 
 prisma的核心原理见 [shu-ju-ku](../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/ "mention")
 
-<figure><img src="../.gitbook/assets/image (5).png" alt=""><figcaption><p>Prisma2GraphQL转换规则</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>Prisma2GraphQL转换规则</p></figcaption></figure>
 
 首先，prisma model与数据库建表语句等价。且prisma model能转换成多种数据库的建表语句。
 
@@ -90,7 +90,7 @@ Prisma对不同数据库的函数支持是不同的，例如sqlite数据库缺�
 
 飞布除了支持数据库数据源外，还支持REST 数据源。
 
-<figure><img src="../.gitbook/assets/image (6).png" alt=""><figcaption><p>OAS2GraphQL转换规则</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption><p>OAS2GraphQL转换规则</p></figcaption></figure>
 
 如图所示，是OAS3.0规范的示例，可以看到它也定义了入参和出参，并且支持类型，可以转换为gql scheme。
 
@@ -113,7 +113,7 @@ Prisma对不同数据库的函数支持是不同的，例如sqlite数据库缺�
 
 最后我们查看下架构图，重点关注超图部分。
 
-<figure><img src="../.gitbook/assets/image (7).png" alt=""><figcaption><p>架构图-超图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>架构图-超图</p></figcaption></figure>
 
 在这里，飞布主要做了2件事：
 

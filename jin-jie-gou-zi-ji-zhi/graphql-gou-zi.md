@@ -14,7 +14,7 @@
 
 3，系统自动初始化如下脚本。默认填充的是示例代码，你可以根据业务需求修改代码。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
 
 {% tabs %}
 {% tab title="golang" %}
@@ -253,7 +253,7 @@ fragment TypeRef on __Type {
 
 </details>
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption><p>内省</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>内省</p></figcaption></figure>
 
 
 
@@ -290,7 +290,7 @@ GraphqlServers: []plugins.GraphQLServerConfig{
 
 接着，我们就可以在Fireboom的超图面板中构建OPERATION，生成REST API供客户端使用。
 
-<figure><img src="../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>将GraphQL钩子转变成REST API</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>将GraphQL钩子转变成REST API</p></figcaption></figure>
 
 通过该方式可以实现任意复杂的业务需求！且可以复用Fireboom的权限体系。
 
