@@ -44,7 +44,7 @@
   * [常见用例](ji-chu-ke-shi-hua-kai-fa/api-gou-jian/chang-jian-yong-li.md)
 * [身份验证](ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/README.md)
   * [授权码模式](ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/shou-quan-ma-mo-shi/README.md)
-    * [身份验证（废弃）](ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/shou-quan-ma-mo-shi/shen-fen-yan-zheng.md)
+    * [身份验证（废弃）](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/shen-fen-yan-zheng.md)
   * [隐式模式](ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/yin-shi-mo-shi.md)
   * [数据权限控制](ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/shu-ju-quan-xian-kong-zhi.md)
 * [验证和授权](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/README.md)

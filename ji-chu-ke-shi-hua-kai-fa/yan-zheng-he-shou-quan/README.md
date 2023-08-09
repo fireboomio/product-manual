@@ -8,6 +8,6 @@
 03功能介绍 如何用飞布实现API授权和访问控制？
 {% endembed %}
 
-[shen-fen-yan-zheng.md](../shen-fen-yan-zheng/shou-quan-ma-mo-shi/shen-fen-yan-zheng.md "mention")
+[shen-fen-yan-zheng.md](shen-fen-yan-zheng.md "mention")
 
 [shou-quan-yu-fang-wen-kong-zhi](shou-quan-yu-fang-wen-kong-zhi/ "mention")

@@ -7,7 +7,7 @@
 飞布能与任意实现OIDC规范的供应商集成。目前主流OIDC供应商如下：
 
 * IDaaS服务商auth0、authing等
-* 开源OIDC服务：okta、[casdoor](../../../huan-jing-zhun-bei/#zi-bu-shu-casdoor)等。
+* 开源OIDC服务：okta、[casdoor](../../huan-jing-zhun-bei/#zi-bu-shu-casdoor)等。
 
 ## 快速操作
 
