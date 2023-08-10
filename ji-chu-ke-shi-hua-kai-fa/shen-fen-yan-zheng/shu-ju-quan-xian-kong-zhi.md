@@ -22,11 +22,17 @@ description: '@fromClaim指令'
 
 该指令支持注入如下信息：
 
-* USERID：
-* EMAIL
-* EMAIL\_VERIFIED
+* USERID：用户UID
+* EMAIL：用户邮箱
+* EMAIL\_VERIFIED：邮箱是否验证
 * NAME
 * NICKNAME
 * LOCATION
 * PROVIDER &#x20;
+
+
+
+## Roles
+
 * ROLES：ROLES 是一个字符串数组，请在\[in, notIn]中使用。OIDC协议并未声明该字段，因此无法从OIDC供应商的获取用户端点拿到该字段。若想为该字段赋值，<mark style="color:red;">请参考 ...</mark>
+

@@ -5,6 +5,82 @@
 * 开发模式内置了golang和nodejs环境；
 * 生产模式提供了飞布运行所必须得环境；
 
+## 构建镜像
+
+您可以按照下述方法自行构建镜像，也可以使用Fireboom官方构建的镜像，前往 [dockerhub查看](https://hub.docker.com/repository/docker/fireboomapi/fireboom\_server/general) 。
+
+### Dockerfile
+
+下面是构建Fireboom镜像依赖的所有文件，详情前往仓库查看：[https://github.com/lcRuri/fireboom-docker](https://github.com/lcRuri/fireboom-docker)
+
+<details>
+
+<summary>fireboom-docker目录</summary>
+
+{% code title="Dockerfile" %}
+```docker
+FROM golang:1.20-alpine
+
+MAINTAINER lcRuri
+
+RUN apk update && \
+    apk add --no-cache git bash curl
+
+# 安装 Node.js
+RUN apk add --no-cache nodejs npm
+
+WORKDIR /dist
+
+# 将host.sh脚本复制到容器中
+
+COPY ./host.sh /dist
+
+# 运行脚本
+RUN chmod +x host.sh
+
+# 指定挂载目录
+VOLUME /dist/log
+VOLUME /dist/store
+VOLUME /dist/template
+VOLUME /dist/upload
+VOLUME /dist/custom-go
+VOLUME /dist/custom-ts
+VOLUME /dist/exported
+
+EXPOSE 9123
+EXPOSE 9991
+
+ENTRYPOINT ["/dist/host.sh"]
+```
+{% endcode %}
+
+{% code title="host.sh" %}
+```bash
+#!/bin/bash
+
+# 解决docker镜像IPV6的问题
+echo "0.0.0.0 localhost">/etc/hosts
+
+# 使用install.sh脚本安装Fireboom，并使用 init-todo 模板初始化
+curl -fsSL fireboom.io/install.sh | bash -s fb-project -t fb-init-todo
+
+start_command="/dist/fireboom $1"
+
+eval "$start_command"
+
+```
+{% endcode %}
+
+</details>
+
+### 构建
+
+在上述fireboom-docker目录下执行如下命令：
+
+```bash
+docker build -t fireboom_server:latest
+```
+
 ## 使用方法
 
 ### 1. 拉取镜像
