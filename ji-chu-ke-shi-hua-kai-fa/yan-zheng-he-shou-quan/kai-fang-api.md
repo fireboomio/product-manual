@@ -50,10 +50,10 @@ body 参数结构为
 
 ## 接口安全
 
-上述开放的 2 个接口权限较高，需要设置角色控制。默认都是 `requireMatchAll: [admin]`，你可以在 Fireboom 控制台页面点击“设置”，选择“开放API”，分别为2个接口配置角色限制，具体操作和[新建 API 时相似](./)。
+上述开放的 2 个接口权限较高，需要设置角色控制。默认都是 `requireMatchAll: [admin]`，你可以在 Fireboom 控制台页面点击“设置”，选择“开放API”，分别为2个接口配置角色限制，具体操作和[新建 API 时相似](shou-quan-yu-fang-wen-kong-zhi.md)。
 
 ## 接口使用
 
 要实现前面说的角色绑定接口功能，我们需要先在查询角色列表时调用接口 1，在给具体角色绑定 API 接口列表时调用接口 2。
 
-具体使用方法可参考 [refine 管理后台案例](../../../zui-jia-shi-jian/fireboom-admin/guan-li-hou-tai-refine.md)
+具体使用方法可参考 [refine 管理后台案例](../../zui-jia-shi-jian/fireboom-admin/guan-li-hou-tai-refine.md)

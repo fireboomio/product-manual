@@ -12,13 +12,17 @@ Fireboom 同时只兼容一种语言的钩子！！！
 
 ## 读取配置文件
 
-Fireboom编译，配置文件`custom-go/generated/fireboom.config.json` 是一个指向`exported/generated/fireboom.config.json` 的软连接。
+钩子服务需要依赖Fireboom服务的某些配置，因此需要读取Fireboom的配置文件：`exported/generated/fireboom.config.json` 。
+
+为了便于读取，且减少冗余。Fireboom为`fireboom.config.json`创建了一个软连接，并生成到开启钩子的指定路径，例如：`custom-go/generated/fireboom.config.json` 。
 
 其中，包含钩子启动所依赖的大部分信息，如
 
 * 钩子监听端口：`serverOptions.listen.port`
 * S3配置信息：`s3UploadConfiguration`
 * ...
+
+读取该文件的代码如下：
 
 {% tabs %}
 {% tab title="golang" %}
@@ -38,13 +42,9 @@ func init() {
 {% endtab %}
 {% endtabs %}
 
-{% hint style="info" %}
-启动钩子前要检查custom-go/generated/fireboom.config.json是否存在，否则钩子无法启动。部署时，可借助 ./fireboom build 命令，生成上述文件。
-{% endhint %}
-
 ## 读取环境变量
 
-使用相对路径 `../.env`，和Fireboom服务共用
+钩子服务还依赖Fireboom服务的环境变量，使用相对路径读取： `../.env`。
 
 {% tabs %}
 {% tab title="golang" %}
@@ -195,7 +195,7 @@ Fireboom中有各种类型的钩子，主要包括：
 
 以golang钩子为例， 上图中的Simple OPERATION的 `postResolve` 钩子，对应 `custom-go/hooks/Simple/postResolve.go` 文件。
 
-开启钩子时，若对应钩子的文件不存在，则会在对应目录创建默认的钩子文件。
+开启钩子时，若对应钩子的文件不存在，则会从github仓库对应文件中获取钩子模板，并在对应目录创建默认钩子文件。
 
 所有类型钩子的默认模板，都存储在如下仓库：
 

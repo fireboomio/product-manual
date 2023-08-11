@@ -146,7 +146,7 @@ template
 
 2，在模板页修改“生成路径”，并开启钩子开关（钩子模板同时只能开启1个）
 
-3，后续每次触发“编译”，都会重新生成钩子文件
+3，后续每次触发“编译”，都会重新生成钩子文件（<mark style="color:orange;">非</mark><mark style="color:orange;">`.hbs`</mark><mark style="color:orange;">文件，只生成1次</mark>）
 
 {% tabs %}
 {% tab title="golang" %}

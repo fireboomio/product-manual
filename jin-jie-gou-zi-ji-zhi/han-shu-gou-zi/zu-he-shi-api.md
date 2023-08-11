@@ -1,8 +1,8 @@
 ---
-description: 二锅头
+description: 待完善
 ---
 
-# 组合式API
+# functions
 
 Fireboom 的核心概念之一是"Operation"。 Operation 可以是持久化的 GraphQL Operation，也可以是 TypeScript Operation， 它们都具有三种形式：Query,Mutation和Subscription. 此外，还有使用服务器端轮询的LiveQuery Operation。
 
