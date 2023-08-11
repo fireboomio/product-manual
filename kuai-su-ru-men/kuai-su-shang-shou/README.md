@@ -119,4 +119,4 @@ curl -fsSL https://www.fireboom.io/update.sh | bash
 * [API钩子](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)：在请求API的生命周期中，插入代码，以更改或扩展API行为，例如用户新建文章后，通过后置钩子发送邮件通知管理员审核。
 * API数据源：除数据库外，飞布支持集成[REST API](../../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/rest-api.md)和[GraphQL API](../../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/graphql-api.md)，开发者可以自行用喜欢的方式实现自定义逻辑的API，但无需考虑权限问题。飞布此时变身API网关，作为BFF层对外提供接口。
 * [自定义数据源](broken-reference)：飞布还内置了自定义数据源，开发者可以直接编写脚本扩展逻辑。它本质上也是一个GraphQL API。
-* [组合式API](../../jin-jie-gou-zi-ji-zhi/shi-yong-gou-zi/node-gou-zi/zu-he-shi-api.md)：适用于复杂业务逻辑的构建，当前只支持TS hooks。
+* [组合式API](../../jin-jie-gou-zi-ji-zhi/qi-dong-gou-zi/node-gou-zi/zu-he-shi-api.md)：适用于复杂业务逻辑的构建，当前只支持TS hooks。

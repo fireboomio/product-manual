@@ -1,4 +1,4 @@
-# 使用钩子
+# 启动钩子
 
 任何语言实现的Fireboom钩子，本质上都是一个WEB服务，其遵循Fireboom规范注册对应路由。
 
@@ -12,8 +12,13 @@ Fireboom 同时只兼容一种语言的钩子！！！
 
 ## 读取配置文件
 
-1. 配置文件：custom-go/generated/fireboom.config.json 是一个指向exported/generated/fireboom.config.json的软连接
-2. 包含钩子启动所依赖的大部分信息，如钩子监听端口serverOptions.listen.port，S3配置信息s3UploadConfiguration等
+配置文件`custom-go/generated/fireboom.config.json` 是一个指向`exported/generated/fireboom.config.json` 的软连接（不存在时生成）
+
+其中，包含钩子启动所依赖的大部分信息，如
+
+* 钩子监听端口：`serverOptions.listen.port`
+* S3配置信息：`s3UploadConfiguration`
+* ...
 
 {% tabs %}
 {% tab title="golang" %}
@@ -137,95 +142,17 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 
 Fireboom根据开启的钩子，结合对应钩子模板生成对应的Hooks SDK。
 
-### 钩子模板文件目录
+[operation-gou-zi.md](../operation-gou-zi.md "mention")
 
-{% tabs %}
-{% tab title="nodejs" %}
-```
-template
-├─ node-server
-│  ├─ README.md
-│  ├─ files
-│  │  ├─ ecosystem.config.js
-│  │  ├─ fireboom.server.ts.hbs
-│  │  ├─ generated
-│  │  │  ├─ claims.ts.hbs
-│  │  │  ├─ client.legacy.ts.hbs
-│  │  │  ├─ client.ts.hbs
-│  │  │  ├─ fireboom.factory.ts
-│  │  │  ├─ fireboom.internal.client.ts.hbs
-│  │  │  ├─ fireboom.internal.operations.client.ts.hbs
-│  │  │  ├─ fireboom.operations.ts.hbs
-│  │  │  ├─ fireboom.server.ts.hbs
-│  │  │  ├─ linkbuilder.ts.hbs
-│  │  │  ├─ models.ts.hbs
-│  │  │  ├─ prisma.ts.hbs
-│  │  │  └─ testing.ts.hbs
-│  │  ├─ nodemon.json
-│  │  ├─ operations.tsconfig.json
-│  │  ├─ package.json
-│  │  ├─ scripts
-│  │  │  ├─ buildOperations.ts
-│  │  │  ├─ install.sh
-│  │  │  ├─ run-build.sh
-│  │  │  ├─ run-dev.sh
-│  │  │  └─ run-prod.sh
-│  │  └─ tsconfig.json
-│  ├─ manifest.json
-│  └─ partials
-│     ├─ operation_partial.hbs
-│     └─ schema_partial.hbs
-```
-{% endtab %}
+[shen-fen-yan-zheng-gou-zi.md](../shen-fen-yan-zheng-gou-zi.md "mention")
 
-{% tab title="golang" %}
-```
-template
-├─ golang-server
-│  ├─ README.md
-│  ├─ files
-│  │  ├─ generated
-│  │  │  └─ models.go.hbs
-│  │  ├─ go.mod
-│  │  ├─ helix.html
-│  │  ├─ main.go
-│  │  ├─ pkg
-│  │  │  ├─ base
-│  │  │  │  ├─ client.go
-│  │  │  │  ├─ operation.go
-│  │  │  │  ├─ request.go
-│  │  │  │  ├─ upload.go
-│  │  │  │  └─ user.go
-│  │  │  ├─ consts
-│  │  │  │  └─ env.go
-│  │  │  ├─ plugins
-│  │  │  │  ├─ graphqls.go
-│  │  │  │  └─ internal_request.go
-│  │  │  ├─ types
-│  │  │  │  ├─ configure.go
-│  │  │  │  └─ server.go
-│  │  │  ├─ utils
-│  │  │  │  ├─ config.go
-│  │  │  │  ├─ file.go
-│  │  │  │  ├─ http.go
-│  │  │  │  ├─ random.go
-│  │  │  │  └─ strings.go
-│  │  │  └─ wgpb
-│  │  │     └─ wundernode_config.pb.go
-│  │  ├─ scripts
-│  │  │  ├─ install.sh
-│  │  │  ├─ run-build.sh
-│  │  │  ├─ run-dev.sh
-│  │  │  └─ run-prod.sh
-│  │  └─ server
-│  │     ├─ fireboom_server.go.hbs # 生成的入口文件
-│  │     └─ start.go
-│  └─ manifest.json
-```
-{% endtab %}
-{% endtabs %}
+[graphql-gou-zi.md](../graphql-gou-zi.md "mention")
 
-### 生成的钩子项目目录：
+[wen-jian-shang-chuan-gou-zi.md](../wen-jian-shang-chuan-gou-zi.md "mention")
+
+[nei-bu-tiao-yong.md](../nei-bu-tiao-yong.md "mention")
+
+
 
 {% tabs %}
 {% tab title="nodejs" %}
@@ -319,25 +246,126 @@ template
 {% endtab %}
 {% endtabs %}
 
+### 生成钩子
+
+
+
+```
+https://github.com/fireboomio/files/blob/main/hook.templates.go.json
+```
+
+### 引入钩子
+
+
+
+{% tabs %}
+{% tab title="golang" %}
+{% code title="custom-go/server/fireboom_server.go" %}
+```go
+package server
+import (
+	"custom-go/global"
+	"github.com/joho/godotenv"
+	"custom-go/auth"
+	"custom-go/generated"
+	hooks_Single "custom-go/hooks/Single"
+	hooks_Weather "custom-go/hooks/Weather"
+	"custom-go/pkg/base"
+	"custom-go/pkg/plugins"
+	"custom-go/pkg/types"
+	uploads_tengxunyun_avatar "custom-go/uploads/tengxunyun/avatar"
+	uploads_fireboom_avatar "custom-go/uploads/fireboom/avatar"
+	"custom-go/customize"
+	_ "custom-go/proxys"
+)
+const nodeEnvFilepath = "../.env"
+func init() {
+	_ = godotenv.Overload(nodeEnvFilepath)
+	types.WdgHooksAndServerConfig = types.WunderGraphHooksAndServerConfig{
+		Hooks: types.HooksConfiguration{
+			Global: plugins.GlobalConfiguration{
+				HttpTransport: plugins.HttpTransportHooks{
+					BeforeOriginRequest: global.BeforeOriginRequest,
+					OnOriginRequest:     global.OnOriginRequest,
+					OnOriginResponse:    global.OnOriginResponse,
+				},
+				WsTransport: plugins.WsTransportHooks{},
+			},
+
+			Authentication: plugins.AuthenticationConfiguration{
+				MutatingPostAuthentication: auth.MutatingPostAuthentication,
+			},
+
+			Queries: base.OperationHooks{
+				"Single": {
+					PreResolve: plugins.ConvertBodyFunc[generated.SingleInternalInput, generated.SingleResponseData](hooks_Single.PreResolve),
+				},
+				"Weather": {
+					CustomResolve: plugins.ConvertBodyFunc[generated.WeatherInternalInput, generated.WeatherResponseData](hooks_Weather.CustomResolve),
+					PostResolve:   plugins.ConvertBodyFunc[generated.WeatherInternalInput, generated.WeatherResponseData](hooks_Weather.PostResolve),
+				},
+			},
+
+			Mutations: base.OperationHooks{},
+
+			Subscriptions: base.OperationHooks{},
+
+			Uploads: map[string]plugins.UploadHooks{
+				"tengxunyun": {
+					"avatar": {
+						PreUpload:  plugins.ConvertUploadFunc[generated.Tengxunyun_avatarProfileMeta](uploads_tengxunyun_avatar.PreUpload),
+						PostUpload: plugins.ConvertUploadFunc[generated.Tengxunyun_avatarProfileMeta](uploads_tengxunyun_avatar.PostUpload),
+					},
+				},
+				"ali": {},
+				"fireboom": {
+					"avatar": {
+						PreUpload: plugins.ConvertUploadFunc[generated.Fireboom_avatarProfileMeta](uploads_fireboom_avatar.PreUpload),
+					},
+				},
+			},
+		},
+		GraphqlServers: []plugins.GraphQLServerConfig{
+			{
+				ApiNamespace:          "Custom",
+				ServerName:            "Custom",
+				EnableGraphQLEndpoint: true,
+				Schema:                customize.Custom_schema,
+			},
+		},
+	}
+}
+
+```
+{% endcode %}
+{% endtab %}
+
+{% tab title="nodejs" %}
+
+{% endtab %}
+{% endtabs %}
+
 ### 注册路由
+
+
 
 {% tabs %}
 {% tab title="golang" %}
 {% code title="server/start.go" %}
 ```go
-# 注册proxy钩子
+// 注册proxy钩子
 plugins.RegisterProxyHooks(e)
-# 注册全局钩子
+// 注册全局钩子
 plugins.RegisterGlobalHooks(e, types.WdgHooksAndServerConfig.Hooks.Global)
-# 注册授权钩子
+// 注册授权钩子
 plugins.RegisterAuthHooks(e, types.WdgHooksAndServerConfig.Hooks.Authentication)
-# 注册上传钩子
+// 注册上传钩子
 plugins.RegisterUploadsHooks(e, types.WdgHooksAndServerConfig.Hooks.Uploads)
 
 var internalQueries, internalMutations base.OperationDefinitions
 nodeUrl := utils.GetConfigurationVal(types.WdgGraphConfig.Api.NodeOptions.NodeUrl)
 queryOperations := filterOperationsHooks(types.WdgGraphConfig.Api.Operations, wgpb.OperationType_QUERY)
-# 注册局部钩子
+// 注册局部钩子
 if queryLen := len(queryOperations); queryLen > 0 {
 	internalQueries = plugins.BuildInternalRequest(e.Logger, nodeUrl, queryOperations)
 	plugins.RegisterOperationsHooks(e, queryOperations, types.WdgHooksAndServerConfig.Hooks.Queries)
@@ -354,12 +382,12 @@ if subscriptionLen := len(subscriptionOperations); subscriptionLen > 0 {
 	plugins.RegisterOperationsHooks(e, subscriptionOperations, types.WdgHooksAndServerConfig.Hooks.Subscriptions)
 	e.Logger.Debugf(`Registered (%d) subscription operations`, subscriptionLen)
 }
-# 注册内部调用钩子
+// 注册内部调用钩子
 plugins.BuildDefaultInternalClient(internalQueries, internalMutations)
 for _, registeredHook := range base.GetRegisteredHookArr() {
 	go registeredHook(e.Logger)
 }
-# 注册graphql钩子
+// 注册graphql钩子
 for _, gqlServer := range types.WdgHooksAndServerConfig.GraphqlServers {
 	plugins.RegisterGraphql(e, gqlServer)
 }
@@ -405,17 +433,5 @@ e.GET("/health", func(c echo.Context) error {
 {% endtab %}
 {% endtabs %}
 
-### 剩余钩子
-
-
-
-[operation-gou-zi.md](../operation-gou-zi.md "mention")
-
-[shen-fen-yan-zheng-gou-zi.md](../shen-fen-yan-zheng-gou-zi.md "mention")
-
-[graphql-gou-zi.md](../graphql-gou-zi.md "mention")
-
-[wen-jian-shang-chuan-gou-zi.md](../wen-jian-shang-chuan-gou-zi.md "mention")
-
-[nei-bu-tiao-yong.md](../nei-bu-tiao-yong.md "mention")
+###
 
