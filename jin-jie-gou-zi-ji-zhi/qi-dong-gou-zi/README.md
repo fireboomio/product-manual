@@ -12,7 +12,7 @@ Fireboom 同时只兼容一种语言的钩子！！！
 
 ## 读取配置文件
 
-配置文件`custom-go/generated/fireboom.config.json` 是一个指向`exported/generated/fireboom.config.json` 的软连接（不存在时生成）
+Fireboom编译，配置文件`custom-go/generated/fireboom.config.json` 是一个指向`exported/generated/fireboom.config.json` 的软连接。
 
 其中，包含钩子启动所依赖的大部分信息，如
 
@@ -65,7 +65,7 @@ func init() {
 
 ## 注册中间件
 
-1，解析Fireboom调用时携带的全局参数 \_wg
+1，解析Fireboom调用钩子时携带的全局参数 `_wg`
 
 ```json
 "__wg": { # 全局参数
@@ -84,9 +84,9 @@ func init() {
   }
 ```
 
-2，为上下文ctx注入User对象，用于获取登录用户的信息
+2，为上下文ctx注入`User`对象，用于获取登录用户的信息
 
-3，为上下文ctx注入InternalClient对象（用于[内部调用](../nei-bu-tiao-yong.md)）
+3，为上下文ctx注入`InternalClient`对象（用于[内部调用](../nei-bu-tiao-yong.md)）
 
 {% tabs %}
 {% tab title="golang" %}
@@ -138,9 +138,9 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 {% endtab %}
 {% endtabs %}
 
-## 注册路由
+## 注册钩子
 
-Fireboom根据开启的钩子，结合对应钩子模板生成对应的Hooks SDK。
+Fireboom中有各种类型的钩子，主要包括：
 
 [operation-gou-zi.md](../operation-gou-zi.md "mention")
 
@@ -150,113 +150,115 @@ Fireboom根据开启的钩子，结合对应钩子模板生成对应的Hooks SDK
 
 [wen-jian-shang-chuan-gou-zi.md](../wen-jian-shang-chuan-gou-zi.md "mention")
 
-[nei-bu-tiao-yong.md](../nei-bu-tiao-yong.md "mention")
+每个钩子开启后，都会生成对应模板，并按照规范注册路由。
 
+### 开启钩子
 
+开启钩子很简单，有两种方法：
 
-{% tabs %}
-{% tab title="nodejs" %}
+* 主功能区-> <mark style="color:orange;">概览面板</mark> ，比较直观的展示了钩子所处的注入点，见上图
+* 主功能区-> <mark style="color:orange;">钩子面板</mark> ，简单罗列了所有的钩子
+
+**所有钩子都有约定的目录结构，**各类型钩子对应目录：
+
 ```
-├─ custom-ts
-│  ├─ customize
-│  │  └─ A.ts
-│  ├─ ecosystem.config.js
-│  ├─ nodemon.json
-│  ├─ operations.tsconfig.json
-│  ├─ package.json
-│  ├─ scripts
-│  │  ├─ buildOperations.ts
-│  │  ├─ install.sh
-│  │  ├─ run-build.sh
-│  │  ├─ run-dev.sh
-│  │  └─ run-prod.sh
-│  └─ tsconfig.json
-```
-{% endtab %}
-
-{% tab title="golang" %}
-```
-├─ custom-go
-│  ├─ auth
-│  │  ├─ mutatingPostAuthentication.go
-│  │  ├─ postAuthentication.go
-│  │  ├─ postLogout.go
-│  │  └─ revalidate.go
-│  ├─ customize
-│  │  ├─ S3.go
-│  ├─ global
-│  │  ├─ beforeRequest.go
-│  │  ├─ onRequest.go
-│  │  └─ onResponse.go
-│  ├─ go.mod
-│  ├─ go.sum
-│  ├─ helix.html
-│  ├─ hooks
-│  │  └─ Weather
-│  │     ├─ customResolve.go
-│  │     ├─ mockResolve.go
-│  │     ├─ mutatingPostResolve.go
-│  │     ├─ mutatingPreResolve.go
-│  │     ├─ postResolve.go
-│  │     └─ preResolve.go
-│  ├─ main.go
-│  ├─ pkg
-│  │  ├─ base
-│  │  │  ├─ client.go
-│  │  │  ├─ operation.go
-│  │  │  ├─ request.go
-│  │  │  ├─ upload.go
-│  │  │  └─ user.go
-│  │  ├─ consts
-│  │  │  └─ env.go
-│  │  ├─ plugins
-│  │  │  ├─ auth_hooks.go
-│  │  │  ├─ global_hooks.go
-│  │  │  ├─ graphqls.go
-│  │  │  ├─ internal_request.go
-│  │  │  ├─ operation_hooks.go
-│  │  │  ├─ proxy_hooks.go
-│  │  │  └─ upload_hooks.go
-│  │  ├─ types
-│  │  │  ├─ configure.go
-│  │  │  └─ server.go
-│  │  ├─ utils
-│  │  │  ├─ config.go
-│  │  │  ├─ file.go
-│  │  │  ├─ http.go
-│  │  │  ├─ random.go
-│  │  │  └─ strings.go
-│  │  └─ wgpb
-│  │     └─ wundernode_config.pb.go
-│  ├─ proxys
-│  │  └─ S3Presigned.go
-│  ├─ scripts
-│  │  ├─ install.sh
-│  │  ├─ run-build.sh
-│  │  ├─ run-dev.sh
-│  │  └─ run-prod.sh
-│  ├─ server
-│  │  └─ start.go
-│  └─ uploads
+├─ custom-*
+│  ├─ auth  # 授权钩子目录
+│  │  ├─ mutatingPostAuthentication.*
+│  │  ├─ postAuthentication.*
+│  │  ├─ postLogout.*
+│  │  └─ revalidate.*
+│  ├─ customize # graphql钩子目录
+│  │  ├─ gql1.*
+│  ├─ global  # OPERATION全局钩子目录
+│  │  ├─ beforeRequest.*
+│  │  ├─ onRequest.*
+│  │  └─ onResponse.*
+│  ├─ hooks # OPERATION 局部钩子目录
+│  │  └─ Simple
+│  │     ├─ customResolve.*
+│  │     ├─ mockResolve.*
+│  │     ├─ mutatingPostResolve.*
+│  │     ├─ mutatingPreResolve.*
+│  │     ├─ postResolve.*
+│  │     └─ preResolve.*
+│  ├─ functions # 函数钩子目录
+│  │  └─ fun1.*
+│  ├─ proxys # 代理钩子目录
+│  │  └─ p1.*
+│  └─ uploads # 上传文件钩子目录
 │     └─ tengxunyun
 │        └─ avatar
-│           ├─ postUpload.go
-│           └─ preUpload.go
+│           ├─ postUpload.*
+│           └─ preUpload.*
 ```
-{% endtab %}
-{% endtabs %}
 
-### 生成钩子
+以golang钩子为例， 上图中的Simple OPERATION的 `postResolve` 钩子，对应 `custom-go/hooks/Simple/postResolve.go` 文件。
 
+开启钩子时，若对应钩子的文件不存在，则会在对应目录创建默认的钩子文件。
 
+所有类型钩子的默认模板，都存储在如下仓库：
 
-```
-https://github.com/fireboomio/files/blob/main/hook.templates.go.json
+* golang：[https://github.com/fireboomio/files/blob/main/hook.templates.go.json](https://github.com/fireboomio/files/blob/main/hook.templates.go.json)
+* nodejs：[https://github.com/fireboomio/files/blob/main/hook.templates.ts.json](https://github.com/fireboomio/files/blob/main/hook.templates.ts.json)
+
+其中golang钩子模板仓库如下：
+
+```json
+{
+  "global": {
+    "beforeRequest": "package global\n\nimport (\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc BeforeOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {\n\treturn body.Request, nil\n}\n",
+    "onRequest": "package global\n\nimport (\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {\n\treturn body.Request, nil\n}\n",
+    "onResponse": "package global\n\nimport (\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) {\n\treturn body.Response, nil\n}\n",
+    "onConnectionInit": "import type { WsTransportHookRequest } from 'generated/fireboom.hooks'\nimport type { WsTransportOnConnectionInitResponse } from 'fireboom-wundersdk/server'\n\nexport default async function onConnectionInit(hook: WsTransportHookRequest): Promise<WsTransportOnConnectionInitResponse> {\n  return {\n    payload: {\n      // your code here\n    }\n  }\n}"
+  },
+  "auth": {
+    "postAuthentication": "package auth\n\nimport \"custom-go/pkg/base\"\n\nfunc PostAuthentication(hook *base.AuthenticationHookRequest) error {\n\treturn nil\n}",
+    "mutatingPostAuthentication": "package auth\n\nimport (\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {\n\treturn &plugins.AuthenticationResponse{User: hook.User, Status: \"ok\"}, nil\n}\n",
+    "revalidateAuthentication": "package auth\n\nimport (\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationResponse, error) {\n\treturn nil, nil\n}",
+    "postLogout": "package auth\n\nimport \"custom-go/pkg/base\"\n\nfunc PostLogout(hook *base.AuthenticationHookRequest) error {\n\treturn nil\n}"
+  },
+  "hook": {  // operation局部钩子
+  // 带入参的OPERATION
+    "WithInput": {
+      "mockResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MockResolve\")\n\treturn body, nil\n}\n",
+      "preResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc PreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"PreResolve\")\n\treturn body, nil\n}\n",
+      "mutatingPreResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MutatingPreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MutatingPreResolve\")\n\treturn body, nil\n}\n",
+      "postResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc PostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"PostResolve\")\n\treturn body, nil\n}\n",
+      "customResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc CustomResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"CustomResolve\")\n\treturn body, nil\n}\n",
+      "mutatingPostResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MutatingPostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MutatingPostResolve\")\n\treturn body, nil\n}\n"
+    },
+  // 不带入参的OPERATION
+    "WithoutInput": {
+      "mockResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MockResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MockResolve\")\n\treturn body, nil\n}\n",
+      "preResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc PreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"PreResolve\")\n\treturn body, nil\n}\n",
+      "mutatingPreResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MutatingPreResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MutatingPreResolve\")\n\treturn body, nil\n}\n",
+      "postResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc PostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"PostResolve\")\n\treturn body, nil\n}\n",
+      "customResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc CustomResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"CustomResolve\")\n\treturn body, nil\n}\n",
+      "mutatingPostResolve": "package $HOOK_PACKAGE$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n)\n\nfunc MutatingPostResolve(hook *base.HookRequest, body generated.$HOOK_NAME$Body) (res generated.$HOOK_NAME$Body, err error) {\n\thook.Logger().Info(\"MutatingPostResolve\")\n\treturn body, nil\n}\n"
+    }
+  },
+  // graphql 钩子
+  "custom": "package customize\n\nimport (\n\t\"custom-go/pkg/plugins\"\n\t\"github.com/graphql-go/graphql\"\n)\n\ntype Person struct {\n\tId        int    `json:\"id\"`\n\tFirstName string `json:\"firstName\"`\n\tLastName  string `json:\"lastName\"`\n}\n\nvar (\n\tpersonType = graphql.NewObject(graphql.ObjectConfig{\n\t\tName:        \"Person\",\n\t\tDescription: \"A person in the system\",\n\t\tFields: graphql.Fields{\n\t\t\t\"id\": &graphql.Field{\n\t\t\t\tType: graphql.Int,\n\t\t\t},\n\t\t\t\"firstName\": &graphql.Field{\n\t\t\t\tType: graphql.String,\n\t\t\t},\n\t\t\t\"lastName\": &graphql.Field{\n\t\t\t\tType: graphql.String,\n\t\t\t},\n\t\t},\n\t})\n\n\tfields = graphql.Fields{\n\t\t\"person\": &graphql.Field{\n\t\t\tType:        personType,\n\t\t\tDescription: \"Get Person By ID\",\n\t\t\tArgs: graphql.FieldConfigArgument{\n\t\t\t\t\"id\": &graphql.ArgumentConfig{\n\t\t\t\t\tType: graphql.Int,\n\t\t\t\t},\n\t\t\t},\n\t\t\tResolve: func(params graphql.ResolveParams) (interface{}, error) {\n\t\t\t\t_ = plugins.GetGraphqlContext(params)\n\t\t\t\tid, ok := params.Args[\"id\"].(int)\n\t\t\t\tif ok {\n\t\t\t\t\ttestPeopleData := []Person{\n\t\t\t\t\t\t{Id: 1, FirstName: \"John\", LastName: \"Doe\"},\n\t\t\t\t\t\t{Id: 2, FirstName: \"Jane\", LastName: \"Doe\"},\n\t\t\t\t\t}\n\t\t\t\t\tfor _, p := range testPeopleData {\n\t\t\t\t\t\tif p.Id == id {\n\t\t\t\t\t\t\treturn p, nil\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn nil, nil\n\t\t\t},\n\t\t},\n\t}\n\n\trootQuery = graphql.ObjectConfig{Name: \"RootQuery\", Fields: fields}\n\n\t^$CUSTOMIZE_NAME$_schema, _ = graphql.NewSchema(graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)})\n)\n",
+  "example": {
+    "custom": [
+      {
+        "name": "示例数据源",
+        "code": "package customize\n\nimport (\n\t\"custom-go/pkg/plugins\"\n\t\"github.com/graphql-go/graphql\"\n)\n\ntype Person struct {\n\tId        int    `json:\"id\"`\n\tFirstName string `json:\"firstName\"`\n\tLastName  string `json:\"lastName\"`\n}\n\nvar (\n\tpersonType = graphql.NewObject(graphql.ObjectConfig{\n\t\tName:        \"Person\",\n\t\tDescription: \"A person in the system\",\n\t\tFields: graphql.Fields{\n\t\t\t\"id\": &graphql.Field{\n\t\t\t\tType: graphql.Int,\n\t\t\t},\n\t\t\t\"firstName\": &graphql.Field{\n\t\t\t\tType: graphql.String,\n\t\t\t},\n\t\t\t\"lastName\": &graphql.Field{\n\t\t\t\tType: graphql.String,\n\t\t\t},\n\t\t},\n\t})\n\n\tfields = graphql.Fields{\n\t\t\"person\": &graphql.Field{\n\t\t\tType:        personType,\n\t\t\tDescription: \"Get Person By ID\",\n\t\t\tArgs: graphql.FieldConfigArgument{\n\t\t\t\t\"id\": &graphql.ArgumentConfig{\n\t\t\t\t\tType: graphql.Int,\n\t\t\t\t},\n\t\t\t},\n\t\t\tResolve: func(params graphql.ResolveParams) (interface{}, error) {\n\t\t\t\t_ = plugins.GetGraphqlContext(params)\n\t\t\t\tid, ok := params.Args[\"id\"].(int)\n\t\t\t\tif ok {\n\t\t\t\t\ttestPeopleData := []Person{\n\t\t\t\t\t\t{Id: 1, FirstName: \"John\", LastName: \"Doe\"},\n\t\t\t\t\t\t{Id: 2, FirstName: \"Jane\", LastName: \"Doe\"},\n\t\t\t\t\t}\n\t\t\t\t\tfor _, p := range testPeopleData {\n\t\t\t\t\t\tif p.Id == id {\n\t\t\t\t\t\t\treturn p, nil\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t\treturn nil, nil\n\t\t\t},\n\t\t},\n\t}\n\n\trootQuery = graphql.ObjectConfig{Name: \"RootQuery\", Fields: fields}\n\n\tChatGPT_schema, _ = graphql.NewSchema(graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)})\n)\n"
+      }
+    ]
+  },
+  // 上传钩子
+  "upload": {
+    "preUpload": "package $PROFILE_NAME$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc PreUpload(request *base.UploadHookRequest, body *plugins.UploadBody[generated.^$STORAGE_NAME$_$PROFILE_NAME$ProfileMeta]) (*base.UploadHookResponse, error) {\n\treturn &base.UploadHookResponse{FileKey: body.File.Name}, nil\n}\n",
+    "postUpload": "package $PROFILE_NAME$\n\nimport (\n\t\"custom-go/generated\"\n\t\"custom-go/pkg/base\"\n\t\"custom-go/pkg/plugins\"\n)\n\nfunc PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[generated.^$STORAGE_NAME$_$PROFILE_NAME$ProfileMeta]) (*base.UploadHookResponse, error) {\n\treturn nil, nil\n}\n"
+  }
+}
 ```
 
 ### 引入钩子
 
-
+不同语言引入钩子文件的方式不同，但都会动态生成一个<mark style="color:purple;">入口文件</mark>，引入所有的钩子文件。
 
 {% tabs %}
 {% tab title="golang" %}
@@ -268,13 +270,16 @@ import (
 	"github.com/joho/godotenv"
 	"custom-go/auth"
 	"custom-go/generated"
-	hooks_Single "custom-go/hooks/Single"
+	// 引入 OPERATION钩子
+	hooks_Single "custom-go/hooks/Single" 
 	hooks_Weather "custom-go/hooks/Weather"
 	"custom-go/pkg/base"
 	"custom-go/pkg/plugins"
 	"custom-go/pkg/types"
+	// 引入 文件上传钩子
 	uploads_tengxunyun_avatar "custom-go/uploads/tengxunyun/avatar"
 	uploads_fireboom_avatar "custom-go/uploads/fireboom/avatar"
+	// 引入 graphql钩子
 	"custom-go/customize"
 	_ "custom-go/proxys"
 )
@@ -347,7 +352,7 @@ func init() {
 
 ### 注册路由
 
-
+引用<mark style="color:purple;">入口文件</mark>的变量，注册各种钩子的路由。
 
 {% tabs %}
 {% tab title="golang" %}
@@ -400,13 +405,41 @@ for _, gqlServer := range types.WdgHooksAndServerConfig.GraphqlServers {
 {% endtab %}
 {% endtabs %}
 
+## 启动钩子
+
+### 启动服务
+
+不同语言启动服务的方式不同，但一般都需要先安装依赖，再启动服务。
+
+{% tabs %}
+{% tab title="golang" %}
+```bash
+# 1.安装依赖
+go mod tidy
+# 2.启动服务
+go run main.go
+```
+{% endtab %}
+
+{% tab title="nodejs" %}
+```bash
+# 1.安装依赖
+npm install
+# 2.运行服务
+npm run watch
+```
+{% endtab %}
+{% endtabs %}
+
+启动服务后，可通过健康检查接口，检测服务是否成功启动！
+
 ### 健康检查
 
-在开始前我们先学习钩子服务的第一个路由：健康检查接口
+健康检查接口，用于检查钩子服务健康状态，在界面上展示钩子是否已启动，见底部 <mark style="color:purple;">状态栏</mark>-> <mark style="color:purple;">钩子</mark> 状态。
 
 {% swagger method="get" path="health" baseUrl="http://127.0.0.1:9992/" summary="健康检查接口" %}
 {% swagger-description %}
-检查钩子服务健康状态，用于在界面上展示钩子是否已启动
+
 {% endswagger-description %}
 
 {% swagger-response status="200: OK" description="" %}
@@ -432,6 +465,4 @@ e.GET("/health", func(c echo.Context) error {
 
 {% endtab %}
 {% endtabs %}
-
-###
 
