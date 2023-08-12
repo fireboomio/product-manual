@@ -10,9 +10,12 @@
 
 配置S3供应商后，飞布将自动注册上传路由，飞布应用程序的用户可以轻松上传文件。
 
-## 支持OIDC Provider
+## 支持文件存储供应商
 
-任意S3兼容的供应商都能轻松接入飞布。例如，云存储供应商：阿里云存储OSS、腾讯云存储COS，或者通过MINO自建云存储服务。
+任意S3兼容的供应商都能轻松接入飞布。例如，
+
+* 云存储供应商：阿里云存储OSS、腾讯云存储COS
+* 自建云存储服务：[MINO](https://min.io/)
 
 环境准备请参考：[wen-jian-cun-chu-s3.md](../../huan-jing-zhun-bei/wen-jian-cun-chu-s3.md "mention")
 

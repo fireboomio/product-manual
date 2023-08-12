@@ -1,6 +1,6 @@
 # 文件上传钩子
 
-我们已经学习过如何上传文件，今天我们学习文件上传的2个钩子。
+我们已经学习过如何[上传文件](../ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/)，今天我们学习文件上传的2个钩子。
 
 首先，我们看下文件上传的时序图。
 
@@ -153,7 +153,7 @@ func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[genera
 
 ## 文件元数据meta
 
-上述两个钩子，都包含一个特殊入参：meta 文件元数据。
+上述两个钩子，都包含一个特殊入参：<mark style="color:blue;">meta 文件元数据</mark>。
 
 其用途是在上传文件的同时，额外补充业务信息。
 
@@ -161,8 +161,9 @@ func PostUpload(request *base.UploadHookRequest, body *plugins.UploadBody[genera
 
 使用方式如下：
 
-* 在meta中填入JSON对象的json schema描述，限制元数据的格式。
-* 在调用上传接口时，在请求头中设置x-meatadata为对应的JSON data。
+#### 1，设置meta
+
+在meta中填入JSON对象的json schema描述，限制元数据的格式。
 
 jsonschema比较复杂，可以利用[工具](https://www.lddgo.net/string/generate-json-schema)自动生成。例如，若想在上传图片的同时也附带图片所属的文章id，其：
 
@@ -198,7 +199,28 @@ JSON SCHEMA为：
 由于Fireboom兼容的json schema版本较低，要手工删除第9行：additionproperties字段。
 {% endhint %}
 
-后续可以在钩子中使用！
+#### 2，上传文件
+
+在调用上传接口时，在请求头中设置`x-meatadata`为对应的JSON data。
+
+```bash
+curl 'http://localhost:9991/s3/[s3-name]/upload?directory=test' \
+  # 设置Profile名称，从枚举值中选择
+  -H 'X-Upload-Profile: avatar' \
+  # 设置meta的数据，必须要符合json schema的要求
+  -H 'X-Metadata: {"postId":"ssss"}' \
+  -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryGB1RSwk0aZy4QW9J' \
+  
+  # 可选
+  -H 'Cookie: user=xxx; id=xxx=; csrf=xx;' \
+  -H 'accept: application/json' \
+  --data-raw $'------WebKitFormBoundaryGB1RSwk0aZy4QW9J\r\nContent-Disposition: form-data; name="file"; filename="108*108.png"\r\nContent-Type: image/png\r\n\r\n\r\n------WebKitFormBoundaryGB1RSwk0aZy4QW9J--\r\n' \
+  --compressed
+```
+
+#### 3，使用钩子
+
+后续可以在钩子中使用 meta。Meta对象按照json schema定义。
 
 {% tabs %}
 {% tab title="golang" %}

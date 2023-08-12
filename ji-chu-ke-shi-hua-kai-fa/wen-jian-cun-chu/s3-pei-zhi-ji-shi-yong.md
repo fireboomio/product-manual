@@ -6,7 +6,7 @@
 16功能介绍-飞布如何实现文件上传？
 {% endembed %}
 
-### S3配置
+## S3配置
 
 S3配置主要有：
 
@@ -19,28 +19,48 @@ S3配置主要有：
 3. 输入供应商名称及其他参数
 4. 点击测试，若测试通过，点击保存，进入详情页
 
-### S3使用
+## S3使用
 
 配置S3供应商后，飞布将注册上传路由，路由规则为：
 
 ```http
-http://localhost:9991/S3/文件存储名称/upload?directory=xxx
+http://localhost:9991/S3/[文件存储名称]/upload?directory=xxx
 # 文件存储名称，不是存储桶名称。
 ```
 
-用户可通过该路由，上传文件至指定目录，目录由directory字段指定。需要注意的是，使用该路由上传文件时，必须要登录。
-
 <figure><img src="../../.gitbook/assets/image (13) (4).png" alt=""><figcaption></figcaption></figure>
+
+### 上传文件
+
+用户可通过该路由，上传文件至指定目录，目录由directory字段指定。
+
+```bash
+curl 'http://localhost:9991/s3/[s3-name]/upload?directory=test' \
+  -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryGB1RSwk0aZy4QW9J' \
+  # 必须携带cookie 或 access_token
+  -H 'Cookie: user=xxx; id=xxx=; csrf=xx;' \
+  -H 'accept: application/json' \
+  --data-raw $'------WebKitFormBoundaryGB1RSwk0aZy4QW9J\r\nContent-Disposition: form-data; name="file"; filename="108*108.png"\r\nContent-Type: image/png\r\n\r\n\r\n------WebKitFormBoundaryGB1RSwk0aZy4QW9J--\r\n' \
+  --compressed
+```
+
+{% hint style="info" %}
+使用该路由上传文件时，必须要登录，即携带cookie 或 access\_token！
+{% endhint %}
 
 上传文件后，返回文件的相对地址，为：
 
-<pre class="language-json"><code class="lang-json"><strong>[
-</strong>    {
-        "fileKey":"directory/hash.jpg"
-        //目录+文件的hash值（xxHash是一种非常快速的哈希算法）
-    }
+```json
+[
+  {
+    "key": "test/49038cf2891e903b.png"
+  }
 ]
-</code></pre>
+```
+
+返回结果是一个对象数组，对象只有一个字段 `key`，其命名规则：目录+文件的hash值（xxHash是一种非常快速的哈希算法）
+
+### 访问文件
 
 有两种方式访问上述文件：
 
@@ -56,7 +76,13 @@ https://桶名称.服务地址/fileKey
 
 查看临时签名的生成方式，请前往 [wen-jian-shang-chuan-gou-zi.md](../../jin-jie-gou-zi-ji-zhi/wen-jian-shang-chuan-gou-zi.md "mention")
 
-测试步骤：
+## 客户端使用
+
+使用文件上传，只需要按照文件上传的接口规范，构建一个POST文件上传请求，即可将文件上传至S3 bucket中。这适用于任何可以使用HTTP请求发送FormData的环境。
+
+### 快速测试
+
+使用预览页可以快速测试文件上传，具体步骤如下。
 
 1. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页
 2. 在左侧FileUpload中选择上传路由，设置上传目录directory的值，选择文件，点击”TRY“，返回数组，fileKey
@@ -64,3 +90,8 @@ https://桶名称.服务地址/fileKey
    2. 在预览页顶部，选择OIDC供应商，点击前往登录
 3. 拼接目录，访问文件
 
+### SDK使用
+
+除了自行按照规范构建上传接口，还可以用Fireboom生成的SDK上传文件，详情见各客户端SDK文档。
+
+* 微信小程序：[#wen-jian-shang-chuan](../../shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/wei-xin-xiao-cheng-xu-sdk.md#wen-jian-shang-chuan "mention")

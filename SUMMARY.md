@@ -54,7 +54,6 @@
   * [S3配置及使用](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/s3-pei-zhi-ji-shi-yong.md)
   * [文件管理面板](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/wen-jian-guan-li-mian-ban.md)
   * [高级配置：profile](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/gao-ji-pei-zhi-profile.md)
-  * [客户端使用](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/ke-hu-duan-shi-yong.md)
 
 ## 进阶-钩子机制
 

@@ -19,6 +19,18 @@
 
 使用profile，需要在上传文件的请求头中增加X-Upload-Profile字段，该字段为枚举类型，从profile中选择。
 
+```bash
+curl 'http://localhost:9991/s3/[s3-name]/upload?directory=test' \
+  # 设置Profile名称，从枚举值中选择
+  -H 'X-Upload-Profile: avatar' \
+  -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryGB1RSwk0aZy4QW9J' \
+  # 可选，根据是否开启匿名登录判断
+  -H 'Cookie: user=xxx; id=xxx=; csrf=xx;' \
+  -H 'accept: application/json' \
+  --data-raw $'------WebKitFormBoundaryGB1RSwk0aZy4QW9J\r\nContent-Disposition: form-data; name="file"; filename="108*108.png"\r\nContent-Type: image/png\r\n\r\n\r\n------WebKitFormBoundaryGB1RSwk0aZy4QW9J--\r\n' \
+  --compressed
+```
+
 {% hint style="info" %}
-X-Upload-Profile不设置时，默认走普通上传。
+一旦开启profile，则必须要设置X-Upload-Profile，也意味着普通上传路由会失效！
 {% endhint %}
