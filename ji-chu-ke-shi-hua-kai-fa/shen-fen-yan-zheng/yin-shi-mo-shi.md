@@ -170,7 +170,7 @@ curl -X GET "http://localhost:9991/operations/FromClaim" \
 
 ### 正常流程
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption><p>隐式模式时序图</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (1).png" alt=""><figcaption><p>隐式模式时序图</p></figcaption></figure>
 
 该时序图有3个主体：客户端、Fireboom服务器、OIDC供应商 authing。
 
@@ -198,7 +198,7 @@ state=xxx
 
 若用户未登录，则跳转到authing的登录页，支持账户密码、手机验证码，甚至是社交登录，如微信、QQ等。
 
-![](../../.gitbook/assets/image.png)
+![](<../../.gitbook/assets/image (4).png>)
 
 #### 3.OIDC跳转到客户端
 

@@ -19,7 +19,7 @@
 
 ## HTTP请求流程图
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布服务请求流程</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布服务请求流程</p></figcaption></figure>
 
 为了方便理解，我们采用如下OPERATION说明情况。
 
@@ -682,7 +682,7 @@ customResolve 钩子在模拟钩子后执行。此钩子可用于用自定义OPE
 * 返回结构体：跳过执行OPERATION的逻辑，返回结构体
 * 返回NULL：继续执行OPERATION逻辑
 
-<figure><img src="../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption><p>注意看customResolve逻辑</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption><p>注意看customResolve逻辑</p></figcaption></figure>
 
 ```http
 http://{serverAddress}/operation/{operation}/customResolve

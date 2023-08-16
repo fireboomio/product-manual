@@ -1,4 +1,4 @@
-# 授权与访问控制
+# 授权与访问控制（废弃）
 
 飞布基于RBAC规范，结合GraphQL的注解能力，实现了API的的授权与访问控制。
 
@@ -13,7 +13,7 @@
 1. 在身份验证面板中点击“<img src="http://localhost:9123/assets/workbench/panel-role.png" alt="头像" data-size="line">”，进入“角色管理”TAB
 2. 根据业务需求添加角色，系统默认内置admin和user角色（请确保必须有1个角色）
 3. 切换到“身份鉴权”TAB，在auth目录下选择`mutatingPostAuthentication`文件
-4. 编写钩子脚本或选择预制脚本，这里设置所有用户拥有`user`权限，启动钩子，详情前往[钩子章节](../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)
+4. 编写钩子脚本或选择预制脚本，这里设置所有用户拥有`user`权限，启动钩子，详情前往[钩子章节](../../../jin-jie-gou-zi-ji-zhi/gou-zi-ji-zhi.md)
 
 {% tabs %}
 {% tab title="TS" %}
@@ -101,7 +101,7 @@ RBAC（Role-Based Access Control）即：基于角色的权限控制。通过角
 
 * 全部角色：角色管理列表中配置的角色
 
-<figure><img src="../../.gitbook/assets/image (10) (2).png" alt=""><figcaption><p>全部角色</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (10) (2).png" alt=""><figcaption><p>全部角色</p></figcaption></figure>
 
 * 用户角色：用户拥有的角色，对应[mutatingPostAuthentication](shou-quan-yu-fang-wen-kong-zhi.md#ts)钩子中为用户设置的角色
 * API角色：API RBAC指令上所设置的角色

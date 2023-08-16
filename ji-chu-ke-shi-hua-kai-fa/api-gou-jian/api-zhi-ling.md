@@ -74,7 +74,7 @@ query GetOnetodo($uid: Int!) @rbac(requireMatchAll: [admin]) # 拥有admin角色
 ```
 {% endcode %}
 
-详情见 [授权与访问控制](../yan-zheng-he-shou-quan/shou-quan-yu-fang-wen-kong-zhi.md)。
+详情见 [授权与访问控制](../yan-zheng-he-shou-quan/rbac/shou-quan-yu-fang-wen-kong-zhi.md)。
 
 ## 入参校验指令
 

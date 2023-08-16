@@ -50,7 +50,7 @@ body 参数结构为
 
 ## 接口安全
 
-上述开放的 2 个接口权限较高，需要设置角色控制。默认都是 `requireMatchAll: [admin]`，你可以在 Fireboom 控制台页面点击“设置”，选择“开放API”，分别为2个接口配置角色限制，具体操作和[新建 API 时相似](shou-quan-yu-fang-wen-kong-zhi.md)。
+上述开放的 2 个接口权限较高，需要设置角色控制。默认都是 `requireMatchAll: [admin]`，你可以在 Fireboom 控制台页面点击“设置”，选择“开放API”，分别为2个接口配置角色限制，具体操作和[新建 API 时相似](rbac/shou-quan-yu-fang-wen-kong-zhi.md)。
 
 ## 接口使用
 
