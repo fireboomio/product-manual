@@ -13,7 +13,7 @@ description: '@rbac指令'
 1. 前往API管理面板，选择需要设置权限的API
 2. 在GraphQL编辑区的工具栏中点击“@角色”，选择匹配模式并添加角色，如添加admin角色
 
-<figure><img src="../../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 使用该指令后，有2个影响。
 
@@ -46,7 +46,7 @@ description: '@rbac指令'
 
 实际情况下，我们一般使用`requireMatchAny`匹配规则。
 
-![](<../../.gitbook/assets/image (2).png>)
+![](<../../.gitbook/assets/image (2) (1).png>)
 
 它表示角色拥有某些接口，当用户拥有该角色时，就能访问该接口，也即：用户通过角色拥有该角色的所有接口权限！<mark style="color:orange;">和RBAC0规范一致</mark>！
 

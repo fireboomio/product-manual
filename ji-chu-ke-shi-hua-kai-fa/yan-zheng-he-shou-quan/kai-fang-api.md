@@ -12,7 +12,7 @@
 
 因此，我们需要在建立数据库关联的同时，将关联同步到飞布存储中，如角色权限关联关系，如何变成rbac指令描述。
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 我们当然可以在数据库建立关联后，使用`@rbac`指令手动在飞布控制台逐一为API绑定角色，但实在繁琐，且容易出错。
 

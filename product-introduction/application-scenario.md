@@ -51,5 +51,5 @@ description: 作为一款API开发平台，飞布的主要应用场景有哪些�
 
 飞布能够与前端低代码平台结合，实现复杂业务逻辑。为了解决中后台开发的需求，飞布生态集成了一套中后台管理界面，并与飞布深度打通。基于此，快速完成中后台应用，覆盖前端低代码无法实现的用例！
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>飞布中后台框架</p></figcaption></figure>
 

@@ -10,7 +10,7 @@
 
 ## 统一协议
 
-<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 gql作为一种强类型API语言，非常适合作为该统一协议。
 

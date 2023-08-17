@@ -138,7 +138,7 @@ https://dev-5kzk7gzc.us.auth0.com/.well-known/openid-configuration
 
 <mark style="color:red;">若不填写，将会有如下报错。</mark>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 6，最后，还有一个地方要记得设置：设置->安全 中的 重定向URL 白名单。
 
@@ -209,11 +209,11 @@ http://localhost:9991/auth/cookie/user/logout?logout_openid_connect_provider=tru
 
 1，保存后，回到详情页，点击右上角“测试”按钮，跳转至auth0提供的登录页。
 
-<figure><img src="../../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 2，登录后，可查看当前用户信息。
 
-<figure><img src="../../../.gitbook/assets/image (2) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3，点击”登出“，可清空cookie。
 
