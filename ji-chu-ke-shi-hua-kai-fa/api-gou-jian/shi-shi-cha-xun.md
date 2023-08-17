@@ -67,7 +67,7 @@ setInterval(()=>{
 * 开启 实时查询
 * 设置 轮训间隔，单位是秒，最小值为1秒
 
-<figure><img src="../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 设置完毕后，可以看到流程图中多了一条循环线，上面标记了轮训间隔。
 

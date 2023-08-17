@@ -138,7 +138,7 @@ https://dev-5kzk7gzc.us.auth0.com/.well-known/openid-configuration
 
 <mark style="color:red;">若不填写，将会有如下报错。</mark>
 
-<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 6，最后，还有一个地方要记得设置：设置->安全 中的 重定向URL 白名单。
 

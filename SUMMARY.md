@@ -51,7 +51,7 @@
   * [RBAC](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/rbac/README.md)
     * [授权与访问控制（废弃）](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/rbac/shou-quan-yu-fang-wen-kong-zhi.md)
   * [接口权限控制](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/jie-kou-quan-xian-kong-zhi.md)
-  * [开放API（开发中）](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/kai-fang-api.md)
+  * [开放API](ji-chu-ke-shi-hua-kai-fa/yan-zheng-he-shou-quan/kai-fang-api.md)
 * [文件存储](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/README.md)
   * [S3配置及使用](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/s3-pei-zhi-ji-shi-yong.md)
   * [文件管理面板](ji-chu-ke-shi-hua-kai-fa/wen-jian-cun-chu/wen-jian-guan-li-mian-ban.md)

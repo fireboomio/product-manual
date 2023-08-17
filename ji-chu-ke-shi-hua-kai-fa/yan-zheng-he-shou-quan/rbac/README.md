@@ -12,7 +12,7 @@
 
 当使用 RBAC 时，可以授予用户一个或多个角色，每个角色具有一个或多个权限。用户通过角色间接拥有权限，说白了就是给权限分个组，用户直接绑定分组，间接拥有分组的所有权限。相比直接为用户分配权限的ACL模式，RBAC实现了更灵活的访问控制。
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 例如，用户张三的角色是销售经理，销售经理的权限有3个：客户列表、添加客户、删除客户。因此，用户张三就通过继承销售经理的角色，变相拥有了3个权限。
 
@@ -20,7 +20,7 @@
 
 RBAC模型有多种变形，可分为RBAC0、RBAC1、RBAC2、RBAC3，但其核心都是RBAC0。
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
 
 如图是RBAC0的控制图，由四部分构成：
 
@@ -103,17 +103,17 @@ curl 'http://localhost:9991/operations/System/User/ConnectRole' \
 
 ## 角色绑定权限
 
-Fireboom通过`@rbac`指令实现了角色绑定权限，详情见 [jie-kou-quan-xian-kong-zhi.md](../jie-kou-quan-xian-kong-zhi.md "mention")
+Fireboom通过`@rbac`指令实现了角色绑定权限，详情见 [jie-kou-quan-xian-kong-zhi.md](../jie-kou-quan-xian-kong-zhi.md "mention")。
+
+
 
 ## 激活角色
 
-Fireboom基于OIDC协议实现了 [shen-fen-yan-zheng](../../shen-fen-yan-zheng/ "mention") ，但OIDC中不包含角色相关的约定。用户通过OIDC流程登录后，claim中不包含roles字段。
+Fireboom基于OIDC协议实现了 [shen-fen-yan-zheng](../../shen-fen-yan-zheng/ "mention") ，但OIDC中不包含角色相关的约定。用户通过OIDC流程登录后，claims中不包含`roles`字段。
 
-因此，需要有个地方为用户动态注入roles字段，即用户第一次登录时，根据用户ID或email去特定数据源（可能是自有数据库或者其他数据源）查找其关联的角色，并绑定到roles字段上。
+因此，需要有个地方为用户动态注入`roles`字段，即用户第一次登录时，根据用户ID或email去特定数据源（可能是自有数据库或者其他数据源）查找其关联的角色，并绑定到roles字段上。
 
-借助 [shen-fen-yan-zheng-gou-zi.md](../../../jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md "mention")，可实现上述功能。
-
-常用下面两个钩子：
+借助 [shen-fen-yan-zheng-gou-zi.md](../../../jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md "mention")，可实现上述功能，常用下面两个钩子：
 
 * `mutatingPostAuth`：在用户授权登录后触发，可以**设置**用户信息，包括用户角色
 * `revalidateAuth` ：在用户主动更新用户信息时触发，能**更新**缓存中的用户信息，包括用户角色
@@ -171,8 +171,5 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 
 1. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页，选择当前API
 2. 在预览页顶部，选择OIDC供应商，点击前往登录
-3. 登录后可查看用户信息，可以看到当前登录用户roles字段包含钩子中赋予的角色
+3. 登录后可查看用户信息，可以看到当前登录用户`roles`字段包含钩子中赋予的角色
 
-## 下一步
-
-飞布提供了完整的后台管理示例，您可以[参考代码](https://github.com/fireboomio/fb-admin)实现自己的管理后台。

@@ -64,7 +64,7 @@ findmanytodo既然是函数，自然有入参和出参（返回值）。其出�
 
 接下来，我们学习operation。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 operation指的是从schema中的Query里取的子集，如果把schema queryr中的跟字段比作函数定义，那operation就是函数调用。
 
