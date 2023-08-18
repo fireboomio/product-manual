@@ -108,6 +108,66 @@ mutation MyQuery( $id: Int!, $name: String, $bio: String) {
 }
 ```
 
+## 可为空字段
+
+对于可为空字段，支持用null来查询或更新。
+
+```prisma
+model T {
+  id   Int     @id @unique
+  name String
+  des  String? // 注意，这里的?
+}
+```
+
+### null查询
+
+将null作为查询条件，例如：
+
+1，获取所有des=null的数据
+
+```graphql
+# 方法1
+query MyQuery {
+  rb_findManyT(where: {des: null}) {
+    des
+    id
+  }
+} 
+
+# 方法2，不推荐使用
+query MyQuery {
+  rb_findManyT(where: {des: {equals: null}}) {
+    des
+    id
+  }
+}
+```
+
+2，获取所有des is not null的数据
+
+```graphql
+query MyQuery {
+  rb_findManyT(where: {des: {not:null}}) {
+    des
+    id
+  }
+}
+```
+
+### null更新
+
+设置某字段的值为null，例如：设置id为10的记录，des=null
+
+```graphql
+mutation MyQuery($des: String = null) {
+  rb_updateOneT(data: {des: {set: $des}}, where: {id: 10}) {
+    id
+    des
+  }
+}
+```
+
 ## 跨源关联
 
 通过 @export 和 \_join 可以进行跨数据源的关联查询。详情见 [跨源关联](chang-jian-yong-li.md#kua-yuan-guan-lian)。
