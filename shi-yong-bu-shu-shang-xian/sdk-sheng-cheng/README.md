@@ -183,33 +183,68 @@ const response = await client.subscribe(
 ### 文件上传
 
 ```typescript
-const { fileKeys } = await client.uploadFiles({
-  provider: S3Provider.minio,
-  files,
-});
+async function handleFiles(e: Event) {
+  const files = (e.target as HTMLInputElement)?.files;
+  if (files == null) return
+  // 调用上传函数
+  const res = await client.uploadFiles({
+    provider: "tengxunyun",
+    files: files,
+    profile: "avatar" // （可选）
+  })
+  console.log("https://test-1314985928.cos.ap-nanjing.myqcloud.com/"+res.fileKeys[0])
+}
 ```
 
 ### 身份验证
 
-#### 登录
+身份认证包含两种模式：授权码模式（基于cookie）和隐式模式（基于token）。
+
+#### 授权码模式
+
+**登录**
 
 ```typescript
 client.login('auth0');
 ```
 
-#### 获取用户
+**获取用户**
 
 ```typescript
 const user = await client.fetchUser();
 ```
 
-#### 退出登录
+**退出登录**
 
 ```typescript
 client.logout({
   logoutOpenidConnectProvider: true,
 });
 ```
+
+#### 隐式模式
+
+**获取Token**
+
+隐式模式登录的核心是获取`access_token`，有两种模式：使用[OIDC登录页](../../ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/yin-shi-mo-shi.md#id\_token-flow)和[不使用登录页](../../ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/yin-shi-mo-shi.md#deng-lu-jie-kou)。
+
+一般不使用OIDC的登录页，而是根据各供应商的实现，调用其登录接口获取access\_token，例如：
+
+* Authing： [#deng-lu-jie-kou](../../ji-chu-ke-shi-hua-kai-fa/shen-fen-yan-zheng/yin-shi-mo-shi.md#deng-lu-jie-kou "mention")
+* fb-oidc：[前往](https://github.com/fireboomio/fb-oidc)
+
+**使用Token**
+
+{% code title="index.ts" %}
+```typescript
+export const client = createClient({
+    extraHeaders: {
+        // 这里注入请求头
+        Authorization: 'Bearer <access_token>',
+      },
+})
+```
+{% endcode %}
 
 ### CSRF保护
 
@@ -309,6 +344,8 @@ OPERATION API错误分为3类：`InputValidationError`、`GraphQLResponseError`�
 ### 用例
 
 ```typescript
+import {GraphQLResponseError,ResponseError,InputValidationError} from "fireboom-wundersdk/client";
+
 const { data, error } = await client.query({
   operationName: 'Hello',
   input: {
