@@ -213,7 +213,7 @@ client.logout({
 
 ### CSRF保护
 
-
+// todo
 
 ### 中断请求
 
@@ -234,13 +234,79 @@ controller.abort();
 
 ## 错误处理
 
-OPERATION API错误分为3类：ResponseError、InputValidationError或GraphQLResponseError。这三个错误组成了名为ClientResponseError的联合类型。
+OPERATION API错误分为3类：`InputValidationError`、`GraphQLResponseError`、`ResponseError`。
 
-网络错误和非2xx响应作为ResponseError或InputValidationError对象返回，并包含状态码statusCode。如果方法没有抛出错误，就可以认为请求成功。
+详情见，AI规范-> [#zhuang-tai-ma](../../ji-chu-ke-shi-hua-kai-fa/api-gou-jian/ke-shi-hua-gou-jian/api-gui-fan.md#zhuang-tai-ma "mention")
+
+### InputValidationError
+
+状态码为`400`时，表示入参校验错误，入参不符合规范，或不满足`@jsonSchema`指令校验规则。
+
+```json
+# statusCode=400
+{
+  "code": "InputValidationError",
+  "message": "Bad Request: Invalid input",
+  "input": {
+    "id": 11
+  },
+  "errors": [
+    {
+      "propertyPath": "/id",
+      "invalidValue": 11,
+      "message": "must be less than or equal to 10"
+    }
+  ]
+}
+```
 
 ### GraphQLResponseError
 
+状态码为`200`，但执行OPERATION失败，常见错误场景如下：
 
+1，数据源中断
+
+```json
+# statusCode=200
+{
+    "errors": [
+        {
+            "message": "Error in connector: Error creating a database connection. (Error creating a database connection.)",
+            "locations": null,
+            "path": null
+        }
+    ],
+    "data": {
+        "rb_findUniqueT": null
+    }
+}
+```
+
+2，主键冲突
+
+<pre class="language-json"><code class="lang-json"><strong># statusCode=200
+</strong>{
+  "errors": [
+    {
+      "message": "Error occurred during query execution:\nConnectorError(ConnectorError { user_facing_error: Some(KnownError { message: \"Unique constraint failed on the constraint: `PRIMARY`\", meta: Object {\"target\": String(\"PRIMARY\")}, error_code: \"P2002\" }), kind: UniqueConstraintViolation { constraint: Index(\"PRIMARY\") } })",
+      "locations": null,
+      "path": null
+    }
+  ],
+  "data": {
+    "rb_createOneT": null
+  }
+}
+</code></pre>
+
+### ResponseError
+
+状态码非200时的其他错误场景，例如：
+
+* 404：接口临时关闭时，请求不存在
+* 503：服务不可用时
+
+### 用例
 
 ```typescript
 const { data, error } = await client.query({
@@ -249,42 +315,19 @@ const { data, error } = await client.query({
     hello: 'World',
   },
 });
-
-if (error instanceof GraphQLResponseError) {
-  error.errors[0].location;
-} else if (error instanceof ResponseError) {
-  error.statusCode;
-}
-```
-
-### ResponseError
-
-
-
-### InputValidationError
-
-
-
-```typescript
-type error = {
-  propertyPath: string; // provides the path to the error (useful if the error nested)
-  message: string; // the error
-  invalidValue: any; // the invalid input
-};
-```
-
-
-
-```typescript
-import { InputValidationError } from './InputValidationError';
-
-const { data, error } = await client.query({
-  operationName: 'Hello',
-  input: {}, // a required input is missing
-});
-
-if (error instanceof InputValidationError) {
-  error.message; // the top level error
-  error.errors; // an array of errors
+console.log(data)
+if (error != undefined) {
+  if (error instanceof InputValidationError) {
+  // 1，处理入参校验错误
+    console.log("meet InputValidationError:", error.message)
+  } else if (error instanceof GraphQLResponseError) {
+  // 2，处理执行OPERATION错误
+    console.log("meet GraphQLResponseError:", error.errors[0].location)
+  } else if (error instanceof ResponseError) {
+  // 3，处理其他错误
+    console.log("meet ResponseError:", error.statusCode)
+  } else {
+    console.log("meet UnknownError:" , JSON.stringify(error))
+  }
 }
 ```

@@ -20,11 +20,81 @@ https://example.com/operations/Todo/GetManyTodo
 
 ### 状态码
 
-* 200：Operation执行成功
-* 404：Operation未找到
-* 401：身份验证或身份鉴权失败
-* 400：入参校验失败
-* 500：Operation执行失败
+#### 200
+
+**Operation执行成功**
+
+```json
+{
+    "data": {
+        "rb_findUniqueT": {
+            "des": null,
+            "id": 10,
+            "name": "xxx"
+        }
+    }
+}
+// or 
+{"data":{"rb_findUniqueT":null}}
+```
+
+**Operation执行失败**
+
+```json
+# 数据源无法访问时
+{
+    "errors": [
+        {
+            "message": "Error in connector: Error creating a database connection. (Error creating a database connection.)",
+            "locations": null,
+            "path": null
+        }
+    ],
+    "data": {
+        "rb_findUniqueT": null
+    }
+}
+```
+
+#### 400：入参校验失败
+
+入参校验错误，入参不符合规范，或不满足`@jsonSchema`指令校验规则。
+
+```graphql
+query MyQuery($id: Int!  @jsonSchema(maximum:10)) {
+  rb_findUniqueT(where: {id: $id}) {
+    des
+    id
+    name
+  }
+}
+```
+
+```json
+# statusCode=400
+{
+  "code": "InputValidationError",
+  "message": "Bad Request: Invalid input",
+  "input": {
+    "id": 11
+  },
+  "errors": [
+    {
+      "propertyPath": "/id",
+      "invalidValue": 11,
+      "message": "must be less than or equal to 10"
+    }
+  ]
+}
+```
+
+#### 404：Operation未找到
+
+404 page not found
+
+#### 401：身份验证或身份鉴权失败
+
+~~500：Operation执行失败?~~
 
 ### 查询Queries
 

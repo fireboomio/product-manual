@@ -69,8 +69,8 @@
 * [身份验证钩子](jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md)
 * [graphql钩子](jin-jie-gou-zi-ji-zhi/graphql-gou-zi.md)
 * [函数钩子](jin-jie-gou-zi-ji-zhi/han-shu-gou-zi/README.md)
-  * [functions](jin-jie-gou-zi-ji-zhi/han-shu-gou-zi/zu-he-shi-api.md)
-  * [proxys](jin-jie-gou-zi-ji-zhi/han-shu-gou-zi/proxys.md)
+  * [functions（废弃）](jin-jie-gou-zi-ji-zhi/han-shu-gou-zi/zu-he-shi-api.md)
+  * [proxys(废弃)](jin-jie-gou-zi-ji-zhi/han-shu-gou-zi/proxys-fei-qi.md)
 * [文件上传钩子](jin-jie-gou-zi-ji-zhi/wen-jian-shang-chuan-gou-zi.md)
 * [内部调用](jin-jie-gou-zi-ji-zhi/nei-bu-tiao-yong.md)
 
