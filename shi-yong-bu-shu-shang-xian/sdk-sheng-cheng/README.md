@@ -368,3 +368,7 @@ if (error != undefined) {
   }
 }
 ```
+
+## 参考
+
+* fb-admin：[https://github.com/fireboomio/fb-admin/blob/main/front/src/api/index.ts](https://github.com/fireboomio/fb-admin/blob/main/front/src/api/index.ts)

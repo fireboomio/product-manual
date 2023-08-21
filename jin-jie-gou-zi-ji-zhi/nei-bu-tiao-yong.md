@@ -1,12 +1,21 @@
 # 内部调用
 
-某些场景下，我们不仅要在钩子中编写业务逻辑，还希望在钩子中调用存储数据的逻辑，我们当然可以在钩子服务中自行建立连接池，但我们也可以复用飞布本身的数据操纵能力。
+某些场景下，我们不仅要在钩子中编写业务逻辑，还希望在钩子中调用存储数据的逻辑。
 
-因此，我们将飞布所有的QUERY和MUTATION操作，都进行了封装，并提供内部调用通道，供钩子调用。
+有两种方式可以实现该功能：
 
-此时，飞布升级为数据代理层。internalClient，就是使用数据代理的对象，其上挂在了所有的query和mutation。
+* 在钩子服务中建立连接池，像传统开发方式那样操作数据库
+* 复用Fireboom本身的数据操纵能力——数据代理
 
-<img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1).png" alt="" data-size="original">
+本节，我们重点介绍Fireboom的数据操纵能力——内部调用。
+
+Fireboom将所有的`query`和`mutation`操作，都挂载到了一个特殊路由上：`/internal`，供钩子调用。
+
+此时，飞布升级为数据代理层。Fireboom数据代理和Fireboom API监听端口相同，因此API内网地址一般为：`http://localhost:9991`。
+
+`InternalClient`是使用数据代理的对象，其上挂载了所有的`query`和`mutation`。
+
+<img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1).png" alt="" data-size="original">
 
 ## 内部调用协议
 
@@ -104,8 +113,13 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 
 <pre class="language-go" data-title="hooks/Lesson0301/Simple/postResolve.go"><code class="lang-go"><strong>func PostResolve(hook *base.HookRequest, body generated.Lesson0301__SimpleBody) (res generated.Lesson0301__SimpleBody, err error) {
 </strong>	hook.Logger().Info("PostResolve")
-	// 通过该方法调用
-	todoRes, _ := plugins.ExecuteInternalRequestQueries[generated.Lesson0301__InternalInput, generated.Lesson0301__InternalResponseData](hook.InternalClient, generated.Lesson0301__Internal, generated.Lesson0301__InternalInput{
+	// 通过ExecuteInternalRequestQueries方法调用QUERY OPERATION，其中
+	// [OP_PATH]为OPERATION的路径，合成规则为DIC__OPName，例如：Lesson0301__Internal
+	// [OP_PATH]Input 为入参对象
+	// [OP_PATH]ResponseData为响应对象
+	todoRes, _ := plugins.ExecuteInternalRequestQueries[generated.Lesson0301__InternalInput, generated.Lesson0301__InternalResponseData]
+	(hook.InternalClient, generated.Lesson0301__Internal, 
+	generated.Lesson0301__InternalInput{
 		Id: 2,
 	})
 	fmt.Println(todoRes)
@@ -121,15 +135,13 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 
 ### 内部调用安全
 
-为了保证安全，`http://{nodeAddress}/internal` 只能被内网访问！！！
+为了保证安全：`http://{nodeAddress}/internal` 只能被内网访问！！！
 
 ## 内部OPERATION
 
-如果我们希望某个OPERATION只能被钩子访问，不对外暴露API，需要借助：`@internalOperation`指令。
+如果我们希望某个OPERATION只能被钩子访问，不对外暴露API，需要借助：`@internalOperation`指令。该指令仅能修饰QUERY 和 MUTATION OPERATION 。设置OPERATION为<mark style="color:orange;">内部</mark>，类似私有方法，只能被钩子调用，而不会编译为API。
 
-`@internalOperation`指令，设置OPERATION为内部，类似私有方法，只能被钩子调用，而不会编译为API。
-
-`@internalOperation`仅能修饰QUERY 和 MUTATION OPERATION 。
+在GraphQL编辑区上方的工具栏，点击“<mark style="color:blue;">@私有</mark>”，选择 <mark style="color:blue;">私有</mark>，为当前OPERATION添加 `@internalOperation`指令。
 
 ### 流程图
 

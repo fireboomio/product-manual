@@ -77,15 +77,14 @@
 ## 使用-部署上线
 
 * [部署运维](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/README.md)
-  * [发布到生产](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/fa-bu-dao-sheng-chan.md)
   * [手动部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu.md)
   * [流水线部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/liu-shui-xian-bu-shu.md)
   * [Docker部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/docker-bu-shu.md)
   * [飞布云](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/fei-bu-yun.md)
 * [接口安全](shi-yong-bu-shu-shang-xian/security/README.md)
   * [CSRF token 保护](shi-yong-bu-shu-shang-xian/security/csrf-token-protection.md)
+  * [跨域访问](shi-yong-bu-shu-shang-xian/security/kua-yu-fang-wen.md)
 * [客户端SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/README.md)
-  * [Ts SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/react-sdk.md)
   * [微信小程序SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/wei-xin-xiao-cheng-xu-sdk.md)
   * [Flutter SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/flutter-sdk.md)
   * [uniapp SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/uniapp-sdk.md)
