@@ -127,7 +127,7 @@ const response = await client.query({
 const response = await client.mutate({
   operationName: 'SetName',
   input: {
-    name: 'WunderGraph',
+    name: 'fireboom',
   },
 });
 ```
