@@ -77,8 +77,8 @@
 ## 使用-部署上线
 
 * [部署运维](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/README.md)
-  * [手动部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu.md)
-  * [流水线部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/liu-shui-xian-bu-shu.md)
+  * [手动部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu/README.md)
+    * [流水线部署（废弃）](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu/liu-shui-xian-bu-shu.md)
   * [Docker部署](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/docker-bu-shu.md)
   * [飞布云](shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/fei-bu-yun.md)
 * [接口安全](shi-yong-bu-shu-shang-xian/security/README.md)

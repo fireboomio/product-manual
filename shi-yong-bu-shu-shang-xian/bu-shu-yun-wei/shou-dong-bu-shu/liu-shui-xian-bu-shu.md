@@ -1,10 +1,12 @@
-# 流水线部署
+# 流水线部署（废弃）
 
 流水线自动部署的思路整体和手动部署相似，只需要将重启脚本提前准备好即可。下面以 Github Action 部署为例介绍使用。
 
 我们仍然用 [Vue TodoMVC](https://github.com/fireboomio/case-vue-todomvc) 作为部署项目。首先我们需要在部署服务器上提前准备好环境
 
 1. 安装 Nginx，新建项目部署位置 `/path/to/deploy`，添加一个 nginx conf 文件指向该目录，参考配置如下
+
+
 
 ```nginx
 upstream backend {
@@ -90,7 +92,7 @@ server {
 
 上述配置制定了 `/path/to/deploy/web` 目录为 vue 打包后的目录，同时添加了 https 相关配置，实际情况请做相应修改。
 
-2. [参考手动部署章节](shou-dong-bu-shu.md)安装好 NodeJs 环境，配置好 systemd 服务。
+2. [参考手动部署章节](./)安装好 NodeJs 环境，配置好 systemd 服务。
 3. 在任意支持 unix 命令行的机器上生成一个公私钥对（本次示例中没有对密钥进行加密，如有需要，请做相应修改），用于后续的自动部署
 
 ```sh
@@ -112,7 +114,7 @@ ssh-copy-id -i ~/.ssh/github-action.pub user@machine
 * SSH\_PRIVATE\_KEY 部署私钥
 * SSH\_USER SSH 登录用户名
 
-![](../../assets/github-action-secrets.png)
+![](../../../assets/github-action-secrets.png)
 
 5. 在项目根目录中创建`.github/deploy.yml`文件并写入自动部署配置。
 

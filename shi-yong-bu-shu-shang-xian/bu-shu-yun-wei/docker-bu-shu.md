@@ -85,7 +85,7 @@ docker build -t fireboom_server:latest
 
 ### 1. 拉取镜像
 
-<pre class="language-bash"><code class="lang-bash"><strong>#拉取镜像
+<pre class="language-bash"><code class="lang-bash"><strong># 拉取镜像
 </strong>docker pull fireboomapi/fireboom_server:latest
 </code></pre>
 
