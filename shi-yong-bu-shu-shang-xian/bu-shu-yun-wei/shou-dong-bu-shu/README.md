@@ -154,8 +154,6 @@ FB_SERVER_LISTEN_PORT="9992"
   * 所有钩子都依赖的配置，包括custom-x/generated/目录下的  fireboom.config.json和fireboom.operations.json
   * 脚本钩子依赖的代码，例如 nodejs依赖的custom-ts/generated/\*.ts
 
-钩子服务依赖配置，例如
-
 ### 启动钩子
 
 根据钩子服务产物的类型执行不同命令，启动钩子服务。
@@ -242,67 +240,4 @@ pm2 start
 # cd custom-go
 # pm2 start ./main
 ```
-
-## Nginx配置
-
-如果想用域名访问，可用nginx代理服务，参考如下配置：
-
-<mark style="color:red;">待修改</mark>
-
-```nginx
-upstream backend {
-  # server localhost:9991;
-  server 127.0.0.1:9991; # Fireboom API 服务监听地址
-}
-
-server {
-    listen 80;
-    server_name your.domain;
-    rewrite ^(.*) https://$server_name$1 permanent;
-}
-
-# https 配置，没有则将后续配置剪切到上面的80服务里
-server {
-  listen       443 ssl;
-  server_name  your.domain;
-  charset utf-8;
-
-  gzip_static on;
-
-  gzip_proxied        expired no-cache no-store private auth;
-  gzip_disable        "MSIE [1-6]\.";
-  gzip_vary           on;
-
-  # 略，ssl证书配置
-
-  # 配置前端的访问路径
-  location / {
-    root   /path/to/deploy/web; # 根据实际情况修改
-    index  index.html;
-    try_files   $uri $uri/ /index.html;
-  }
-  
-  # 配置Fireboom OPERATION 的路由
-  location /operations {
-    proxy_pass       http://backend/operations;
-    proxy_set_header X-Real_IP $remote_addr;
-    proxy_set_header Host $host;
-    proxy_set_header X_Forward_For $proxy_add_x_forwarded_for;
-    client_max_body_size 0;
-  }
-  # 配置Fireboom 授权相关的路由
-  location /auth {
-    proxy_pass       http://backend/auth;
-    proxy_set_header X-Real_IP $remote_addr;
-    proxy_set_header Host $host;
-    proxy_set_header X_Forward_For $proxy_add_x_forwarded_for;
-    client_max_body_size 0;
-  }
-}
-```
-
-访问：
-
-* Fireboom控制台：http://dashboard.fireboom.io
-* Fireboom API：http://api.fireboom.io
 
