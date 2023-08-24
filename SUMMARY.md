@@ -91,6 +91,7 @@
 
 ***
 
+* [迁移到V2](https://github.com/fireboomio/fb-migration)
 * [环境准备](huan-jing-zhun-bei/README.md)
   * [文件存储 S3](huan-jing-zhun-bei/wen-jian-cun-chu-s3.md)
   * [身份认证 OIDC](huan-jing-zhun-bei/shen-fen-ren-zheng-oidc.md)
