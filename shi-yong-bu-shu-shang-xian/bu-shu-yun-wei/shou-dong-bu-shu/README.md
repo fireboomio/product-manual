@@ -240,3 +240,39 @@ pm2 start
 # cd custom-go
 # pm2 start ./main
 ```
+
+## Nginx配置
+
+### 9123面板
+
+```nginx
+server
+{
+    listen 80;
+    server_name center.fireboom.cloud;
+
+    location / {
+  	proxy_set_header Upgrade $http_upgrade; # 设置websocket
+  	proxy_set_header Connection "Upgrade";
+  	proxy_pass http://127.0.0.1:9123/;
+    }
+}
+```
+
+### 9991 API
+
+```nginx
+server
+{
+    listen 80;
+    server_name api.fireboom.cloud;
+
+    location / {
+        proxy_pass       http://127.0.0.1:9991/;
+        proxy_set_header X-Real_IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X_Forward_For $proxy_add_x_forwarded_for;
+        client_max_body_size 0;
+      }
+}
+```
