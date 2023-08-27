@@ -1,7 +1,9 @@
 # Table of contents
 
 * [序言](README.md)
-* [更新日志](geng-xin-ri-zhi.md)
+* [更新日志](geng-xin-ri-zhi/README.md)
+  * [V2.0更新说明](geng-xin-ri-zhi/v2.0-geng-xin-shuo-ming.md)
+  * [更新日志V1.0](https://docs.fireboom.io/v/v1.0/geng-xin-ri-zhi)
 * [产品简介](<README (1).md>)
   * [什么是飞布？](product-introduction/what-is-fireboom.md)
   * [飞布的价值](product-introduction/the-value-of-fireboom.md)

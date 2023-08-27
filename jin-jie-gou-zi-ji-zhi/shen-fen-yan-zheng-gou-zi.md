@@ -10,7 +10,7 @@
 
 认证钩子有2个，先执行postAuth，在执行mutatingpost。
 
-<figure><img src="../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### postAuth
 
@@ -42,8 +42,6 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 # JSON response
 no response
 ```
-
-
 
 {% tabs %}
 {% tab title="golang" %}
@@ -79,10 +77,6 @@ func PostAuthentication(hook *base.AuthenticationHookRequest) error {
 	return nil
 }
 ```
-{% endtab %}
-
-{% tab title="nodejs" %}
-
 {% endtab %}
 {% endtabs %}
 
@@ -128,8 +122,6 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 }
 ```
 
-
-
 {% tabs %}
 {% tab title="golang" %}
 ```go
@@ -141,13 +133,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 }
 ```
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
-
-
 
 两者的区别是，前者无法修改user对象，后者可以修改user或终止流程。其返回参数包含，user\status\以及message。
 
@@ -157,7 +143,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 除了授权码模式，隐式模式也支持认证钩子。下面是其时序图。
 
-<figure><img src="../.gitbook/assets/image (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (2) (3).png" alt=""><figcaption></figcaption></figure>
 
 当用户使用`access_token`访问任意OPERATION生成的接口时，都会走该流程。
 
@@ -175,7 +161,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 * 在不退出登录的情况下，更新用户的信息，如角色等
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 OIDC 授权码模式和隐式模式调用该构造的方式不同。
 
@@ -217,8 +203,6 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 }
 ```
 
-
-
 {% tabs %}
 {% tab title="golang" %}
 ```go
@@ -234,10 +218,6 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 }
 ```
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ## 登出钩子
@@ -248,7 +228,7 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 
 * 记录用户登出时间
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (3).png" alt=""><figcaption></figcaption></figure>
 
 客户端请求退出登录端点时，会触发退出登录钩子。
 
@@ -275,8 +255,6 @@ X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
 no response
 ```
 
-
-
 {% tabs %}
 {% tab title="golang" %}
 ```go
@@ -286,9 +264,5 @@ func PostLogout(hook *base.AuthenticationHookRequest) error {
 	return nil
 }
 ```
-{% endtab %}
-
-{% tab title="nodejs" %}
-
 {% endtab %}
 {% endtabs %}
