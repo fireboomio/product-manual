@@ -10,7 +10,7 @@
 
 认证钩子有2个，先执行postAuth，在执行mutatingpost。
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 ### postAuth
 
@@ -161,7 +161,7 @@ func MutatingPostAuthentication(hook *base.AuthenticationHookRequest) (*plugins.
 
 * 在不退出登录的情况下，更新用户的信息，如角色等
 
-<figure><img src="../.gitbook/assets/image (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (2) (1).png" alt=""><figcaption></figcaption></figure>
 
 OIDC 授权码模式和隐式模式调用该构造的方式不同。
 

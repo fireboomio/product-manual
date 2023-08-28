@@ -127,10 +127,6 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 }
 </code></pre>
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ### 内部调用安全
@@ -158,7 +154,7 @@ query GetOneTodo($id: Int!) @internalOperation {
 
 <div align="center">
 
-<img src="../.gitbook/assets/image (2) (1) (4) (1).png" alt="内部OPERATION流程图示意图" width="295">
+<img src="../.gitbook/assets/image (2) (1) (4) (1) (1).png" alt="内部OPERATION流程图示意图" width="295">
 
 </div>
 

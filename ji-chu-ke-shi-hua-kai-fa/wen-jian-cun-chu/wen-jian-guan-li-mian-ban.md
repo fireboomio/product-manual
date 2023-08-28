@@ -6,7 +6,7 @@
 
 同时，也支持私有bucket的预览，自动在路径后，增加临时授权参数。
 
-<figure><img src="../../.gitbook/assets/image (2) (1) (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 文件管理
 

@@ -42,11 +42,9 @@ description: '@rbac指令'
 
 最后，以全部角色作为全集，结合四种关系，看用户角色和API角色的交并补情况，确定当前用户是否能访问当前API。
 
-
-
 实际情况下，我们一般使用`requireMatchAny`匹配规则。
 
-![](<../../.gitbook/assets/image (2) (1).png>)
+![](<../../.gitbook/assets/image (2) (1) (4).png>)
 
 它表示角色拥有某些接口，当用户拥有该角色时，就能访问该接口，也即：用户通过角色拥有该角色的所有接口权限！<mark style="color:orange;">和RBAC0规范一致</mark>！
 
@@ -99,4 +97,3 @@ query C($id: Int = 3) @rbac(requireMatchAny: [admin, user]) {
 
 * 如果，用户只拥有admin角色，它就能访问A、B、C三个接口
 * 如果，用户只拥有user角色，就只能访问C接口。
-
