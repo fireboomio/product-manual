@@ -25,7 +25,7 @@
 
 ### 在线体验
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/fireboomio/fb-init-simple)
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/new/#https://github.com/fireboomio/init-todo)
 
 > [gitpod 介绍](https://juejin.cn/post/6844903773878386701)：Gitpod是一个在线IDE，可以从任何GitHub页面启动。在几秒钟之内，Gitpod就可以为您提供一个完整的开发环境，包括一个VS Code驱动的IDE和一个可以由项目定制化配置的云Linux容器。
 

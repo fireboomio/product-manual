@@ -11,88 +11,54 @@
 {% endhint %}
 
 ```bash
-curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name -t fb-init-todo
+curl -fsSL fireboom.io/install | bash -s project-name -t init-todo --cn
 ```
 
-`project-name`为项目名称，可根据需求更改。
-
-`-t fb-init-todo`为初始化模板，省略后默认创建空项目。
-
-目前系统有如下模板：
-
-* TODO示例：[https://github.com/fireboomio/fb-init-todo](https://github.com/fireboomio/fb-init-todo)
-* 空项目：[https://github.com/fireboomio/fb-init-simple](https://github.com/fireboomio/fb-init-simple)
+* 项目名称：`project-name`，可根据需求修改
+* 初始化模板：`-t init-todo`，省略后默认创建空项目
+* 选择源：`--cn` ，指定从国内源下载，省略后从 github源下载
 
 执行上述命令后，将在执行目录下新建名称为`project-name`的文件夹，其目录结构如下：
 
 ```
 project-name
-├─ .env
 ├─ .gitignore
 ├─ .gitpod.yml
 ├─ README.md
-├─ fireboom # CLI 命令
 ├─ custom-go # golang 钩子的目录 见下文
 ├─ custom-ts # typescript 钩子的目录 见下文
-├─ exported 
-│  └─ generated # 飞布引擎启动依赖的所有元数据，每次编译都会重新生成
-│  └─ operations
-│     └─ Todo
-│        ├─ CreateOneTodo.graphql
-│        ├─ DeleteManyTodo.graphql.off
-│        ├─ DeleteOneTodo.graphql
-│        ├─ GetManyTodo.graphql
-│        ├─ GetOneTodo.graphql.off
-│        ├─ GetTodoList.graphql.off
-│        ├─ UpdateOneTodo.graphql
-│        └─ UpdateTodoCompleted.graphql
-├─ hook.sh
-├─ log
+├─ exported # 生成的临时目录
+│  └─ introspection
+│     ├─ system
+│     │  └─ schema.graphql
+│     └─ todo
+│        ├─ schema.graphql
+│        └─ schema.prisma
 ├─ store # 元数据存储目录
-│  ├─ hooks # 钩子相关配置
-│  │  ├─ auth # 身份验证钩子配置
-│  │  │  └─ mutatingPostAuthentication.config.json
-│  │  ├─ customize # 自定义数据源钩子配置
-│  │  │  └─ chatGPT.config.json
-│  │  ├─ global # 全局钩子配置
-│  │  ├─ hooks # 每个OPERATION 钩子配置
-│  │  │  └─ Todo
-│  │  │     └─ CreateOneTodo
-│  │  │        └─ postResolve.config.json
-│  │  └─ uploads
-│  ├─ list # 列表数据
-│  │  ├─ FbAuthentication # 身份验证配置
-│  │  ├─ FbDataSource # 数据源配置
-│  │  ├─ FbOperation # API配置
-│  │  ├─ FbRole # 用户角色配置
-│  │  └─ FbStorageBucket # 文件存储配置
-│  └─ object # 对象数据
-│     ├─ global_config.json
-│     ├─ global_operation_config.json
-│     ├─ global_system_config.json
-│     └─ operations # 每个OPERATION的独立配置
-│        └─ Todo
-│           ├─ CreateOneTodo.json
-│           ├─ DeleteManyTodo.json
-│           ├─ DeleteOneTodo.json
-│           ├─ GetManyTodo.json
-│           ├─ GetOneTodo.json
-│           ├─ GetTodoList.json
-│           ├─ UpdateOneTodo.json
-│           └─ UpdateTodoCompleted.json
+│  ├─ config # 全局配置
+│  │  ├─ global.operation.json
+│  │  └─ global.setting.json
+│  ├─ datasource #数据源配置，每个数据源1个json
+│  │  ├─ system.json
+│  │  └─ todo.json
+│  ├─ operation # OPERATION存储，.json和.graphql成对存在
+│  │  └─ Todo
+│  │     ├─ CreateOneTodo.graphql
+│  │     ├─ CreateOneTodo.json
+│  │     ├─ GetManyTodo.graphql
+│  │     ├─ GetManyTodo.json
+│  └─ role # 角色存储，每个角色1个json
+│     ├─ admin.json
+│     └─ user.json
 ├─ template # SDK模板目录
 │  ├─ golang-server # golang 钩子模板
 │  └─ node-server # TS 钩子模板
+├─ update-fb.sh
 └─ upload # 上传文件目录
-   ├─ db # sqlite数据库目录
-   │  └─ todo.db
-   ├─ graphql # graphql 数据源 schema 文件目录
-   ├─ oas # rest api数据源 oas 文件目录
-   │  ├─ example_rest.json
-   │  └─ openapi.json
-   ├─ oss 
-   └─ swagger
-
+   ├─ oas
+   │  └─ system.json
+   └─ sqlite
+      └─ todo.db
 ```
 
 如果你用golang开发钩子服务，则需要关注如下目录：
@@ -148,7 +114,12 @@ project-name
 
 ## 开发模式
 
-在`project-name`目录下执行`fireboom dev`命令，飞布将执行下述逻辑：
+```bash
+cd project-name
+./fireboom dev
+```
+
+飞布将执行下述逻辑：
 
 * 启动控制台：启动控制台，默认访问地址为：http://localhost:<mark style="color:red;">9123</mark>
 * 实时编译API：检测配置变更，并将其**实时**编译为REST API。（编译流程如下）
@@ -163,14 +134,19 @@ project-name
 
 API编译流程如下：
 
-1. 读取store目录下的配置，生成元数据到exported/generated目录
+1. 读取`store`目录下的配置，生成元数据到`exported/`目录
 2. 内省数据源，获得各数据源的graphql schema描述
 3. 根据启用的模板库，生成对应SDK到指定目录
 4. 重启核心引擎，暴露REST API 服务
 
 ## 生产模式
 
-在`project-name`目录下执行`fireboom start`命令，飞布将执行下述逻辑：
+```bash
+cd project-name
+./fireboom start
+```
+
+飞布将执行下述逻辑：
 
 * 启动控制台：启动控制台，但需要输入秘钥才能访问
 * 启动API：根据历史配置启动核心引擎，暴露 REST API 服务。（见上述步骤4）
@@ -179,16 +155,21 @@ API编译流程如下：
 
 ## 构建命令
 
-在`project-name`目录下执行`fireboom build`命令，飞布将执行下述逻辑：
+```bash
+cd project-name
+./fireboom build
+```
+
+飞布将执行下述逻辑：
 
 * 配置生成，打包生成生产模式依赖的配置文件（见上述步骤1-3）
 
-通常与fireboom start配套使用。
+通常与`fireboom start`配套使用。
 
 ## 升级飞布
 
 ```bash
 # 升级飞布命令行
 # cd project-name
-curl -fsSL https://www.fireboom.io/update.sh | bash
+curl -fsSL www.fireboom.io/update | bash
 ```
