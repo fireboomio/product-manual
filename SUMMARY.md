@@ -30,6 +30,7 @@
       * [高级设置](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/shu-ju-ku-lian-jie/gao-ji-she-zhi.md)
     * [数据建模](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/shu-ju-jian-mo.md)
     * [数据预览](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/shu-ju-yu-lan.md)
+  * [Prisma 数据源](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/prisma-shu-ju-yuan.md)
   * [REST 数据源](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/rest-api.md)
   * [GraphQL 数据源](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/graphql-api.md)
   * [消息队列](ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/xiao-xi-dui-lie.md)
