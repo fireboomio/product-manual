@@ -1,6 +1,6 @@
 # 常见用例
 
-## 组装查询&#x20;
+## 组装查询
 
 ### QUERY
 
@@ -29,7 +29,7 @@ query MyQuery{
 
 ### MUTATION
 
-在一个接口中，同时变更多个数据源的数据。同步执行，暂不支持事务。
+在一个接口中，同时变更多个数据源的数据。
 
 ```graphql
 mutation MyQuery {
@@ -46,6 +46,23 @@ mutation MyQuery {
     id
   }
 }
+```
+
+### 事务
+
+用`@transaction`指令修饰mutation OPERATION，保证原子性
+
+```graphql
+mutation MyQuery @transaction {
+  rb_createOneT(data: { name: "22211122"}) {
+    id
+    name
+  }
+  rb_createOneRole(data: {code: "a111111", name: "1111"}) {
+    code
+    name
+  }
+} 
 ```
 
 ## 分页
@@ -73,8 +90,6 @@ query GetTodoList(
 }
 ```
 
-
-
 ## 模糊搜索
 
 模糊搜索，对应sql like 匹配，例如：根据$title模糊搜索待做事项列表
@@ -91,6 +106,26 @@ query MyQuery($title: String, $skip: Int!) {
 ```
 
 ## 关联查询
+
+同一数据源的关联查询有两种情况：
+
+* 有外键：建立表之间的外键关联
+* 无外键： [prisma-shu-ju-yuan.md](../shu-ju-yuan/prisma-shu-ju-yuan.md "mention")
+
+其用法相同，如下：
+
+```graphql
+query MyQuery {
+  rb_findFirstUser {
+    name
+    uid
+    Role {
+      code
+      name
+    }
+  }
+}
+```
 
 ## 关联更新
 
@@ -215,6 +250,30 @@ mutation MyQuery($parameters: todo_Json = ["beijing", 1]) {
 }
 ```
 
-## 默认值
+## 变量默认值
 
-必填项与默认值？
+### 默认值
+
+设置`$skip`的默认值为0，请求接口时可忽略。
+
+```graphql
+query MyQuery($skip: Int = 0 ) {
+  rb_findManyUser(skip: $skip, take: 10) {
+    uid
+    name
+  }
+}
+```
+
+### 必填项
+
+设置`$skip`为必填项，请求接口时必填。
+
+```graphql
+query MyQuery($skip: Int! ) {
+  rb_findManyUser(skip: $skip, take: 10) {
+    uid
+    name
+  }
+}
+```
