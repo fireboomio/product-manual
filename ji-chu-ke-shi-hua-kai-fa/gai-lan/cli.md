@@ -117,9 +117,6 @@ project-name
 ```bash
 cd project-name
 ./fireboom dev
-
-# 开启秘钥保护
-./fireboom build --enable-auth
 ```
 
 飞布将执行下述逻辑：
