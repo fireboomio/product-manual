@@ -50,29 +50,22 @@
 
 * 外观：设置语言，当前支持中文和英文
 * 系统：
-  * API域名：对外暴露API时的服务域名，控制台中有两个地方会用到：API预览页和复制API访问地址按钮
-  * 监听HOST：核心引擎启动时监听的HOST
-    * localhost：默认值，仅能本机访问，用nginx代理后可外网访问
+  * API域名：对外暴露API时的服务域名，控制台中有两个地方会用到：
+    * API预览页
+    * 复制API访问地址按钮
+  * [监听HOST](../../../shi-yong-bu-shu-shang-xian/security/#jian-ting-di-zhi)：核心引擎启动时监听的HOST
+    * localhost：默认值，仅能本机访问，用[nginx代理](../../../shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu/#nginx-pei-zhi)后可外网访问
     * 0.0.0.0：所有IP都能访问，不安全，有两个常见用例
       * 不使用nginx代理，通过公网IP访问时
       * 在docker中启动时（在docker容器中，ip会被分到127.0.0.1）
-  * 监听端口：核心引擎启动时监听的端口
+  * 监听端口：核心引擎启动时监听的端口，用于暴露API，默认9991
   * 日志水平：核心引擎输出的日志水平
   * 调试：核心引擎是否开启调试
 * 安全：
-  * GraphQL端点：是否对外暴露GraphQL端点，开发模式下开启且不可关闭，生产环境下关闭且不可开启
   * 允许主机：允许访问核心引擎的主机地址，默认允许全部，否则需要配置白名单
-  * 重定向URL：采用基于COOKIE的方式进行三方登录，登录成功后，跳转回来的地址
-* 跨域：
-  * 允许源：允许跨域访问的源地址，默认允许全部，否则需要配置白名单
-  * 允许方法：允许跨域访问的方法，默认GET和POST
-  * 允许头：允许跨域访问的请求头，默认全部（\*）
-  * <mark style="color:red;">跨域时间：跨域访问OPTION请求的有效时间，单位秒</mark>
-* 环境变量：环境变量的增删改查，用于保证私密数据的安全
-  * 环境变量列表中存在内置变量，其中变量prismaEngineVersion主要作用是维护prisma的引擎的版本信息，变量prismaVersion主要作用是维护prisma的版本信息
+  * 重定向URL：详情见 [#oidc-pei-zhi](../../shen-fen-yan-zheng/shou-quan-ma-mo-shi/#oidc-pei-zhi "mention")
+* 跨域：详情见 [kua-yu-fang-wen.md](../../../shi-yong-bu-shu-shang-xian/security/kua-yu-fang-wen.md "mention")
+* 环境变量：环境变量的增删改查，用于保证私密数据的安全，详情见&#x20;
   * 可手动添加变量
   * 环境变量也可以在钩子服务中直接引用
 * 版本：展示系统版本和依赖库的版本信息
-
-
-

@@ -17,7 +17,7 @@ API服务监听HOST，默认值 `localhost`，只能被本机访问，以保证�
 若想通过公网访问，有两种方法：
 
 * IP访问：<mark style="color:purple;">Host</mark> 修改为 `0.0.0.0`，防火墙放开9991端口，访问 公网IP:9991端口
-* Nginx转发：通过nginx代理转发到 `localhost:9991`
+* [Nginx转发](../bu-shu-yun-wei/shou-dong-bu-shu/#nginx-pei-zhi)：通过nginx代理转发到 `localhost:9991`
 
 ### 内网访问
 
@@ -63,4 +63,12 @@ Fireboom支持用环境变量作为参数，有两个用途：
 * 保证隐私数据安全，例如：数据库密码、OIDC秘钥、API外网地址等。
 * 环境切换，例如开发环境和生产环境用不同的配置
 
-前往 设置-><mark style="color:purple;">环境变量</mark> 设置，其底层对应根目录下的`.env`文件。
+前往 设置-><mark style="color:purple;">环境变量</mark> 设置，默认情况下其底层对应根目录下的`.env`文件。
+
+若要指定，请在启动参数中指定，详情见 [#qi-yong-huan-jing-bian-liang](../../ji-chu-ke-shi-hua-kai-fa/gai-lan/cli.md#qi-yong-huan-jing-bian-liang "mention")
+
+环境变量列表内置了很多变量：
+
+* prismaEngineVersion：维护prisma引擎的版本信息
+* prismaVersion：维护prisma的版本信息
+* ...

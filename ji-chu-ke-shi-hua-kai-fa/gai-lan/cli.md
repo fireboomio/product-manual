@@ -117,27 +117,78 @@ project-name
 ```bash
 cd project-name
 ./fireboom dev
+
+# 开启秘钥保护
+./fireboom build --enable-auth
 ```
 
 飞布将执行下述逻辑：
 
-* 启动控制台：启动控制台，默认访问地址为：http://localhost:<mark style="color:red;">9123</mark>
+* 启动控制台：启动控制台，默认访问地址为：`http://localhost:`<mark style="color:red;">`9123`</mark>
 * 实时编译API：检测配置变更，并将其**实时**编译为REST API。（编译流程如下）
 
-飞布开发的API，默认访问地址为：http://localhost:<mark style="color:orange;">9991</mark>。不同于控制台的访问地址！
+飞布开发的API，默认访问地址为：`http://localhost:`<mark style="color:orange;">`9991`</mark>。不同于控制台的访问地址！
 
 {% hint style="info" %}
-出于安全考虑，飞布控制台(9123)和API(9991)用不同端口暴露。你可以通过防火墙设置安全策略，以保证安全，如对9991全部放行，对9123设置IP白名单放行。
+飞布控制台(9123)和API(9991)用不同端口暴露。为保证安全，建议开启9123的授权保护，参考 [#kai-qi-mian-ban-bao-hu](cli.md#kai-qi-mian-ban-bao-hu "mention")
 {% endhint %}
 
 在开发模式下，每次通过界面修改配置，都会触发核心引擎的实时编译流程。
 
 API编译流程如下：
 
-1. 读取`store`目录下的配置，生成元数据到`exported/`目录
-2. 内省数据源，获得各数据源的graphql schema描述
-3. 根据启用的模板库，生成对应SDK到指定目录
-4. 重启核心引擎，暴露REST API 服务
+1. 读取`store`目录下的配置，编译到目录：`exported/generated`
+2. 内省数据源，获得各数据源的graphql schema描述，存储在目录：`exported/introspection`
+3. 根据启用的模板库，生成对应SDK到指定目录，模板位于目录：`template`
+4. 重启核心引擎，注册GraphQL Operation路由，对外暴露REST API 服务
+
+### 帮助命令
+
+```bash
+# 查看支持的所有参数
+./fireboom dev --help  
+Start the fireboom application in development mode and watch for changes
+
+Usage:
+  fireboom dev [flags]
+
+Examples:
+./fireboom dev
+
+Flags:
+      --active string     Mode active to run in different environment
+      --enable-auth       Whether enable auth key on dev mode
+  -h, --help              help for dev
+      --web-port string   Web port to listen on (default "9123")
+```
+
+### 指定面板端口
+
+默认情况下，控制台监听端口：`9123`，通过参数`--web-port`可指定端口。
+
+```bash
+fireboom start --web-port 9123
+```
+
+### 启用环境变量
+
+默认情况下，环境变量用文件：`.env` 。
+
+使用 `--active` 参数，指定启用的环境变量。
+
+```bash
+./fireboom dev --active test
+```
+
+例如，上述命令指定激活的环境变量文件为：`.env.test` 。
+
+### 开启面板保护
+
+使用参数`--enable-auth`，开启面板保护，开启后输入秘钥才能访问控制台。
+
+```bash
+./fireboom dev --enable-auth
+```
 
 ## 生产模式
 
@@ -153,20 +204,59 @@ cd project-name
 
 生产模式下，通过界面修改配置，不会触发自动编译，以保证服务稳定。
 
+### 帮助命令
+
+<pre class="language-bash"><code class="lang-bash"># 查看支持的所有参数
+<strong>./fireboom start --help     
+</strong>Start the fireboom application in production mode without watching
+
+Usage:
+  fireboom start [flags]
+
+Examples:
+./fireboom start
+
+Flags:
+      # 同上
+      --active string        Mode active to run in different environment (default "prod")
+      --enable-swagger       Whether enable swagger in production
+      --enable-web-console   Whether enable web console page in production (default true)
+  -h, --help                 help for start
+      --regenerate-key       Whether to renew authentication key in production
+      # 同上
+      --web-port string      Web port to listen on (default "9123")
+</code></pre>
+
+### 开启swagger文档
+
+生产模式默认关闭swagger文档，使用参数`--enable-swagger`开启：
+
+```bash
+./fireboom start --enable-swagger
+```
+
+### 重新生成秘钥
+
+使用参数`--regenerate-key`，更新秘钥：
+
+```
+./fireboom start --regenerate-key
+```
+
 ## 构建命令
+
+构建 [#sheng-chan-mo-shi](cli.md#sheng-chan-mo-shi "mention")所需要的产物，与`fireboom start`配套使用。
 
 ```bash
 cd project-name
 ./fireboom build
 ```
 
-飞布将执行下述逻辑：
-
-* 配置生成，打包生成生产模式依赖的配置文件（见上述步骤1-3）
-
-通常与`fireboom start`配套使用。
+执行逻辑同 `fireboom dev` 的1-3步骤。
 
 ## 升级飞布
+
+升级Fireboom到最新版本
 
 ```bash
 # 升级飞布命令行
