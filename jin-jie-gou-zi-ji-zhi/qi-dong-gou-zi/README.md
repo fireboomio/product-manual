@@ -12,9 +12,9 @@ Fireboom 同时只兼容一种语言的钩子！！！
 
 ## 读取配置文件
 
-钩子服务需要依赖Fireboom服务的某些配置，因此需要读取Fireboom的配置文件：`exported/generated/fireboom.config.json` 。
+钩子服务依赖Fireboom服务的配置：`exported/generated/fireboom.config.json` 。
 
-为了便于读取，且减少冗余。Fireboom为`fireboom.config.json`创建了一个软连接，并生成到开启钩子的指定路径，例如：`custom-go/generated/fireboom.config.json` 。
+为了便于读取，且减少冗余。Fireboom为该文件创建了一个软连接，并生成到开启钩子的指定路径，例如：`custom-go/generated/fireboom.config.json` 。
 
 其中，包含钩子启动所依赖的大部分信息，如
 
@@ -36,10 +36,6 @@ func init() {
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ## 读取环境变量
@@ -56,10 +52,6 @@ func init() {
     _ = godotenv.Overload(nodeEnvFilepath)
 ```
 {% endcode %}
-{% endtab %}
-
-{% tab title="nodejs" %}
-
 {% endtab %}
 {% endtabs %}
 
@@ -132,10 +124,6 @@ e.Use(func(next echo.HandlerFunc) echo.HandlerFunc {
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ## 注册钩子
@@ -159,7 +147,7 @@ Fireboom中有各种类型的钩子，主要包括：
 * 主功能区-> <mark style="color:orange;">概览面板</mark> ，比较直观的展示了钩子所处的注入点，见上图
 * 主功能区-> <mark style="color:orange;">钩子面板</mark> ，简单罗列了所有的钩子
 
-**所有钩子都有约定的目录结构，**各类型钩子对应目录：
+<mark style="color:purple;">所有钩子都有约定的目录结构</mark>，各类型钩子对应目录：
 
 ```
 ├─ custom-*
@@ -168,7 +156,7 @@ Fireboom中有各种类型的钩子，主要包括：
 │  │  ├─ postAuthentication.*
 │  │  ├─ postLogout.*
 │  │  └─ revalidate.*
-│  ├─ customize # graphql钩子目录
+│  ├─ customize # graphql 钩子目录
 │  │  ├─ gql1.*
 │  ├─ global  # OPERATION全局钩子目录
 │  │  ├─ beforeRequest.*
@@ -344,10 +332,6 @@ func init() {
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ### 注册路由
@@ -399,10 +383,6 @@ for _, gqlServer := range types.WdgHooksAndServerConfig.GraphqlServers {
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 ## 启动钩子
@@ -435,34 +415,57 @@ npm run watch
 
 ### 健康检查
 
-健康检查接口，用于检查钩子服务健康状态，在界面上展示钩子是否已启动，见底部 <mark style="color:purple;">状态栏</mark>-> <mark style="color:purple;">钩子</mark> 状态。
+健康检查接口，Fireboom服务**每秒触发1次**，主要用途如下：
 
-{% swagger method="get" path="health" baseUrl="http://127.0.0.1:9992/" summary="健康检查接口" %}
-{% swagger-description %}
+* 检查钩子服务健康状态，在界面上展示钩子是否已启动，见底部 <mark style="color:purple;">状态栏</mark>-> <mark style="color:purple;">钩子</mark> 状态。
+* 返回钩子服务上注册的3种自定义钩子：[graphql钩子](../graphql-gou-zi.md)、[function](../han-shu-gou-zi/zu-he-shi-api.md)、[proxy](../han-shu-gou-zi/proxys-fei-qi.md)，Fireboom服务检查到钩子状态变化后，刷新控制台API管理和数据源列表
 
-{% endswagger-description %}
+```http
+http://{serverAddress}/health
 
-{% swagger-response status="200: OK" description="" %}
-```json
+# Example:: http://localhost:9992/health
+
+Content-Type: application/json
+X-Request-Id: "83821325-9638-e1af-f27d-234624aa1824"
+
+# JSON request
+no data
+
+# JSON response
 {
+    // 3种类型的自定义钩子，用于触发编译
+    "report": {
+        // graphql 钩子
+        "customizes": [
+            "statistic" 
+        ],
+        // function 钩子
+        "functions": [
+            "login",
+            "test",
+            "hello"
+        ],
+        // proxy 钩子
+        "proxys": [
+            "test"
+        ],
+        "time": "2023-09-06T17:18:21.957519+08:00"
+    },
+    // 钩子服务的状态
     "status": "ok"
 }
 ```
-{% endswagger-response %}
-{% endswagger %}
 
 {% tabs %}
 {% tab title="golang" %}
 ```go
 // 健康检查
 e.GET("/health", func(c echo.Context) error {
-	return c.JSON(http.StatusOK, map[string]string{"status": "ok"})
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"status": "ok",
+		"report": healthReport,
+	})
 })
 ```
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
-

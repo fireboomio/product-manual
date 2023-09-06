@@ -31,32 +31,44 @@
 
 1.1 Fireboom将从下述仓库中下载模板：
 
-* V1.0版本：https://github.com/fireboomio/sdk-template\_go-server
-* V2.0版本：https://github.com/fireboomio/sdk-template\_go-server/tree/test
+* V2.0版本：[https://github.com/fireboomio/sdk-template\_go-server/tree/V2.0](https://github.com/fireboomio/sdk-template\_go-server/tree/V2.0)
 
-不同Fireboom版本，下载模板的分支不同！
+下载后，有两处变更。
 
-1.2 下载后，将在 `template` 目录下增加 `golang_server` 目录，包含有4部分：
+1.2 在`store/sdk`目录中新增`golang-server.json`文件，其格式如下：
+
+```json
+{
+  "name": "golang-server", # 钩子SDK的名称
+  "enabled": true,
+  "type": "server", # SDK类型，server表示服务端钩子
+  "language": "go", # 钩子的语言
+  "extension": ".go", # 钩子的后缀
+  "gitUrl": "https://code.100ai.com.cn/fireboomio/sdk-template_go-server.git",
+  "gitBranch": "V2.0",
+  "gitCommitHash": "1e85822a9f2db63a4d97e434765738b5b35e5515", # 记录HASH值，保证稳定拉取
+  "outputPath": "./custom-go", # 生成目录
+  "codePackage": "",
+  "createTime": "2023-08-27T17:36:45.207601+08:00",
+  "updateTime": "2023-09-06T17:14:48.241365+08:00",
+  "deleteTime": "",
+  "generateTime": "2023-09-06T17:14:47.930345005+08:00",
+  "icon": "xxx",
+  "title": "Golang server",
+  "author": "fireboom",
+  "version": "latest",
+  "description": "Golang hook server SDK template for fireboom"
+}
+```
+
+1.3 在 `template` 目录下增加 `golang_server` 目录，包含有3部分：
 
 * README.md：自述文件
-*   manifest.json：清单配置，存储了该模板的基本信息，和界面一一对应
-
-
-
-    ```json
-    {
-      "name": "go-server",
-      "author": "fireboom",
-      "version": "0.1.0",
-      "description": "这里是sdk的描述",
-      "outputPath": "./custom-go",// 控制目标文件的生成路径，相对Fireboom根目录
-      "enabled": false // 默认是关闭的
-    }
-    ```
-* <mark style="color:red;">files：模板文件</mark>
+* files：模板文件
   * .hbs：[handlerbars](https://www.handlebarsjs.cn/)格式，每次编译后替换目标文件
   * 其他文件，例如`.go`、`.html`，目标文件不存在时，生成（否则不生成）
-* partials（可选）：每个文件都是一个模板片段，主要用于复用逻辑，可被files的hbs中引用
+  * <mark style="color:red;">.fbignore</mark>：用于指定强制忽略的文件或目录，格式与.gitignore一致
+* partials（可选）：每个文件都是一个模板片段，主要用于复用逻辑，可在files的hbs中引用
 
 {% tabs %}
 {% tab title="golang" %}
@@ -67,6 +79,7 @@ template
 │  ├─ files
 │  │  ├─ generated
 │  │  │  └─ models.go.hbs
+│  │  ├─ .fbignore # 用于指定要忽略的文件或目录
 │  │  ├─ go.mod
 │  │  ├─ helix.html
 │  │  ├─ main.go
@@ -101,7 +114,6 @@ template
 │  │  └─ server
 │  │     ├─ fireboom_server.go.hbs # 入口文件模板
 │  │     └─ start.go
-│  └─ manifest.json
 ```
 {% endtab %}
 
@@ -146,12 +158,13 @@ template
 
 2，在模板页修改“生成路径”，并开启钩子开关（钩子模板同时只能开启1个）
 
-3，后续每次触发“编译”，都会重新生成钩子文件（<mark style="color:orange;">非</mark><mark style="color:orange;">`.hbs`</mark><mark style="color:orange;">文件，只生成1次</mark>）
+3，后续每次触发“编译”，都会重新生成钩子文件（<mark style="color:orange;">非</mark><mark style="color:orange;">`.hbs`</mark><mark style="color:orange;">文件或.fbignore指定的文件，只生成1次</mark>）
 
 {% tabs %}
 {% tab title="golang" %}
 ```
 ├─ custom-go
+│  ├─ .fbignore # 在里面指定覆盖时，需要排除的文件
 │  ├─ go.mod
 │  ├─ go.sum
 │  ├─ helix.html
@@ -210,21 +223,24 @@ todo
 
 接着，基于上述原理 ，学习如何升级模板。
 
-1，在模板页选择 `golang-server`  ，点击“...”，选择“升级”
+### 1，检查更新
 
-Fireboom将重新从对应仓库下载模板，并覆盖旧模板
+若钩子模板有更新，则会在界面上展示 `new` 标签，点击可对比模板变更
 
-2，前往钩子生成目录，手工删除钩子模板目录下files目录中后缀不是`.hbs`的文件
+<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
+例如：[https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762](https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762)
+
+### 2，升级模板
+
+在模板页选择 `golang-server` ，点击“...”，选择“升级”，将下载最新模板，并覆盖旧模板。
+
+注意 `.fbignore` 中声明的文件不会被更新！
+
+### 3，重装依赖
+
+根据钩子语言，重装依赖，例如：
+
+```bash
+go mod tidy
 ```
-├─ custom-go
-│  ├─ go.mod
-│  ├─ go.sum
-│  ├─ helix.html
-│  ├─ main.go
-│  ├─ pkg //通常情况下，删除目标目录下的该文件就成，因为升级一般都是修改该目录
-│  ├─ server
-│  │  └─ start.go
-```
-
-3，重装依赖，启动钩子服务

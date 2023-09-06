@@ -2,94 +2,82 @@
 
 为了进一步提升开发体验，Fireboom在HOOKS框架中集成了graphql端点。它本质上是一个内置的grphql数据源。可以用来实现复杂的业务逻辑。
 
-{% hint style="info" %}
-该方式有循环依赖，要遵循[下述方法](graphql-gou-zi.md#gou-jian-api)绕开依赖！你也可以自行在HOOKS SDK中实现GraphQL服务。
-{% endhint %}
-
 ## 新建GraphQL钩子
 
 1，在 Fireboom 控制台点击`数据源`面板的`+`号，进入数据源新建页。
 
-2，在数据源新建页面，选择 自定义-> 脚本，设置起名称为：`Custom`。
+2，在数据源新建页面，选择 脚本-> GraphQL，设置名称为：`custom`。
 
-3，系统自动初始化如下脚本。默认填充的是示例代码，你可以根据业务需求修改代码。
+3，系统自动初始化如下脚本。
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>graphq钩子</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (13).png" alt=""><figcaption><p>graphql 钩子</p></figcaption></figure>
 
 {% tabs %}
 {% tab title="golang" %}
-{% code title="customize/Custom.go" %}
+{% code title="customize/custom.go" %}
 ```go
 package customize
 
 import (
 	"custom-go/pkg/plugins"
 	"github.com/graphql-go/graphql" # 自行学习该库的用法
+	"log"
+	"time"
 )
+// ... 这里有省略
+// 定义 graphql schema
+var Custom_schema, _ = graphql.NewSchema(graphql.SchemaConfig{
+	// 查询
+	Query: graphql.NewObject(graphql.ObjectConfig{
+		Name:   "query",
+		Fields: queryFields,
+	}),
+	// 变更
+	Mutation: graphql.NewObject(graphql.ObjectConfig{
+		Name:   "mutation",
+		Fields: mutationFields,
+	}),
+	// 订阅
+	Subscription: graphql.NewObject(graphql.ObjectConfig{
+		Name:   "subscription",
+		Fields: subscriptionFields,
+	}),
+})
 
-type Person struct {
-	Id        int    `json:"id"`
-	FirstName string `json:"firstName"`
-	LastName  string `json:"lastName"`
+func init() {
+	// 注册 graphql 服务
+	plugins.RegisterGraphql(&Custom_schema)
 }
-
-var (
-	personType = graphql.NewObject(graphql.ObjectConfig{
-		Name:        "Person",
-		Description: "A person in the system",
-		Fields: graphql.Fields{
-			"id": &graphql.Field{
-				Type: graphql.Int,
-			},
-			"firstName": &graphql.Field{
-				Type: graphql.String,
-			},
-			"lastName": &graphql.Field{
-				Type: graphql.String,
-			},
-		},
-	})
-
-	fields = graphql.Fields{
-		"person": &graphql.Field{
-			Type:        personType,
-			Description: "Get Person By ID",
-			Args: graphql.FieldConfigArgument{
-				"id": &graphql.ArgumentConfig{
-					Type: graphql.Int,
-				},
-			},
-			Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-				_ = plugins.GetGraphqlContext(params)
-				id, ok := params.Args["id"].(int)
-				if ok {
-					testPeopleData := []Person{
-						{Id: 1, FirstName: "John", LastName: "Doe"},
-						{Id: 2, FirstName: "Jane", LastName: "Doe"},
-					}
-					for _, p := range testPeopleData {
-						if p.Id == id {
-							return p, nil
-						}
-					}
-				}
-				return nil, nil
-			},
-		},
-	}
-	rootQuery = graphql.ObjectConfig{Name: "RootQuery", Fields: fields}
-	Custom_schema, _ = graphql.NewSchema(graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)})
-)
 ```
 {% endcode %}
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
-4，在数据源列表，右击 开启当前钩子，然后重新启动钩子服务
+默认填充的是示例代码，你可以根据业务需求修改代码。
+
+4，在`main.go`中匿名引入该包，然后重新启动钩子服务
+
+{% tabs %}
+{% tab title="golang" %}
+{% code title="custom-go/main.go" %}
+```go
+package main
+
+import (
+	// 匿名引入该库
+	_ "custom-go/customize"
+	// _ "custom-go/function"
+	// _ "custom-go/proxy"
+	"custom-go/server"
+)
+
+func main() {
+	server.Execute()
+}
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 5，钩子服务启动后，将注册对应的graphql服务端点，其路由格式如下：
 
@@ -99,11 +87,43 @@ var (
 # Example:: http://localhost:9992/gqls/Custom/graphql
 </code></pre>
 
-## graphql控制面板
+6，同时，钩子服务[自动内省](graphql-gou-zi.md#nei-sheng-graphql)该端点，并将内省产graphql schema物存储到文件：`custom-x/customize/custom.json`
+
+```
+customize          
+├─ custom.go   # graphql 钩子代码   
+└─ custom.json # 内省生成的结构化graphql schema
+```
+
+7，Fireboom服务每秒触发1次健康检查，将获取如下结果：
+
+```json
+{
+    "report": {
+        // graphql 钩子
+        "customizes": [
+            "custom" 
+        ],
+        "time": "2023-09-06T17:18:21.957519+08:00"
+    },
+    // 钩子服务的状态
+    "status": "ok"
+}
+```
+
+可以看到 `report.customizes` 中包含`custom`服务。接着读取步骤6中的子图graphql schema，合并到Fireboom [超图](../he-xin-gai-nian/chao-tu.md) 中。
+
+{% hint style="info" %}
+如果`report`没有变化，则不会触发编译！
+{% endhint %}
+
+8，最后，Fireboom发送通知，触发控制台更新，在数据源面板展示 `custom` 数据源。
+
+### graphql控制面板
 
 Get请求上述端点时，默认打开 graphql 控制面板。
 
-其原理的是：读取helix.html文件，修改其中`${graphqlEndpoint}`为web界面请求路径。
+其原理的是：读取`helix.html`文件，修改其中`${graphqlEndpoint}`为web界面请求路径。
 
 ```html
 <script >
@@ -123,7 +143,7 @@ Get请求上述端点时，默认打开 graphql 控制面板。
 
 {% file src="../.gitbook/assets/helix.html" %}
 
-## 内省graphql
+### 内省graphql
 
 post 请求上述端点，按照如下格式，可以获得其graphql schema。
 
@@ -255,40 +275,9 @@ fragment TypeRef on __Type {
 
 <figure><img src="../.gitbook/assets/image (1) (1) (1) (1) (1) (1) (1) (1).png" alt=""><figcaption><p>内省</p></figcaption></figure>
 
-
-
 ## 构建API
 
-由于Fireboom服务依赖钩子服务，因此，需要按照如下步骤操作。
-
-* 开启钩子：开启graphql钩子后，Fireboom将重新生成HOOKS 项目，将该钩子合成到对应文件
-* 重启钩子：手动重新启动钩子服务，保证钩子服务注册了graphql路由
-* 重新编译：在Fireboom控制台，点击右上角的“编译”按钮，内省该数据源
-
-通过上述方式拿到的GraphQL SCHEMA被作为子图合并到Fireboom 超图 中，详情 查看 [chao-tu.md](../he-xin-gai-nian/chao-tu.md "mention")。
-
-{% tabs %}
-{% tab title="golang" %}
-{% code title="server/fireboom_server.go" %}
-```go
-GraphqlServers: []plugins.GraphQLServerConfig{
-    {
-        ApiNamespace:          "Custom",
-        ServerName:            "Custom",
-        EnableGraphQLEndpoint: true,
-        Schema:                customize.Custom_schema,
-    },
-},
-```
-{% endcode %}
-{% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
-{% endtabs %}
-
-接着，我们就可以在Fireboom的超图面板中构建OPERATION，生成REST API供客户端使用。
+在Fireboom的超图面板中构建OPERATION，生成REST API供客户端使用。
 
 <figure><img src="../.gitbook/assets/image (2) (1) (1) (1) (1).png" alt=""><figcaption><p>将GraphQL钩子转变成REST API</p></figcaption></figure>
 

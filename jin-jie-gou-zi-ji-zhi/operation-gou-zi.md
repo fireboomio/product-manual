@@ -182,10 +182,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 ```
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func OnOriginRequest(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientRequest, error) {
@@ -288,13 +284,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 }
 ```
 
-
-
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func OnOriginResponse(hook *base.HttpTransportHookRequest, body *plugins.HttpTransportBody) (*base.ClientResponse, error) {
@@ -366,10 +356,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 </code></pre>
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func PreResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
@@ -428,10 +414,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 ```
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func MutatingPreResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
@@ -498,10 +480,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 ```
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func PostResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
@@ -516,7 +494,7 @@ func PostResolve(hook *base.HookRequest, body generated.WeatherBody) (res genera
 
 #### 后置修改出参钩子
 
-mutatingPostResolve 钩子在响应转换后执行，能拿到请求入参和响应结果，也能修改响应结果。
+mutatingPostResolve 钩子在响应转换后执行，能拿到请求入参和响应结果，也能修改响应结果，且可以<mark style="color:red;">修改响应的结构</mark>！
 
 ```http
 http://{serverAddress}/operation/{operation}/mutatingPostResolve
@@ -575,10 +553,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 ```
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func MutatingPostResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
@@ -587,15 +561,16 @@ func MutatingPostResolve(hook *base.HookRequest, body generated.WeatherBody) (re
 		body.Response.Data.Weather_getCityByName.Weather.Summary.Description = "修改响应值"
 		return body, nil
 	}
+	// 使用 DataAny 修改响应结构
+	body.Response.DataAny = map[string]any{
+		"data":   134,
+		"custom": "ssss",
+	}
 	return body, nil
 }
 ```
 {% endtab %}
 {% endtabs %}
-
-{% hint style="info" %}
-nodejs钩子可以修改响应形状，golang钩子暂未支持。
-{% endhint %}
 
 ### 模拟钩子
 
@@ -647,10 +622,6 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 ```
 
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func MockResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {
@@ -729,13 +700,7 @@ X-Request-Id: "83850325-9638-e5af-f27d-234624aa1824"
 }
 ```
 
-
-
 {% tabs %}
-{% tab title="nodejs" %}
-
-{% endtab %}
-
 {% tab title="golang" %}
 ```go
 func CustomResolve(hook *base.HookRequest, body generated.WeatherBody) (res generated.WeatherBody, err error) {

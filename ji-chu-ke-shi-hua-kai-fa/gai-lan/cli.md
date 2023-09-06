@@ -167,7 +167,7 @@ Flags:
 fireboom start --web-port 9123
 ```
 
-### 启用环境变量
+### 指定环境变量
 
 默认情况下，环境变量用文件：`.env` 。
 
@@ -186,6 +186,8 @@ fireboom start --web-port 9123
 ```bash
 ./fireboom dev --enable-auth
 ```
+
+秘钥位于根目录的`authentication.key`文件中。
 
 ## 生产模式
 
