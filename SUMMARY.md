@@ -2,6 +2,7 @@
 
 * [序言](README.md)
 * [更新日志](geng-xin-ri-zhi/README.md)
+  * [更新日志V2.0](geng-xin-ri-zhi/geng-xin-ri-zhi-v2.0.md)
   * [V2.0更新说明](geng-xin-ri-zhi/v2.0-geng-xin-shuo-ming.md)
   * [更新日志V1.0](https://docs.fireboom.io/v/v1.0/geng-xin-ri-zhi)
 * [产品简介](<README (1).md>)
