@@ -2,7 +2,7 @@
 
 ## 单数据源
 
-<figure><img src="../.gitbook/assets/image (8) (1).png" alt=""><figcaption><p>Fireboom单数据源请求时序图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (8) (1) (2).png" alt=""><figcaption><p>Fireboom单数据源请求时序图</p></figcaption></figure>
 
 0 定义接口
 
@@ -80,7 +80,7 @@ SELECT `completed`,`createdAt`,`id`,`title` FROM Todo WHERE id=1
 
 ## 多数据源（并行）
 
-<figure><img src="../.gitbook/assets/image (9).png" alt=""><figcaption><p>Fireboom多数据源请求时序图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (9) (1).png" alt=""><figcaption><p>Fireboom多数据源请求时序图</p></figcaption></figure>
 
 0 定义接口
 
@@ -141,7 +141,7 @@ curl 'http://localhost:9123/api/v1/role/all'
 
 最后，我们介绍下跨源特性，看下它的时序图。
 
-<figure><img src="../.gitbook/assets/image (10).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (10) (3).png" alt=""><figcaption></figcaption></figure>
 
 跨源关联本质上是一种流程编排，将通常情况下并行的请求，改造成串行。
 

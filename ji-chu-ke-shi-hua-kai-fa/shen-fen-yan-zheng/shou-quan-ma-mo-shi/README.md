@@ -17,8 +17,6 @@ OIDC是行业内的通用规范，飞布能与任意实现OIDC规范的供应商
 15功能介绍-飞布如何添加身份验证器？
 {% endembed %}
 
-
-
 如图，是飞布中OIDC配置页和auth0应用详情页的参数对应图。
 
 <figure><img src="../../../.gitbook/assets/image (52).png" alt=""><figcaption></figcaption></figure>
@@ -161,7 +159,7 @@ http://localhost:9173
 
 设置完成后，我们学习如何在网页中使用，例如，当前网页是：
 
-&#x20;`http://localhost:9173`。
+`http://localhost:9173`。
 
 ### 登录
 
@@ -213,15 +211,13 @@ http://localhost:9991/auth/cookie/user/logout?logout_openid_connect_provider=tru
 
 2，登录后，可查看当前用户信息。
 
-<figure><img src="../../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (2) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 3，点击”登出“，可清空cookie。
 
 {% hint style="info" %}
 只有开启“基于Cookie”模式后，才能直接测试。
 {% endhint %}
-
-
 
 图中也涉及到：基于token 登录，我们后续再介绍。
 
@@ -231,7 +227,7 @@ http://localhost:9991/auth/cookie/user/logout?logout_openid_connect_provider=tru
 
 接下来，我们学习下OIDC协议授权码模式的工作原理。
 
-<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption><p>授权码模式登录流程时序图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (6) (1).png" alt=""><figcaption><p>授权码模式登录流程时序图</p></figcaption></figure>
 
 该时序图有3个主体：
 
@@ -280,7 +276,7 @@ nonce=xxx
 
 若用户未登录，则跳转到auth0的登录页，支持账户密码、手机验证码，甚至是社交登录，如github、谷歌等。
 
-![](<../../../.gitbook/assets/image (7).png>)
+![](<../../../.gitbook/assets/image (7) (1).png>)
 
 #### 4.OIDC跳转Fireboom回调地址
 
@@ -360,8 +356,6 @@ curl --location --request GET 'https://xxx.auth0.com/userinfo' \
 }
 ```
 
-
-
 总结一下，上面6个步骤的主要过程就是：用户在auth0登录后，给了Fireboom一个授权码code，然后，Fireboom 用code换取token，然后用token换登录用户的信息。
 
 #### 7.Fireboom调用授权钩子
@@ -416,7 +410,7 @@ Fireboom 调用授权钩子，在钩子中修改用户信息，返回后，由Fi
 https://xxx.authing.cn/oidc/session/end
 ```
 
-5，返回结果到客户端，一般是 logout\_uri&#x20;
+5，返回结果到客户端，一般是 logout\_uri
 
 6，如果需要客户端协助，则自动跳转到authing的登出页
 

@@ -227,7 +227,7 @@ todo
 
 若钩子模板有更新，则会在界面上展示 `new` 标签，点击可对比模板变更
 
-<figure><img src="../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 例如：[https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762](https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762)
 

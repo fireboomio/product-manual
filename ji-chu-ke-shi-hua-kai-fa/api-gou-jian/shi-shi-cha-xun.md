@@ -37,7 +37,7 @@ setInterval(()=>{
 
 服务端轮询把轮询逻辑从客户端移动到服务端，由服务端定时请求数据，并比对前后两次数据是否一致，若数据变化，则推送数据到客户端。同时，只有当客户端打开链接时，服务端才会定时轮询数据，保证系统性能。
 
-<figure><img src="../../.gitbook/assets/image (8).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (8) (1).png" alt=""><figcaption></figcaption></figure>
 
 该时序图包括客户端、服务端和数据库。
 
@@ -49,7 +49,7 @@ setInterval(()=>{
 
 ### SSE
 
-服务端轮询使用了 HTTP2 的[Server sent event](https://www.ruanyifeng.com/blog/2017/05/server-sent\_events.html)机制，即SSE服务器推送。它是基于 HTTP 协议中的持久连接，仅从服务器向客户端发送消息。&#x20;
+服务端轮询使用了 HTTP2 的[Server sent event](https://www.ruanyifeng.com/blog/2017/05/server-sent\_events.html)机制，即SSE服务器推送。它是基于 HTTP 协议中的持久连接，仅从服务器向客户端发送消息。
 
 它和WEBSOCKET有两点核心不同：
 
@@ -63,7 +63,7 @@ setInterval(()=>{
 选中 API，在右侧面板中 点击 设置 ，切换到配置页面。
 
 * 勾选 使用独立配置
-* 开启 实时配置&#x20;
+* 开启 实时配置
 * 开启 实时查询
 * 设置 轮训间隔，单位是秒，最小值为1秒
 

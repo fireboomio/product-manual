@@ -54,7 +54,7 @@ GraphQL端点默认为 `http://localhost:9991/app/main/graphql` ，主要用于�
 * 允许Host：设置为 http://example.com，表示只能通过该域名访问服务。
 * <mark style="color:purple;">允许Host：</mark>默认值为 `*` ，表示不限制。
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption><p>允许HOST对应请求头中的Host字段</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (4) (4).png" alt=""><figcaption><p>允许HOST对应请求头中的Host字段</p></figcaption></figure>
 
 ## 环境变量
 

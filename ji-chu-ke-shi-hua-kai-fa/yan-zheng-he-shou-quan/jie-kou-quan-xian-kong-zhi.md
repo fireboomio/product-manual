@@ -13,7 +13,7 @@ description: '@rbac指令'
 1. 前往API管理面板，选择需要设置权限的API
 2. 在GraphQL编辑区的工具栏中点击“@角色”，选择匹配模式并添加角色，如添加admin角色
 
-<figure><img src="../../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (3) (1) (3).png" alt=""><figcaption></figcaption></figure>
 
 使用该指令后，有2个影响。
 

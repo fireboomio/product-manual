@@ -34,7 +34,7 @@ gql作为一种强类型API语言，非常适合作为该统一协议。
 
 prisma的核心原理见 [shu-ju-ku](../ji-chu-ke-shi-hua-kai-fa/shu-ju-yuan/shu-ju-ku/ "mention")
 
-<figure><img src="../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>Prisma2GraphQL转换规则</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (5) (1) (2).png" alt=""><figcaption><p>Prisma2GraphQL转换规则</p></figcaption></figure>
 
 首先，prisma model与数据库建表语句等价。且prisma model能转换成多种数据库的建表语句。
 
@@ -90,7 +90,7 @@ Prisma对不同数据库的函数支持是不同的，例如sqlite数据库缺�
 
 飞布除了支持数据库数据源外，还支持REST 数据源。
 
-<figure><img src="../.gitbook/assets/image (6) (1).png" alt=""><figcaption><p>OAS2GraphQL转换规则</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (6) (1) (1).png" alt=""><figcaption><p>OAS2GraphQL转换规则</p></figcaption></figure>
 
 如图所示，是OAS3.0规范的示例，可以看到它也定义了入参和出参，并且支持类型，可以转换为gql scheme。
 
@@ -103,7 +103,7 @@ Prisma对不同数据库的函数支持是不同的，例如sqlite数据库缺�
 1. paths中请求类型对应gql schema中的query：get对应query，POST/put/patch对应mutation。例如，pet/{petid} get 转换为query类型。
 2. paths的operationid，对应gql schemla 中的根字段名称，或者说函数名称，如果它为空，则用path去除特殊字符后函数名。例如getpetbyid。
 3. parameters入参对应gql schemla 中函数的入参。例如，petid为integer类型，对应到gql schema为Petid int类型，required true，对应为！.
-4. response出参对应gql schemla 中函数的返回值。例如，pet  schema转换为pet 类型。id字段为标量interge类型，转换为int。category为对象，在这里也是对应为cateory对象。
+4. response出参对应gql schemla 中函数的返回值。例如，pet schema转换为pet 类型。id字段为标量interge类型，转换为int。category为对象，在这里也是对应为cateory对象。
 
 {% hint style="info" %}
 推荐使用apifox等工具导出oas文件，优先导出为oas3.0。
@@ -113,7 +113,7 @@ Prisma对不同数据库的函数支持是不同的，例如sqlite数据库缺�
 
 最后我们查看下架构图，重点关注超图部分。
 
-<figure><img src="../.gitbook/assets/image (7) (1).png" alt=""><figcaption><p>架构图-超图</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (7) (1) (1).png" alt=""><figcaption><p>架构图-超图</p></figcaption></figure>
 
 在这里，飞布主要做了2件事：
 

@@ -4,7 +4,7 @@
 
 接着，我们复盘下上文提到的3中类型时序图。他们都能用该HTTP请求流程图表示。
 
-<figure><img src="../.gitbook/assets/image (11).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (11) (1).png" alt=""><figcaption></figcaption></figure>
 
 即，客户端发起REST请求，飞布服务查找并解析对应OPERATION，根据指令调用不同的拦截器，根据命名空间拆分请求到不同数据源，或控制请求不同数据源的流程，如串行或并行。
 
@@ -23,7 +23,7 @@
 
 GraphQL的指令系统实现更加复杂的业务逻辑，但如果将指令放到客户端，就无法保证安全。得益于服务端OPERATION的第三点优势，Fireboom充分发挥了GraphQL指令系统的优势。
 
-<figure><img src="../.gitbook/assets/image (12).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (12) (2).png" alt=""><figcaption></figcaption></figure>
 
 飞布的指令面板用于可视化插入指令，除了跨源关联外，指令分为三大类：全局指令（包括角色和私有），入参指令（用于修饰OPERATION入参）、出参指令（用于修饰operation字段）。
 

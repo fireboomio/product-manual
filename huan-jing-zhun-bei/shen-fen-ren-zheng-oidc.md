@@ -4,7 +4,7 @@
 
 进入Authing官网https://console.authing.cn/，在应用-自建应用页面，创建一个自建应用
 
-<figure><img src="../.gitbook/assets/image (4) (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4) (4) (1).png" alt=""><figcaption></figcaption></figure>
 
 查看已创建应用的配置信息
 

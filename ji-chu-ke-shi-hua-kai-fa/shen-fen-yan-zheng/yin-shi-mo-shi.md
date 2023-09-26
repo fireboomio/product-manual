@@ -279,8 +279,6 @@ Fireboom 根据 [配置的JWK公钥](yin-shi-mo-shi.md#oidc-pei-zhi) 验签`acce
 
 Fireboom 调用授权钩子，在钩子中修改用户信息，返回后，由Fireboom 缓存用户信息，详情见 [shen-fen-yan-zheng-gou-zi.md](../../jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md "mention")，并返回用户信息到客户端。
 
-
-
 ### 简化流程
 
 刚刚介绍的，无论是授权码模式还是隐式模式都需要使用OIDC原生的登录页。那如果想自定义登录页，又该如何做呢？
@@ -289,7 +287,7 @@ Fireboom 调用授权钩子，在钩子中修改用户信息，返回后，由Fi
 
 那如果OIDC服务提供了根据账户密码获得`accest_token`的接口，是不是就可以供我们在自己编写的界面中直接调用了呢？
 
-<figure><img src="../../.gitbook/assets/image (5).png" alt=""><figcaption><p>隐式模式时序图-简化版</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (5) (1).png" alt=""><figcaption><p>隐式模式时序图-简化版</p></figcaption></figure>
 
 我们仍以authing为例，上述流程图就展示了该过程。
 

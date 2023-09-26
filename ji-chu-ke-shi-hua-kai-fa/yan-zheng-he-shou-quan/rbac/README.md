@@ -12,7 +12,7 @@
 
 当使用 RBAC 时，可以授予用户一个或多个角色，每个角色具有一个或多个权限。用户通过角色间接拥有权限，说白了就是给权限分个组，用户直接绑定分组，间接拥有分组的所有权限。相比直接为用户分配权限的ACL模式，RBAC实现了更灵活的访问控制。
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 例如，用户张三的角色是销售经理，销售经理的权限有3个：客户列表、添加客户、删除客户。因此，用户张三就通过继承销售经理的角色，变相拥有了3个权限。
 
@@ -20,13 +20,13 @@
 
 RBAC模型有多种变形，可分为RBAC0、RBAC1、RBAC2、RBAC3，但其核心都是RBAC0。
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (2).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
 
 如图是RBAC0的控制图，由四部分构成：
 
-* 用户（User）&#x20;
+* 用户（User）
 * 角色（Role）
-* 会话（Session）&#x20;
+* 会话（Session）
 * 许可（Pemission），包括“操作”和“控制对象”
 
 许可被赋予角色，而不是用户，当一个角色被指定给一个用户时，此用户就拥有了该角色所包含的许可。
@@ -105,8 +105,6 @@ curl 'http://localhost:9991/operations/System/User/ConnectRole' \
 
 Fireboom通过`@rbac`指令实现了角色绑定权限，详情见 [jie-kou-quan-xian-kong-zhi.md](../jie-kou-quan-xian-kong-zhi.md "mention")。
 
-
-
 ## 激活角色
 
 Fireboom基于OIDC协议实现了 [shen-fen-yan-zheng](../../shen-fen-yan-zheng/ "mention") ，但OIDC中不包含角色相关的约定。用户通过OIDC流程登录后，claims中不包含`roles`字段。
@@ -124,7 +122,7 @@ Fireboom基于OIDC协议实现了 [shen-fen-yan-zheng](../../shen-fen-yan-zheng/
 
 1. 在身份验证面板中点击“<img src="http://localhost:9123/assets/workbench/panel-role.png" alt="头像" data-size="line">”，进入“角色管理”TAB
 2. 根据业务需求添加角色，系统默认内置admin和user角色（请确保必须有1个角色）
-3. 切换到“身份鉴权”TAB，开启`mutatingPostAuthentication` 和 `revalidateAuthentication`&#x20;
+3. 切换到“身份鉴权”TAB，开启`mutatingPostAuthentication` 和 `revalidateAuthentication`
 4. 编写按照下述用例，编写钩子，启动钩子
 
 {% hint style="info" %}
@@ -159,10 +157,6 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 }
 ```
 {% endtab %}
-
-{% tab title="nodejs" %}
-
-{% endtab %}
 {% endtabs %}
 
 详情，请前往 [shen-fen-yan-zheng-gou-zi.md](../../../jin-jie-gou-zi-ji-zhi/shen-fen-yan-zheng-gou-zi.md "mention")
@@ -172,4 +166,3 @@ func Revalidate(hook *base.AuthenticationHookRequest) (*plugins.AuthenticationRe
 1. 点击顶部菜单栏的“<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAAY1BMVEUAAADU1NRjZmxvcnePkZVgY2rPz9BfY2poaHTAwMOAhIxoa3FgYmpgYmlgY2nFxcbU1NRmZm+Ag427u73U1NRfYml/g4zt7e3k5eXW1te9vsCztLefoaWanKCOkJVydXtucXecDQKGAAAAFXRSTlMAzP336NDOiAvTz/rn2tjSph7Qs6d9epWLAAAAjElEQVQ4y+2T2Q6EIAxFK+A6mzMj4q7//5VaYngCG2N8cDkvNOlJSG9TuCq+XMQ3oiQ4p0jGsx+/fCIByDwrqRFzDYDn4BatYiw4Y1zEhBgIJjUsjJbED5eG19ctBtrr66rD9x05RYH9oVBKtViFTvGB7UZNlFg9N4n01/QwdDwrA0/mU0jtK/zDYRgBwgsrsPomQg4AAAAASUVORK5CYII=" alt="预览" data-size="line">”，前往API预览页，选择当前API
 2. 在预览页顶部，选择OIDC供应商，点击前往登录
 3. 登录后可查看用户信息，可以看到当前登录用户`roles`字段包含钩子中赋予的角色
-
