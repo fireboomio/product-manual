@@ -29,45 +29,48 @@ RUN apk update && \
 # 安装 Node.js
 RUN apk add --no-cache nodejs npm
 
-WORKDIR /dist
+WORKDIR /fbserver
 
-# 将host.sh脚本复制到容器中
+# 将代码复制到容器中
+COPY . .
 
-COPY ./host.sh /dist
-
-# 运行脚本
+#RUN chmod +x update-fb.sh
 RUN chmod +x host.sh
+RUN chmod +x update-fb.sh
 
 # 指定挂载目录
-VOLUME /dist/log
-VOLUME /dist/store
-VOLUME /dist/template
-VOLUME /dist/upload
-VOLUME /dist/custom-go
-VOLUME /dist/custom-ts
-VOLUME /dist/exported
+VOLUME /fbserver/log
+VOLUME /fbserver/store
+VOLUME /fbserver/template
+VOLUME /fbserver/upload
+VOLUME /fbserver/custom-go
+VOLUME /fbserver/custom-ts
 
 EXPOSE 9123
 EXPOSE 9991
 
-ENTRYPOINT ["/dist/host.sh"]
+ENTRYPOINT ["/fbserver/host.sh"]
 ```
 {% endcode %}
 
 {% code title="host.sh" %}
 ```bash
 #!/bin/bash
-
-# 解决docker镜像IPV6的问题
-echo "0.0.0.0 localhost">/etc/hosts
-
 # 使用install.sh脚本安装Fireboom，并使用 init-todo 模板初始化
-curl -fsSL fireboom.io/install.sh | bash -s fb-project -t fb-init-todo
+sh update-fb.sh
 
-start_command="/dist/fireboom $1"
+./fireboom build
+
+start_command="/fbserver/fireboom $1"
 
 eval "$start_command"
+```
+{% endcode %}
 
+{% code title="update-fb.sh" %}
+```bash
+#!/usr/bin/env bash
+curl -fsSL https://www.fireboom.io/update | bash
 ```
 {% endcode %}
 
@@ -108,7 +111,7 @@ docker run -it -v $(pwd)/store:/fbserver/store \
 ```
 
 {% hint style="info" %}
-若是windows系统，请将 **$(pwd)** 替换为**`${pwd}`**
+若是windows系统，请将 **$(pwd)** 替换为\*\*`${pwd}`\*\*
 {% endhint %}
 
 * 以生产模式启动
@@ -122,7 +125,7 @@ docker run -it -p 9123:9123 -p 9991:9991 fireboom_server:latest start
 容器的工作目录为：`./fbserver`，根据需求挂载下述子目录。
 
 * 存储目录： store、upload、exported
-* 钩子目录：custom-go 或 custom-ts  （不用钩子，无需暴露）
+* 钩子目录：custom-go 或 custom-ts （不用钩子，无需暴露）
 * 日志目录（可选）：log
 
 **端口说明**
@@ -136,3 +139,4 @@ docker run -it -p 9123:9123 -p 9991:9991 fireboom_server:latest start
 
 
 
+更多内容，如在容器中使用钩子，请参考：[https://github.com/lcRuri/fireboom-doc/blob/main/docker/readme.md](https://github.com/lcRuri/fireboom-doc/blob/main/docker/readme.md)

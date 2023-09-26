@@ -70,7 +70,7 @@ export const client = createClient({
 
 #### Nodejs支持
 
-使用customFetch配置选项，在没有内置fetch实现的服务器环境中使用SDK。&#x20;
+使用customFetch配置选项，在没有内置fetch实现的服务器环境中使用SDK。
 
 安装node-fetch：
 
@@ -188,9 +188,13 @@ async function handleFiles(e: Event) {
   if (files == null) return
   // 调用上传函数
   const res = await client.uploadFiles({
-    provider: "tengxunyun",
+    provider: "tengxunyun", // 供应商名称
     files: files,
-    profile: "avatar" // （可选）
+    profile: "avatar", // （可选）高级配置项
+    directory:"sss", // （可选）上传目录
+    meta:{          // （可选）meta信息
+        postId:"sss"
+    }
   })
   console.log("https://test-1314985928.cos.ap-nanjing.myqcloud.com/"+res.fileKeys[0])
 }
