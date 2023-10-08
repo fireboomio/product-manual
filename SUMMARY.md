@@ -94,6 +94,7 @@
   * [微信小程序SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/wei-xin-xiao-cheng-xu-sdk.md)
   * [Flutter SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/flutter-sdk.md)
   * [uniapp SDK](shi-yong-bu-shu-shang-xian/sdk-sheng-cheng/uniapp-sdk.md)
+* [性能测试](shi-yong-bu-shu-shang-xian/xing-neng-ce-shi.md)
 
 ***
 
