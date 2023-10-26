@@ -4,17 +4,11 @@
 
 ## Mysql
 
-### 汇总
-
-<table><thead><tr><th width="108">表数量</th><th width="140">cpu</th><th width="132">内存</th><th width="165">配置文件大小</th><th>编译30s</th></tr></thead><tbody><tr><td>10</td><td>1.5%～2.0%</td><td>124.3MB</td><td>graphql:103KB json:271KB</td><td>120～140ms</td></tr><tr><td>50</td><td>2.5%~2.9%</td><td>198.9MB</td><td>graphql:440KB json:1.1MB</td><td>150~180ms</td></tr><tr><td>200</td><td>7.4%</td><td>314.3MB</td><td>graphql:1.7MB json:4.3MB</td><td>409.942375ms~483.471583ms</td></tr><tr><td>500</td><td>20.3%~21.2%</td><td>426.2MB</td><td>graphql:4.1MB json:10.8MB</td><td>1.080828958s~1.144414791s</td></tr><tr><td>1000</td><td>39.3%~47.8%</td><td>1001.2MB</td><td>graphql:8.3MB json:21.5MB</td><td>3.098373458s~3.121010792s</td></tr></tbody></table>
-
 ### 表100 字段10 无数据
 
+<table><thead><tr><th width="99">api数量</th><th width="127">cpu</th><th width="90">内存</th><th width="166">配置文件大小</th><th>编译</th></tr></thead><tbody><tr><td>10</td><td>2.8%～3.3%</td><td>99.3MB</td><td>graphql:37KB json:122KB</td><td>"totalCost": "123.519209ms", "startCost": "8.292917ms"</td></tr><tr><td>50</td><td>2.9%~3.3%</td><td>172MB</td><td>graphql:37KB json:214KB</td><td>"totalCost": "149.230167ms", "startCost": "32.58175ms"</td></tr><tr><td>100</td><td>4.1%～4.6%</td><td>210.3MB</td><td>graphql:37KB json:322KB</td><td>"totalCost": "199.703125ms", "startCost": "68.734ms"</td></tr><tr><td>200</td><td>6.0%~6.6%</td><td>225.1MB</td><td>graphql:103KB json:703KB</td><td>"totalCost": "206.980375ms", "startCost": "84.656084ms"</td></tr><tr><td>500</td><td>15.9%~17.5%</td><td>260MB</td><td>graphql:123KB json:1.5MB</td><td>"totalCost": "563.586292ms", "startCost": "290.274083ms"</td></tr><tr><td>1000</td><td>30.7%~34.1%</td><td>299.9MB</td><td>graphql:855KB json:4.6MB</td><td>"totalCost": "1.012925125s", "startCost": "601.4245ms"</td></tr></tbody></table>
 
-
-<table><thead><tr><th width="99">api数量</th><th width="127">cpu</th><th width="90">内存</th><th width="166">配置文件大小</th><th>编译30s</th></tr></thead><tbody><tr><td>10</td><td>2.8%～3.3%</td><td>99.3MB</td><td>graphql:37KB json:122KB</td><td>"totalCost": "123.519209ms", "startCost": "8.292917ms"</td></tr><tr><td>50</td><td>2.9%~3.3%</td><td>172MB</td><td>graphql:37KB json:214KB</td><td>"totalCost": "149.230167ms", "startCost": "32.58175ms"</td></tr><tr><td>100</td><td>4.1%～4.6%</td><td>210.3MB</td><td>graphql:37KB json:322KB</td><td>"totalCost": "199.703125ms", "startCost": "68.734ms"</td></tr><tr><td>200</td><td>6.0%~6.6%</td><td>225.1MB</td><td>graphql:103KB json:703KB</td><td>"totalCost": "206.980375ms", "startCost": "84.656084ms"</td></tr><tr><td>500</td><td>15.9%~17.5%</td><td>260MB</td><td>graphql:123KB json:1.5MB</td><td>"totalCost": "563.586292ms", "startCost": "290.274083ms"</td></tr><tr><td>1000</td><td>30.7%~34.1%</td><td>299.9MB</td><td>graphql:855KB json:4.6MB</td><td>"totalCost": "1.012925125s", "startCost": "601.4245ms"</td></tr></tbody></table>
-
-
+PS：<mark style="color:orange;">totalCost</mark>: build+start耗时；<mark style="color:orange;">startCost</mark>：start耗时
 
 ### 表200 字段10 无数据
 
