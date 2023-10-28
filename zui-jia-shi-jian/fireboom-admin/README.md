@@ -12,14 +12,9 @@ Fireboom Admin最大的特点是可视化的后台接口开发，注意不是可
 
 未来， Fireboom Admin将考虑与appsmith或lowcode-engine结合，进一步提升后台开发效率！
 
-
-
 仓库地址：[https://github.com/fireboomio/fb-admin](https://github.com/fireboomio/fb-admin)
 
 在线示例：
 
-* Fireboom控制台入口：[http://47.101.68.119:9123/](http://47.101.68.119:9123/)
-* Admin后台入口：[http://47.101.68.119:9295](http://47.101.68.119:9295)
-
-
-
+* Fireboom控制台入口：[http://test.fireboom.cloud/console/](http://test.fireboom.cloud/console/)
+* Admin后台入口：[http://test.fireboom.cloud/#/](http://test.fireboom.cloud/#/)
