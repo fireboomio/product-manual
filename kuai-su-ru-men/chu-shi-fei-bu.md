@@ -12,7 +12,7 @@
 
 ## 团队版
 
-支持团队协作。该功能暂未实现，详情见[lu-xian-tu.md](../lu-xian-tu.md "mention")
+支持团队协作。该功能暂未实现，详情见 [Roadmap](https://github.com/orgs/fireboomio/projects/2/views/5)
 
 ## 飞布云
 
@@ -20,7 +20,7 @@
 
 飞布云能够帮开发者在几秒内创建高度优化以及可大规模扩展的飞布实例，并包括额外的可靠性、监控、缓存、跟踪、安全和部署特性。当然，开发者也可以使用飞布社区版手动部署飞布。
 
-当前飞布云仍在规划中，详情见[lu-xian-tu.md](../lu-xian-tu.md "mention")
+当前飞布云仍在规划中，详情见[Broken link](broken-reference "mention")
 
 ## 应用商城
 
