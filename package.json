@@ -1,0 +1,20 @@
+{
+  "name": "fireboom-docs",
+  "module": "index.ts",
+  "dependencies": {
+    "markdown-ast": "^0.3.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.0",
+    "@types/bun": "^1.0.0",
+    "ts-morph": "^21.0.1",
+    "vitepress": "^1.0.0-rc.35"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "format": "bunx @biomejs/biome format .vitepress/config.ts --write"
+  },
+  "type": "module"
+}
