@@ -55,7 +55,7 @@
     * 复制API访问地址按钮
   * [监听HOST](../../../shi-yong-bu-shu-shang-xian/security/#jian-ting-di-zhi)：核心引擎启动时监听的HOST
     * localhost：默认值，仅能本机访问，用[nginx代理](../../../shi-yong-bu-shu-shang-xian/bu-shu-yun-wei/shou-dong-bu-shu/#nginx-pei-zhi)后可外网访问
-    * 0.0.0.0：所有IP都能访问，不安全，有两个常见用例
+    * <mark style="color:red;">**0.0.0.0**</mark>：所有IP都能访问，不安全，有两个常见用例
       * 不使用nginx代理，通过公网IP访问时
       * 在docker中启动时（在docker容器中，ip会被分到127.0.0.1）
   * 监听端口：核心引擎启动时监听的端口，用于暴露API，默认9991

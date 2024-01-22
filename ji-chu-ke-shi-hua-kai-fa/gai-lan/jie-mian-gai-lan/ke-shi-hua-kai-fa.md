@@ -33,7 +33,7 @@
     * 函数入参：点击蓝色字段和输入框之间的`$`符，可以将过滤条件设置为函数入参
 
 {% hint style="info" %}
-\_join字段的用法比较特殊，详情见下文“[跨源关联](../../api-gou-jian/kua-yuan-guan-lian.md)”
+\_join 字段的用法比较特殊，详情见下文“[跨源关联](../../api-gou-jian/kua-yuan-guan-lian.md)”
 {% endhint %}
 
 ## 编辑器GraphQL
@@ -54,11 +54,11 @@ GraphQL编辑器主要用来查看、修改以及测试 OPERATION ，基于 [Gra
 
 GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
-**全局指令：**作用于QUERY | MUTATION | SUBSCRIPTION，包括@rbac和@internalOperation。
+\*\*全局指令：\*\*作用于QUERY | MUTATION | SUBSCRIPTION，包括@rbac和@internalOperation。
 
-**入参指令：**作用于GraphQL的入参，包括@fromClaim、@jsonSchema、@hooksVariable、@injectGeneratedUUID、@injectGeneratedUUID、@injectEnvironmentVariable、@internal。
+\*\*入参指令：\*\*作用于GraphQL的入参，包括@fromClaim、@jsonSchema、@hooksVariable、@injectGeneratedUUID、@injectGeneratedUUID、@injectEnvironmentVariable、@internal。
 
-**字段指令：**作用于GraphQL 字段，包括@transform。
+\*\*字段指令：\*\*作用于GraphQL 字段，包括@transform。
 
 详情见 [API指令](../../api-gou-jian/api-zhi-ling.md)。
 
@@ -66,7 +66,7 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 
 概览面板以可视化的形式展示当前 OPERATION 的运行机制，主要包括：HTTP流程图、内部调用流程图、订阅流程图。
 
-详情见，[API运行机制](broken-reference)。
+详情见，[API运行机制](broken-reference/)。
 
 ## 设置面板
 
@@ -80,6 +80,9 @@ GraphQL指令分为三类：全局指令、入参指令、字段指令。
 * 实时配置：仅对QUERY生效
   * 实时查询：开启后服务器轮询生效，可定时将消息推送至客户端
   * 轮询间隔：服务器轮询间隔，越短响应越快
+* 限流配置：设置当前 OPERATION 的请求频次
+  * 时间区间：默认60秒
+  * 访问频次：默认120次
 
 ## 钩子面板
 

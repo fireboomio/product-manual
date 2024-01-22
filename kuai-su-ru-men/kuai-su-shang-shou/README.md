@@ -63,6 +63,13 @@ curl -fsSL fireboom.io/install | bash -s project-name -t init-todo --cn
 飞布采用golang语言编写，上述版本基于golang的跨平台编译构建。如果你的操作系统不在上述列表，请[联系我们](https://github.com/fireboomio/product-manual/discussions)兼容。
 {% endhint %}
 
+**模板列表：**
+
+* [init-todo](https://github.com/fireboomio/init-todo)： 基础模板，只涉及 [OPERATION](https://docs.fireboom.io/he-xin-gai-nian/graphql#graphql-operation) ，不涉及钩子编写
+* init-hooks：钩子模板，提供 golang 和 nodejs 的示例 （inprocess）
+
+
+
 #### 升级飞布
 
 ```bash
