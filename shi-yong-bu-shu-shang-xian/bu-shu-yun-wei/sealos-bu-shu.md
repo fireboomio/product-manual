@@ -4,11 +4,11 @@
 
 1，前往[Sealos模板市场](https://fastdeploy.cloud.sealos.io/)，找到Fireboom，点击“**Deploy**”
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
 
 2，进入sealos控制台，查看应用
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 ### 访问Fireboom
 

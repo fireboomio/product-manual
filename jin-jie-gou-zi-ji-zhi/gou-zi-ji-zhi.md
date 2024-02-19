@@ -227,7 +227,7 @@ todo
 
 若钩子模板有更新，则会在界面上展示 `new` 标签，点击可对比模板变更
 
-<figure><img src="../.gitbook/assets/image (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
 
 例如：[https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762](https://github.com/fireboomio/sdk-template\_go-server/compare/ab1427e..e7fa762)
 
@@ -244,3 +244,102 @@ todo
 ```bash
 go mod tidy
 ```
+
+## 钩子规范
+
+### 钩子服务
+
+钩子服务本质上是实现了特定规范的 HTTP 服务，详情见文件：`/exported/generated/hook.swagger.json`
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+健康检查路由 `/health` 节选：
+
+<pre class="language-json"><code class="lang-json">{
+<strong>    "components": {
+</strong>        "schemas": {
+            "Health": {
+                "properties": {
+                    "report": {
+                        "$ref": "#/components/schemas/HealthReport"
+                    },
+                    "status": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "status",
+                    "report"
+                ],
+                "type": "object"
+            },
+            "HealthReport": {
+                "properties": {
+                    "customizes": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "functions": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "proxys": {
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array"
+                    },
+                    "time": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "customizes",
+                    "functions",
+                    "proxys",
+                    "time"
+                ],
+                "type": "object"
+            } 
+        }
+    },
+    "info": {
+        "title": "Fireboom Hook swagger3.0",
+        "version": "test"
+    },
+    "openapi": "3.0.1",
+    "paths": {
+        "/health": {
+            "post": {
+                "operationId": "health",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Health"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [],
+                "summary": "/health"
+            }
+        }
+    }
+}
+</code></pre>
+
+### 内部调用
+
+此外，钩子服务中也可以调用 fireboom 服务，详情见： [#nei-bu-tiao-yong-xie-yi](nei-bu-tiao-yong.md#nei-bu-tiao-yong-xie-yi "mention")

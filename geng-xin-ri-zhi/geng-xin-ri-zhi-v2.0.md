@@ -1,5 +1,7 @@
 # 更新日志V2.0
 
+**历史版本**：[https://history.fireboom.io/versions](https://history.fireboom.io/versions)
+
 <details>
 
 <summary>V2.0.0飞布功能更新啦！（2023/09/04）</summary>

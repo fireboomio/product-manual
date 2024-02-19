@@ -12,7 +12,7 @@
 
 当使用 RBAC 时，可以授予用户一个或多个角色，每个角色具有一个或多个权限。用户通过角色间接拥有权限，说白了就是给权限分个组，用户直接绑定分组，间接拥有分组的所有权限。相比直接为用户分配权限的ACL模式，RBAC实现了更灵活的访问控制。
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (2).png" alt=""><figcaption></figcaption></figure>
 
 例如，用户张三的角色是销售经理，销售经理的权限有3个：客户列表、添加客户、删除客户。因此，用户张三就通过继承销售经理的角色，变相拥有了3个权限。
 
@@ -20,7 +20,7 @@
 
 RBAC模型有多种变形，可分为RBAC0、RBAC1、RBAC2、RBAC3，但其核心都是RBAC0。
 
-<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (2).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1) (1) (1) (2) (1).png" alt=""><figcaption><p>RBAC0控制图</p></figcaption></figure>
 
 如图是RBAC0的控制图，由四部分构成：
 
