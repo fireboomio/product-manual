@@ -35,9 +35,13 @@
 
 ### Docker运行
 
-<pre class="language-bash"><code class="lang-bash"><strong># 开发模式运行
-</strong>docker run -it -p 9123:9123 -p 9991:9991 fireboomapi/fireboom_server:latest dev 
-</code></pre>
+```bash
+# 开发模式运行
+docker run -it -p 9123:9123 -p 9991:9991 fireboomapi/fireboom:latest dev
+
+# 如果你不需要使用飞步控制台，可以使用不包含控制台的版本
+docker run -it -p 9123:9123 fireboomapi/fireboom_without-web:latest dev
+```
 
 打开控制面板，使用如下地址进行访问：
 
@@ -53,6 +57,8 @@
 
 ```bash
 curl -fsSL https://www.fireboom.io/install.sh | bash -s project-name -t fb-init-todo
+# 如果你不需要使用飞步控制台，可以使用不包含控制台的版本
+curl -fsSL https://www.fireboom.io/install.sh --without-web | bash -s project-name -t fb-init-todo
 ```
 
 `project-name`为项目名称，可根据需求更改。

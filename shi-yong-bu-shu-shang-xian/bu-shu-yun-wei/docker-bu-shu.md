@@ -7,7 +7,7 @@
 
 ## 构建镜像
 
-您可以按照下述方法自行构建镜像，也可以使用Fireboom官方构建的镜像，前往 [dockerhub查看](https://hub.docker.com/repository/docker/fireboomapi/fireboom\_server/general) 。
+您可以按照下述方法自行构建镜像，也可以使用Fireboom官方构建的镜像，前往 [dockerhub查看](https://hub.docker.com/repository/docker/fireboomapi/fireboom/general) 。
 
 ### Dockerfile
 
